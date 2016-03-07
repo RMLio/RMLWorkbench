@@ -1,0 +1,68 @@
+extends ../../layouts/default
+
+block head
+  title Workbench
+
+block neck
+  link(rel='stylesheet', href='/views/workbench/index.min.css?#{cacheBreaker}')
+
+block body
+  div.page-header
+    h1 Workbench
+  div.row
+    div.col-md-4
+      div(class="panel panel-primary")
+        div.panel-heading
+          h3.panel-title Input
+        div.panel-body
+          div.btn-group-vertical.center-block(role="group")
+            button(type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#upload-input").
+              Upload File
+            button(type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#db-input").
+              External Database
+            button(type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#api-input").
+              Web API
+            button(type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#rdf-input").
+              RDF Source
+   
+    div.col-md-4
+      div(class="panel panel-primary")
+        div.panel-heading
+          h1.panel-title Mapping
+        div.panel-body
+          button(type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#uploadRML").
+                Upload RML
+          div(class="clearfix")
+          button(type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#existingRML").
+            Existing RML
+          div(class="clearfix")
+          button(type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#newRML").
+            Create New RML
+
+    div.col-md-4
+      div(class="panel panel-primary")
+        div.panel-heading
+          h3.panel-title Publish
+        div.panel-body
+          button(type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#publish").
+            Publish Now
+          div(class="clearfix")
+          button(type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#schedule").
+            Schedule publishing
+
+  div(id="upload-input" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;")
+    div.modal-dialog(role="document")
+      div.modal-content
+        div.modal-header
+          button.close(type="button" data-dismiss="modal" aria-label="Close")
+            span(aria-hidden="true") ×
+          h4.modal-title Upload an input file
+        div.modal-body
+          h4 Format
+          p Currently only XML, CSV and JSON are supported. We will attempt to 
+          label(class="btn btn-primary" for="my-file-selector")
+            input(id="my-file-selector" type="file" style="display:none;" data-allowed-file-extensions='["csv", "xml", "txt", "json"]')
+            | Choose a file
+
+          
+

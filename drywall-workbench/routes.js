@@ -37,12 +37,14 @@ exports = module.exports = function(app, passport) {
   app.get('/about/', require('./views/about/index').init);
   app.get('/contact/', require('./views/contact/index').init);
   app.post('/contact/', require('./views/contact/index').sendMessage);
+
   
   //execute a mapping [AMMA]
   app.get('/execute/', function(req, res) {      
       var mapper = new Mapper('RML-Mapper.jar');
       mapper.execute('test.rml', 'output.rdf', res);      
   });
+
 
   //workbench
   app.get('/workbench/', require('./views/workbench/index').init);

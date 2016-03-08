@@ -5,64 +5,77 @@ block head
 
 block neck
   link(rel='stylesheet', href='/views/workbench/index.min.css?#{cacheBreaker}')
+  script(src='/js/file_uploads.js')
 
 block body
   div.page-header
     h1 Workbench
   div.row
     div.col-md-4
-      div(class="panel panel-primary")
+      div(class='panel panel-primary')
         div.panel-heading
           h3.panel-title Input
         div.panel-body.text-center
-          div.btn-group-vertical(role="group")
-            button(type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#upload-input").
+          div.btn-group-vertical(role='group')
+            button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#upload-input').
               Upload File
-            button(type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#db-input").
+            button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#db-input').
               External Database
-            button(type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#api-input").
+            button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#api-input').
               Web API
-            button(type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#rdf-input").
+            button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#rdf-input').
               RDF Source
    
     div.col-md-4
-      div(class="panel panel-primary")
+      div(class='panel panel-primary')
         div.panel-heading
-          h1.panel-title Mapping
-        div.panel-body
-          button(type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#uploadRML").
-                Upload RML
-          div(class="clearfix")
-          button(type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#existingRML").
-            Existing RML
-          div(class="clearfix")
-          button(type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#newRML").
-            Create New RML
+          h3.panel-title Mapping
+        div.panel-body.text-center(id="mapping-rules")
+          div.btn-group-vertical(role='group')
+            form
+             label(class='btn btn-primary btn-lg' for='mapping-selector' onClick="fileUpload(this.form,'upload/mapping','mapping-selector'); return false;")
+                input(id='mapping-selector' type='file' style='display:none;' data-allowed-file-extensions="['rml.ttl', 'rml', 'ttl']")
+                |  Upload Mapping triples
+            button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#existingRML').
+              Choose existing rules
+            button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#newRML').
+              Create new RML document
 
     div.col-md-4
-      div(class="panel panel-primary")
+      div(class='panel panel-primary')
         div.panel-heading
           h3.panel-title Publish
-        div.panel-body
-          button(type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#publish").
-            Publish Now
-          div(class="clearfix")
-          button(type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#schedule").
-            Schedule publishing
-
-  div(id="upload-input" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;")
-    div.modal-dialog(role="document")
+        div.panel-body.text-center
+          div.btn-group-vertical(role='group')
+            button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#publish').
+              Publish Now
+            button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#schedule').
+              Schedule publishing
+  //- Modals here
+  div(id='upload-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' style='display: none;')
+    div.modal-dialog(role='document')
       div.modal-content
         div.modal-header
-          button.close(type="button" data-dismiss="modal" aria-label="Close")
-            span(aria-hidden="true") ×
+          button.close(type='button' data-dismiss='modal' aria-label='Close')
+            span(aria-hidden='true') ×
           h4.modal-title Upload an input file
         div.modal-body
           h4 Format
           p Currently only XML, CSV and JSON are supported. We will attempt to 
-          label(class="btn btn-primary" for="my-file-selector")
-            input(id="my-file-selector" type="file" style="display:none;" data-allowed-file-extensions='["csv", "xml", "txt", "json"]')
+          label(class='btn btn-primary' for='my-file-selector')
+            input(id='my-file-selector' type='file' style='display:none;' data-allowed-file-extensions="['csv', 'xml', 'txt', 'json']")
             | Choose a file
 
-          
-
+  div(id='upload-mapping' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='AreTheseUsed' style='display: none;')
+    div.modal-dialog(role='document')
+      div.modal-content
+        div.modal-header
+          button.close(type='button' data-dismiss='modal' aria-label='Close')
+            span(aria-hidden='true') ×
+          h4.modal-title Upload an RML file
+        div.modal-body
+          h4 File format
+          p Currently only XML, CSV and JSON are supported. We will attempt to 
+          label(class='btn btn-primary' for='mapping-selector')
+            input(id='mapping-selector' type='file' style='display:none;' data-allowed-file-extensions="['rml.ttl', 'rml', 'ttl']")
+            |  Choose a mapping file

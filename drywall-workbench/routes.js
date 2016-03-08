@@ -38,6 +38,10 @@ exports = module.exports = function(app, passport) {
   //workbench
   app.get('/workbench/', require('./views/workbench/index').init);
 
+
+  //Upload
+  app.post('/upload/mapping', require('./views/upload/index').mapping);
+
   //sign up
   app.get('/signup/', require('./views/signup/index').init);
   app.post('/signup/', require('./views/signup/index').signup);

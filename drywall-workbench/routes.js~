@@ -39,6 +39,8 @@ exports = module.exports = function(app, passport) {
   app.get('/workbench/', require('./views/workbench/index').init);
 
 
+  //Upload
+  app.post('/upload/mapping', require('./views/upload').mapping);
 
   //sign up
   app.get('/signup/', require('./views/signup/index').init);

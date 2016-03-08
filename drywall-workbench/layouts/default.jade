@@ -5,8 +5,10 @@ html
       title #{title}
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     link(rel='stylesheet', href='/layouts/core.min.css?#{cacheBreaker}')
+    script(src='/vendors/angular/angular.js')
+    script(src='/vendors/angular/app.js')
     block neck
-  body
+  body(ng-app='App')
     div.navbar.navbar-default.navbar-fixed-top
       div.container
         div.navbar-header

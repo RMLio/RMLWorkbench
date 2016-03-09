@@ -43,10 +43,12 @@ $(document).ready(function() {
                     return;
                 }
 
-                var imageUrlOnServer = response.path;
+                var urlOnServer = response.path;
                 
-                status('Success, file uploaded to:' + imageUrlOnServer);
-                $('<img/>').attr('src', imageUrlOnServer).appendTo($('body'));
+                status('Success, file uploaded to:' + response.content);
+                var textarea = $('#mapping-rules-text');                
+                textarea.val(textarea.val() + response.content);
+                textarea.removeClass('hidden');
             }
         });
         
@@ -56,7 +58,7 @@ $(document).ready(function() {
     });
 
     function status(message) {
-        $('#status').text(message);
+        //$('#status').text(message);
     }
 });
 })(jQuery);

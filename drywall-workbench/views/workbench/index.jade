@@ -34,15 +34,13 @@ block body
         div.panel-heading
           h3.panel-title Mapping
         div.panel-body.text-center(id='mapping-rules')
-          div(id='status')
+          textarea.hidden(id='mapping-rules-text' rows='20' cols='80')
           div.btn-group-vertical(role='group')
             form(id='mapping-upload-form' enctype='multipart/form-data' action='/upload/mapping' method='post')
               input(type='hidden', name='_csrf', value=_csrf)
               label(class='btn btn-primary btn-lg' for='mapping-upload-input')
                  | Upload Mapping triples
-                 input(type='file' id='mapping-upload-input' name='mappingUpload' style='display:none;')
-              //label(class='btn btn-primary btn-lg' for='mapping-selector' onClick='fileUpload(this.form,'upload/mapping','mapping-selector'); return false;')
-              //input(id='mapping-selector' type='file' style='display:none;' data-allowed-file-extensions='['rml.ttl', 'rml', 'ttl']')
+                 input(type='file' id='mapping-upload-input' name='mappingUpload' style='display:none;' data-allowed-file-extensions="['rml.ttl', 'rml', 'ttl']")
              
             button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#existingRML').
               Choose existing rules

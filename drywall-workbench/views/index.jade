@@ -1,0 +1,22 @@
+extends ../layouts/default
+
+block head
+  title Drywall is Running
+
+block neck
+  link(rel='stylesheet', href='/views/index.min.css?#{cacheBreaker}')
+
+block body
+  div.jumbotron
+
+    h1 RML-Mapper
+    p.lead
+      | Click on run to execute a mapping!
+    div
+      a.btn.btn-primary.btn-lg(href='/execute') Run      
+      hr
+      pre
+         | Here comes the generated RDF output!
+    div.clearfix
+  
+

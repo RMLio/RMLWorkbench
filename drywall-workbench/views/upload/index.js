@@ -4,10 +4,10 @@ exports.mapping = function(req, res){
 
     console.log(JSON.stringify(req.file));
 
-    var serverPath = '/images/' + req.file.mappingUpload.name;
+    var serverPath = '/uploads/' + req.file.originalname;
 
     require('fs').rename(
-        req.files.userPhoto.path,
+        req.file.path,
         '.' + serverPath,
         function(error) {
 

@@ -1,0 +1,5 @@
+
+<http://airport.example.com/6523> a <http://vocab.org/transit/terms/Stop> ;
+	<http://vocab.org/transit/terms/route> "25"^^<http://www.w3.org/2001/XMLSchema#int> ;
+	<http://www.w3.org/2003/01/geo/wgs84_pos#long> "4.484444" ;
+	<http://www.w3.org/2003/01/geo/wgs84_pos#lat> "50.901389" .

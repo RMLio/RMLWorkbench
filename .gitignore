@@ -1,6 +1,9 @@
 *~
 public/vendor/*
-node_modules/*
+
+
+drywall-workbench/node_modules/*
+
 *.min.js
 *.min.js.map
 *.min.css

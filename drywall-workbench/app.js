@@ -90,6 +90,14 @@ app.utility.sendmail = require('./util/sendmail');
 app.utility.slugify = require('./util/slugify');
 app.utility.workflow = require('./util/workflow');
 
+//starting ldf
+var exec = require('child_process').exec;
+var cmd = 'ldf-server config.json 5000 4';
+
+exec(cmd, function(error, stdout, stderr) {
+  // command output is in stdout
+});
+
 //listen up
 app.server.listen(app.config.port, function(){
   //and... we're live

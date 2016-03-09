@@ -1,7 +1,5 @@
 'use strict';
 
-var Mapper = require('./schema/mapper');
-var path = require('path');
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
@@ -40,10 +38,7 @@ exports = module.exports = function(app, passport) {
 
   
   //execute a mapping [AMMA]
-  app.get('/execute/', function(req, res) {      
-      var mapper = new Mapper('RML-Mapper.jar');
-      mapper.execute('test.rml', 'output.rdf', res);      
-  });
+  app.get('/execute/', require('./views/mapping/index').execute);
 
 
   //workbench

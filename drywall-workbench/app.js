@@ -14,7 +14,7 @@ var config = require('./config'),
     helmet = require('helmet'),
     csrf = require('csurf'),
     multer  = require('multer');
-
+var upload = multer({ dest: 'uploads/' });
 
 //create express app
 var app = express();
@@ -58,7 +58,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(csrf({ cookie: { signed: true } }));
-//app.use(multer({ dest: 'uploads/' }));
 helmet(app);
 
 //response locals
@@ -80,7 +79,7 @@ app.locals.cacheBreaker = 'br34k-01';
 require('./passport')(app, passport);
 
 //setup routes
-require('./routes')(app, passport);
+require('./routes')(app, passport, upload);
 
 //custom (friendly) error handler
 app.use(require('./views/http/index').http500);

@@ -12,7 +12,9 @@ var config = require('./config'),
     passport = require('passport'),
     mongoose = require('mongoose'),
     helmet = require('helmet'),
-    csrf = require('csurf');
+    csrf = require('csurf'),
+    multer  = require('multer');
+
 
 //create express app
 var app = express();
@@ -56,6 +58,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(csrf({ cookie: { signed: true } }));
+//app.use(multer({ dest: 'uploads/' }));
 helmet(app);
 
 //response locals

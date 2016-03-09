@@ -2,10 +2,13 @@ extends ../../layouts/default
 
 block head
   title Workbench
+  script(type='text/javascript' src='/vendor/jquery/jquery.js' )
+  script(type='text/javascript' src='/vendor/jquery.cookie/jquery.cookie.js')
+  script(type='text/javascript' src='/js/jquery.form.js')
+  script(type='text/javascript' src='/js/file_uploads.js')
 
 block neck
   link(rel='stylesheet', href='/views/workbench/index.min.css?#{cacheBreaker}')
-  script(src='/js/file_uploads.js')
 
 block body
   div.page-header
@@ -30,12 +33,17 @@ block body
       div(class='panel panel-primary')
         div.panel-heading
           h3.panel-title Mapping
-        div.panel-body.text-center(id="mapping-rules")
+        div.panel-body.text-center(id='mapping-rules')
+          div(id='status')
           div.btn-group-vertical(role='group')
-            form
-             label(class='btn btn-primary btn-lg' for='mapping-selector' onClick="fileUpload(this.form,'upload/mapping','mapping-selector'); return false;")
-                input(id='mapping-selector' type='file' style='display:none;' data-allowed-file-extensions="['rml.ttl', 'rml', 'ttl']")
-                |  Upload Mapping triples
+            form(id='mapping-upload-form' enctype='multipart/form-data' action='/upload/mapping' method='post')
+              input(type='hidden', name='_csrf', value=_csrf)
+              label(class='btn btn-primary btn-lg' for='mapping-upload-input')
+                 | Upload Mapping triples
+                 input(type='file' id='mapping-upload-input' name='mapping-upload' style='display:none;')
+              //label(class='btn btn-primary btn-lg' for='mapping-selector' onClick='fileUpload(this.form,'upload/mapping','mapping-selector'); return false;')
+              //input(id='mapping-selector' type='file' style='display:none;' data-allowed-file-extensions='['rml.ttl', 'rml', 'ttl']')
+             
             button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#existingRML').
               Choose existing rules
             button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#newRML').

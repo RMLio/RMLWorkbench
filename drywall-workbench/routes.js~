@@ -40,7 +40,7 @@ exports = module.exports = function(app, passport) {
 
 
   //Upload
-  app.post('/upload/mapping', require('./views/upload').mapping);
+  app.post('/upload/mapping', require('./views/upload/index').mapping);
 
   //sign up
   app.get('/signup/', require('./views/signup/index').init);

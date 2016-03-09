@@ -12,7 +12,9 @@ var config = require('./config'),
     passport = require('passport'),
     mongoose = require('mongoose'),
     helmet = require('helmet'),
-    csrf = require('csurf');
+    csrf = require('csurf'),
+    multer  = require('multer');
+var upload = multer({ dest: 'uploads/' });
 
 //create express app
 var app = express();
@@ -77,7 +79,7 @@ app.locals.cacheBreaker = 'br34k-01';
 require('./passport')(app, passport);
 
 //setup routes
-require('./routes')(app, passport);
+require('./routes')(app, passport, upload);
 
 //custom (friendly) error handler
 app.use(require('./views/http/index').http500);

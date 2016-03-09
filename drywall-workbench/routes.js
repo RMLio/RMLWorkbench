@@ -29,7 +29,7 @@ function ensureAccount(req, res, next) {
   res.redirect('/');
 }
 
-exports = module.exports = function(app, passport) {
+exports = module.exports = function(app, passport, upload) {
   //front end
   app.get('/', require('./views/index').init);
   app.get('/about/', require('./views/about/index').init);
@@ -43,6 +43,10 @@ exports = module.exports = function(app, passport) {
 
   //workbench
   app.get('/workbench/', require('./views/workbench/index').init);
+
+
+  //Upload
+  app.post('/upload/mapping', upload.single('mappingUpload'), require('./views/upload/index').mapping);
 
   //sign up
   app.get('/signup/', require('./views/signup/index').init);

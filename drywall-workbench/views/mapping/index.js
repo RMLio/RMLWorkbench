@@ -2,7 +2,7 @@ exports.execute = function(req, res) {
     
     const spawner = require('child_process');
     const spawn = spawner.exec(
-        'java -jar ./views/mapping/RML-Mapper.jar -m test.rml -o output.rdf');  
+        'java -jar ./views/mapping/RML-Mapper.jar -m ./uploads/test.rml -o output.rdf');  
     spawn.stdout.on('data', (data) => {
         console.log(`stdout: ${data}`);
     });

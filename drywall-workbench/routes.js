@@ -38,7 +38,7 @@ exports = module.exports = function(app, passport, upload) {
 
   
   //execute a mapping [AMMA]
-  app.get('/execute/', require('./views/mapping/index').execute);
+  app.get('/execute', require('./views/mapping/index').execute);
 
 
   //workbench

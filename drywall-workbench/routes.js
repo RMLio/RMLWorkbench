@@ -48,6 +48,10 @@ exports = module.exports = function(app, passport, upload) {
   //Upload
   app.post('/upload/mapping', upload.single('mappingUpload'), require('./views/upload/index').mapping);
 
+  //Uploads
+  app.all('/uploads*', ensureAuthenticated);
+  app.get('/uploads/:file', require('./views/upload/index').file);
+
   //sign up
   app.get('/signup/', require('./views/signup/index').init);
   app.post('/signup/', require('./views/signup/index').signup);

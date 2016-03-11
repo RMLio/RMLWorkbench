@@ -4,7 +4,7 @@ $(document).ready(function() {
 
     status('Choose a file :)');
 
-    // Check to see when a user has selected a file
+    // Check to see when a user has selected a file, this means we don't need a submit button
     var timerId;
     timerId = setInterval(function() {
         if($('#mapping-upload-input').val() !== '') {
@@ -13,12 +13,7 @@ $(document).ready(function() {
             $('#mapping-upload-form').submit();
         }
     }, 500);
-    /*$.ajaxSetup({
-      beforeSend: function (xhr) {
-        xhr.setRequestHeader('x-csrf-token', $.cookie('_csrfToken'));
-      }
-    }); */
-//console.log($(this).cookie('_csrfToken'));
+
     $('#mapping-upload-form').submit(function() {
         status('uploading the file ...');
         
@@ -48,10 +43,12 @@ $(document).ready(function() {
                     return;
                 }
 
-                var imageUrlOnServer = response.path;
+                var urlOnServer = response.path;
                 
-                status('Success, file uploaded to:' + imageUrlOnServer);
-                $('<img/>').attr('src', imageUrlOnServer).appendTo($('body'));
+                status('Success, file uploaded to:' + response.content);
+                var textarea = $('#mapping-rules-text');                
+                textarea.val(textarea.val() + response.content);
+                textarea.removeClass('hidden');
             }
         });
         
@@ -61,7 +58,7 @@ $(document).ready(function() {
     });
 
     function status(message) {
-        $('#status').text(message);
+        //$('#status').text(message);
     }
 });
 })(jQuery);

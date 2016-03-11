@@ -40,6 +40,9 @@ exports = module.exports = function(app, passport, upload) {
   //execute a mapping [AMMA]
   app.get('/execute', require('./views/mapping/index').execute);
 
+  //publish the data [AMMA]
+  app.get('/publishLDF', require('./util/publish/index').publishLDF);
+  app.get('/publishVirtuoso', require('./util/publish/index').publishVirtuoso);
 
   //workbench
   app.get('/workbench/', require('./views/workbench/index').init);

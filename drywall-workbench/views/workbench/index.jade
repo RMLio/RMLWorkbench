@@ -46,6 +46,8 @@ block body
               Choose existing rules
             button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#newRML').
               Create new RML document
+            a.button(type='button' class='btn btn-primary btn-lg' href='/execute').
+              Execute mapping
 
     div.col-md-4
       div(class='panel panel-primary')
@@ -53,7 +55,7 @@ block body
           h3.panel-title Step 3: Publish
         div.panel-body.text-center
           div.btn-group-vertical(role='group')
-            a.btn.btn-primary.btn-lg(href='/execute') 
+            a.btn.btn-primary.btn-lg(href='/publishLDF')
               | Publish now
             button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#schedule').
               Schedule publishing

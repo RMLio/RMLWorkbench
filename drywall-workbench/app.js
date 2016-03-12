@@ -57,9 +57,12 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+/*
 app.use(csrf({ cookie: { signed: true } }));
+*/
 helmet(app);
 
+/*
 //response locals
 app.use(function(req, res, next) {
   res.cookie('_csrfToken', req.csrfToken());
@@ -68,6 +71,7 @@ app.use(function(req, res, next) {
   res.locals.user.username = req.user && req.user.username;
   next();
 });
+*/
 
 //global locals
 app.locals.projectName = app.config.projectName;

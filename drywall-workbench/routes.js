@@ -32,8 +32,8 @@ function ensureAccount(req, res, next) {
 exports = module.exports = function(app, passport, upload) {
   
 
-  /**************************************
-   *    Visual Tool Processes [AMMA]    *
+  /************************************
+   *    RML Visual Tool API [AMMA]    *
   */
   
   //execute a mapping [AMMA]
@@ -43,8 +43,8 @@ exports = module.exports = function(app, passport, upload) {
   app.get('/download/rdf', require('./util/download/index').downloadRDF);
 
   //publish the data [AMMA]
-  app.get('/publishLDF', require('./util/publish/index').publishLDF);
-  app.get('/publishVirtuoso', require('./util/publish/index').publishVirtuoso);
+  app.post('/publish/ldf', require('./util/publish/index').publishLdf);
+  app.post('/publish/virtuoso', require('./util/publish/index').publishVirtuoso);
 
   //workbench [AMMA]
   app.get('/workbench/', require('./views/workbench/index').init);

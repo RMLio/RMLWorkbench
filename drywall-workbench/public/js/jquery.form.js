@@ -90,7 +90,6 @@ $.fn.attr2 = function() {
  * ajaxSubmit() provides a mechanism for immediately submitting
  * an HTML form using AJAX.
  */
-console.log('THIS SUM BULLSHIT')
 $.fn.ajaxSubmit = function(options) {
     /*jshint scripturl:true */
 

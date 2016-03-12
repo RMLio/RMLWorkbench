@@ -1,18 +1,21 @@
 var fs = require('fs');
 
 //publish data on the local LDF server
-exports.publishLDF = function(req, res) {    
-    
+exports.publishLdf = function(req, res) {    
+           
     //read configuration file (JSON) from ldf server and add the new content
     var obj = require('../../config.json');
     
-    //temporarly solution
-    obj.datasources.example1 = {
-                "title": "My First Publish (RDF)",
-                "type": "TurtleDatasource",
-                "description": "This is my first published item on a LDF server!",
-                "settings": { "file": "./output.rdf" }
-                };             
+    //count how many datasources there are in the local ldf server   
+    var key, count = 0;
+    for(key in obj.datasources) {
+        if(obj.datasources.hasOwnProperty(key)) {
+            count++;
+        }
+    }   
+    
+    //add request body (JSON) to config file of ldf server
+    obj.datasources['data_' + count] = req.body;             
     
     //write the config file back    
     //Why is the path different?
@@ -20,10 +23,9 @@ exports.publishLDF = function(req, res) {
         if(err) {
             return console.log('error!' + err);
         }    
-    console.log("Data added to local LDF server!");    
+    console.log("[APPLICATION LOG] Data added to local LDF server!");    
     res.status(200);
-    res.redirect('/workbench');
-    res.send;
+    res.send();
 }); 
 }
 

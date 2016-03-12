@@ -30,30 +30,42 @@ function ensureAccount(req, res, next) {
 }
 
 exports = module.exports = function(app, passport, upload) {
-  //front end
-  app.get('/', require('./views/index').init);
-  app.get('/about/', require('./views/about/index').init);
-  app.get('/contact/', require('./views/contact/index').init);
-  app.post('/contact/', require('./views/contact/index').sendMessage);
+  
 
+  /**************************************
+   *    Visual Tool Processes [AMMA]    *
+  */
   
   //execute a mapping [AMMA]
   app.get('/execute', require('./views/mapping/index').execute);
+  
+  //download data [AMMA]
+  app.get('/download/rdf', require('./util/download/index').downloadRDF);
 
   //publish the data [AMMA]
   app.get('/publishLDF', require('./util/publish/index').publishLDF);
   app.get('/publishVirtuoso', require('./util/publish/index').publishVirtuoso);
 
-  //workbench
+  //workbench [AMMA]
   app.get('/workbench/', require('./views/workbench/index').init);
 
-
-  //Upload
+  //Upload [AMMA]
   app.post('/upload/mapping', upload.single('mappingUpload'), require('./views/upload/index').mapping);
 
-  //Uploads
+  //Uploads [AMMA]
   app.all('/uploads*', ensureAuthenticated);
   app.get('/uploads/:file', require('./views/upload/index').file);
+
+
+  /**********************************
+   *    Drywall User Management     *    
+  */
+  
+  //front end
+  app.get('/', require('./views/index').init);
+  app.get('/about/', require('./views/about/index').init);
+  app.get('/contact/', require('./views/contact/index').init);
+  app.post('/contact/', require('./views/contact/index').sendMessage);
 
   //sign up
   app.get('/signup/', require('./views/signup/index').init);

@@ -58,8 +58,9 @@ block body
             a.btn.btn-primary.btn-lg(href='/publishLDF')
               | Publish now
             button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#schedule').
-              Schedule publishing
-  //- Modals here
+              | Schedule publishing
+            a.btn.btn-primary.btn-lg(onclick="window.open('http://localhost:5000/', '_blank');")
+              | Local LDF Server
   div(id='upload-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' style='display: none;')
     div.modal-dialog(role='document')
       div.modal-content

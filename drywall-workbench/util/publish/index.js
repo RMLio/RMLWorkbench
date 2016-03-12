@@ -9,7 +9,7 @@ exports.publishLDF = function(req, res) {
     //temporarly solution
     obj.datasources.example1 = {
                 "title": "My First Publish (RDF)",
-                "type": "N-Triples",
+                "type": "TurtleDatasource",
                 "description": "This is my first published item on a LDF server!",
                 "settings": { "file": "./output.rdf" }
                 };             

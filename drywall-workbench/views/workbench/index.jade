@@ -17,7 +17,7 @@ block body
     div.col-md-4
       div(class='panel panel-primary')
         div.panel-heading
-          h3.panel-title Input
+          h3.panel-title Step 1: Input
         div.panel-body.text-center
           div.btn-group-vertical(role='group')
             button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#upload-input').
@@ -32,7 +32,7 @@ block body
     div.col-md-4
       div(class='panel panel-primary')
         div.panel-heading
-          h3.panel-title Mapping
+          h3.panel-title Step 2: Mapping
         div.panel-body.text-center(id='mapping-rules')
           textarea.hidden(id='mapping-rules-text' rows='20' cols='80')
           div.btn-group-vertical(role='group')
@@ -46,18 +46,23 @@ block body
               Choose existing rules
             button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#newRML').
               Create new RML document
+            a.button(type='button' class='btn btn-primary btn-lg' href='/execute').
+              Execute mapping
 
     div.col-md-4
       div(class='panel panel-primary')
         div.panel-heading
-          h3.panel-title Publish
+          h3.panel-title Step 3: Publish
         div.panel-body.text-center
           div.btn-group-vertical(role='group')
-            a.btn.btn-primary.btn-lg(href='/execute') 
+            a.btn.btn-primary.btn-lg(href='/publishLDF')
               | Publish now
             button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#schedule').
               Schedule publishing
-  //- Modals here
+            a.btn.btn-primary.btn-lg(onclick="window.open('http://localhost:5000/', '_blank');")
+              | Local LDF Server
+            a.btn.btn-primary.btn-lg(href='/download/rdf')
+              | Download RDF
   div(id='upload-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' style='display: none;')
     div.modal-dialog(role='document')
       div.modal-content

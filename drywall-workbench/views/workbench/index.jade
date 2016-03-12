@@ -55,10 +55,10 @@ block body
           h3.panel-title Step 3: Publish
         div.panel-body.text-center
           div.btn-group-vertical(role='group')
-            a.btn.btn-primary.btn-lg(href='/publishLDF')
-              | Publish now
+            a.btn.btn-primary.btn-lg(data-toggle='modal' data-target='#publish')
+              | Publish 
             button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#schedule').
-              Schedule publishing
+              Schedule
             a.btn.btn-primary.btn-lg(onclick="window.open('http://localhost:5000/', '_blank');")
               | Local LDF Server
             a.btn.btn-primary.btn-lg(href='/download/rdf')
@@ -90,3 +90,21 @@ block body
           label(class='btn btn-primary' for='mapping-selector')
             input(id='mapping-selector' type='file' style='display:none;' data-allowed-file-extensions="['rml.ttl', 'rml', 'ttl']")
             |  Choose a mapping file
+
+   div(id='publish' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' style='display: none;')
+    div.modal-dialog(role='document')
+      div.modal-content
+        div.modal-header
+          button.close(type='button' data-dismiss='modal' aria-label='Close')
+            span(aria-hidden='true') ×
+          h4.modal-title Publish To LDF Server
+        div.modal-body
+          form(role="form")
+            div(class="form-group")
+              label(for="title")
+                | Title
+              input(class="form-control" id="title" placeholder="Enter title")                  
+            
+            button(type="submit" class="btn btn-default")
+                | Publish
+             

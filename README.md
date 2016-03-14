@@ -40,8 +40,8 @@ $ npm start
  - Basic user management system
  - Uploading input files
  - Uploading mapping files
- - Execute mapping (the last mapping that was uploaded)
- - Publish result (Turtle) on local LDF server (running at port 5000)
+ - Execute mapping (the last mapping that was uploaded, still using 'example1.rml.ttl' as default)
+ - Publish result (only Turtle works) on local LDF server (running at port 5000)
  - Download result
 
 

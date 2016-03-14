@@ -29,7 +29,7 @@ function ensureAccount(req, res, next) {
   res.redirect('/');
 }
 
-exports = module.exports = function(app, passport, upload) {
+exports = module.exports = function(app, passport, upload, ldfserver) {
   
 
   /************************************
@@ -43,6 +43,7 @@ exports = module.exports = function(app, passport, upload) {
   app.get('/download/rdf', require('./util/download/index').downloadRDF);
 
   //publish the data [AMMA]
+  app.get('/publish/files', require('./util/publish/index').getFiles);
   app.post('/publish/ldf', require('./util/publish/index').publishLdf);
   app.post('/publish/virtuoso', require('./util/publish/index').publishVirtuoso);
 

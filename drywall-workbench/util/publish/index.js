@@ -1,4 +1,5 @@
 var fs = require('fs');
+var path = require('path');
 
 //publish data on the local LDF server
 exports.publishLdf = function(req, res) {    
@@ -33,5 +34,23 @@ exports.publishLdf = function(req, res) {
 //for in the future
 exports.publishVirtuoso = function(req, res) {    
     // TO DO
-    console.log("Exporting on Virtuoso server!");
+    console.log("Publishing on Virtuoso server!");
+}
+
+//get available files for publishing from server
+exports.getFiles = function(req,res) {
+    var files = fs.readdirSync('./');
+    var filesFiltered = [];
+    files.forEach(function(file) {        
+        if(path.extname(file)==='.rdf') {
+            filesFiltered.push(
+                {
+                    name: file,
+                    url: './' + file
+                }   
+            );
+        }
+    });
+    res.status(200);
+    res.send(filesFiltered);
 }

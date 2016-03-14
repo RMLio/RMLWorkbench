@@ -29,7 +29,7 @@ function ensureAccount(req, res, next) {
   res.redirect('/');
 }
 
-exports = module.exports = function(app, passport, upload) {
+exports = module.exports = function(app, passport, upload, ldfserver) {
   
 
   /************************************

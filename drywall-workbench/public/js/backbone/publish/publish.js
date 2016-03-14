@@ -13,7 +13,7 @@
             title: '',
             type: '',
             description: '',
-            setting: {}
+            settings: {}
         }
     });    
     
@@ -34,7 +34,7 @@
                 title: $("#publish_title").val(),
                 type: $("#publish_type").val(),
                 description: $("#publish_description").val(),
-                setting: {file:$('#publish_file').val()}
+                settings: {file:$('#publish_file').val()}
             };
             //save
             var publishModel = new PublishLdfModel();            

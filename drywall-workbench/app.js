@@ -85,18 +85,17 @@ ldfserver.stdout.on('data', function(data) {
     console.log(data); 
 });
 
-/*
+
 //listening to restart signals
 var ldfEventEmitter = require('./util/events/events').ldfEventEmitter;
 ldfEventEmitter.on('restart', () => {
   console.log('Restarting ldf server...');
-  ldfserver.kill('SIGHUP');
+  ldfserver.kill();
   ldfserver = exec(cmd, function(error, stdout, stderr){});
   ldfserver.stdout.on('data', function(data) {
     console.log(data); 
 });
 });
-*/
 
 //global locals
 app.locals.projectName = app.config.projectName;

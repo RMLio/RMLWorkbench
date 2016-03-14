@@ -34,7 +34,7 @@
                 title: $("#publish_title").val(),
                 type: $("#publish_type").val(),
                 description: $("#publish_description").val(),
-                setting: {file:'./output.rdf'}
+                setting: {file:$('#publish_file').val()}
             };
             //save
             var publishModel = new PublishLdfModel();            

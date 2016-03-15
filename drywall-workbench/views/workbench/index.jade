@@ -36,7 +36,7 @@ block body
         div.panel-heading
           h3.panel-title Step 2: Mapping
         div.panel-body.text-center(id='mapping-rules')
-          textarea.hidden(id='mapping-rules-text' rows='20' cols='80')
+          textarea.hidden(id='mapping-rules-text' rows='20' cols='34')
           div.btn-group-vertical(role='group')
             form(id='mapping-upload-form' enctype='multipart/form-data' action='/upload/mapping' method='post')
               input(type='hidden', name='_csrf', value=_csrf)

@@ -7,7 +7,7 @@
 
 <#AirportMapping>
   rml:logicalSource [
-    rml:source "./uploads/Airport.csv" ;
+    rml:source "Airport.csv" ;
     rml:referenceFormulation ql:CSV 
   ];
   rr:subjectMap [

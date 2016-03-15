@@ -6,6 +6,8 @@ block head
   script(type='text/javascript' src='/vendor/jquery.cookie/jquery.cookie.js')
   script(type='text/javascript' src='/js/jquery.form.js')
   script(type='text/javascript' src='/js/file_uploads.js')
+  script(type='text/javascript' src='/vendor/underscore/underscore.js')
+  script(type='text/javascript' src='/vendor/backbone/backbone.js')
 
 block neck
   link(rel='stylesheet', href='/views/workbench/index.min.css?#{cacheBreaker}')
@@ -17,7 +19,7 @@ block body
     div.col-md-4
       div(class='panel panel-primary')
         div.panel-heading
-          h3.panel-title Input
+          h3.panel-title Step 1: Input
         div.panel-body.text-center
           div.btn-group-vertical(role='group')
             button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#upload-input').
@@ -32,7 +34,7 @@ block body
     div.col-md-4
       div(class='panel panel-primary')
         div.panel-heading
-          h3.panel-title Mapping
+          h3.panel-title Step 2: Mapping
         div.panel-body.text-center(id='mapping-rules')
           textarea.hidden(id='mapping-rules-text' rows='20' cols='34')
           div.btn-group-vertical(role='group')
@@ -46,18 +48,26 @@ block body
               Choose existing rules
             button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#newRML').
               Create new RML document
+            a.button(type='button' class='btn btn-primary btn-lg' href='/execute').
+              Execute mapping
 
     div.col-md-4
       div(class='panel panel-primary')
         div.panel-heading
-          h3.panel-title Publish
+          h3.panel-title Step 3: Publish
         div.panel-body.text-center
           div.btn-group-vertical(role='group')
-            a.btn.btn-primary.btn-lg(href='/execute') 
-              | Publish now
+            a.btn.btn-primary.btn-lg(data-toggle='modal' data-target='#publish')
+              | Publish 
             button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#schedule').
-              Schedule publishing
-  //- Modals here
+              Schedule
+            a.btn.btn-primary.btn-lg(onclick="window.open('http://localhost:5000/', '_blank');")
+              | Local LDF Server
+            a.btn.btn-primary.btn-lg(href='/download/rdf')
+              | Download RDF
+              
+              
+              
   div(id='upload-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' style='display: none;')
     div.modal-dialog(role='document')
       div.modal-content
@@ -67,7 +77,7 @@ block body
           h4.modal-title Upload an input file
         div.modal-body
           h4 Format
-          p Currently only XML, CSV and JSON are supported. We will attempt to 
+          p Currently only XML, CSV and JSON are supported.
           label(class='btn btn-primary' for='my-file-selector')
             input(id='my-file-selector' type='file' style='display:none;' data-allowed-file-extensions="['csv', 'xml', 'txt', 'json']")
             | Choose a file
@@ -85,3 +95,47 @@ block body
           label(class='btn btn-primary' for='mapping-selector')
             input(id='mapping-selector' type='file' style='display:none;' data-allowed-file-extensions="['rml.ttl', 'rml', 'ttl']")
             |  Choose a mapping file
+
+   div(id='publish' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' style='display: none;')
+    div.modal-dialog(role='document')
+      div.modal-content
+        div.modal-header
+          button.close(type='button' data-dismiss='modal' aria-label='Close')
+            span(aria-hidden='true') ×
+          h4.modal-title Publish To LDF Server
+        div.modal-body
+          form(role="form")
+            div(class="form-group")
+              label(for="title")
+                | Title
+              input(class="form-control" id="publish_title" placeholder="Enter title")
+            div(class="form-group")
+              label(for="type")
+                | Type
+              select(name="type" id='publish_type' form="typeform" class="form-control")
+                option(value="HdtDataSource") 
+                    | HDT file
+                option(value="TurtleDatasource")
+                    | N-Triples document
+                option(value="TurtleDatasource")
+                    | Turtle document
+                option(value="SparqlDatasource") 
+                    | SPARQL endpoint
+                option(value='JsonLdDatasource')
+                    | JSON-LD document
+            div(class="form-group")
+              label(for="description")
+                | Description
+              input(class="form-control" id="publish_description" placeholder="Enter description")       
+            div(id='publish_fileSelector' class='form-group')
+              label(for="setting")
+                | File
+                                                
+            
+            button(type="submit" id='publish_submit' class="btn btn-default")
+                | Publish
+                
+  script(type='text/javascript' src='/js/backbone/publish/publish.js') 
+  script(type='text/javascript' src='/js/backbone/publish/file.js') 
+    
+             

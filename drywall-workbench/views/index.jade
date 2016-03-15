@@ -1,7 +1,7 @@
 extends ../layouts/default
 
 block head
-  title Drywall is Running
+  title RML Visual Tool
 
 block neck
   link(rel='stylesheet', href='/views/index.min.css?#{cacheBreaker}')
@@ -9,14 +9,15 @@ block neck
 block body
   div.jumbotron
 
-    h1 RML-Mapper
+    h1 RML Visual Tool
     p.lead
-      | Click on run to execute a mapping!
+      | 
     div
-      a.btn.btn-primary.btn-lg(href='/execute') Run      
+      a.btn.btn-primary.btn-lg(href='/signup') Sign Up!      
+      a.btn.btn-primary.btn-lg(href='/workbench') Workbench             
       hr
       pre
-         | Here comes the generated RDF output!
+         | Welcome, this is a work in progress!
     div.clearfix
   
 

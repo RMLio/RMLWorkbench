@@ -5,7 +5,7 @@ exports.mongodb = {
   uri: process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost:27017/drywall'
 };
 exports.companyName = 'UGent AMMA.';
-exports.projectName = 'RML Workbench';
+exports.projectName = 'RML Visual Editor';
 exports.systemEmail = 'RML.AMMA@gmail.com';
 exports.cryptoKey = 'k3yb0ardc4tzz';
 exports.loginAttempts = {

@@ -57,9 +57,12 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+/*
 app.use(csrf({ cookie: { signed: true } }));
+*/
 helmet(app);
 
+/*
 //response locals
 app.use(function(req, res, next) {
   res.cookie('_csrfToken', req.csrfToken());
@@ -67,6 +70,31 @@ app.use(function(req, res, next) {
   res.locals.user.defaultReturnUrl = req.user && req.user.defaultReturnUrl();
   res.locals.user.username = req.user && req.user.username;
   next();
+});
+*/
+
+//starting ldf
+var exec = require('child_process').exec;
+var cmd = 'ldf-server config.json 5000 4';
+
+var ldfserver = exec(cmd, function(error, stdout, stderr) {
+  // command output is in stdout
+});
+//logging ldf server stdandard output
+ldfserver.stdout.on('data', function(data) {
+    console.log(data); 
+});
+
+
+//listening to restart signals
+var ldfEventEmitter = require('./util/events/events').ldfEventEmitter;
+ldfEventEmitter.on('restart', () => {
+  console.log('Restarting ldf server...');
+  ldfserver.kill();
+  ldfserver = exec(cmd, function(error, stdout, stderr){});
+  ldfserver.stdout.on('data', function(data) {
+    console.log(data); 
+});
 });
 
 //global locals
@@ -79,7 +107,7 @@ app.locals.cacheBreaker = 'br34k-01';
 require('./passport')(app, passport);
 
 //setup routes
-require('./routes')(app, passport, upload);
+require('./routes')(app, passport, upload, ldfserver);
 
 //custom (friendly) error handler
 app.use(require('./views/http/index').http500);
@@ -90,13 +118,7 @@ app.utility.sendmail = require('./util/sendmail');
 app.utility.slugify = require('./util/slugify');
 app.utility.workflow = require('./util/workflow');
 
-//starting ldf
-var exec = require('child_process').exec;
-var cmd = 'ldf-server config.json 5000 4';
 
-exec(cmd, function(error, stdout, stderr) {
-  // command output is in stdout
-});
 
 //listen up
 app.server.listen(app.config.port, function(){

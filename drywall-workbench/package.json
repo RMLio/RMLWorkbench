@@ -23,6 +23,7 @@
     "method-override": "^2.x.x",
     "mongoose": "^4.x.x",
     "morgan": "^1.x.x",
+    "multer": "^1.1.0",
     "passport": "^0.2.x",
     "passport-facebook": "^2.x.x",
     "passport-github": "^0.1.x",

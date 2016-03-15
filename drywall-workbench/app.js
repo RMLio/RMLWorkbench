@@ -12,7 +12,9 @@ var config = require('./config'),
     passport = require('passport'),
     mongoose = require('mongoose'),
     helmet = require('helmet'),
-    csrf = require('csurf');
+    csrf = require('csurf'),
+    multer  = require('multer');
+var upload = multer({ dest: 'uploads/' });
 
 //create express app
 var app = express();
@@ -67,6 +69,31 @@ app.use(function(req, res, next) {
   next();
 });
 
+
+//starting ldf
+var exec = require('child_process').exec;
+var cmd = 'ldf-server config.json 5000 4';
+
+var ldfserver = exec(cmd, function(error, stdout, stderr) {
+  // command output is in stdout
+});
+//logging ldf server stdandard output
+ldfserver.stdout.on('data', function(data) {
+    console.log(data); 
+});
+
+
+//listening to restart signals
+var ldfEventEmitter = require('./util/events/events').ldfEventEmitter;
+ldfEventEmitter.on('restart', () => {
+  console.log('Restarting ldf server...');
+  ldfserver.kill();
+  ldfserver = exec(cmd, function(error, stdout, stderr){});
+  ldfserver.stdout.on('data', function(data) {
+    console.log(data); 
+});
+});
+
 //global locals
 app.locals.projectName = app.config.projectName;
 app.locals.copyrightYear = new Date().getFullYear();
@@ -77,7 +104,7 @@ app.locals.cacheBreaker = 'br34k-01';
 require('./passport')(app, passport);
 
 //setup routes
-require('./routes')(app, passport);
+require('./routes')(app, passport, upload, ldfserver);
 
 //custom (friendly) error handler
 app.use(require('./views/http/index').http500);
@@ -87,6 +114,8 @@ app.utility = {};
 app.utility.sendmail = require('./util/sendmail');
 app.utility.slugify = require('./util/slugify');
 app.utility.workflow = require('./util/workflow');
+
+
 
 //listen up
 app.server.listen(app.config.port, function(){

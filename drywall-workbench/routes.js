@@ -1,5 +1,6 @@
 'use strict';
 
+
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
@@ -28,7 +29,39 @@ function ensureAccount(req, res, next) {
   res.redirect('/');
 }
 
-exports = module.exports = function(app, passport) {
+exports = module.exports = function(app, passport, upload, ldfserver) {
+  
+
+  /************************************
+   *    RML Visual Tool API [AMMA]    *
+  */
+  
+  //execute a mapping [AMMA]
+  app.get('/execute', require('./views/mapping/index').execute);
+  
+  //download data [AMMA]
+  app.get('/download/rdf', require('./util/download/index').downloadRDF);
+
+  //publish the data [AMMA]
+  app.get('/publish/files', require('./util/publish/index').getFiles);
+  app.post('/publish/ldf', require('./util/publish/index').publishLdf);
+  app.post('/publish/virtuoso', require('./util/publish/index').publishVirtuoso);
+
+  //workbench [AMMA]
+  app.get('/workbench/', require('./views/workbench/index').init);
+
+  //Upload [AMMA]
+  app.post('/upload/mapping', upload.single('mappingUpload'), require('./views/upload/index').mapping);
+
+  //Uploads [AMMA]
+  app.all('/uploads*', ensureAuthenticated);
+  app.get('/uploads/:file', require('./views/upload/index').file);
+
+
+  /**********************************
+   *    Drywall User Management     *    
+  */
+  
   //front end
   app.get('/', require('./views/index').init);
   app.get('/about/', require('./views/about/index').init);

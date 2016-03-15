@@ -31,6 +31,10 @@ module.exports = function(grunt) {
             src: ['jquery.cookie.js'], dest: 'public/vendor/jquery.cookie/'
           },
           {
+            expand: true, cwd: 'node_modules/jquery-form/',
+            src: ['jquery.form.js'], dest: 'public/vendor/jquery-form/'
+          },
+          {
             expand: true, cwd: 'node_modules/moment/',
             src: ['moment.js'], dest: 'public/vendor/momentjs/'
           },

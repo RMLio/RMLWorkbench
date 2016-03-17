@@ -8,6 +8,8 @@ block head
   script(type='text/javascript' src='/js/file_uploads.js')
   script(type='text/javascript' src='/vendor/underscore/underscore.js')
   script(type='text/javascript' src='/vendor/backbone/backbone.js')
+  script(type='text/javascript' src='/js/backbone/publish/publish.js') 
+  script(type='text/javascript' src='/js/backbone/publish/file.js') 
 
 block neck
   link(rel='stylesheet', href='/views/workbench/index.min.css?#{cacheBreaker}')
@@ -61,7 +63,7 @@ block body
               | Publish 
             button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#schedule').
               Schedule
-            a.btn.btn-primary.btn-lg(onclick="window.open('http://localhost:5000/', '_blank');")
+            a.btn.btn-primary.btn-lg(onclick='window.open("http://localhost:5000/", "_blank");')
               | Local LDF Server
             a.btn.btn-primary.btn-lg(href='/download/rdf')
               | Download RDF
@@ -104,38 +106,38 @@ block body
             span(aria-hidden='true') ×
           h4.modal-title Publish To LDF Server
         div.modal-body
-          form(role="form")
-            div(class="form-group")
-              label(for="title")
+          form(role='form')
+            input(type='hidden', name='_csrf', value=_csrf)
+            div(class='form-group')
+              label(for='title')
                 | Title
-              input(class="form-control" id="publish_title" placeholder="Enter title")
-            div(class="form-group")
-              label(for="type")
+              input(class='form-control' id='publish_title' placeholder='Enter title')
+            div(class='form-group')
+              label(for='type')
                 | Type
-              select(name="type" id='publish_type' form="typeform" class="form-control")
-                option(value="HdtDataSource") 
+              select(name='type' id='publish_type' form='typeform' class='form-control')
+                option(value='HdtDataSource') 
                     | HDT file
-                option(value="TurtleDatasource")
+                option(value='TurtleDatasource')
                     | N-Triples document
-                option(value="TurtleDatasource")
+                option(value='TurtleDatasource')
                     | Turtle document
-                option(value="SparqlDatasource") 
+                option(value='SparqlDatasource') 
                     | SPARQL endpoint
                 option(value='JsonLdDatasource')
                     | JSON-LD document
-            div(class="form-group")
-              label(for="description")
+            div(class='form-group')
+              label(for='description')
                 | Description
-              input(class="form-control" id="publish_description" placeholder="Enter description")       
+              input(class='form-control' id='publish_description' placeholder='Enter description')       
             div(id='publish_fileSelector' class='form-group')
-              label(for="setting")
+              label(for='setting')
                 | File
                                                 
             
-            button(type="submit" id='publish_submit' class="btn btn-default")
+            button(type='submit' id='publish_submit' class='btn btn-default')
                 | Publish
                 
-  script(type='text/javascript' src='/js/backbone/publish/publish.js') 
-  script(type='text/javascript' src='/js/backbone/publish/file.js') 
+
     
              

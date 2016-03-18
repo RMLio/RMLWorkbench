@@ -26,18 +26,20 @@ method.logContent = function(req, res) {
 */
 SessionManager.prototype.fetchMapping = function(req, res) {
 
-	fs.readFile(req.file.path, (err, data) => { //using arrow function, this has no 'this'
+	fs.readFile(req.file.path, 'utf8', (err, data) => { //using arrow function, this has no 'this'
   		if (err) throw err;
       this._total = this._total+1;
-  		var input = {
+  		var mapping = {
   						filename: req.file.originalname,
   						data : data,
   						metadata : 'empty',
-              type : 'input',
-              id : this._total
+              type : 'mapping',
+              id : this._total,
+              sourcenames: []
   						};
-  		this._mappingPool.push(input);
-
+      mapping.sourcenames = method.findSourceNames(mapping);  
+      console.log(mapping);    
+  		this._mappingPool.push(mapping);
   		fs.unlink(req.file.path, function (err) {
     	if (err) throw err;
     	});
@@ -50,14 +52,15 @@ method.fetchInput = function(req, res) {
 	fs.readFile(req.file.path, (err, data) => { //using arrow function, this has no 'this'
   		if (err) throw err;
       this._total = this._total+1;
-  		var mapping = {
+  		var input = {
   						filename: req.file.originalname,
   						data : data,
   						metadata : 'empty',
-              type : 'mapping',
+              type : 'input',
               id : this._total
   						};
-  		this._inputPool.push(mapping);
+        
+  		this._inputPool.push(input);
   		fs.unlink(req.file.path, function (err) {
     	if (err) throw err;
     	});
@@ -87,13 +90,8 @@ method.fetchRDF = function(req, res) {
 
 method.generateRDF = function(req, res) {
   var mapping_id = req.params.mapping_id;
-  var mapping;
-  console.log(this._mappingPool);
-  for(var i = 0; i < this._mappingPool.length; i++) {
-    if(this._mappingPool[i].id == mapping_id) {
-      mapping = this._mappingPool[i];
-    }
-  }
+  var mappings = this._mappingPool;
+  var mapping = method.findData(mapping_id, mappings);
   console.log(mapping.data);
   this._mappingManager.generateRDF(mapping);
   res.send();
@@ -125,14 +123,26 @@ method.addPublishSchedule = function(req, res) {
 */
 
 //find mapping by id
-var findMapping = function(id) {
-  console.log(this._name);
-  for(var i = 0; i < this._mappingPool.length; i++) {
-    if(this._mappingPool[i].id === id) {
-      return this._mappingPool[i];
+method.findData = function(id, data) {
+  for(var i = 0; i < data.length; i++) {
+    if(data[i].id == id) {
+      return data[i];
     }
   }
 };
+
+
+//find source names of a local mapping file
+method.findSourceNames = function(mapping) {
+  var content = mapping.data.split(" ");
+  var sourcenames = [];
+  for(var i = 0; i < content.length; i++) {
+    if(content[i] == 'rml:source') {
+      sourcenames.push(content[i+1].replace(/['"]+/g, ''));
+    }
+  }
+  return sourcenames;
+}
 
 
 //exporting module

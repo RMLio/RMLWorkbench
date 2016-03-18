@@ -19,6 +19,7 @@ method.executeConfiguration = function(configuration) {
 	}
 };
 
+// calls the rdfgenerator to execute the mapping
 method.generateRDF = function(input) {
 	var publish = this._rdfGenerator.execute(input);
 	return publish;

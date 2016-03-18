@@ -30,13 +30,23 @@ method.execute = function(input) {
         	console.log(`stdout: ${data}`);
     	});
 
+        //delete created files from directory
+        spawn.on('close', () => {
+            
+            fs.unlink('input.rml', function (err) {
+                if (err) throw err;
+            });
+
+            fs.unlink(input.sourcenames[0], function (err) {
+                if (err) throw err;
+            });
+        });
+        
+
 	});
 
 
-    //delete mapping file from directory
-    fs.unlink('input.rml', function (err) {
-    	if (err) throw err;
-    });
+    
 }
 
 

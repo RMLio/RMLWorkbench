@@ -35,10 +35,10 @@ SessionManager.prototype.fetchMapping = function(req, res) {
   						metadata : 'empty',
               type : 'mapping',
               id : this._total,
-              sourcenames: []
+              triples: []
   						};
-      mapping.sourcenames = method.findSourceNames(mapping);  
-      console.log(mapping);    
+      mapping.triples = method.parseTriples(mapping);
+      console.log(mapping.triples);    
   		this._mappingPool.push(mapping);
   		fs.unlink(req.file.path, function (err) {
     	if (err) throw err;
@@ -58,8 +58,7 @@ method.fetchInput = function(req, res) {
   						metadata : 'empty',
               type : 'input',
               id : this._total
-  						};
-        
+  						};        
   		this._inputPool.push(input);
   		fs.unlink(req.file.path, function (err) {
     	if (err) throw err;
@@ -97,9 +96,19 @@ method.generateRDF = function(req, res) {
   res.send();
 } 
 
-method.executeMapping = function(req, res) {
-	//TODO
-	console.log('[WORKBENCH LOG] Execute mapping');
+method.getInputs = function(req, res) {
+  //TODO
+  console.log('[WORKBENCH LOG] Get inputs');
+};
+
+method.getMappings = function(req, res) {
+  //TODO
+  console.log('[WORKBENCH LOG] Get mappings');
+};
+
+method.getRDF = function(req, res) {
+  //TODO
+  console.log('[WORKBENCH LOG] Get rdf');
 };
 
 method.addInputSchedule = function(req, res) {
@@ -117,7 +126,6 @@ method.addPublishSchedule = function(req, res) {
 	console.log('[WORKBENCH LOG] Add Publish Schedule');
 };
 
-
 /*
 * Utility functions
 */
@@ -132,16 +140,42 @@ method.findData = function(id, data) {
 };
 
 
-//find source names of a local mapping file
-method.findSourceNames = function(mapping) {
-  var content = mapping.data.split(" ");
-  var sourcenames = [];
+
+//find triple of a local mapping file
+method.parseTriples = function(mapping) {
+  var content = mapping.data.replace(/(?:\r\n|\r|\n)/g, ' ');
+  content = content.split(" ");
+  var triples = [];
+  var triple = false;
+  var newTriple;
+
+  //parse mapping
   for(var i = 0; i < content.length; i++) {
-    if(content[i] == 'rml:source') {
-      sourcenames.push(content[i+1].replace(/['"]+/g, ''));
+
+    //check for triple name
+    if(!triple && content[i].substring(0, 2) == '<#') {
+      //new triple found
+      newTriple = {
+        title : content[i].replace(/[><#]+/g, ''),  
+        source : ''      
+      };
+      triple = true;
     }
+
+    //check for source
+    if(triple && content[i] == 'rml:source') {
+        var source = content[i+1].replace(/['"]+/g, '').replace(/[><#]+/g, '');
+        newTriple.source = source;
+    }
+
+    //check if triple has ended
+    if(content[i] == '].') {
+      triple = false;
+      triples.push(newTriple);
+    }
+    
   }
-  return sourcenames;
+  return triples;
 }
 
 

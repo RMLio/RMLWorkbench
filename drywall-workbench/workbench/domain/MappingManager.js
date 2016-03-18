@@ -5,22 +5,23 @@ function MappingManager() {
     this._rdfGenerator = new RDFGenerator();    
 }
 
-method.generateConfiguration = function(_inputs) {
+method.generateConfiguration = function(input, triples) {
 	var configuration = {
 							configuration: 'mapping',
-							inputs: _inputs
+							input : input,
+							triples: triples
 						};
 	return configuration;
 };
 
 method.executeConfiguration = function(configuration) {
-	for(input in configuration.inputs) {
+	for(triple in configuration.triples) {
 		method.generateRDF(input);
 	}
 };
 
 // calls the rdfgenerator to execute the mapping
-method.generateRDF = function(input) {
+method.generateRDF = function(input, triples) {
 	var publish = this._rdfGenerator.execute(input);
 	return publish;
 };

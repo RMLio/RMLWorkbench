@@ -1,4 +1,4 @@
-var InputManager = require('./InputManager');
+var FetchManager = require('./FetchManager');
 var MappingManager = require('./MappingManager');
 var ScheduleManager = require('./ScheduleManager');
 var method = SessionManager.prototype;
@@ -7,7 +7,7 @@ var fs = require('fs');
 //this class represents a single workbench session
 function SessionManager() {
     this._mappingManager = new MappingManager();
-    this._inputManager = new InputManager();
+    this._fetchManager = new FetchManager();
     this._scheduleManager = new ScheduleManager();
     this._inputPool = [];
     this._mappingPool = [];
@@ -24,69 +24,38 @@ method.logContent = function(req, res) {
 /*
 * Functions available for the API
 */
-SessionManager.prototype.fetchMapping = function(req, res) {
 
-	fs.readFile(req.file.path, 'utf8', (err, data) => { //using arrow function, this has no 'this'
-  		if (err) throw err;
-      this._total = this._total+1;
-  		var mapping = {
-  						filename: req.file.originalname,
-  						data : data,
-  						metadata : 'empty',
-              type : 'mapping',
-              id : this._total,
-              triples: []
-  						};
-      mapping.triples = method.parseTriples(mapping);
-      console.log(mapping.triples);    
-  		this._mappingPool.push(mapping);
-  		fs.unlink(req.file.path, function (err) {
-    	if (err) throw err;
-    	});
-  	});
-
+//fetch a mapping
+method.fetchMapping = function(req, res) {
+  this._total = this._total+1;
+  var mapping = this._fetchManager.uploadMapping(req, (mapping) => {
+      mapping.id = this._total;
+      console.log('[WORKBENCH LOG] Mapping added: "'+mapping.filename+'"');      
+      this._mappingPool.push(mapping);
+   });
 };
 
+//fetch a mapping
 method.fetchInput = function(req, res) {
-
-	fs.readFile(req.file.path, (err, data) => { //using arrow function, this has no 'this'
-  		if (err) throw err;
       this._total = this._total+1;
-  		var input = {
-  						filename: req.file.originalname,
-  						data : data,
-  						metadata : 'empty',
-              type : 'input',
-              id : this._total
-  						};        
-  		this._inputPool.push(input);
-  		fs.unlink(req.file.path, function (err) {
-    	if (err) throw err;
-    	});
-  	});
-
+  		var input = this._fetchManager.uploadInput(req, (input) => {
+  		  input.id = this._total;
+        console.log('[WORKBENCH LOG] Input added: "'+input.filename+'"');
+        this._inputPool.push(input);
+      });
 };
 
+//fetch a mapping
 method.fetchRDF = function(req, res) {
-
-	fs.readFile(req.file.path, (err, data) => { //using arrow function, this has no 'this'
-  		if (err) throw err;
       this._total = this._total+1;
-  		var rdf = {
-  						filename: req.file.originalname,
-  						data : data,
-  						metadata : 'empty',
-              type : 'rdf',
-              id : this._total
-  						};
-  		this._publishPool.push(rdf);
-  		fs.unlink(req.file.path, function (err) {
-    		if (err) throw err;
-    	});
-  	});
-
+  		var rdf = _fetchManager.uploadRDF(req, (rdf) => {
+        rdf.id = this._total;
+        console.log('[WORKBENCH LOG] RDF added: "'+rdf.filename+'"');
+        this._publishPool.push(rdf);
+      });
 };
 
+//generate an rdf, mapping id is needed as param
 method.generateRDF = function(req, res) {
   var mapping_id = req.params.mapping_id;
   var mappings = this._mappingPool;
@@ -141,42 +110,7 @@ method.findData = function(id, data) {
 
 
 
-//find triple of a local mapping file
-method.parseTriples = function(mapping) {
-  var content = mapping.data.replace(/(?:\r\n|\r|\n)/g, ' ');
-  content = content.split(" ");
-  var triples = [];
-  var triple = false;
-  var newTriple;
 
-  //parse mapping
-  for(var i = 0; i < content.length; i++) {
-
-    //check for triple name
-    if(!triple && content[i].substring(0, 2) == '<#') {
-      //new triple found
-      newTriple = {
-        title : content[i].replace(/[><#]+/g, ''),  
-        source : ''      
-      };
-      triple = true;
-    }
-
-    //check for source
-    if(triple && content[i] == 'rml:source') {
-        var source = content[i+1].replace(/['"]+/g, '').replace(/[><#]+/g, '');
-        newTriple.source = source;
-    }
-
-    //check if triple has ended
-    if(content[i] == '].') {
-      triple = false;
-      triples.push(newTriple);
-    }
-    
-  }
-  return triples;
-}
 
 
 //exporting module

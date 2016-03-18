@@ -6,7 +6,7 @@ function RDFGenerator() {
 }
 
 //execute a mapping using the RML processor
-method.execute = function(input) {
+method.execute = function(input, triples) {
 
 	//write file main directory 
 	fs.writeFile('input.rml', input.data, 'utf8', (err) => {
@@ -16,6 +16,8 @@ method.execute = function(input) {
         for(var i = 0; i < input.sourcenames.length; i++) {
             fs.writeFileSync(input.sourcenames[i], input.data, 'utf8');
         }
+
+        //TODO check command
 
 		//map the file
 		const spawner = require('child_process');

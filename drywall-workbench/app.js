@@ -15,6 +15,7 @@ var config = require('./config'),
     csrf = require('csurf'),
     multer  = require('multer');
 var upload = multer({ dest: 'uploads/' });
+var SessionManager = require('./workbench/domain/SessionManager');
 
 //create express app
 var app = express();
@@ -85,10 +86,13 @@ ldfserver.stdout.on('data', function(data) {
     console.log(data); 
 });
 
+var sessionmanager = new SessionManager();
+
+
 
 //listening to restart signals
 var ldfEventEmitter = require('./util/events/events').ldfEventEmitter;
-ldfEventEmitter.on('restart', () => {
+ldfEventEmitter.on('restart', function() {
   console.log('Restarting ldf server...');
   ldfserver.kill();
   ldfserver = exec(cmd, function(error, stdout, stderr){});
@@ -107,7 +111,7 @@ app.locals.cacheBreaker = 'br34k-01';
 require('./passport')(app, passport);
 
 //setup routes
-require('./routes')(app, passport, upload, ldfserver);
+require('./routes')(app, passport, upload, ldfserver, sessionmanager);
 
 //custom (friendly) error handler
 app.use(require('./views/http/index').http500);

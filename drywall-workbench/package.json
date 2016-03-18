@@ -7,7 +7,7 @@
     "update": "david update"
   },
   "dependencies": {
-    "async": "^1.x.x",
+    "async": "^1.x.x",	
     "backbone": "^1.x.x",
     "bcryptjs": "^2.3.x",
     "body-parser": "^1.x.x",
@@ -20,6 +20,7 @@
     "express-session": "^1.x.x",
     "helmet": "^0.9.x",
     "jade": "^1.x.x",
+    "ldf-server": "^1.x.x",
     "method-override": "^2.x.x",
     "mongoose": "^4.x.x",
     "morgan": "^1.x.x",

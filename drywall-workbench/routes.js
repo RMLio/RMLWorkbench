@@ -29,13 +29,16 @@ function ensureAccount(req, res, next) {
   res.redirect('/');
 }
 
-exports = module.exports = function(app, passport, upload, ldfserver) {
+exports = module.exports = function(app, passport, upload, ldfserver,sessionmanager) {
   
 
   /************************************
    *    RML Visual Tool API [AMMA]    *
   */
   
+
+
+  /*** OLD ONE, WILL BE REPLACED **/
   //execute a mapping [AMMA]
   app.get('/execute', require('./views/mapping/index').execute);
   
@@ -56,6 +59,19 @@ exports = module.exports = function(app, passport, upload, ldfserver) {
   //Uploads [AMMA]
   app.all('/uploads*', ensureAuthenticated);
   app.get('/uploads/:file', require('./views/upload/index').file);
+
+
+  /*** NEW API ***/
+
+  app.get('/log/content',sessionmanager.logContent.bind(sessionmanager));
+
+  app.post('/workbench/fetch/mapping', upload.single('mappingUpload'), sessionmanager.fetchMapping.bind(sessionmanager));
+  app.get('/workbench/fetch/input', sessionmanager.fetchInput.bind(sessionmanager));
+  app.get('/workbench/fetch/rdf', sessionmanager.fetchRDF.bind(sessionmanager));
+
+  app.post('/workbench/mapping/execute/:mapping_id', sessionmanager.generateRDF.bind(sessionmanager));
+
+
 
 
   /**********************************

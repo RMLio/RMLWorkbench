@@ -23,13 +23,9 @@ block body
         div.panel-body.text-center
           div.btn-group-vertical(role='group')
             button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#upload-input').
-              Upload File
-            button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#db-input').
-              External Database
+              Upload Input            
             button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#api-input').
-              Web API
-            button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#rdf-input').
-              RDF Source
+              Web API            
    
     div.col-md-4
       div(class='panel panel-primary')
@@ -38,18 +34,16 @@ block body
         div.panel-body.text-center(id='mapping-rules')
           textarea.hidden(id='mapping-rules-text' rows='20' cols='80')
           div.btn-group-vertical(role='group')
-            form(id='mapping-upload-form' enctype='multipart/form-data' action='/upload/mapping' method='post')
+            form(id='mapping-upload-form' enctype='multipart/form-data' action='/workbench/fetch/mapping'  method='post')
               input(type='hidden', name='_csrf', value=_csrf)
               label(class='btn btn-primary btn-lg' for='mapping-upload-input')
-                 | Upload Mapping triples
+                 | Upload Mapping Triples
                  input(type='file' id='mapping-upload-input' name='mappingUpload' style='display:none;' data-allowed-file-extensions="['rml.ttl', 'rml', 'ttl']")
              
-            button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#existingRML').
-              Choose existing rules
-            button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#newRML').
-              Create new RML document
+            a.button(type='button' href='/log/content' class='btn btn-primary btn-lg' method='get').
+              Edit Mappings            
             a.button(type='button' class='btn btn-primary btn-lg' href='/execute').
-              Execute mapping
+              Execute Mappings
 
     div.col-md-4
       div(class='panel panel-primary')
@@ -58,13 +52,11 @@ block body
         div.panel-body.text-center
           div.btn-group-vertical(role='group')
             a.btn.btn-primary.btn-lg(data-toggle='modal' data-target='#publish')
-              | Publish 
-            button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#schedule').
-              Schedule
-            a.btn.btn-primary.btn-lg(onclick="window.open('http://localhost:5000/', '_blank');")
-              | Local LDF Server
-            a.btn.btn-primary.btn-lg(href='/download/rdf')
-              | Download RDF
+              | Upload RDF Triples 
+            a.btn.btn-primary.btn-lg(data-toggle='modal' data-target='#publish')
+              | Publish Triples 
+                   
+            
               
               
               
@@ -86,13 +78,13 @@ block body
     div.modal-dialog(role='document')
       div.modal-content
         div.modal-header
-          button.close(type='button' data-dismiss='modal' aria-label='Close')
+          button.close(action='/workbench/fetch/mapping' type='button' data-dismiss='modal' aria-label='Close')
             span(aria-hidden='true') ×
           h4.modal-title Upload an RML file
         div.modal-body
           h4 File format
           p Currently only XML, CSV and JSON are supported. We will attempt to 
-          label(class='btn btn-primary' for='mapping-selector')
+          form(action="...", method="post" class='btn btn-primary' for='mapping-selector')
             input(id='mapping-selector' type='file' style='display:none;' data-allowed-file-extensions="['rml.ttl', 'rml', 'ttl']")
             |  Choose a mapping file
 

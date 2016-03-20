@@ -21,7 +21,7 @@ method.executeConfiguration = function(configuration) {
 };
 
 // calls the rdfgenerator to execute the mapping
-method.generateRDF = function(input, sources) {
+method.generateRDF = function(input, sources, callback) {
 	var sourcenames = [];
 	var needed = [];
 	var addednames = [];
@@ -37,8 +37,9 @@ method.generateRDF = function(input, sources) {
 			}
 		}
 	}
-	var publish = this._rdfGenerator.execute(input, needed);
-	return publish;
+	var publish = this._rdfGenerator.execute(input, needed, (publish) => {
+		callback(publish);
+	});
 };
 
 //exporting module

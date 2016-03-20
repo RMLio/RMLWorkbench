@@ -30,6 +30,7 @@ method.logContent = function(req, res) {
 method.fetchMapping = function(req, res) {
   this._total = this._total+1;
   var mapping = this._fetchManager.uploadMapping(req, (mapping) => {
+      //TODO proper id generating
       mapping.id = this._total;
       console.log(chalk.green('[WORKBENCH LOG]') + ' Mapping added: "'+mapping.filename+'"');
       console.log('[WORKBENCH LOG] Triples:');
@@ -40,11 +41,12 @@ method.fetchMapping = function(req, res) {
   res.send();
 };
 
-//fetch a mapping
+//fetch a source
 method.fetchInput = function(req, res) {
       console.log('FETCH');
       this._total = this._total+1;
   		var input = this._fetchManager.uploadInput(req, (input) => {
+        //TODO proper id generating
   		  input.id = this._total;
         console.log(chalk.green('[WORKBENCH LOG]') + 'Input added: "'+input.filename+'"');
         this._inputPool.push(input);
@@ -53,24 +55,30 @@ method.fetchInput = function(req, res) {
   res.send();
 };
 
-//fetch a mapping
+//fetch a rdf
 method.fetchRDF = function(req, res) {
       this._total = this._total+1;
   		var rdf = _fetchManager.uploadRDF(req, (rdf) => {
+        //TODO proper id generating
         rdf.id = this._total;
         console.log(chalk.green('[WORKBENCH LOG]') + 'RDF added: "'+rdf.filename+'"');
         this._publishPool.push(rdf);
       });
+      res.send();
 };
 
 //generate an rdf, mapping id is needed as param
 method.generateRDF = function(req, res) {
+  console.log('[WORKBENCH LOG] Generating RDF...');
   var mapping_id = req.params.mapping_id;
   var mappings = this._mappingPool;
   var mapping = method.findMapping(mapping_id, mappings);
   var sources = this._inputPool;
-  console.log(mapping.data);
-  this._mappingManager.generateRDF(mapping, sources);
+  var rdf = this._mappingManager.generateRDF(mapping, sources, (rdf) => {
+    this._total = this._total+1;
+    rdf.id = this._total;
+    this._publishPool.push(rdf);
+  });  
   res.send();
 } 
 
@@ -84,7 +92,7 @@ method.getMappings = function(req, res) {
   res.send(this._mappingPool);
 };
 
-method.getRDF = function(req, res) {
+method.getRdf = function(req, res) {
   console.log('[WORKBENCH LOG] Get rdf');
   res.send(this._publishPool);
 };
@@ -116,9 +124,6 @@ method.findMapping = function(id, data) {
     }
   }
 };
-
-
-
 
 
 

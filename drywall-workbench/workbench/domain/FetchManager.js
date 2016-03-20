@@ -28,7 +28,7 @@ method.executeConfiguration = function(configuration) {
 
 //upload rdf
 method.uploadRDF = function(req, callback) {
-	fs.readFile(req.file.path, (err, data) => { //using arrow function, this has no 'this'
+	fs.readFile(req.file.path, 'utf8',(err, data) => { //using arrow function, this has no 'this'
       if (err) throw err;
       var rdf = {
               filename: req.file.originalname,
@@ -46,9 +46,9 @@ method.uploadRDF = function(req, callback) {
 
 //upload input
 method.uploadInput = function(req, callback) {
-  console.log('!!!');
   console.log(req.file);
-  fs.readFile(req.file.path, (err, data) => { //using arrow function, this has no 'this'
+  fs.readFile(req.file.path, 'utf8', (err, data) => { //using arrow function, this has no 'this'
+      console.log('Data: ' + data);
       if (err) throw err;
       var input = {
               filename: req.file.originalname,

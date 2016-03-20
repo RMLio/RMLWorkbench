@@ -6,15 +6,22 @@ function RDFGenerator() {
 }
 
 //execute a mapping using the RML processor
-method.execute = function(input, triples) {
+method.execute = function(input, needed) {
+
+
+    console.log('NEEDED: '+needed);
+
+    var rdf;
 
 	//write file main directory 
 	fs.writeFile('input.rml', input.data, 'utf8', (err) => {
 		if(err) throw err;
 		console.log('Mapping file created.')
 
-        for(var i = 0; i < input.sourcenames.length; i++) {
-            fs.writeFileSync(input.sourcenames[i], input.data, 'utf8');
+        console.log(needed);
+
+        for(var i = 0; i < needed.length; i++) {
+            fs.writeFileSync('./' + needed[i].filename, needed.data, 'utf8');
         }
 
         //TODO check command
@@ -22,7 +29,7 @@ method.execute = function(input, triples) {
 		//map the file
 		const spawner = require('child_process');
     	const spawn = spawner.exec(
-        'java -jar ./workbench/domain/rdfgenerator/RML-Mapper.jar -m input.rml -o ' + input.sourcenames[0]);  
+        'java -jar ./workbench/domain/rdfgenerator/RML-Mapper.jar -m input.rml -o output.rdf');  
     	
     	//logging
     	spawn.stdout.on('data', (data) => {
@@ -32,20 +39,38 @@ method.execute = function(input, triples) {
         	console.log(`stdout: ${data}`);
     	});
 
-        //delete created files from directory
+        //save output.rdf and delete created files from directory
         spawn.on('close', () => {
+
+            fs.readFile('./output.rdf', (err, data) => { //using arrow function, this has no 'this'
+                if (err) throw err;
+                    rdf = {
+                        mapping_id: input.id,     
+                        filename: input.filename + '_result',
+                        data : data,
+                        metadata : 'empty',
+                        type : 'rdf',
+                        id : 0
+                    };
+                fs.unlink('./output.rdf', function (err) {
+                if (err) throw err;
+                });
+            });
             
             fs.unlink('input.rml', function (err) {
                 if (err) throw err;
             });
-
-            fs.unlink(input.sourcenames[0], function (err) {
-                if (err) throw err;
-            });
+            for(var i = 0; i < needed.length; i++) {
+                fs.unlink('./' + needed[i].filename, function (err) {
+                    if (err) throw err;
+                });
+            }
         });
         
 
 	});
+
+    return rdf;
 
 
     

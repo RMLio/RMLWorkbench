@@ -21,8 +21,23 @@ method.executeConfiguration = function(configuration) {
 };
 
 // calls the rdfgenerator to execute the mapping
-method.generateRDF = function(input, triples) {
-	var publish = this._rdfGenerator.execute(input);
+method.generateRDF = function(input, sources) {
+	var sourcenames = [];
+	var needed = [];
+	var addednames = [];
+	for(var i = 0; i < input.triples.length; i++) {
+		sourcenames.push(input.triples[i].logicalsource.rmlsource);
+	}
+	for(var i = 0; i < sources.length; i++) {
+		for(var j = 0; j < sourcenames.length; j++) {
+			if(sources[i].filename == sourcenames[j] && addednames.indexOf(sources[i].filename) < 0) {
+				//source is needed!
+				addednames.push(sources[i].filename);
+				needed.push(sources[i]);
+			}
+		}
+	}
+	var publish = this._rdfGenerator.execute(input, needed);
 	return publish;
 };
 

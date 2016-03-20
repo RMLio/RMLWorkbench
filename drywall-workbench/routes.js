@@ -54,19 +54,24 @@ exports = module.exports = function(app, passport, upload, ldfserver,sessionmana
   app.get('/workbench/', require('./views/workbench/index').init);
 
   //Upload [AMMA]
-  app.post('/upload/mapping', upload.single('mappingUpload'), require('./views/upload/index').mapping);
+  //app.post('/upload/mapping', upload.single('mappingUpload'), require('./views/upload/index').mapping);
 
   //Uploads [AMMA]
   app.all('/uploads*', ensureAuthenticated);
   app.get('/uploads/:file', require('./views/upload/index').file);
 
 
-  /*** NEW API ***/
-
+  /** 
+  * Workbench API 
+  **/  
   app.get('/log/content',sessionmanager.logContent.bind(sessionmanager));
+  
+  app.post('/workbench/fetch/input', upload.single('sourceUpload'), sessionmanager.fetchInput.bind(sessionmanager));
+  app.get(('/workbench/fetch/input'), sessionmanager.getInputs.bind(sessionmanager));
 
   app.post('/workbench/fetch/mapping', upload.single('mappingUpload'), sessionmanager.fetchMapping.bind(sessionmanager));
-  app.get('/workbench/fetch/input', sessionmanager.fetchInput.bind(sessionmanager));
+  app.get('/workbench/fetch/mapping', sessionmanager.getMappings.bind(sessionmanager));
+
   app.get('/workbench/fetch/rdf', sessionmanager.fetchRDF.bind(sessionmanager));
 
   app.post('/workbench/mapping/execute/:mapping_id', sessionmanager.generateRDF.bind(sessionmanager));

@@ -46,6 +46,8 @@ method.uploadRDF = function(req, callback) {
 
 //upload input
 method.uploadInput = function(req, callback) {
+  console.log('!!!');
+  console.log(req.file);
   fs.readFile(req.file.path, (err, data) => { //using arrow function, this has no 'this'
       if (err) throw err;
       var input = {
@@ -115,16 +117,50 @@ method.parseTriples = function(mapping) {
     if(!triple && content[i].substring(0, 2) == '<#') {
       //new triple found
       newTriple = {
-        title : content[i].replace(/[><#]+/g, ''),  
-        source : ''      
+        title : content[i].replace(/[><#]+/g, ''),   
+        local : true  
       };
       triple = true;
     }
 
-    //check for source
+    //check for logicalsource
+    if(triple && content[i] == 'rml:logicalSource') {
+      newTriple.logicalsource = {};
+    }
+
+    //check for rml:source 
     if(triple && content[i] == 'rml:source') {
-        var source = content[i+1].replace(/['"]+/g, '').replace(/[><#]+/g, '');
-        newTriple.source = source;
+        var source = content[i+1].replace(/['";]+/g, '');
+        if(source.substring(0, 4) == 'http' || source.substring(0,2) == '<#') {
+            newTriple.local = false;
+        }
+        source.replace(/[><#]+/g, '');
+        newTriple.logicalsource.rmlsource = source;
+    }
+
+    //check for rml:referenceFormulation
+    if(triple && content[i] == 'rml:referenceFormulation') {
+        var reference = content[i+1].replace(/['";]+/g, '');        
+        reference.replace(/[><#]+/g, '');
+        newTriple.logicalsource.rmlreferenceformulation = reference;
+    }
+
+    //check for iterator
+    if(triple && content[i] == 'rml:iterator') {
+        var iterator = content[i+1].replace(/['";]+/g, '');        
+        newTriple.logicalsource.rmliterator = iterator;
+    }
+
+    //check for sqlversion
+    if(triple && content[i] == 'rr:sqlversion') {
+        var version = content[i+1].replace(/['";]+/g, '');        
+        newTriple.logicalsource.rrsqlversion = version;
+    }
+
+    //check for query
+    if(triple && content[i] == 'rr:query') {
+        var queryn = content[i+1].replace(/['";]+/g, '');        
+        newTriple.logicalsource.rrquery = query;
     }
 
     //check if triple has ended
@@ -132,6 +168,8 @@ method.parseTriples = function(mapping) {
       triple = false;
       triples.push(newTriple);
     }
+
+    //TO DO SERVICE DATADESCRIPTION
     
   }
   return triples;

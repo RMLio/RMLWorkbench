@@ -14,7 +14,7 @@ var config = require('./config'),
     helmet = require('helmet'),
     csrf = require('csurf'),
     multer  = require('multer');
-var upload = multer({ dest: 'uploads/' });
+var upload = multer({ dest: './tmp/' });
 var SessionManager = require('./workbench/domain/SessionManager');
 
 //create express app
@@ -58,12 +58,10 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-/*
 app.use(csrf({ cookie: { signed: true } }));
-*/
 helmet(app);
 
-/*
+
 //response locals
 app.use(function(req, res, next) {
   res.cookie('_csrfToken', req.csrfToken());
@@ -72,12 +70,13 @@ app.use(function(req, res, next) {
   res.locals.user.username = req.user && req.user.username;
   next();
 });
-*/
+
 
 //starting ldf
 var exec = require('child_process').exec;
-var cmd = 'ldf-server config.json 5000 4';
-
+var cmd = 'ldf-server config.json 2500 4';
+var ldfserver;
+/*
 var ldfserver = exec(cmd, function(error, stdout, stderr) {
   // command output is in stdout
 });
@@ -85,6 +84,7 @@ var ldfserver = exec(cmd, function(error, stdout, stderr) {
 ldfserver.stdout.on('data', function(data) {
     console.log(data); 
 });
+*/
 
 var sessionmanager = new SessionManager();
 

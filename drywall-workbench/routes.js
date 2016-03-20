@@ -75,8 +75,8 @@ exports = module.exports = function(app, passport, upload, ldfserver,sessionmana
   app.post('/workbench/fetch/rdf', upload.single('rdfUpload'), sessionmanager.fetchRDF.bind(sessionmanager));
   app.get('/workbench/fetch/rdf', sessionmanager.getRdf.bind(sessionmanager));
 
-  app.post('/workbench/mapping/execute/:mapping_id', sessionmanager.generateRDF.bind(sessionmanager));
-
+  app.post('/workbench/mapping/execute/:mapping_id', sessionmanager.generateRDFfromFile.bind(sessionmanager));
+  app.post('/workbench/mapping/execute/:mapping_id/triples', sessionmanager.generateRDFfromTriples.bind(sessionmanager));
 
 
 

@@ -5,13 +5,27 @@ function RDFGenerator() {
 }
 
 //execute a mapping using the RML processor
-method.execute = function(input, needed, callback) {
+method.execute = function(mappingfile, triples, needed, callback) {
 
 
     var rdf; //storing the rdf output
+    var triplenames = ''; //storing the triple names for the command parameters
+
+    //creating triplenames
+    for(var i = 0; i < triples.length; i++) {
+        if(i < (triples.length - 1)) {
+            triplenames += triples[i].title + ',';
+        } else {
+            triplenames += triples[i].title;
+        }
+        
+    }
+
+    console.log("Triples: ");
+    console.log(triplenames);
 
 	//write file main directory 
-	fs.writeFile('input.rml', input.data, 'utf8', (err) => {
+	fs.writeFile('input.rml', mappingfile.data, 'utf8', (err) => {
 		if(err) throw err;
 		console.log('Mapping file created.')
 
@@ -26,9 +40,8 @@ method.execute = function(input, needed, callback) {
                 written = written + 1;
                 if(written == needed.length) {                    
                     fs.readFile(needed[j].filename, 'utf8', (err, data) => { //using arrow function, this has no 'this'
-                        console.log("source");
-                        console.log(data);
-                        method.spawnRmlMapper(input.id, input.filename, needed, (result) => {
+                        
+                        method.spawnRmlMapper(mappingfile.id, mappingfile.filename, triplenames, needed, (result) => {
                             rdf = result;
                             callback(rdf);
                         });
@@ -45,7 +58,7 @@ method.execute = function(input, needed, callback) {
     
 }
 
-method.spawnRmlMapper = function(id, filename, needed, callback) {
+method.spawnRmlMapper = function(id, filename, triplenames, needed, callback) {
 
         var result;
 
@@ -54,7 +67,7 @@ method.spawnRmlMapper = function(id, filename, needed, callback) {
         //map the file
         const spawner = require('child_process');
         const spawn = spawner.exec(
-        'java -jar ./workbench/domain/rdfgenerator/RML-Mapper.jar -m input.rml -o output.rdf');  
+        'java -jar ./workbench/domain/rdfgenerator/RML-Mapper.jar -m input.rml -o output.rdf [-tm ' + triplenames + ']');  
         
         //logging
         spawn.stdout.on('data', (data) => {

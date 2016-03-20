@@ -68,19 +68,35 @@ method.fetchRDF = function(req, res) {
 };
 
 //generate an rdf, mapping id is needed as param
-method.generateRDF = function(req, res) {
+method.generateRDFfromFile = function(req, res) {
   console.log('[WORKBENCH LOG] Generating RDF...');
   var mapping_id = req.params.mapping_id;
   var mappings = this._mappingPool;
   var mapping = method.findMapping(mapping_id, mappings);
   var sources = this._inputPool;
-  var rdf = this._mappingManager.generateRDF(mapping, sources, (rdf) => {
+  var rdf = this._mappingManager.generateRDFfromFile(mapping, sources, (rdf) => {
     this._total = this._total+1;
     rdf.id = this._total;
     this._publishPool.push(rdf);
   });  
   res.send();
 } 
+
+//generates rdf from triples, mapping id is needed
+method.generateRDFfromTriples = function(req, res) {
+  console.log('[WORKBENCH LOG] Generating RDF...');
+  console.log(req.body);
+  var mapping_id = req.params.mapping_id;
+  var mappings = this._mappingPool;
+  var mapping = method.findMapping(mapping_id, mappings);
+  var sources = this._inputPool;
+  var rdf = this._mappingManager.generateRDFfromTriples(mapping, req.body, sources, (rdf) => {
+    this._total = this._total+1;
+    rdf.id = this._total;
+    this._publishPool.push(rdf);
+  });  
+  res.send();
+}
 
 method.getInputs = function(req, res) {
   console.log('[WORKBENCH LOG] Get inputs');

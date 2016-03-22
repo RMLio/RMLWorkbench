@@ -15,6 +15,7 @@ var config = require('./config'),
     csrf = require('csurf'),
     multer  = require('multer');
 var upload = multer({ dest: './tmp/' });
+var ScheduleManager = require('./workbench/domain/ScheduleManager');
 var SessionManager = require('./workbench/domain/SessionManager');
 
 //create express app
@@ -86,6 +87,7 @@ ldfserver.stdout.on('data', function(data) {
 });
 */
 
+var scheduleManager = new ScheduleManager();
 var sessionmanager = new SessionManager();
 
 

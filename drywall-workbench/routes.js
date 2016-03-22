@@ -64,7 +64,6 @@ exports = module.exports = function(app, passport, upload, ldfserver,sessionmana
   /** 
   * Workbench API 
   **/  
-  app.get('/log/content',sessionmanager.logContent.bind(sessionmanager));
   
   app.post('/workbench/fetch/input', upload.single('sourceUpload'), sessionmanager.fetchInput.bind(sessionmanager));
   app.get(('/workbench/fetch/input'), sessionmanager.getInputs.bind(sessionmanager));
@@ -78,7 +77,7 @@ exports = module.exports = function(app, passport, upload, ldfserver,sessionmana
   app.post('/workbench/mapping/execute/:mapping_id', sessionmanager.generateRDFfromFile.bind(sessionmanager));
   app.post('/workbench/mapping/execute/:mapping_id/triples', sessionmanager.generateRDFfromTriples.bind(sessionmanager));
 
-
+  app.post('/workbench/addToSchedule', sessionmanager.addToSchedule.bind(sessionmanager));
 
   /**********************************
    *    Drywall User Management     *    

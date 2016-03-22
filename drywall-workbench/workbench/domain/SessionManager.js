@@ -3,6 +3,7 @@ var MappingManager = require('./MappingManager');
 var ScheduleManager = require('./ScheduleManager');
 var method = SessionManager.prototype;
 var fs = require('fs');
+var schedule = require('node-schedule');
 const chalk = require('chalk');
 
 //this class represents a single workbench session
@@ -17,10 +18,6 @@ function SessionManager() {
     this._name = 'Wouter';
 }
 
-
-method.logContent = function(req, res) {
-	console.log(this._mappingPool);
-}
 
 /*
 * Functions available for the API
@@ -69,7 +66,6 @@ method.fetchRDF = function(req, res) {
 
 //generate an rdf, mapping id is needed as param
 method.generateRDFfromFile = function(req, res) {
-  console.log('[WORKBENCH LOG] Generating RDF...');
   var mapping_id = req.params.mapping_id;
   var mappings = this._mappingPool;
   var mapping = method.findMapping(mapping_id, mappings);
@@ -82,20 +78,61 @@ method.generateRDFfromFile = function(req, res) {
   res.send();
 } 
 
-//generates rdf from triples, mapping id is needed
-method.generateRDFfromTriples = function(req, res) {
-  console.log('[WORKBENCH LOG] Generating RDF...');
-  console.log(req.body);
+// add to schedule
+method.addToSchedule = function(req, res) {
+  console.log("[WORKBENCH LOG] Adding job!");
+  var year = req.body.date.year;
+  var month = req.body.date.month;
+  var day = req.body.date.day;
+  var hour = req.body.date.hour;
+  var minute = req.body.date.minute;
+  var date = new Date(year, month, day, hour, minute);
+  var mappingsFromTriples = req.body.mappingsFromTriples;
+  var mappingsFromFile = req.body.mappingsFromFile;
+  var sources = this._inputPool;
+
+  schedule.scheduleJob(date, () => {
+
+    console.log("[WORKBENCH LOG] Executing job!")
+
+    //execute scheduled mappings from file
+    for(var i = 0; i < mappingsFromFile.length; i++) {
+      var mappings = this._mappingPool;
+      var mapping = method.findMapping(mappingsFromFile[i].id, mappings);
+      this._mappingManager.generateRDFfromFile(mapping, sources, (rdf) => {
+        this._total = this._total+1;
+        rdf.id = this._total;
+        this._publishPool.push(rdf);
+      });
+    }
+    //execute scheduled mappings from triples
+    for(var i = 0; i < mappingsFromTriples.length; i++) {
+      var mappings = this._mappingPool;
+      mapping = method.findMapping(mappingsFromTriples[i].id, mappings);
+      console.log(mapping);
+      console.log(mappingsFromTriples[i])
+      this._mappingManager.generateRDFfromTriples(mapping, mappingsFromTriples[i].triples, sources, (rdf) => {
+        this._total = this._total+1;
+        rdf.id = this._total;
+        this._publishPool.push(rdf);
+      });
+    }
+  }); 
+  res.send();
+}
+
+
+//real method
+method.generateRDFfromTriples = function(id, triples) {
   var mapping_id = req.params.mapping_id;
   var mappings = this._mappingPool;
-  var mapping = method.findMapping(mapping_id, mappings);
+  var mapping = method.findMapping(mapping_id, this._mappingPool);
   var sources = this._inputPool;
   var rdf = this._mappingManager.generateRDFfromTriples(mapping, req.body, sources, (rdf) => {
     this._total = this._total+1;
     rdf.id = this._total;
     this._publishPool.push(rdf);
-  });  
-  res.send();
+  });
 }
 
 method.getInputs = function(req, res) {

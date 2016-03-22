@@ -11,17 +11,13 @@ function SessionManager() {
     this._mappingManager = new MappingManager();
     this._fetchManager = new FetchManager();
     this._scheduleManager = new ScheduleManager();
+    //everything is loaded in memory for now
     this._inputPool = [];
     this._mappingPool = [];
     this._publishPool = [];
     this._total = 0;
-    this._name = 'Wouter';
 }
 
-
-/*
-* Functions available for the API
-*/
 
 //fetch a mapping
 method.fetchMapping = function(req, res) {
@@ -78,49 +74,6 @@ method.generateRDFfromFile = function(req, res) {
   res.send();
 } 
 
-// add to schedule
-method.addToSchedule = function(req, res) {
-  console.log("[WORKBENCH LOG] Adding job!");
-  var year = req.body.date.year;
-  var month = req.body.date.month;
-  var day = req.body.date.day;
-  var hour = req.body.date.hour;
-  var minute = req.body.date.minute;
-  var date = new Date(year, month, day, hour, minute);
-  var mappingsFromTriples = req.body.mappingsFromTriples;
-  var mappingsFromFile = req.body.mappingsFromFile;
-  var sources = this._inputPool;
-
-  schedule.scheduleJob(date, () => {
-
-    console.log("[WORKBENCH LOG] Executing job!")
-
-    //execute scheduled mappings from file
-    for(var i = 0; i < mappingsFromFile.length; i++) {
-      var mappings = this._mappingPool;
-      var mapping = method.findMapping(mappingsFromFile[i].id, mappings);
-      this._mappingManager.generateRDFfromFile(mapping, sources, (rdf) => {
-        this._total = this._total+1;
-        rdf.id = this._total;
-        this._publishPool.push(rdf);
-      });
-    }
-    //execute scheduled mappings from triples
-    for(var i = 0; i < mappingsFromTriples.length; i++) {
-      var mappings = this._mappingPool;
-      mapping = method.findMapping(mappingsFromTriples[i].id, mappings);
-      console.log(mapping);
-      console.log(mappingsFromTriples[i])
-      this._mappingManager.generateRDFfromTriples(mapping, mappingsFromTriples[i].triples, sources, (rdf) => {
-        this._total = this._total+1;
-        rdf.id = this._total;
-        this._publishPool.push(rdf);
-      });
-    }
-  }); 
-  res.send();
-}
-
 
 //real method
 method.generateRDFfromTriples = function(id, triples) {
@@ -134,6 +87,77 @@ method.generateRDFfromTriples = function(id, triples) {
     this._publishPool.push(rdf);
   });
 }
+
+
+/**
+* Scheduling method
+**/
+
+method.addToSchedule = function(req, res) {
+  console.log("[WORKBENCH LOG] Adding job!");
+  var year = req.body.date.year;
+  var month = req.body.date.month;
+  var day = req.body.date.day;
+  var hour = req.body.date.hour;
+  var minute = req.body.date.minute;
+  var date = new Date(year, month, day, hour, minute);
+  var mappingsFromTriples = req.body.mappingsFromTriples;
+  var mappingsFromFile = req.body.mappingsFromFile;
+  var sources = this._inputPool;
+  var amountofjobs = mappingsFromTriples.length + mappingsFromFile.length;
+  var jobsdone = 0;
+
+  //schedule the job with date
+  schedule.scheduleJob(date, () => {
+
+    console.log("[WORKBENCH LOG] Executing jobs!")
+
+    console.log("[WORKBENCH LOG] Execute mappings from file...")
+
+    //execute scheduled mappings from file
+    for(var i = 0; i < mappingsFromFile.length; i++) {
+      var mappings = this._mappingPool;
+      var mapping = method.findMapping(mappingsFromFile[i].id, mappings);
+      this._mappingManager.generateRDFfromFile(mapping, sources, (rdf) => {
+        this._total = this._total+1;
+        rdf.id = this._total;
+        this._publishPool.push(rdf);
+
+        //checking if all jobs are done
+        jobsdone++;
+        if(jobsdone == amountofjobs) {
+          console.log("[WORKBENCH LOG] Jobs done!")
+        }
+      });
+    }
+
+    console.log("[WORKBENCH LOG] Execute mappings from triples...")
+
+    //execute scheduled mappings from triples
+    for(var i = 0; i < mappingsFromTriples.length; i++) {
+      var mappings = this._mappingPool;
+      mapping = method.findMapping(mappingsFromTriples[i].id, mappings);
+      console.log(mapping);
+      console.log(mappingsFromTriples[i])
+      this._mappingManager.generateRDFfromTriples(mapping, mappingsFromTriples[i].triples, sources, (rdf) => {
+        this._total = this._total+1;
+        rdf.id = this._total;
+        this._publishPool.push(rdf);
+
+        //checking if all jobs are done
+        jobsdone++;
+        if(jobsdone == amountofjobs) {
+          console.log("[WORKBENCH LOG] Jobs done!")
+        }
+      });
+    }
+  }); 
+  res.send();
+}
+
+/**
+* Getters
+**/
 
 method.getInputs = function(req, res) {
   console.log('[WORKBENCH LOG] Get inputs');

@@ -27,17 +27,17 @@ method.executeConfiguration = function(configuration) {
 };
 
 //upload rdf
-method.uploadRDF = function(req, callback) {
-	fs.readFile(req.file.path, 'utf8',(err, data) => { //using arrow function, this has no 'this'
+method.uploadRDF = function(file, callback) {
+	fs.readFile(file.path, 'utf8',(err, data) => { //using arrow function, this has no 'this'
       if (err) throw err;
       var rdf = {
-              filename: req.file.originalname,
+              filename: file.originalname,
               data : data,
               metadata : 'empty',
               type : 'rdf',
               id : 0
               };
-      fs.unlink(req.file.path, function (err) {
+      fs.unlink(file.path, function (err) {
         if (err) throw err;
       });
       callback(rdf);
@@ -45,19 +45,18 @@ method.uploadRDF = function(req, callback) {
 };
 
 //upload input
-method.uploadInput = function(req, callback) {
-  console.log(req.file);
-  fs.readFile(req.file.path, 'utf8', (err, data) => { //using arrow function, this has no 'this'
+method.uploadInput = function(file, callback) {
+  fs.readFile(file.path, 'utf8', (err, data) => { //using arrow function, this has no 'this'
       console.log('Data: ' + data);
       if (err) throw err;
       var input = {
-              filename: req.file.originalname,
+              filename: file.originalname,
               data : data,
               metadata : 'empty',
               type : 'input',
               id : this._total
               };        
-      fs.unlink(req.file.path, function (err) {
+      fs.unlink(file.path, function (err) {
       if (err) throw err;
       });
       callback(input);
@@ -65,12 +64,12 @@ method.uploadInput = function(req, callback) {
 }
 
 //upload a mapping
-method.uploadMapping = function(req, callback) {
+method.uploadMapping = function(file, callback) {
 	var mapping;
-	fs.readFile(req.file.path, 'utf8', (err, data) => { //using arrow function, this has no 'this'
+	fs.readFile(file.path, 'utf8', (err, data) => { //using arrow function, this has no 'this'
   		if (err) throw err;      
   		mapping = {
-  						filename: req.file.originalname,
+  						filename: file.originalname,
   						data : data,
   						metadata : 'empty',
               type : 'mapping',
@@ -78,7 +77,7 @@ method.uploadMapping = function(req, callback) {
               triples: []
   						};
       mapping.triples = method.parseTriples(mapping);
-  		fs.unlink(req.file.path, function (err) {
+  		fs.unlink(file.path, function (err) {
     	if (err) throw err;
     	}); 
   		callback(mapping);
@@ -102,9 +101,9 @@ method.downloadFromURI = function(download) {
 * Utility functions
 */
 
-//find triple of a local mapping file
+//parse triples of a local mapping file
 method.parseTriples = function(mapping) {
-  var content = mapping.data.replace(/(?:\r\n|\r|\n)/g, ' ');
+  var content = mapping.data.replace(/(?:\r\n|\r|\n|\t)/g, ' ');
   content = content.split(" ");
   var triples = [];
   var triple = false;
@@ -131,11 +130,14 @@ method.parseTriples = function(mapping) {
     //check for rml:source 
     if(triple && content[i] == 'rml:source') {
         var source = content[i+1].replace(/['";]+/g, '');
+        //check if local or not
         if(source.substring(0, 4) == 'http' || source.substring(0,2) == '<#') {
             newTriple.local = false;
         }
         source.replace(/[><#]+/g, '');
-        newTriple.logicalsource.rmlsource = source;
+        var regex = /(\w*\.\w*)$/;  //match filename
+        var match = regex.exec(source);
+        newTriple.logicalsource.rmlsource = match[0];
     }
 
     //check for rml:referenceFormulation

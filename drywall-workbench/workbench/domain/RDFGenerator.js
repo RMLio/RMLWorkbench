@@ -10,7 +10,6 @@ method.execute = function(mappingfile, triples, needed, callback) {
 
     var rdf; //storing the rdf output
     var triplenames = ''; //storing the triple names for the command parameters
-
     //creating triplenames
     for(var i = 0; i < triples.length; i++) {
         if(i < (triples.length - 1)) {
@@ -21,8 +20,13 @@ method.execute = function(mappingfile, triples, needed, callback) {
         
     }
 
-    console.log("Triples: ");
-    console.log(triplenames);
+    //in case there are no local source files needed
+    if(needed.length == 0) {
+        method.spawnRmlMapper(mappingfile.id, mappingfile.filename, triplenames, needed, (result) => {
+                            rdf = result;
+                            callback(rdf);
+                        });           
+    }
 
 	//write file main directory 
 	fs.writeFile('input.rml', mappingfile.data, 'utf8', (err) => {
@@ -49,7 +53,9 @@ method.execute = function(mappingfile, triples, needed, callback) {
                     
                 }
             });
-        }   
+        }  
+
+
             
             
     });
@@ -97,7 +103,7 @@ method.spawnRmlMapper = function(id, filename, triplenames, needed, callback) {
                     if (err) throw err;
                 });
 
-                fs.unlink('input.rml', function (err) {     // deleting temp files
+                fs.unlink('./input.rml', function (err) {     // deleting temp files
                     if (err) throw err;
                 });
                 for(var i = 0; i < needed.length; i++) {

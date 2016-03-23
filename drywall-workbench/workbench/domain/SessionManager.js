@@ -1,10 +1,9 @@
 var FetchManager = require('./FetchManager');
 var MappingManager = require('./MappingManager');
 var ScheduleManager = require('./ScheduleManager');
-var method = SessionManager.prototype;
-var fs = require('fs');
 var schedule = require('node-schedule');
 const chalk = require('chalk');
+var method = SessionManager.prototype;
 
 //this class represents a single workbench session
 function SessionManager() {
@@ -22,12 +21,10 @@ function SessionManager() {
 //fetch a mapping
 method.fetchMapping = function(req, res) {
   this._total = this._total+1;
-  var mapping = this._fetchManager.uploadMapping(req, (mapping) => {
+  var mapping = this._fetchManager.uploadMapping(req.file, (mapping) => {
       //TODO proper id generating
       mapping.id = this._total;
-      console.log(chalk.green('[WORKBENCH LOG]') + ' Mapping added: "'+mapping.filename+'"');
-      console.log('[WORKBENCH LOG] Triples:');
-      console.log(mapping.triples);     
+      console.log(chalk.green('[WORKBENCH LOG]') + ' Mapping added: "'+mapping.filename+'"');   
       this._mappingPool.push(mapping);
    });
 
@@ -36,9 +33,8 @@ method.fetchMapping = function(req, res) {
 
 //fetch a source
 method.fetchInput = function(req, res) {
-      console.log('FETCH');
       this._total = this._total+1;
-  		var input = this._fetchManager.uploadInput(req, (input) => {
+  		var input = this._fetchManager.uploadInput(req.file, (input) => {
         //TODO proper id generating
   		  input.id = this._total;
         console.log(chalk.green('[WORKBENCH LOG]') + 'Input added: "'+input.filename+'"');
@@ -51,7 +47,7 @@ method.fetchInput = function(req, res) {
 //fetch a rdf
 method.fetchRDF = function(req, res) {
       this._total = this._total+1;
-  		var rdf = _fetchManager.uploadRDF(req, (rdf) => {
+  		var rdf = _fetchManager.uploadRDF(req.file, (rdf) => {
         //TODO proper id generating
         rdf.id = this._total;
         console.log(chalk.green('[WORKBENCH LOG]') + 'RDF added: "'+rdf.filename+'"');
@@ -94,6 +90,7 @@ method.generateRDFfromTriples = function(id, triples) {
 **/
 
 method.addToSchedule = function(req, res) {
+
   console.log("[WORKBENCH LOG] Adding job!");
   var year = req.body.date.year;
   var month = req.body.date.month;
@@ -101,6 +98,13 @@ method.addToSchedule = function(req, res) {
   var hour = req.body.date.hour;
   var minute = req.body.date.minute;
   var date = new Date(year, month, day, hour, minute);
+
+  //variables for uploading
+  var inputForUpload = req.body.upload.inputs;
+  var mappingForUpload = req.body.upload.mappings;
+  var rdfForUpload = req.body.upload.rdf;
+
+  //variables for mapping
   var mappingsFromTriples = req.body.mappingsFromTriples;
   var mappingsFromFile = req.body.mappingsFromFile;
   var sources = this._inputPool;
@@ -112,6 +116,27 @@ method.addToSchedule = function(req, res) {
 
     console.log("[WORKBENCH LOG] Executing jobs!")
 
+    executemappings();    
+
+  }); 
+
+  /**
+  * Schedule utility functions
+  **/
+
+  var uploadfiles = (callback) => {
+    for(var i = 0; i < inputForUpload.length; i++) {
+      
+    }
+    for(var i = 0; i < mappingForUpload.length; i++) {
+      //if mapping needs to be mapped too => declared in executed
+    }
+    for(var i = 0; i < rdfForUpload.length; i++) {
+      //if rdf needs to be published too => declared in published
+    }
+  }
+
+  var executemappings = () => {
     console.log("[WORKBENCH LOG] Execute mappings from file...")
 
     //execute scheduled mappings from file
@@ -151,7 +176,8 @@ method.addToSchedule = function(req, res) {
         }
       });
     }
-  }); 
+  };
+  
   res.send();
 }
 

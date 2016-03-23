@@ -17,6 +17,7 @@ exports.init = function(req, res){
 };
 
 exports.signup = function(req, res){
+  
   var workflow = req.app.utility.workflow(req, res);
 
   workflow.on('validate', function() {

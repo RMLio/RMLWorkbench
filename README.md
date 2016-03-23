@@ -1,4 +1,4 @@
-# RML VISUAL TOOL
+# RML WORKBENCH
 
 Enables the user to publish rdf with ease.
 

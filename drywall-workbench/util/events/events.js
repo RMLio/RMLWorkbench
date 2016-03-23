@@ -7,7 +7,7 @@ function LdfEventEmitter() {
 util.inherits(LdfEventEmitter, EventEmitter);
 
 const ldfEventEmitter = new LdfEventEmitter();
-ldfEventEmitter.on('restart',() => {
+ldfEventEmitter.on('restart', function() {
   console.log('Send ldf server restart signal');
 });
 

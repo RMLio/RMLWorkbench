@@ -14,7 +14,9 @@ var config = require('./config'),
     helmet = require('helmet'),
     csrf = require('csurf'),
     multer  = require('multer');
-var upload = multer({ dest: 'uploads/' });
+var upload = multer({ dest: './tmp/' });
+var ScheduleManager = require('./workbench/domain/ScheduleManager');
+var SessionManager = require('./workbench/domain/SessionManager');
 
 //create express app
 var app = express();
@@ -57,12 +59,10 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-/*
 app.use(csrf({ cookie: { signed: true } }));
-*/
 helmet(app);
 
-/*
+
 //response locals
 app.use(function(req, res, next) {
   res.cookie('_csrfToken', req.csrfToken());
@@ -71,12 +71,13 @@ app.use(function(req, res, next) {
   res.locals.user.username = req.user && req.user.username;
   next();
 });
-*/
+
 
 //starting ldf
 var exec = require('child_process').exec;
-var cmd = 'ldf-server config.json 5000 4';
-
+var cmd = 'ldf-server config.json 2500 4';
+var ldfserver;
+/*
 var ldfserver = exec(cmd, function(error, stdout, stderr) {
   // command output is in stdout
 });
@@ -84,11 +85,16 @@ var ldfserver = exec(cmd, function(error, stdout, stderr) {
 ldfserver.stdout.on('data', function(data) {
     console.log(data); 
 });
+*/
+
+var scheduleManager = new ScheduleManager();
+var sessionmanager = new SessionManager();
+
 
 
 //listening to restart signals
 var ldfEventEmitter = require('./util/events/events').ldfEventEmitter;
-ldfEventEmitter.on('restart', () => {
+ldfEventEmitter.on('restart', function() {
   console.log('Restarting ldf server...');
   ldfserver.kill();
   ldfserver = exec(cmd, function(error, stdout, stderr){});
@@ -107,7 +113,7 @@ app.locals.cacheBreaker = 'br34k-01';
 require('./passport')(app, passport);
 
 //setup routes
-require('./routes')(app, passport, upload, ldfserver);
+require('./routes')(app, passport, upload, ldfserver, sessionmanager);
 
 //custom (friendly) error handler
 app.use(require('./views/http/index').http500);

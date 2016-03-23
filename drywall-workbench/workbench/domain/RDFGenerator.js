@@ -1,4 +1,5 @@
 var method = RDFGenerator.prototype;
+var mongoose = require('mongoose');
 var fs = require('fs');
 
 function RDFGenerator() {
@@ -45,7 +46,7 @@ method.execute = function(mappingfile, triples, needed, callback) {
                 if(written == needed.length) {                    
                     fs.readFile(needed[j].filename, 'utf8', (err, data) => { //using arrow function, this has no 'this'
                         
-                        method.spawnRmlMapper(mappingfile.id, mappingfile.filename, triplenames, needed, (result) => {
+                        method.spawnRmlMapper(mappingfile._id, mappingfile.filename, triplenames, needed, (result) => {
                             rdf = result;
                             callback(rdf);
                         });
@@ -94,7 +95,7 @@ method.spawnRmlMapper = function(id, filename, triplenames, needed, callback) {
                         data : data,
                         metadata : 'empty',
                         type : 'rdf',
-                        id : 0
+                        id : mongoose.Types.ObjectId()
                     };
 
                 

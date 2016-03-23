@@ -29,63 +29,42 @@ function ensureAccount(req, res, next) {
   res.redirect('/');
 }
 
-exports = module.exports = function(app, passport, upload, ldfserver,sessionmanager) {
-  
-
-  /************************************
-   *    RML Visual Tool API [AMMA]    *
-  */
-  
-
-
-  /*** OLD ONE, WILL BE REPLACED **/
-  //execute a mapping [AMMA]
-  app.get('/execute', require('./views/mapping/index').execute);
-  
-  //download data [AMMA]
-  app.get('/download/rdf', require('./util/download/index').downloadRDF);
-
-  //publish the data [AMMA]
-  app.get('/publish/files', require('./util/publish/index').getFiles);
-  app.post('/publish/ldf', require('./util/publish/index').publishLdf);
-  app.post('/publish/virtuoso', require('./util/publish/index').publishVirtuoso);
-
-
-
-  //Upload [AMMA]
-  //app.post('/upload/mapping', upload.single('mappingUpload'), require('./views/upload/index').mapping);
-
-  //Uploads [AMMA]
-  app.all('/uploads*', ensureAuthenticated);
-  app.get('/uploads/:file', require('./views/upload/index').file);
+exports = module.exports = function(app, passport, upload, ldfserver,sessionmanager) {   
 
 
   /** 
   * Workbench API 
   **/  
 
+  //acces to workbench
   app.all('/workbench*', ensureAuthenticated);
-  //app.all('/workbench*', ensureAccount);  
-
   app.get('/workbench/', require('./views/workbench/index').init);
 
+  //uploading to workbench
   app.post('/workbench/fetch/input', upload.single('sourceUpload'), sessionmanager.fetchInput.bind(sessionmanager));
   app.get(('/workbench/fetch/input'), sessionmanager.getInputs.bind(sessionmanager));
-
   app.post('/workbench/fetch/mapping', upload.single('mappingUpload'), sessionmanager.fetchMapping.bind(sessionmanager));
   app.get('/workbench/fetch/mapping', sessionmanager.getMappings.bind(sessionmanager));
-
   app.post('/workbench/fetch/rdf', upload.single('rdfUpload'), sessionmanager.fetchRDF.bind(sessionmanager));
   app.get('/workbench/fetch/rdf', sessionmanager.getRdf.bind(sessionmanager));
 
+  //mapping on workbench
   app.post('/workbench/mapping/execute/:mapping_id', sessionmanager.generateRDFfromFile.bind(sessionmanager));
   app.post('/workbench/mapping/execute/:mapping_id/triples', sessionmanager.generateRDFfromTriples.bind(sessionmanager));
 
+  //scheduling on workbench
   app.post('/workbench/addToSchedule', sessionmanager.addToSchedule.bind(sessionmanager));
 
-  /**********************************
-   *    Drywall User Management     *    
-  */
+  //clearing workbench
+  app.post('/workbench/clear/source', sessionmanager.clearSources.bind(sessionmanager));
+  app.post('/workbench/clear/mapping', sessionmanager.clearMappings.bind(sessionmanager));
+  app.post('/workbench/clear/rdf', sessionmanager.clearRdf.bind(sessionmanager));
+  app.post('/workbench/clear/all', sessionmanager.clearAll.bind(sessionmanager));
+  
+
+  /**
+  * User management
+  **/
   
   //front end
   app.get('/', require('./views/index').init);

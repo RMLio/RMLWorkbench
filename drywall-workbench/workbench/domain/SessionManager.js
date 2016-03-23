@@ -4,103 +4,114 @@ var ScheduleManager = require('./ScheduleManager');
 var schedule = require('node-schedule');
 const chalk = require('chalk');
 var method = SessionManager.prototype;
+var mongoose = require('mongoose');
 
 //this class represents a single workbench session
 function SessionManager() {
     this._mappingManager = new MappingManager();
     this._fetchManager = new FetchManager();
     this._scheduleManager = new ScheduleManager();
-    //everything is loaded in memory for now
-    this._inputPool = [];
-    this._mappingPool = [];
-    this._publishPool = [];
-    this._total = 0;
 }
 
 
 //fetch a mapping
 method.fetchMapping = function(req, res) {
+   
+  console.log('[WORKBENCH LOG] ' + req.user.username + ' tries to upload mapping file...');   
 
-  console.log(req.user._id + ' has uploaded something...');
-  req.app.db.models.User.findOne({ username: req.user.username }, (err, doc) => {
-    console.log('User exists in database!');
-    doc.mappingfiles = [];
-    doc.rdfiles = [];
-    doc.sourcefiles = [];
-    doc.save();
-  })
-  var fs = require('fs');
-
-  var write = () => {
-    console.log('Request written.')
-  }
-  var stringify = require('json-stringify-safe');
-  var request = stringify(req, null, 2);
-  fs.writeFile('./req', request, write);
-  
-
-  this._total = this._total+1;
   var mapping = this._fetchManager.uploadMapping(req.file, (mapping) => {
-      //TODO proper id generating
-      mapping.id = this._total;
-      console.log(chalk.green('[WORKBENCH LOG]') + ' Mapping added: "'+mapping.filename+'"');   
-      this._mappingPool.push(mapping);
-   });
+
+      console.log('[WORKBENCH LOG]' + ' Mapping name: "'+mapping.filename+'"');   
+      req.app.db.models.User.findOne({ _id: req.user._id }, (err, doc) => {
+        doc.mappingfiles.push(mapping);
+        doc.save();
+
+      });
+      console.log('[WORKBENCH LOG] Upload succesful!');
+
+   });  
 
   res.send();
 };
 
 //fetch a source
 method.fetchInput = function(req, res) {
-      this._total = this._total+1;
-  		var input = this._fetchManager.uploadInput(req.file, (input) => {
-        //TODO proper id generating
-  		  input.id = this._total;
-        console.log(chalk.green('[WORKBENCH LOG]') + 'Input added: "'+input.filename+'"');
-        this._inputPool.push(input);
-      });
+
+  console.log('[WORKBENCH LOG] ' + req.user.username + ' tries to upload source file...');
+
+  var input = this._fetchManager.uploadInput(req.file, (input) => {
+
+    console.log(chalk.green('[WORKBENCH LOG]') + 'Source name: "'+input.filename+'"');
+    req.app.db.models.User.findOne({ _id: req.user._id }, (err, doc) => {
+        doc.sourcefiles.push(input);
+        doc.save();
+    });
+
+    console.log('[WORKBENCH LOG] Upload succesful!');
+
+  });
 
   res.send();
 };
 
 //fetch a rdf
 method.fetchRDF = function(req, res) {
-      this._total = this._total+1;
+
   		var rdf = _fetchManager.uploadRDF(req.file, (rdf) => {
-        //TODO proper id generating
-        rdf.id = this._total;
-        console.log(chalk.green('[WORKBENCH LOG]') + 'RDF added: "'+rdf.filename+'"');
-        this._publishPool.push(rdf);
+
+        console.log(chalk.green('[WORKBENCH LOG]') + 'RDF name: "'+rdf.filename+'"');
+        req.app.db.models.User.findOne({ _id: req.user._id }, (err, doc) => {
+          doc.rdfiles.push(rdf);
+          doc.save();
+        });
+        console.log('[WORKBENCH LOG] Upload succesful!');
+
       });
-      res.send();
+
+  res.send();
 };
 
 //generate an rdf, mapping id is needed as param
 method.generateRDFfromFile = function(req, res) {
+  console.log('[WORKBENCH LOG] Generating RDF...');
   var mapping_id = req.params.mapping_id;
-  var mappings = this._mappingPool;
-  var mapping = method.findMapping(mapping_id, mappings);
-  var sources = this._inputPool;
+  var sources = req.user.sourcefiles;
+  var mappings = req.user.mappingfiles;
+  var mapping = undefined;
+  for(var i = 0; i < mappings.length; i++) {
+    if(mappings[i]._id == mapping_id) {
+      mapping = mappings[i];
+    }
+  }
   var rdf = this._mappingManager.generateRDFfromFile(mapping, sources, (rdf) => {
-    this._total = this._total+1;
-    rdf.id = this._total;
-    this._publishPool.push(rdf);
+    req.app.db.models.User.findOne({ _id: req.user._id }, (err, doc) => {
+          doc.rdfiles.push(rdf);
+          doc.save();
+          console.log('[WORKBENCH LOG] RDF generating succesful!');
+        });
   });  
   res.send();
 } 
 
 
-//real method
-method.generateRDFfromTriples = function(id, triples) {
+method.generateRDFfromTriples = function(req, res) {
+  console.log('[WORKBENCH LOG] Generating RDF...');
   var mapping_id = req.params.mapping_id;
-  var mappings = this._mappingPool;
-  var mapping = method.findMapping(mapping_id, this._mappingPool);
-  var sources = this._inputPool;
+  var sources = req.user.sourcefiles;
+  var mappings = req.user.mappingfiles;
+  for(var i = 0; i < mappings.length; i++) {
+    if(mappings[i]._id == mapping_id) {
+      mapping = mappings[i];
+    }
+  }
   var rdf = this._mappingManager.generateRDFfromTriples(mapping, req.body, sources, (rdf) => {
-    this._total = this._total+1;
-    rdf.id = this._total;
-    this._publishPool.push(rdf);
+    req.app.db.models.User.findOne({ _id: req.user._id }, (err, doc) => {
+          doc.rdfiles.push(rdf);
+          doc.save();
+          console.log('[WORKBENCH LOG] RDF generating succesful!');
+        });
   });
+  res.send();
 }
 
 
@@ -118,15 +129,19 @@ method.addToSchedule = function(req, res) {
   var minute = req.body.date.minute;
   var date = new Date(year, month, day, hour, minute);
 
+  /* TODO
   //variables for uploading
   var inputForUpload = req.body.upload.inputs;
   var mappingForUpload = req.body.upload.mappings;
   var rdfForUpload = req.body.upload.rdf;
+  */
+
 
   //variables for mapping
   var mappingsFromTriples = req.body.mappingsFromTriples;
   var mappingsFromFile = req.body.mappingsFromFile;
-  var sources = this._inputPool;
+  var sources = req.user.sourcefiles;
+  var mappings = req.user.mappingfiles;
   var amountofjobs = mappingsFromTriples.length + mappingsFromFile.length;
   var jobsdone = 0;
 
@@ -143,6 +158,7 @@ method.addToSchedule = function(req, res) {
   * Schedule utility functions
   **/
 
+  /*
   var uploadfiles = (callback) => {
     for(var i = 0; i < inputForUpload.length; i++) {
       
@@ -154,45 +170,56 @@ method.addToSchedule = function(req, res) {
       //if rdf needs to be published too => declared in published
     }
   }
+  */
 
   var executemappings = () => {
     console.log("[WORKBENCH LOG] Execute mappings from file...")
 
     //execute scheduled mappings from file
-    for(var i = 0; i < mappingsFromFile.length; i++) {
-      var mappings = this._mappingPool;
-      var mapping = method.findMapping(mappingsFromFile[i].id, mappings);
+    for(var i = 0; i < mappingsFromFile.length; i++) {      
+      var mapping = method.findMapping(mappingsFromFile[i]._id, mappings);
       this._mappingManager.generateRDFfromFile(mapping, sources, (rdf) => {
-        this._total = this._total+1;
-        rdf.id = this._total;
-        this._publishPool.push(rdf);
+        
+        req.app.db.models.User.findOne({ _id: req.user._id }, (err, doc) => {
+          
+          doc.rdfiles.push(rdf);
+          doc.save();
+          console.log('[WORKBENCH LOG] RDF generating succesful!');
 
-        //checking if all jobs are done
-        jobsdone++;
-        if(jobsdone == amountofjobs) {
-          console.log("[WORKBENCH LOG] Jobs done!")
-        }
+          //checking if all jobs are done
+          jobsdone++;
+          if(jobsdone == amountofjobs) {
+            console.log("[WORKBENCH LOG] Jobs done!")
+          }
+
+        });
+
       });
+
     }
 
     console.log("[WORKBENCH LOG] Execute mappings from triples...")
 
     //execute scheduled mappings from triples
     for(var i = 0; i < mappingsFromTriples.length; i++) {
-      var mappings = this._mappingPool;
-      mapping = method.findMapping(mappingsFromTriples[i].id, mappings);
+      mapping = method.findMapping(mappingsFromTriples[i]._id, mappings);
+      
       console.log(mapping);
-      console.log(mappingsFromTriples[i])
       this._mappingManager.generateRDFfromTriples(mapping, mappingsFromTriples[i].triples, sources, (rdf) => {
-        this._total = this._total+1;
-        rdf.id = this._total;
-        this._publishPool.push(rdf);
 
-        //checking if all jobs are done
-        jobsdone++;
-        if(jobsdone == amountofjobs) {
-          console.log("[WORKBENCH LOG] Jobs done!")
-        }
+        req.app.db.models.User.findOne({ _id: req.user._id }, (err, doc) => {
+          
+          doc.rdfiles.push(rdf);
+          doc.save();
+          console.log('[WORKBENCH LOG] RDF generating succesful!');
+
+          //checking if all jobs are done
+          jobsdone++;
+          if(jobsdone == amountofjobs) {
+            console.log("[WORKBENCH LOG] Jobs done!")
+          }
+
+        });
       });
     }
   };
@@ -201,53 +228,80 @@ method.addToSchedule = function(req, res) {
 }
 
 /**
+* Clearing
+**/
+
+method.clearAll = function(req, res) {
+  console.log('[WORKBENCH LOG] Clearing data of ' + req.user.username + '...');
+
+  req.app.db.models.User.findOne({ _id: req.user._id }, (err, doc) => {
+          doc.rdfiles = [];
+          doc.mappingfiles = [];
+          doc.sourcefiles = [];
+          doc.save();
+  });
+
+  res.send();
+};
+
+method.clearSources = function(req, res) {
+  console.log('[WORKBENCH LOG] Clearing sources of ' + req.user.username + '...');
+  req.app.db.models.User.findOne({ _id: req.user._id }, (err, doc) => {
+          doc.sourcefiles = [];
+          doc.save();
+  });
+  res.send();
+};
+
+method.clearMappings = function(req, res) {
+  console.log('[WORKBENCH LOG] Clearing mappings of ' + req.user.username + '...');
+  req.app.db.models.User.findOne({ _id: req.user._id }, (err, doc) => {
+          doc.mappingfiles = [];
+          doc.save();
+  });
+  res.send();
+};
+
+method.clearRdf = function(req, res) {
+  console.log('[WORKBENCH LOG] Clearing rdf of ' + req.user.username + '...');
+  req.app.db.models.User.findOne({ _id: req.user._id }, (err, doc) => {
+          doc.rdfiles = [];
+          doc.save();
+  });
+  res.send();
+};
+
+
+/**
 * Getters
 **/
 
 method.getInputs = function(req, res) {
-  console.log('[WORKBENCH LOG] Get inputs');
-  res.send(this._inputPool);
+  console.log('[WORKBENCH LOG] Retrieving sources of ' + req.user.username + '...');
+  res.send(req.user.sourcefiles);
 };
 
 method.getMappings = function(req, res) {
-  console.log('[WORKBENCH LOG] Get mappings');
-  res.send(this._mappingPool);
+  console.log('[WORKBENCH LOG] Retreiving mappings of ' + req.user.username + '...');
+  res.send(req.user.mappingfiles);
 };
 
 method.getRdf = function(req, res) {
-  console.log('[WORKBENCH LOG] Get rdf');
-  res.send(this._publishPool);
+  console.log('[WORKBENCH LOG] Retreiving rdf of ' + req.user.username + '...');
+  res.send(req.user.rdfiles);
 };
 
-method.addInputSchedule = function(req, res) {
-	//TODO
-	console.log('[WORKBENCH LOG] Add Input Schedule');
-};
+/**
+* Utility function
+**/
 
-method.addMappingSchedule = function(req, res) {
-	//TODO
-	console.log('[WORKBENCH LOG] Add Mapping Schedule');
-};
-
-method.addPublishSchedule = function(req, res) {
-	//TODO
-	console.log('[WORKBENCH LOG] Add Publish Schedule');
-};
-
-/*
-* Utility functions
-*/
-
-//find mapping by id
-method.findMapping = function(id, data) {
-  for(var i = 0; i < data.length; i++) {
-    if(data[i].id == id) {
-      return data[i];
+method.findMapping = function(_id, mappings) {
+  for(var i = 0; i < mappings.length; i++) {
+    if(mappings[i]._id == _id) {
+      return mappings[i];
     }
   }
-};
-
-
+}
 
 //exporting module
 module.exports = SessionManager;

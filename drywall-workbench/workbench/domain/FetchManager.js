@@ -1,30 +1,12 @@
 var Fetcher = require('./Fetcher'); //maybe not necessary
 var method = FetchManager.prototype;
+var mongoose = require('mongoose');
 var fs = require('fs');
 
 
 function FetchManager() {
     this._fetcher = new Fetcher();    
 }
-
-method.generateConfiguration = function(_uploads, _downloads) {
-	var configuration = {
-							configuration: 'input',
-							uploads: _uploads,
-							downlaods: _downloads
-						};
-	return configuration;
-}
-
-method.executeConfiguration = function(configuration) {
-	for(upload in configuration.uploads) {
-		method.uploadInput(upload);
-	}
-
-	for(download in configuration.downloads) {
-		method.downloadInput(download);
-	}
-};
 
 //upload rdf
 method.uploadRDF = function(file, callback) {
@@ -35,7 +17,7 @@ method.uploadRDF = function(file, callback) {
               data : data,
               metadata : 'empty',
               type : 'rdf',
-              id : 0
+              _id : mongoose.Types.ObjectId()
               };
       fs.unlink(file.path, function (err) {
         if (err) throw err;
@@ -47,14 +29,13 @@ method.uploadRDF = function(file, callback) {
 //upload input
 method.uploadInput = function(file, callback) {
   fs.readFile(file.path, 'utf8', (err, data) => { //using arrow function, this has no 'this'
-      console.log('Data: ' + data);
       if (err) throw err;
       var input = {
               filename: file.originalname,
               data : data,
               metadata : 'empty',
               type : 'input',
-              id : this._total
+              _id : mongoose.Types.ObjectId()
               };        
       fs.unlink(file.path, function (err) {
       if (err) throw err;
@@ -73,7 +54,7 @@ method.uploadMapping = function(file, callback) {
   						data : data,
   						metadata : 'empty',
               type : 'mapping',
-              id : 0,
+              _id : mongoose.Types.ObjectId(),
               triples: []
   						};
       mapping.triples = method.parseTriples(mapping);

@@ -39,13 +39,13 @@ $ npm start
 ## Features
 
  - RESTful API
- - User management system
+ - Drywall User management system
  - Uploading sources, RML mappings and rdf files
  - Execute mapping (also by mapping triples)
  - Schedule mapping
  - Publish on local ldf server (to be extended)
 
-## Features
+## TODO
  - Finishing API
  - Creating a beautiful user interface
 

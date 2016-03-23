@@ -44,8 +44,8 @@ $ npm start
  - Execute mapping (also by mapping triples)
  - Schedule mapping
  - Publish on local ldf server (to be extended)
- - 
-## TO DO
+
+## Features
  - Finishing API
  - Creating a beautiful user interface
 

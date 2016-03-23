@@ -62,6 +62,7 @@ exports.read = function(req, res, next){
 };
 
 exports.create = function(req, res, next){
+  
   var workflow = req.app.utility.workflow(req, res);
 
   workflow.on('validate', function() {

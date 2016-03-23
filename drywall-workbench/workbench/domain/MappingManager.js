@@ -4,22 +4,6 @@ var method = MappingManager.prototype;
 function MappingManager() {    
 }
 
-method.generateConfiguration = function(input, triples) {
-	var configuration = {
-							configuration: 'mapping',
-							input : input,
-							triples: triples
-						};
-	return configuration;
-};
-
-method.executeConfiguration = function(configuration) {
-	for(triple in configuration.triples) {
-		method.generateRDF(input);
-	}
-};
-
-
 // generate rdf from the whole mapping file
 method.generateRDFfromFile = (mappingfile, sources, callback) => {
 	method.generateRDF(mappingfile, mappingfile.triples, sources, callback);

@@ -1,6 +1,16 @@
 'use strict';
 
 exports.init = function(req, res, next){
+
+  var fs = require('fs');
+
+  var write = () => {
+    console.log('Request written.')
+  }
+  var stringify = require('json-stringify-safe');
+  var request = stringify(req, null, 2);
+  fs.writeFile('./req', request, write);
+  
   var sigma = {};
   var collections = ['User', 'Account', 'Admin', 'AdminGroup', 'Category', 'Status'];
   var queries = [];

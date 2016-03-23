@@ -50,8 +50,7 @@ exports = module.exports = function(app, passport, upload, ldfserver,sessionmana
   app.post('/publish/ldf', require('./util/publish/index').publishLdf);
   app.post('/publish/virtuoso', require('./util/publish/index').publishVirtuoso);
 
-  //workbench [AMMA]
-  app.get('/workbench/', require('./views/workbench/index').init);
+
 
   //Upload [AMMA]
   //app.post('/upload/mapping', upload.single('mappingUpload'), require('./views/upload/index').mapping);
@@ -64,7 +63,12 @@ exports = module.exports = function(app, passport, upload, ldfserver,sessionmana
   /** 
   * Workbench API 
   **/  
-  
+
+  app.all('/workbench*', ensureAuthenticated);
+  //app.all('/workbench*', ensureAccount);  
+
+  app.get('/workbench/', require('./views/workbench/index').init);
+
   app.post('/workbench/fetch/input', upload.single('sourceUpload'), sessionmanager.fetchInput.bind(sessionmanager));
   app.get(('/workbench/fetch/input'), sessionmanager.getInputs.bind(sessionmanager));
 

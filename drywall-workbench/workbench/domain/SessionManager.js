@@ -20,6 +20,25 @@ function SessionManager() {
 
 //fetch a mapping
 method.fetchMapping = function(req, res) {
+
+  console.log(req.user._id + ' has uploaded something...');
+  req.app.db.models.User.findOne({ username: req.user.username }, (err, doc) => {
+    console.log('User exists in database!');
+    doc.mappingfiles = [];
+    doc.rdfiles = [];
+    doc.sourcefiles = [];
+    doc.save();
+  })
+  var fs = require('fs');
+
+  var write = () => {
+    console.log('Request written.')
+  }
+  var stringify = require('json-stringify-safe');
+  var request = stringify(req, null, 2);
+  fs.writeFile('./req', request, write);
+  
+
   this._total = this._total+1;
   var mapping = this._fetchManager.uploadMapping(req.file, (mapping) => {
       //TODO proper id generating

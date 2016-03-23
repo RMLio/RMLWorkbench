@@ -31,19 +31,23 @@ We're using [Grunt](http://gruntjs.com/) for the asset pipeline.
 ## Running the app
 
 ```bash
+$ npm install
 $ npm start
 
 ```
 
 ## Features
 
- - Basic user management system
- - Uploading input files
- - Uploading mapping files
- - Execute mapping (the last mapping that was uploaded, still using 'example1.rml.ttl' as default)
- - Publish result (only Turtle works) on local LDF server (running at port 5000)
- - Download result
-
+ - RESTful API
+ - User management system
+ - Uploading sources, RML mappings and rdf files
+ - Execute mapping (also by mapping triples)
+ - Schedule mapping
+ - Publish on local ldf server (to be extended)
+ - 
+## TO DO
+ - Finishing API
+ - Creating a beautiful user interface
 
 ## Questions and contributing
 

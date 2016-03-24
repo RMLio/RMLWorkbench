@@ -50,12 +50,10 @@ method.uploadMapping = function(file, callback) {
 	fs.readFile(file.path, 'utf8', (err, data) => { //using arrow function, this has no 'this'
   		if (err) throw err;      
   		mapping = {
+              _id : mongoose.Types.ObjectId(),
   						filename: file.originalname,
   						data : data,
-  						metadata : 'empty',
-              type : 'mapping',
-              _id : mongoose.Types.ObjectId(),
-              triples: []
+              triples : []
   						};
       mapping.triples = method.parseTriples(mapping);
   		fs.unlink(file.path, function (err) {
@@ -97,8 +95,8 @@ method.parseTriples = function(mapping) {
     if(!triple && content[i].substring(0, 2) == '<#') {
       //new triple found
       newTriple = {
-        title : content[i].replace(/[><#]+/g, ''),   
-        local : true  
+        _id : mongoose.Types.ObjectId(),
+        triplename : content[i].replace(/[><#]+/g, ''),    
       };
       triple = true;
     }

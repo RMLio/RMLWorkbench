@@ -21,10 +21,29 @@ method.fetchMapping = function(req, res) {
 
   var mapping = this._fetchManager.uploadMapping(req.file, (mapping) => {
 
-      console.log('[WORKBENCH LOG]' + ' Mapping name: "'+mapping.filename+'"');   
-      req.app.db.models.User.findOne({ _id: req.user._id }, (err, doc) => {
-        doc.mappingfiles.push(mapping);
-        doc.save();
+      console.log('[WORKBENCH LOG]' + ' Mapping name: "'+mapping.filename+'"'); 
+      var triples = mapping.triples; //hacky 
+      mapping.triples = [];
+      req.app.db.models.User.findOne({ _id: req.user._id }, (err, user) => {
+        req.app.db.models.Mapping.create(mapping, (err, mappingSchema) => {
+          if(err) throw err;
+          var mappingSchema = mappingSchema;
+          var amountOfTriples = triples.length;
+          var amountDone = 0;
+          for(var i = 0; i < triples.length; i++) {
+            req.app.db.models.Triple.create(triples[i], function(err, tripleSchema) {
+              console.log(tripleSchema);
+              mappingSchema.triples.push(tripleSchema);
+              amountDone++;
+              if(amountDone == amountOfTriples) {
+                console.log(mappingSchema);
+                user.mappingfiles.push(mappingSchema);
+                user.save();
+              }
+            });
+          }
+        });
+        
 
       });
       console.log('[WORKBENCH LOG] Upload succesful!');

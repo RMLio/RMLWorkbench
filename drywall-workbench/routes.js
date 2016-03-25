@@ -29,8 +29,9 @@ function ensureAccount(req, res, next) {
   res.redirect('/');
 }
 
-exports = module.exports = function(app, passport, upload, ldfserver,sessionmanager) {   
+exports = module.exports = function(app, passport, upload, ldfserver) {   
 
+  var workbenchCtrl = require('./workbench/domain/WorkbenchController');
 
   /** 
   * Workbench API 
@@ -41,25 +42,25 @@ exports = module.exports = function(app, passport, upload, ldfserver,sessionmana
   app.get('/workbench/', require('./views/workbench/index').init);
 
   //uploading to workbench
-  app.post('/workbench/fetch/input', upload.single('sourceUpload'), sessionmanager.uploadSource.bind(sessionmanager));
-  app.get(('/workbench/fetch/input'), sessionmanager.getInputs.bind(sessionmanager));
-  app.post('/workbench/fetch/mapping', upload.single('mappingUpload'), sessionmanager.uploadMapping.bind(sessionmanager));
-  app.get('/workbench/fetch/mapping', sessionmanager.getMappings.bind(sessionmanager));
-  app.post('/workbench/fetch/rdf', upload.single('rdfUpload'), sessionmanager.uploadRDF.bind(sessionmanager));
-  app.get('/workbench/fetch/rdf', sessionmanager.getRdf.bind(sessionmanager));
+  app.post('/workbench/fetch/input', upload.single('sourceUpload'), workbenchCtrl.uploadSource);
+  app.get(('/workbench/fetch/input'), workbenchCtrl.getInputs);
+  app.post('/workbench/fetch/mapping', upload.single('mappingUpload'), workbenchCtrl.uploadMapping);
+  app.get('/workbench/fetch/mapping', workbenchCtrl.getMappings);
+  app.post('/workbench/fetch/rdf', upload.single('rdfUpload'), workbenchCtrl.uploadRDF);
+  app.get('/workbench/fetch/rdf', workbenchCtrl.getRdf);
 
   //mapping on workbench
-  app.post('/workbench/mapping/execute/:mapping_id', sessionmanager.generateRDFfromFile.bind(sessionmanager));
-  app.post('/workbench/mapping/execute/:mapping_id/triples', sessionmanager.generateRDFfromTriples.bind(sessionmanager));
+  app.post('/workbench/mapping/execute/:mapping_id', workbenchCtrl.executeMappingFromFile);
+  app.post('/workbench/mapping/execute/:mapping_id/triples', workbenchCtrl.generateRDFfromTriples);
 
   //scheduling on workbench
-  app.post('/workbench/addToSchedule', sessionmanager.addToSchedule.bind(sessionmanager));
+  app.post('/workbench/addToSchedule', workbenchCtrl.addToSchedule);
 
   //clearing workbench
-  app.post('/workbench/clear/source', sessionmanager.clearSources.bind(sessionmanager));
-  app.post('/workbench/clear/mapping', sessionmanager.clearMappings.bind(sessionmanager));
-  app.post('/workbench/clear/rdf', sessionmanager.clearRdf.bind(sessionmanager));
-  app.post('/workbench/clear/all', sessionmanager.clearAll.bind(sessionmanager));
+  app.post('/workbench/clear/source', workbenchCtrl.clearSources);
+  app.post('/workbench/clear/mapping', workbenchCtrl.clearMappings);
+  app.post('/workbench/clear/rdf', workbenchCtrl.clearRdf);
+  app.post('/workbench/clear/all', workbenchCtrl.clearAll);
   
 
   /**

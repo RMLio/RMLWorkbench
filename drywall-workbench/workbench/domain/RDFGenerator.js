@@ -95,7 +95,7 @@ method.spawnRmlMapper = function(id, filename, triplenames, needed, callback) {
                         data : data,
                         metadata : 'empty',
                         type : 'rdf',
-                        id : mongoose.Types.ObjectId()
+                        _id : mongoose.Types.ObjectId()
                     };
 
                 

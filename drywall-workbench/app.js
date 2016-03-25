@@ -15,8 +15,6 @@ var config = require('./config'),
     csrf = require('csurf'),
     multer  = require('multer');
 var upload = multer({ dest: './tmp/' });
-var ScheduleManager = require('./workbench/domain/ScheduleManager');
-var SessionManager = require('./workbench/domain/SessionManager');
 
 //create express app
 var app = express();
@@ -88,8 +86,6 @@ ldfserver.stdout.on('data', function(data) {
 });
 */
 
-var scheduleManager = new ScheduleManager();
-var sessionmanager = new SessionManager();
 
 
 
@@ -114,7 +110,7 @@ app.locals.cacheBreaker = 'br34k-01';
 require('./passport')(app, passport);
 
 //setup routes
-require('./routes')(app, passport, upload, ldfserver, sessionmanager);
+require('./routes')(app, passport, upload, ldfserver);
 
 //custom (friendly) error handler
 app.use(require('./views/http/index').http500);

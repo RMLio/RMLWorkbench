@@ -9,14 +9,12 @@ function FetchManager() {
 }
 
 //upload rdf
-method.uploadRDF = function(file, callback) {
+method.createRDFFields = function(file, callback) {
 	fs.readFile(file.path, 'utf8',(err, data) => { //using arrow function, this has no 'this'
       if (err) throw err;
       var rdf = {
               filename: file.originalname,
               data : data,
-              metadata : 'empty',
-              type : 'rdf',
               _id : mongoose.Types.ObjectId()
               };
       fs.unlink(file.path, function (err) {
@@ -33,8 +31,6 @@ method.createSourceFields = function(file, callback) {
       var input = {
               filename: file.originalname,
               data : data,
-              metadata : 'empty',
-              type : 'input',
               _id : mongoose.Types.ObjectId()
               };        
       fs.unlink(file.path, function (err) {

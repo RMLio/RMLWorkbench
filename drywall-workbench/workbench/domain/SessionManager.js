@@ -143,27 +143,27 @@ method.uploadRDF = function(req, res) {
 
     console.log('[WORKBENCH LOG] ' + user.username + ' tries to upload RDF file...');
 
-    this._fetchManager.createSourceFields(file, (rdf) => {
-        saveRDF(rdf, userschema, rdfschema, user, () => {
+    this._fetchManager.createRDFFields(file, (rdf) => {
+        saveRDF(rdf, req.app.db.models, user, () => {
             res.send();
         });
     });
 };
 
 //save source
-var saveRDF = function(rdf, userschema, rdfschema, user, callback) {
+var saveRDF = function(rdf, models, user, callback) {
 
-    console.log('[WORKBENCH LOG]' + ' Filename rdf: "' + source.filename + '"');
+    console.log('[WORKBENCH LOG]' + ' Filename rdf: "' + rdf.filename + '"');
 
     //create new source from upload and add to sources of user
 
     console.log('[WORKBENCH LOG]' + ' Creating new rdf entry in database...');
 
     //create the new source
-    rdfschema.create(rdf, (err, rdfSchema) => {
+    models.RDF.create(rdf, (err, rdfSchema) => {
         if (err) throw err;
         console.log('[WORKBENCH LOG]' + ' Updating user rdf files...');
-        userschema.update({
+        models.User.update({
             _id: user._id
         }, {
             $addToSet: {
@@ -181,12 +181,10 @@ var saveRDF = function(rdf, userschema, rdfschema, user, callback) {
 method.generateRDFfromFile = function(req, res) {
     var mapping_id = req.params.mapping_id;
     var sources = req.user.sourcefiles;
-    var sourceschema = req.app.db.models.Source;
-    var mappingschema = req.app.db.models.Mapping;
-    var userschema = req.app.db.models.User;
+    var models = req.app.db.models;
     var user = req.user;
     //execute the mapping
-    executeMapping(mapping_id, sourceschema, mappingschema, userschema, user, sources, () => {
+    executeMapping(mapping_id, models, user, sources, () => {
         res.send();
     });
 }
@@ -229,9 +227,7 @@ method.addToSchedule = function(req, res) {
     var minute = req.body.date.minute;
     var date = new Date(year, month, day, hour, minute);
     var sources = req.user.sourcefiles;
-    var sourceschema = req.app.db.models.Source;
-    var mappingschema = req.app.db.models.Mapping;
-    var userschema = req.app.db.models.User;
+    var models = req.app.db.models;
     var user = req.user;
 
 
@@ -242,9 +238,9 @@ method.addToSchedule = function(req, res) {
         var mappingsFromTriples = req.body.mappingsFromTriples;
         var mappingsFromFile = req.body.mappingsFromFile;
 
-        retrieveFiles(req.user.sourcefiles, req.app.db.models.Source, (sources) => {
-            retrieveFiles(mappingsFromFile, req.app.db.models.Mapping, (mappingsFromFile) => {
-                retrieveFiles(mappingsFromTriples, req.app.db.models.Mapping, (mappingsFromTriples) => {
+        retrieveFiles(req.user.sourcefiles, models.Source, (sources) => {
+            retrieveFiles(mappingsFromFile, models.Mapping, (mappingsFromFile) => {
+                retrieveFiles(mappingsFromTriples, models.Mapping, (mappingsFromTriples) => {
                     var amountofjobs = mappingsFromTriples.length + mappingsFromFile.length;
                     var jobsdone = 0;
 
@@ -261,7 +257,7 @@ method.addToSchedule = function(req, res) {
                     //execute scheduled mappings from file
                     for (var i = 0; i < mappingsFromFile.length; i++) {
 
-                        executeMapping(mappingsFromFile[i], sourceschema, mappingschema, userschema, user, sources, () => {
+                        executeMapping(mappingsFromFile[i], models, user, sources, () => {
                             amountDone++;
                             if (amountDone == amountofjobs) {
                                 console.log("[WORKBENCH LOG] Jobs done!");
@@ -400,7 +396,7 @@ method.getMappings = function(req, res) {
 method.getRdf = function(req, res) {
     var rdfschema = req.app.db.models.RDF;
     var idrdf = req.user.rdffiles;
-    console.log('[WORKBENCH LOG] Retrieving rdf of ' + req.user.username + '...');
+    console.log('[WORKBENCH LOG] Retrieving rdf (' + idrdf.length + ') of ' + req.user.username + '...');
     retrieveFiles(idrdf, rdfschema, (rdf) => {
         console.log('[WORKBENCH LOG] Retrieving rdf successful!');
         res.send(rdf);
@@ -445,21 +441,23 @@ var retrieveFiles = function(idfiles, schema, callback) {
 }
 
 //excute mapping by id
-var executeMapping = function(mapping_id, sourceschema, mappingschema, userschema, user, sources, callback) {
+var executeMapping = function(mapping_id, models, user, sources, callback) {
     console.log('[WORKBENCH LOG] Generating RDF...');
-    retrieveFiles(sources, sourceschema, (sources) => {
-        retrieveFile(mapping_id, mappingschema, (mapping) => {
+    retrieveFiles(sources, models.Source, (sources) => {
+        retrieveFile(mapping_id, models.Mapping, (mapping) => {
             (new MappingManager).generateRDFfromFile(mapping, sources, (rdf) => {
-                userschema.update({
+                  saveRDF(rdf, models, user, () => {                    
+                    models.User.update({
                     _id: user._id
-                }, {
+                    }, {
                     $addToSet: {
                         rdffiles: rdf
                     }
-                }, () => {
+                    }, () => {
                     console.log('[WORKBENCH LOG] Generating RDF succesful!');
                     callback();
                 });
+                  });                
             });
         });
     });

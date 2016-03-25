@@ -9,6 +9,7 @@ exports = module.exports = function(app, mongoose) {
   require('./schema/Triple')(app, mongoose);
   require('./schema/Mapping')(app, mongoose);
   require('./schema/Source')(app, mongoose);
+  require('./schema/RDF')(app, mongoose);
 
   //then regular docs
   require('./schema/User')(app, mongoose);

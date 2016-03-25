@@ -2,7 +2,7 @@
 
 exports = module.exports = function(app, mongoose) {
   var mappingSchema = new mongoose.Schema({
-    _id: { type: String },
+    _id: { type: mongoose.Schema.Types.ObjectId },
     filename: { type: String, default: '' },    
     triples: [mongoose.modelSchemas.Triple],
     data : { type: String, default: ''},

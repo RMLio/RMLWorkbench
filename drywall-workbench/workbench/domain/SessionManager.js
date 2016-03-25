@@ -2,11 +2,9 @@ var FetchManager = require('./FetchManager');
 var MappingManager = require('./MappingManager');
 var ScheduleManager = require('./ScheduleManager');
 var schedule = require('node-schedule');
-const chalk = require('chalk');
 var method = SessionManager.prototype;
 var mongoose = require('mongoose');
 
-//this class represents a single workbench session
 function SessionManager() {
     this._mappingManager = new MappingManager();
     this._fetchManager = new FetchManager();
@@ -14,81 +12,146 @@ function SessionManager() {
 }
 
 
-//fetch a mapping
-method.fetchMapping = function(req, res) {
+//upload a mapping
+method.uploadMapping = function(req, res) {
+  var file = req.file;
+  var userschema = req.app.db.models.User;
+  var tripleschema = req.app.db.models.Triple;
+  var mappingschema = req.app.db.models.Mapping;
+  var user = req.user;
    
-  console.log('[WORKBENCH LOG] ' + req.user.username + ' tries to upload mapping file...');   
+  console.log('[WORKBENCH LOG] User ' + req.user.username + ' tries to upload mapping file...');   
 
-  var mapping = this._fetchManager.uploadMapping(req.file, (mapping) => {
-
-      console.log('[WORKBENCH LOG]' + ' Mapping name: "'+mapping.filename+'"'); 
-      var triples = mapping.triples; //hacky 
-      mapping.triples = [];
-      req.app.db.models.User.findOne({ _id: req.user._id }, (err, user) => {
-        req.app.db.models.Mapping.create(mapping, (err, mappingSchema) => {
-          if(err) throw err;
-          var mappingSchema = mappingSchema;
-          var amountOfTriples = triples.length;
-          var amountDone = 0;
-          for(var i = 0; i < triples.length; i++) {
-            req.app.db.models.Triple.create(triples[i], function(err, tripleSchema) {
-              console.log(tripleSchema);
-              mappingSchema.triples.push(tripleSchema);
-              amountDone++;
-              if(amountDone == amountOfTriples) {
-                console.log(mappingSchema);
-                user.mappingfiles.push(mappingSchema);
-                user.save();
-              }
-            });
-          }
-        });
-        
-
-      });
-      console.log('[WORKBENCH LOG] Upload succesful!');
-
-   });  
-
-  res.send();
-};
-
-//fetch a source
-method.fetchInput = function(req, res) {
-
-  console.log('[WORKBENCH LOG] ' + req.user.username + ' tries to upload source file...');
-
-  var input = this._fetchManager.uploadInput(req.file, (input) => {
-
-    console.log(chalk.green('[WORKBENCH LOG]') + 'Source name: "'+input.filename+'"');
-    req.app.db.models.User.findOne({ _id: req.user._id }, (err, doc) => {
-        doc.sourcefiles.push(input);
-        doc.save();
+  //read the file and make mapping fields
+  this._fetchManager.createMappingFields(req.file, (mapping) => {
+    //save to db
+    saveMapping(mapping, userschema, mappingschema, tripleschema, user, () => {
+      res.send();
     });
-
-    console.log('[WORKBENCH LOG] Upload succesful!');
-
   });
 
-  res.send();
 };
 
-//fetch a rdf
-method.fetchRDF = function(req, res) {
+//save the mapping
+var saveMapping = function(mapping, userschema, mappingschema, tripleschema, user, callback) {
 
-  		var rdf = _fetchManager.uploadRDF(req.file, (rdf) => {
+  console.log('[WORKBENCH LOG]' + ' Mapping name: "'+mapping.filename+'"'); 
 
-        console.log(chalk.green('[WORKBENCH LOG]') + 'RDF name: "'+rdf.filename+'"');
-        req.app.db.models.User.findOne({ _id: req.user._id }, (err, doc) => {
-          doc.rdfiles.push(rdf);
-          doc.save();
-        });
-        console.log('[WORKBENCH LOG] Upload succesful!');
+  var triples = mapping.triples; //hacky 
+  mapping.triples = [];
 
+        console.log('[WORKBENCH LOG]' + ' Creating new mapping entry in database...');
+
+        //create the new mapping
+        mappingschema.create(mapping, (err, mappingSchema) => {
+          if(err) throw err;
+          
+          var amountOfTriples = triples.length;
+          var amountDone = 0;
+
+          console.log('[WORKBENCH LOG]' + ' Creating new triple entries in database...');
+
+          //create new triples from the mapping and add to triples of the user
+          for(var i = 0; i < triples.length; i++) {
+            tripleschema.create(triples[i], (err, tripleSchema) => {
+              if(err) throw err;
+              mappingschema.update({_id : mappingSchema._id}, { $addToSet : { triples : tripleSchema }}, () => {
+                  amountDone++;
+              
+                  console.log('[WORKBENCH LOG] Updating user mappingfiles...');
+
+                  //when everything is created, write to user 
+                  if(amountDone == amountOfTriples) {
+                    userschema.update({_id : user._id}, { $addToSet : { mappingfiles : mappingSchema._id}}, () => {
+                      if(err) throw err
+                      callback();
+                      console.log('[WORKBENCH LOG] Upload successful!');
+                    });
+                  }
+              });        
+              
+              
+            });   
+          }       
+        });     
+
+}
+
+//upload source
+method.uploadSource = function(req, res) {
+
+  var file = req.file;
+  var userschema = req.app.db.models.User;
+  var sourceschema = req.app.db.models.Source;
+  var user = req.user;
+
+  console.log('[WORKBENCH LOG] ' + user.username + ' tries to upload source file...');
+
+  this._fetchManager.createSourceFields(file, (source) => {
+    saveSource(source, userschema, sourceschema, user, () => {
+      res.send();
+    });
+  });
+};
+
+//save source
+var saveSource = function(source, userschema, sourceschema, user, callback) {
+
+  console.log('[WORKBENCH LOG]' + ' Filename source: "'+source.filename+'"'); 
+
+      //create new source from upload and add to sources of user
+
+        console.log('[WORKBENCH LOG]' + ' Creating new source entry in database...');
+
+        //create the new source
+        sourceschema.create(source, (err, sourceSchema) => {
+          if(err) throw err;      
+          console.log('[WORKBENCH LOG]' + ' Updating user sourcefiles...');  
+          userschema.update({_id : user._id}, { $addToSet : { sourcefiles : sourceSchema._id}}, () => {
+            if(err) throw err
+            callback();
+            console.log('[WORKBENCH LOG] Upload successful!');
+          });
       });
+}
 
-  res.send();
+//upload source
+method.uploadRDF = function(req, res) {
+
+  var file = req.file;
+  var userschema = req.app.db.models.User;
+  var rdfschema = req.app.db.models.RDF;
+  var user = req.user;
+
+  console.log('[WORKBENCH LOG] ' + user.username + ' tries to upload RDF file...');
+
+  this._fetchManager.createSourceFields(file, (rdf) => {
+    saveRDF(rdf, userschema, rdfschema, user, () => {
+      res.send();
+    });
+  });
 };
+
+//save source
+var saveRDF = function(rdf, userschema, rdfschema, user, callback) {
+
+  console.log('[WORKBENCH LOG]' + ' Filename rdf: "'+source.filename+'"'); 
+
+      //create new source from upload and add to sources of user
+
+        console.log('[WORKBENCH LOG]' + ' Creating new rdf entry in database...');
+
+        //create the new source
+        rdfschema.create(rdf, (err, rdfSchema) => {
+          if(err) throw err;      
+          console.log('[WORKBENCH LOG]' + ' Updating user rdf files...');  
+          userschema.update({_id : user._id}, { $addToSet : { rdffiles : rdfSchema._id}}, () => {
+            if(err) throw err
+            callback();
+            console.log('[WORKBENCH LOG] Upload successful!');
+          });
+      });
+}
 
 //generate an rdf, mapping id is needed as param
 method.generateRDFfromFile = function(req, res) {
@@ -154,7 +217,6 @@ method.addToSchedule = function(req, res) {
   var mappingForUpload = req.body.upload.mappings;
   var rdfForUpload = req.body.upload.rdf;
   */
-
 
   //variables for mapping
   var mappingsFromTriples = req.body.mappingsFromTriples;
@@ -254,7 +316,7 @@ method.clearAll = function(req, res) {
   console.log('[WORKBENCH LOG] Clearing data of ' + req.user.username + '...');
 
   req.app.db.models.User.findOne({ _id: req.user._id }, (err, doc) => {
-          doc.rdfiles = [];
+          doc.rdffiles = [];
           doc.mappingfiles = [];
           doc.sourcefiles = [];
           doc.save();
@@ -284,7 +346,7 @@ method.clearMappings = function(req, res) {
 method.clearRdf = function(req, res) {
   console.log('[WORKBENCH LOG] Clearing rdf of ' + req.user.username + '...');
   req.app.db.models.User.findOne({ _id: req.user._id }, (err, doc) => {
-          doc.rdfiles = [];
+          doc.rdffiles = [];
           doc.save();
   });
   res.send();
@@ -297,17 +359,51 @@ method.clearRdf = function(req, res) {
 
 method.getInputs = function(req, res) {
   console.log('[WORKBENCH LOG] Retrieving sources of ' + req.user.username + '...');
-  res.send(req.user.sourcefiles);
+  var amountRetrieved = 0;
+  var sources = [];
+  for(var i = 0; i < req.user.sourcefiles.length; i++) {
+    req.app.db.models.Source.findOne({ _id: req.user.sourcefiles[i] }, (err, doc) => {
+      amountRetrieved++;
+      sources.push(doc);
+      if(amountRetrieved == req.user.sourcefiles.length) { 
+        console.log('[WORKBENCH LOG] Retrieving sources successful!');       
+        res.send(sources);
+      }
+    });
+  }
+  
 };
 
 method.getMappings = function(req, res) {
   console.log('[WORKBENCH LOG] Retreiving mappings of ' + req.user.username + '...');
-  res.send(req.user.mappingfiles);
+  var amountRetrieved = 0;
+  var mappings = [];
+  for(var i = 0; i < req.user.mappingfiles.length; i++) {
+    req.app.db.models.Mapping.findOne({ _id: req.user.mappingfiles[i] }, (err, doc) => {
+      amountRetrieved++;
+      mappings.push(doc);
+      if(amountRetrieved == req.user.mappingfiles.length) { 
+        console.log('[WORKBENCH LOG] Retrieving mappings successful!');       
+        res.send(mappings);
+      }
+    });
+  }
 };
 
 method.getRdf = function(req, res) {
   console.log('[WORKBENCH LOG] Retreiving rdf of ' + req.user.username + '...');
-  res.send(req.user.rdfiles);
+  var amountRetrieved = 0;
+  var rdf = [];
+  for(var i = 0; i < req.user.mappingfiles.length; i++) {
+    req.app.db.models.RDF.findOne({ _id: req.user.rdffiles[i] }, (err, doc) => {
+      amountRetrieved++;
+      rdf.push(doc);
+      if(amountRetrieved == req.user.rdffiles.length) { 
+        console.log('[WORKBENCH LOG] Retrieving rdf successful!');       
+        res.send(rdf);
+      }
+    });
+  }
 };
 
 /**

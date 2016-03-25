@@ -27,7 +27,7 @@ method.uploadRDF = function(file, callback) {
 };
 
 //upload input
-method.uploadInput = function(file, callback) {
+method.createSourceFields = function(file, callback) {
   fs.readFile(file.path, 'utf8', (err, data) => { //using arrow function, this has no 'this'
       if (err) throw err;
       var input = {
@@ -44,8 +44,8 @@ method.uploadInput = function(file, callback) {
     });
 }
 
-//upload a mapping
-method.uploadMapping = function(file, callback) {
+//set fields for mapping
+method.createMappingFields = function(file, callback) {
 	var mapping;
 	fs.readFile(file.path, 'utf8', (err, data) => { //using arrow function, this has no 'this'
   		if (err) throw err;      

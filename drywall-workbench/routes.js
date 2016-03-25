@@ -41,11 +41,11 @@ exports = module.exports = function(app, passport, upload, ldfserver,sessionmana
   app.get('/workbench/', require('./views/workbench/index').init);
 
   //uploading to workbench
-  app.post('/workbench/fetch/input', upload.single('sourceUpload'), sessionmanager.fetchInput.bind(sessionmanager));
+  app.post('/workbench/fetch/input', upload.single('sourceUpload'), sessionmanager.uploadSource.bind(sessionmanager));
   app.get(('/workbench/fetch/input'), sessionmanager.getInputs.bind(sessionmanager));
-  app.post('/workbench/fetch/mapping', upload.single('mappingUpload'), sessionmanager.fetchMapping.bind(sessionmanager));
+  app.post('/workbench/fetch/mapping', upload.single('mappingUpload'), sessionmanager.uploadMapping.bind(sessionmanager));
   app.get('/workbench/fetch/mapping', sessionmanager.getMappings.bind(sessionmanager));
-  app.post('/workbench/fetch/rdf', upload.single('rdfUpload'), sessionmanager.fetchRDF.bind(sessionmanager));
+  app.post('/workbench/fetch/rdf', upload.single('rdfUpload'), sessionmanager.uploadRDF.bind(sessionmanager));
   app.get('/workbench/fetch/rdf', sessionmanager.getRdf.bind(sessionmanager));
 
   //mapping on workbench

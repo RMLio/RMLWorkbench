@@ -2,7 +2,7 @@
 
 exports = module.exports = function(app, mongoose) {
   var tripleSchema = new mongoose.Schema({
-    _id: { type: String },
+    _id: { type: mongoose.Schema.Types.ObjectId },
     triplename: { type: String, default: '' },    
     logicalsource : {
       rmlsource : { type: String, default: '' },

@@ -9,7 +9,7 @@ exports = module.exports = function(app, mongoose) {
       admin: { type: mongoose.Schema.Types.ObjectId, ref: 'Admin' },
       account: { type: mongoose.Schema.Types.ObjectId, ref: 'Account' }
     },
-    mappingfiles: [],
+    mappingfiles: [mongoose.modelSchemas.Mapping],
     sourcefiles: [],
     rdfiles: [],
     isActive: String,

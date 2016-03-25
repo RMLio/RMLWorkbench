@@ -23,7 +23,7 @@ exports.smtp = {
     user: process.env.SMTP_USERNAME || 'rmlworkbench@gmail.com',
     password: process.env.SMTP_PASSWORD || 'adminroot',
     host: process.env.SMTP_HOST || 'smtp.gmail.com',
-    ssl: true
+    tls: true
   }
 };
 exports.oauth = {

@@ -31,7 +31,7 @@ function ensureAccount(req, res, next) {
 
 exports = module.exports = function(app, passport, upload, ldfserver) {   
 
-  var workbenchCtrl = require('./workbench/domain/WorkbenchController');
+  var workbenchCtrl = require('./workbench/WorkbenchController');
 
   /** 
   * Workbench API 

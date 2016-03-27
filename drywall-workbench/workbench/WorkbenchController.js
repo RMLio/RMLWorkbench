@@ -8,6 +8,9 @@ var saver = require('./Saver');
 
 var exports = module.exports = {
 
+  /*
+  * Uploading 
+  */  
 
   //upload a mapping
   uploadMapping : function(req, res) {
@@ -19,6 +22,7 @@ var exports = module.exports = {
       reader.readMappingFields(req.file, (mapping) => {
           //save to db
           saver.saveMapping(mapping, models, user, () => {
+              console.log('[WORKBENCH LOG] Upload successful!');
               res.send();
           });
       });
@@ -34,12 +38,13 @@ var exports = module.exports = {
       //create source fields
       reader.readSourceFields(file, (source) => {
           saver.saveSource(source, models, user, () => {
+              console.log('[WORKBENCH LOG] Upload successful!');
               res.send();
           });
       });
   },
 
-  //upload source
+  //upload rdf
   uploadRDF : function(req, res) {
       var file = req.file;
       var userschema = req.app.db.models.User;
@@ -50,6 +55,7 @@ var exports = module.exports = {
       //create rdf fields
       reader.readRDFFields(file, (rdf) => {
           saver.saveRDF(rdf, req.app.db.models, user, () => {
+              console.log('[WORKBENCH LOG] Upload successful!');
               res.send();
           });
       });
@@ -88,12 +94,11 @@ var exports = module.exports = {
 
 
   /**
-   * Scheduling method
+   * Scheduling 
    **/
 
-  addToSchedule : function(req, res) {
+  addToSchedule: function(req, res) {
 
-      console.log("[WORKBENCH LOG] Adding job!");
       var year = req.body.date.year;
       var month = req.body.date.month;
       var day = req.body.date.day;
@@ -105,16 +110,26 @@ var exports = module.exports = {
       var models = req.app.db.models;
       var user = req.user;
       var mappingsFromTriples = req.body.mappingsFromTriples;
-      var mappingsFromFile = req.body.mappingsFromFile;    
-      var mapper = require('./Mapper');
+      var mappingsFromFile = req.body.mappingsFromFile;
+
+      console.log("[WORKBENCH LOG] Job added! Scheduled for " +  date);
 
       //schedule the job with date
       schedule.scheduleJob(date, (err) => {
-          if(err) throw err;
+          if (err) throw err;
           console.log("[WORKBENCH LOG] Executing jobs!");
-          mapper.executeMultipleMappings(mappingsFromFile, mappingsFromTriples, sources, models, user);
+          mapper.executeMultipleMappings(mappingsFromFile, mappingsFromTriples, sources, models, user, (rdflist) => {
+              var done = 0;
+              for (var i = 0; i < rdflist.length; i++) {
+                  saver.saveRDF(rdflist[i], models, user, () => {
+                      done++;
+                      if (done == rdflist.length) {
+                          console.log("[WORKBENCH LOG] Jobs Done!");                          
+                      }
+                  });
+              }
+          });
       });
-
       res.send();
   },
 
@@ -174,7 +189,7 @@ var exports = module.exports = {
 
 
   /**
-   * Getters
+   * Getting
    **/
 
   //get sourcefiles from database by id

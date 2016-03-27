@@ -30,7 +30,7 @@ var exports = module.exports = {
     	//write file main directory 
     	fs.writeFile('input.rml', mappingfile.data, 'utf8', (err) => {
     		if(err) throw err;
-    		console.log('Mapping file created.')
+    		console.log('[WORKBENCH LOG] Mapping filename: ' + mappingfile.filename);
 
             //write source files, when last source file has been written, spawn mapper    
             var written = 0;    
@@ -67,7 +67,7 @@ var exports = module.exports = {
 
             var result;
             
-            console.log(triplenames);
+            console.log('[WORKBENCH LOG] Triples: ' + triplenames);
 
             //TODO check command --> pick triple functionality
 

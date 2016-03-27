@@ -5,23 +5,23 @@ var exports = module.exports = {
 
     //execute a mapping using the RML processor
     execute : function(mappingfile, triples, needed, callback) {
-
+        
 
         var rdf; //storing the rdf output
         var triplenames = ''; //storing the triple names for the command parameters
         //creating triplenames
         for(var i = 0; i < triples.length; i++) {
             if(i < (triples.length - 1)) {
-                triplenames += triples[i].title + ',';
+                triplenames += triples[i].triplename + ',';
             } else {
-                triplenames += triples[i].title;
+                triplenames += triples[i].triplename;
             }
             
         }
 
         //in case there are no local source files needed
         if(needed.length == 0) {
-            spawnRmlMapper(mappingfile.id, mappingfile.filename, triplenames, needed, (result) => {
+            exports.spawnRmlMapper(mappingfile.id, mappingfile.filename, triplenames, needed, (result) => {
                                 rdf = result;
                                 callback(rdf);
                             });           
@@ -66,6 +66,8 @@ var exports = module.exports = {
     spawnRmlMapper : function(id, filename, triplenames, needed, callback) {
 
             var result;
+            
+            console.log(triplenames);
 
             //TODO check command --> pick triple functionality
 
@@ -76,7 +78,7 @@ var exports = module.exports = {
             
             //logging
             spawn.stdout.on('data', (data) => {
-                console.log(`stdout: ${data}`);
+                //console.log(`stdout: ${data}`);
             });
             spawn.stderr.on('data', (data) => {
                 console.log(`stdout: ${data}`);

@@ -4,6 +4,7 @@ var util = require('./Utility');
 var mapper = require('./Mapper');
 var reader = require('./Reader');
 var clearer = require('./Clearer');
+var saver = require('./Saver');
 
 var exports = module.exports = {
 
@@ -13,7 +14,6 @@ var exports = module.exports = {
       var file = req.file;
       var user = req.user;
       var models = req.app.db.models;
-      var saver = require('./Saver');
       console.log('[WORKBENCH LOG] User ' + req.user.username + ' tries to upload mapping file...');
       //read the file and make mapping fields
       reader.readMappingFields(req.file, (mapping) => {
@@ -30,7 +30,6 @@ var exports = module.exports = {
       var file = req.file;
       var user = req.user;
       var models = req.app.db.models;
-      var saver = require('./Saver');
       console.log('[WORKBENCH LOG] ' + user.username + ' tries to upload source file...');
       //create source fields
       reader.readSourceFields(file, (source) => {
@@ -46,7 +45,7 @@ var exports = module.exports = {
       var userschema = req.app.db.models.User;
       var rdfschema = req.app.db.models.RDF;
       var user = req.user;
-      var saver = require('./Saver');
+
       console.log('[WORKBENCH LOG] ' + user.username + ' tries to upload RDF file...');
       //create rdf fields
       reader.readRDFFields(file, (rdf) => {
@@ -57,14 +56,13 @@ var exports = module.exports = {
   },
 
 
-  //generate an rdf, mapping id is needed as param
+  //execute a whole mapping file, mapping id is needed as param
   executeMappingFromFile : function(req, res) {
       var mapping_id = req.params.mapping_id;
       var sources = req.user.sourcefiles;
       var models = req.app.db.models;
       var user = req.user;
-      var saver = require('./Saver');
-
+      
       //execute the mapping
       mapper.executeMappingFromFile(mapping_id, models, user, sources, (rdf) => {
           saver.saveRDF(rdf, models, user, () => {
@@ -74,27 +72,18 @@ var exports = module.exports = {
       });
   },
 
-  //TODO 
-  generateRDFfromTriples : function(req, res) {
-      console.log('[WORKBENCH LOG] Generating RDF...');
+  //execute triples of a mapping file
+  executeMappingFromTriples : function(req, res) {
       var mapping_id = req.params.mapping_id;
-      var sources = req.user.sourcefiles;
-      var mappings = req.user.mappingfiles;
-      for (var i = 0; i < mappings.length; i++) {
-          if (mappings[i]._id == mapping_id) {
-              mapping = mappings[i];
-          }
-      }
-      var rdf = mapper.executeFromTriples(mapping, req.body, sources, (rdf) => {
-          req.app.db.models.User.findOne({
-              _id: req.user._id
-          }, (err, doc) => {
-              doc.rdfiles.push(rdf);
-              doc.save();
-              console.log('[WORKBENCH LOG] RDF generating succesful!');
+      var user = req.user;
+      var triples = req.body.triples;
+      var models = req.app.db.models;      
+      //execute the mapping
+      mapper.executeMappingFromTriples(user, models, triples, mapping_id, (rdf) => {          
+          saver.saveRDF(rdf, models, user, () => {
+            res.send();     
           });
       });
-      res.send();
   },
 
 

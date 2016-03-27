@@ -1,14 +1,13 @@
 'use strict';
 
 var rmlMapper = require('./RMLMapper');
-
+var util = require('./Utility');
 var exports = module.exports =  {
 
 	
 
 	//excute mapping by id and return the rdf
 	executeMappingFromFile : function(mapping_id, models, user, sources, callback) {
-		var util = require('./Utility');
 	    console.log('[WORKBENCH LOG] Generating RDF...');
 	    util.retrieveFiles(sources, models.Source, (sources) => {
 	        util.retrieveFile(mapping_id, models.Mapping, (mapping) => {
@@ -16,6 +15,22 @@ var exports = module.exports =  {
 	                console.log('[WORKBENCH LOG] Generating RDF successful!');
 	                callback(rdf);
 	            });
+	        });
+	    });
+	},
+    
+    //excute mapping by id and return the rdf
+	executeMappingFromTriples : function(user, models, triples, mapping_id, callback) {
+	    console.log('[WORKBENCH LOG] Generating RDF...');
+        console.log(triples);
+	    util.retrieveFiles(user.sourcefiles, models.Source, (sources) => {
+	        util.retrieveFile(mapping_id, models.Mapping, (mapping) => {
+                util.retrieveFiles(triples, models.Triple, (triples) => {
+                    exports.executeFromTriples(mapping, triples, sources, (rdf) => {
+	                    console.log('[WORKBENCH LOG] Generating RDF successful!');
+	                    callback(rdf);
+	                });    
+                });	            
 	        });
 	    });
 	},
@@ -39,7 +54,7 @@ var exports = module.exports =  {
 		var addednames = []; 	//store filenames that are already added in case of doubles
 
 		//extracts names of the sources that are needed
-		for(var i = 0; i < mappingfile.triples.length; i++) {
+		for(var i = 0; i < triples.length; i++) {
 			sourcenames.push(triples[i].logicalsource.rmlsource);
 		}
 		for(var i = 0; i < sources.length; i++) {
@@ -51,7 +66,9 @@ var exports = module.exports =  {
 					needed.push(sources[i]);
 				}
 			}
-		}
+		}       
+        
+
 		//execute the mapping with the RML Mapper		
 		rmlMapper.execute(mappingfile, triples, needed, (rdf) => {
 			callback(rdf);

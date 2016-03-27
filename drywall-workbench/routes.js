@@ -51,7 +51,7 @@ exports = module.exports = function(app, passport, upload, ldfserver) {
 
   //mapping on workbench
   app.post('/workbench/mapping/execute/:mapping_id', workbenchCtrl.executeMappingFromFile);
-  app.post('/workbench/mapping/execute/:mapping_id/triples', workbenchCtrl.generateRDFfromTriples);
+  app.post('/workbench/mapping/execute/:mapping_id/triples', workbenchCtrl.executeMappingFromTriples);
 
   //scheduling on workbench
   app.post('/workbench/addToSchedule', workbenchCtrl.addToSchedule);

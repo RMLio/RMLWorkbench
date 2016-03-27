@@ -58,9 +58,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-/*
 app.use(csrf({ cookie: { signed: true } }));
-*/
 helmet(app);
 
 

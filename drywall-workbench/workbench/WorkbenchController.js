@@ -129,54 +129,55 @@ var exports = module.exports = {
   },
 
   /**
-   * Clearing  //TODO this implementation does not destroy data in the db!
+   * Clearing (does not destroy individual data in the db, only the reference will be deleted)
    **/
 
+  //clear all data of the user
   clearAll : function(req, res) {
       console.log('[WORKBENCH LOG] Clearing data of ' + req.user.username + '...');
-      req.app.db.models.User.findOne({
+      req.app.db.models.User.update({
           _id: req.user._id
-      }, (err, doc) => {
-          doc.rdffiles = [];
-          doc.mappingfiles = [];
-          doc.sourcefiles = [];
-          doc.save();
-      });
-
-      res.send();
+      }, {"$set": {"sourcefiles": [], "mappingfiles": [], "rdffiles": []}}, (err, doc) => {
+          if(err) throw err;
+          res.send();
+          console.log('[WORKBENCH LOG] Data cleared!');
+      });      
   },
 
+  //clear sources of the user
   clearSources : function(req, res) {
       console.log('[WORKBENCH LOG] Clearing sources of ' + req.user.username + '...');
-      req.app.db.models.User.findOne({
+      req.app.db.models.User.update({
           _id: req.user._id
-      }, (err, doc) => {
-          doc.sourcefiles = [];
-          doc.save();
+      }, {"$set": {"sourcefiles": []}}, (err, doc) => {
+          if(err) throw err;
+          res.send();
+          console.log('[WORKBENCH LOG] Data cleared!');
       });
-      res.send();
   },
 
+  //clear mappings
   clearMappings : function(req, res) {
       console.log('[WORKBENCH LOG] Clearing mappings of ' + req.user.username + '...');
-      req.app.db.models.User.findOne({
+      req.app.db.models.User.update({
           _id: req.user._id
-      }, (err, doc) => {
-          doc.mappingfiles = [];
-          doc.save();
+      }, {"$set": {"mappingfiles": []}}, (err, doc) => {
+          if(err) throw err;
+          res.send();
+          console.log('[WORKBENCH LOG] Data cleared!');
       });
-      res.send();
   },
-
+  
+  //clear rdfs
   clearRdf : function(req, res) {
       console.log('[WORKBENCH LOG] Clearing rdf of ' + req.user.username + '...');
-      req.app.db.models.User.findOne({
+      req.app.db.models.User.update({
           _id: req.user._id
-      }, (err, doc) => {
-          doc.rdffiles = [];
-          doc.save();
+      }, {"$set": {"rdffiles": []}}, (err, doc) => {
+          if(err) throw err;
+          res.send();
+          console.log('[WORKBENCH LOG] Data cleared!');
       });
-      res.send();
   },
 
 

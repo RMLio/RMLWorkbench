@@ -19,7 +19,7 @@ var exports = module.exports = {
       var models = req.app.db.models;
       console.log('[WORKBENCH LOG] User ' + req.user.username + ' tries to upload mapping file...');
       //read the file and make mapping fields
-      reader.readMappingFields(req.file, (mapping) => {
+      reader.readMappingFields(req.file, (mapping) => {          
           //save to db
           saver.saveMapping(mapping, models, user, () => {
               console.log('[WORKBENCH LOG] Upload successful!');

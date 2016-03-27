@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var util = require('./Utility');
 var mapper = require('./Mapper');
 var reader = require('./Reader');
+var clearer = require('./Clearer');
 
 var exports = module.exports = {
 
@@ -134,51 +135,53 @@ var exports = module.exports = {
 
   //clear all data of the user
   clearAll : function(req, res) {
-      console.log('[WORKBENCH LOG] Clearing data of ' + req.user.username + '...');
-      req.app.db.models.User.update({
-          _id: req.user._id
-      }, {"$set": {"sourcefiles": [], "mappingfiles": [], "rdffiles": []}}, (err, doc) => {
-          if(err) throw err;
+      clearer.clearAll(req.user, req.app.db.models, () => {
           res.send();
-          console.log('[WORKBENCH LOG] Data cleared!');
       });      
   },
 
-  //clear sources of the user
-  clearSources : function(req, res) {
-      console.log('[WORKBENCH LOG] Clearing sources of ' + req.user.username + '...');
-      req.app.db.models.User.update({
-          _id: req.user._id
-      }, {"$set": {"sourcefiles": []}}, (err, doc) => {
-          if(err) throw err;
+  //clear all sources of the user
+  clearAllSources : function(req, res) {
+      clearer.clearAllSources(req.user, req.app.db.models, () => {
           res.send();
-          console.log('[WORKBENCH LOG] Data cleared!');
-      });
-  },
-
-  //clear mappings
-  clearMappings : function(req, res) {
-      console.log('[WORKBENCH LOG] Clearing mappings of ' + req.user.username + '...');
-      req.app.db.models.User.update({
-          _id: req.user._id
-      }, {"$set": {"mappingfiles": []}}, (err, doc) => {
-          if(err) throw err;
-          res.send();
-          console.log('[WORKBENCH LOG] Data cleared!');
       });
   },
   
-  //clear rdfs
-  clearRdf : function(req, res) {
-      console.log('[WORKBENCH LOG] Clearing rdf of ' + req.user.username + '...');
-      req.app.db.models.User.update({
-          _id: req.user._id
-      }, {"$set": {"rdffiles": []}}, (err, doc) => {
-          if(err) throw err;
+  //clear all sources of the user
+  clearSources : function(req, res) {
+      clearer.clearSources(req.user, req.app.db.models, req.body.sources, () => {
           res.send();
-          console.log('[WORKBENCH LOG] Data cleared!');
       });
   },
+
+  //clear all mappings
+  clearAllMappings : function(req, res) {
+      clearer.clearAllMappings(req.user, req.app.db.models, () => {
+          res.send();
+      });
+  },
+  
+  //clear all mappings of the user
+  clearMappings : function(req, res) {
+      clearer.clearMappings(req.user, req.app.db.models, req.body.mappings, () => {        
+          res.send();
+      });
+  },
+  
+  //clear all rdfs
+  clearAllRdf : function(req, res) {
+      clearer.clearAllRdf(req.user, req.app.db.models, () => {
+          res.send();
+      });
+  },
+  
+  //clear all rdf of the user
+  clearRdf : function(req, res) {
+      clearer.clearRdf(req.user, req.app.db.models, req.body.rdf, () => {
+          res.send();
+      });
+  }, 
+  
 
 
   /**
@@ -200,6 +203,7 @@ var exports = module.exports = {
   getMappings : function(req, res) {
       var mappingschema = req.app.db.models.Mapping;
       var idmappings = req.user.mappingfiles;
+      console.log(idmappings);
       console.log('[WORKBENCH LOG] Retrieving mappings of ' + req.user.username + '...');
       util.retrieveFiles(idmappings, mappingschema, (mappings) => {
           console.log('[WORKBENCH LOG] Retrieving mappings successful!');

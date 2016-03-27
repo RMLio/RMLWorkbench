@@ -46,8 +46,8 @@ exports = module.exports =  {
 	                            }
 	                        }, () => {
 	                            if (err) throw err
-	                            callback();
-	                            console.log('[WORKBENCH LOG] Upload successful!');
+                                console.log('[WORKBENCH LOG] Updating user mapping files successful!');
+	                            callback();	                            
 	                        });
 	                    }
 	                });
@@ -80,8 +80,8 @@ exports = module.exports =  {
 	            }
 	        }, () => {
 	            if (err) throw err
+                console.log('[WORKBENCH LOG] Updating user source files successful!');
 	            callback();
-	            console.log('[WORKBENCH LOG] Upload successful!');
 	        });
 	    });
 	},
@@ -107,8 +107,8 @@ exports = module.exports =  {
 	            }
 	        }, () => {
 	            if (err) throw err
-	            callback();
-	            console.log('[WORKBENCH LOG] Upload successful!');
+                console.log('[WORKBENCH LOG] Updating user rdf files successful!');
+	            callback();                
 	        });
 	    });
 	}

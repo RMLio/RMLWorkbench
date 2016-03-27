@@ -22,7 +22,6 @@ var exports = module.exports =  {
     //excute mapping by id and return the rdf
 	executeMappingFromTriples : function(user, models, triples, mapping_id, callback) {
 	    console.log('[WORKBENCH LOG] Generating RDF...');
-        console.log(triples);
 	    util.retrieveFiles(user.sourcefiles, models.Source, (sources) => {
 	        util.retrieveFile(mapping_id, models.Mapping, (mapping) => {
                 util.retrieveFiles(triples, models.Triple, (triples) => {
@@ -35,12 +34,12 @@ var exports = module.exports =  {
 	    });
 	},
 
-	// generate rdf from the whole mapping file
+	// generate rdf from the whole mapping file, utility function of executeMappingFromFile
 	executeFromFile : function(mappingfile, sources, callback) {
 		exports.executeRMLMapper(mappingfile, mappingfile.triples, sources, callback);
 	},
 
-	//generate rdf from triples
+	//generate rdf from triples, utility function of executeMappingFromTriples
 	executeFromTriples : function(mappingfile, triples, sources, callback) {
 		exports.executeRMLMapper(mappingfile, triples, sources, callback);
 	},
@@ -76,51 +75,46 @@ var exports = module.exports =  {
 	},
 
 	//executing multiple mappings
-	executeMultipleMappings : function(mappingsFromFile, mappingsFromTriples, sources, models, user) {
+	executeMultipleMappings : function(mappingsFromFile, mappingsFromTriples, sources, models, user, callback) {
 		var util = require('./Utility');
+        var rdflist = [];
 		//retrieving all necessary files from db
         util.retrieveFiles(sources, models.Source, (sources) => {
             util.retrieveFiles(mappingsFromFile, models.Mapping, (mappingsFromFile) => {
-                util.retrieveFiles(mappingsFromTriples, models.Mapping, (mappingsFromTriples) => {
-                    var amountofjobs = mappingsFromTriples.length + mappingsFromFile.length;
-                    var jobsdone = 0;
-                    console.log("[WORKBENCH LOG] Execute mappings from file...")
-                    var amountDone = 0;
-                    //execute scheduled mappings from file
-                    for (var i = 0; i < mappingsFromFile.length; i++) {
 
-                        exports.executeMappingFromFile(mappingsFromFile[i], models, user, sources, () => {
-                            amountDone++;
-                            if (amountDone == amountofjobs) {
-                                console.log("[WORKBENCH LOG] Jobs done!");
-                            }
-                        });
+                var amountofjobs = mappingsFromTriples.length + mappingsFromFile.length;
+                var jobsdone = 0;
+                console.log("[WORKBENCH LOG] Execute mappings from file...")
+                var amountDone = 0;
+                //execute scheduled mappings from file
+                for (var i = 0; i < mappingsFromFile.length; i++) {
 
-                    }
+                    exports.executeMappingFromFile(mappingsFromFile[i], models, user, sources, (rdf) => {
+                        rdflist.push(rdf);
+                        amountDone++;
+                        if(amountDone == mappingsFromFile.length) {
+                        console.log("[WORKBENCH LOG] Execute mappings from triples...")    
+                        //Execute scheduled mappings from triples                                                            
+                            for (var j = 0; j < mappingsFromTriples.length; j++) {
+                                exports.executeMappingFromTriples(user, models, mappingsFromTriples[j].triples, mappingsFromTriples[j].mapping, (rdf) => {
+                                    rdflist.push(rdf);
+                                    amountDone++;
+                                    if (amountDone == amountofjobs) { 
+                                        callback(rdflist);                                                                               
+                                    }
+                                });
+                            }    
+                        }                    
+                    });
 
-                    //TODO
-                    console.log("[WORKBENCH LOG] Execute mappings from triples...")
-
-                    //execute scheduled mappings from triples
-                    for (var i = 0; i < mappingsFromTriples.length; i++) {
-
-                        console.log(mapping);
-                        exports.executeFromTriples(mapping, mappingsFromTriples[i].triples, sources, (rdf) => {
-
-                          
-                                //checking if all jobs are done
-                                jobsdone++;
-                                if (jobsdone == amountofjobs) {
-                                    console.log("[WORKBENCH LOG] Jobs done!")
-                                }
-
+                }           
+                 
                             
-                        });
-                    }
-
-                });
-            });
+                
+           });
         });
     }
 	
 }
+
+

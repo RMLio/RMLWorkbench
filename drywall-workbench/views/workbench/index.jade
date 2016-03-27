@@ -8,9 +8,13 @@ block head
   script(type='text/javascript' src='/js/file_uploads.js')
   script(type='text/javascript' src='/vendor/underscore/underscore.js')
   script(type='text/javascript' src='/vendor/backbone/backbone.js')
+  script(type='text/javascript' src='/js/backbone/publish/publish.js') 
+  script(type='text/javascript' src='/js/backbone/publish/file.js')
+  script(type='text/javascript' src='/vendor/bootstrap-select/bootstrap-select.min.js') 
 
 block neck
   link(rel='stylesheet', href='/views/workbench/index.min.css?#{cacheBreaker}')
+  link(rel='stylesheet', href='/vendor/bootstrap-select/bootstrap-select.min.css')
 
 block body
   div.page-header
@@ -35,7 +39,7 @@ block body
         div.panel-heading
           h3.panel-title Step 2: Mapping
         div.panel-body.text-center(id='mapping-rules')
-          textarea.hidden(id='mapping-rules-text' rows='20' cols='80')
+          textarea.hidden(id='mapping-rules-text' rows='20' cols='34')
           div.btn-group-vertical(role='group')
             form(id='mapping-upload-form' enctype='multipart/form-data' action='/workbench/fetch/mapping'  method='post')
               input(type='hidden', name='_csrf', value=_csrf)
@@ -55,11 +59,13 @@ block body
         div.panel-body.text-center
           div.btn-group-vertical(role='group')
             a.btn.btn-primary.btn-lg(data-toggle='modal' data-target='#publish')
-              | Upload RDF Triples 
-            a.btn.btn-primary.btn-lg(data-toggle='modal' data-target='#publish')
-              | Publish Triples 
-                   
-            
+              | Publish 
+            button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#schedule').
+              Schedule
+            a.btn.btn-primary.btn-lg(onclick="window.open('http://localhost:5000/', '_blank');")
+              | Local LDF Server
+            a.btn.btn-primary.btn-lg(href='/download/rdf')
+              | Download RDF
               
               
               
@@ -71,11 +77,165 @@ block body
             span(aria-hidden='true') ×
           h4.modal-title Upload an input file
         div.modal-body
-          h4 Format
-          p Currently only XML, CSV and JSON are supported.
-          label(class='btn btn-primary' for='my-file-selector')
-            input(id='my-file-selector' type='file' style='display:none;' data-allowed-file-extensions="['csv', 'xml', 'txt', 'json']")
-            | Choose a file
+          form(role='form')
+            input(type='hidden', name='_csrf', value=_csrf)
+            div.form-group
+              label(for='inputFileName') Name
+              input.form-control(id='inputFileName' type='text' placeholder='Descriptive name')
+            div.form-group              
+              label(for='my-file-selector') File
+              input(id='my-file-selector' type='file' data-allowed-file-extensions="['csv', 'xml', 'txt', 'json']")
+              p.help-block Only CSV, XML and JSON are supported.
+            div.form-group 
+              label(for='inputFileLicense') License
+              select.selectpicker.form-control(id='inputFileLicense' data-live-search='true' title="Choose a license.")
+                optgroup(label='Standard License')
+                  option None
+                optgroup(label='Popular Licenses')
+                  option Apache License, 2.0 (Apache-2.0)
+                  option BSD 3-Clause "New" or "Revised" license (BSD-3-Clause)
+                  option BSD 2-Clause "Simplified" or "FreeBSD" license (BSD-2-Clause)
+                  option GNU General Public License (GPL)
+                  option GNU Library or "Lesser" General Public License (LGPL)
+                  option MIT license (MIT)
+                  option Mozilla Public License 2.0 (MPL-2.0)
+                  option Common Development and Distribution License (CDDL-1.0)
+                  option Eclipse Public License (EPL-1.0)
+                optgroup(label='International Licenses')
+                  option Licence Libre du Québec – Permissive (LiLiQ-P) version 1.1
+                  option Licence Libre du Québec – Réciprocité (LiLiQ-R) version 1.1
+                  option Licence Libre du Québec – Réciprocité forte (LiLiQ-R+) version 1.1
+                optgroup(label='Special purpose licenses')
+                  option Educational Community License, Version 2.0 (ECL-2.0)
+                  option IPA Font License (IPA)
+                  option NASA Open Source Agreement 1.3 (NASA-1.3)
+                  option OSET Public License version 2.1
+                  option SIL Open Font License 1.1 (OFL-1.1)
+                optgroup(label='Other/Miscellaneous licenses')
+                  option Adaptive Public License (APL-1.0)
+                  option Artistic license 2.0 (Artistic-2.0)
+                  option Free Public License 1.0.0
+                  option Open Software License (OSL-3.0)
+                  option Q Public License (QPL-1.0)
+                  option Universal Permissive License (UPL)
+                  option zlib/libpng license (Zlib)
+            button.btn.btn-default(id="btn_file_input") Upload
+
+  div(id='db-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='databaseInputLabel' style='display: none;')
+    div.modal-dialog(role='document')
+      div.modal-content
+        div.modal-header
+          button.close(type='button' data-dismiss='modal' aria-label='Close')
+            span(aria-hidden='true') ×
+          h4.modal-title Connect to a Database
+        div.modal-body
+          form(role='form')
+            input(type='hidden', name='_csrf', value=_csrf)
+            div.form-group
+              label(for='inputDBName') Name
+              input.form-control(id='inputDBName' type='text' placeholder='Descriptive name')
+            div.form-group              
+              label(for='inputDBURL') URL
+              input.form-control(id='inputDBURL' type='text' placeholder='url')
+            div.form-group              
+              label(for='inputDBPass') Username
+              input.form-control(id='inputDBPass' type='password' placeholder='user')
+            div.form-group              
+              label(for='inputDBPass') Password
+              input.form-control(id='inputDBPass' type='password' placeholder='password')
+            div.form-group 
+              label(for='inputFileLicense') License
+              select.selectpicker.form-control(id='inputFileLicense' data-live-search='true' title="Choose a license.")
+                optgroup(label='Standard License')
+                  option None
+                optgroup(label='Popular Licenses')
+                  option Apache License, 2.0 (Apache-2.0)
+                  option BSD 3-Clause "New" or "Revised" license (BSD-3-Clause)
+                  option BSD 2-Clause "Simplified" or "FreeBSD" license (BSD-2-Clause)
+                  option GNU General Public License (GPL)
+                  option GNU Library or "Lesser" General Public License (LGPL)
+                  option MIT license (MIT)
+                  option Mozilla Public License 2.0 (MPL-2.0)
+                  option Common Development and Distribution License (CDDL-1.0)
+                  option Eclipse Public License (EPL-1.0)
+                optgroup(label='International Licenses')
+                  option Licence Libre du Québec – Permissive (LiLiQ-P) version 1.1
+                  option Licence Libre du Québec – Réciprocité (LiLiQ-R) version 1.1
+                  option Licence Libre du Québec – Réciprocité forte (LiLiQ-R+) version 1.1
+                optgroup(label='Special purpose licenses')
+                  option Educational Community License, Version 2.0 (ECL-2.0)
+                  option IPA Font License (IPA)
+                  option NASA Open Source Agreement 1.3 (NASA-1.3)
+                  option OSET Public License version 2.1
+                  option SIL Open Font License 1.1 (OFL-1.1)
+                optgroup(label='Other/Miscellaneous licenses')
+                  option Adaptive Public License (APL-1.0)
+                  option Artistic license 2.0 (Artistic-2.0)
+                  option Free Public License 1.0.0
+                  option Open Software License (OSL-3.0)
+                  option Q Public License (QPL-1.0)
+                  option Universal Permissive License (UPL)
+                  option zlib/libpng license (Zlib)
+            button.btn.btn-default(id="btn_db_input") Connect
+
+  div(id='api-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='apiInputLabel' style='display: none;')
+    div.modal-dialog(role='document')
+      div.modal-content
+        div.modal-header
+          button.close(type='button' data-dismiss='modal' aria-label='Close')
+            span(aria-hidden='true') ×
+          h4.modal-title Connect to an API
+        div.modal-body
+          form(role='form')
+            input(type='hidden', name='_csrf', value=_csrf)
+            div.form-group
+              label(for='inputAPIName') Name
+              input.form-control(id='inputDBName' type='text' placeholder='Descriptive name')
+            div.form-group              
+              label(for='inputAPIURL') Template URL
+              input.form-control(id='inputAPIURL' type='text' placeholder='url')
+            div.form-group           
+              label(for='inputTemplateParam') Template Parameter
+              input.form-control(id='inputTemplateParam' type='text' placeholder='{example}')
+              label
+                input(type='checkbox')
+                | Required
+            div.form-group 
+              label(for='inputFileLicense') License
+              select.selectpicker.form-control(id='inputFileLicense' data-live-search='true' title="Choose a license.")
+                optgroup(label='Standard License')
+                  option None
+                optgroup(label='Popular Licenses')
+                  option Apache License, 2.0 (Apache-2.0)
+                  option BSD 3-Clause "New" or "Revised" license (BSD-3-Clause)
+                  option BSD 2-Clause "Simplified" or "FreeBSD" license (BSD-2-Clause)
+                  option GNU General Public License (GPL)
+                  option GNU Library or "Lesser" General Public License (LGPL)
+                  option MIT license (MIT)
+                  option Mozilla Public License 2.0 (MPL-2.0)
+                  option Common Development and Distribution License (CDDL-1.0)
+                  option Eclipse Public License (EPL-1.0)
+                optgroup(label='International Licenses')
+                  option Licence Libre du Québec – Permissive (LiLiQ-P) version 1.1
+                  option Licence Libre du Québec – Réciprocité (LiLiQ-R) version 1.1
+                  option Licence Libre du Québec – Réciprocité forte (LiLiQ-R+) version 1.1
+                optgroup(label='Special purpose licenses')
+                  option Educational Community License, Version 2.0 (ECL-2.0)
+                  option IPA Font License (IPA)
+                  option NASA Open Source Agreement 1.3 (NASA-1.3)
+                  option OSET Public License version 2.1
+                  option SIL Open Font License 1.1 (OFL-1.1)
+                optgroup(label='Other/Miscellaneous licenses')
+                  option Adaptive Public License (APL-1.0)
+                  option Artistic license 2.0 (Artistic-2.0)
+                  option Free Public License 1.0.0
+                  option Open Software License (OSL-3.0)
+                  option Q Public License (QPL-1.0)
+                  option Universal Permissive License (UPL)
+                  option zlib/libpng license (Zlib)
+            button.btn.btn-default(id="btn_db_input") Connect
+
+
 
   div(id='upload-mapping' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='AreTheseUsed' style='display: none;')
     div.modal-dialog(role='document')
@@ -90,6 +250,8 @@ block body
           form(action="...", method="post" class='btn btn-primary' for='mapping-selector')
             input(id='mapping-selector' type='file' style='display:none;' data-allowed-file-extensions="['rml.ttl', 'rml', 'ttl']")
             |  Choose a mapping file
+           
+                
 
    div(id='publish' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' style='display: none;')
     div.modal-dialog(role='document')
@@ -99,35 +261,36 @@ block body
             span(aria-hidden='true') ×
           h4.modal-title Publish To LDF Server
         div.modal-body
-          form(role="form")
-            div(class="form-group")
-              label(for="title")
+          form(role='form')
+            input(type='hidden', name='_csrf', value=_csrf)
+            div(class='form-group')
+              label(for='title')
                 | Title
-              input(class="form-control" id="publish_title" placeholder="Enter title")
-            div(class="form-group")
-              label(for="type")
+              input(class='form-control' id='publish_title' placeholder='Enter title')
+            div(class='form-group')
+              label(for='type')
                 | Type
-              select(name="type" id='publish_type' form="typeform" class="form-control")
-                option(value="HdtDataSource") 
+              select(name='type' id='publish_type' form='typeform' class='form-control')
+                option(value='HdtDataSource') 
                     | HDT file
-                option(value="TurtleDatasource")
+                option(value='TurtleDatasource')
                     | N-Triples document
-                option(value="TurtleDatasource")
+                option(value='TurtleDatasource')
                     | Turtle document
-                option(value="SparqlDatasource") 
+                option(value='SparqlDatasource') 
                     | SPARQL endpoint
                 option(value='JsonLdDatasource')
                     | JSON-LD document
-            div(class="form-group")
-              label(for="description")
+            div(class='form-group')
+              label(for='description')
                 | Description
-              input(class="form-control" id="publish_description" placeholder="Enter description")       
+              input(class='form-control' id='publish_description' placeholder='Enter description')       
             div(id='publish_fileSelector' class='form-group')
-              label(for="setting")
+              label(for='setting')
                 | File
                                                 
             
-            button(type="submit" id='publish_submit' class="btn btn-default")
+            button(type='submit' id='publish_submit' class='btn btn-default')
                 | Publish
                 
   script(type='text/javascript' src='/js/backbone/publish/publish.js') 

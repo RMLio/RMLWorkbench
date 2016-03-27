@@ -4,10 +4,10 @@ exports.port = process.env.PORT || 3000;
 exports.mongodb = {
   uri: process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost:27017/drywall'
 };
-exports.companyName = 'UGhent AMMA.';
+exports.companyName = 'UGent AMMA.';
 exports.projectName = 'RML Workbench';
-exports.systemEmail = 'wouter.maroy@ugent.be';
-exports.cryptoKey = 'k3yb0ardc4t';
+exports.systemEmail = 'RML.AMMA@gmail.com';
+exports.cryptoKey = 'k3yb0ardc4tzz';
 exports.loginAttempts = {
   forIp: 50,
   forIpAndUser: 7,
@@ -17,13 +17,13 @@ exports.requireAccountVerification = false;
 exports.smtp = {
   from: {
     name: process.env.SMTP_FROM_NAME || exports.projectName +' Website',
-    address: process.env.SMTP_FROM_ADDRESS || 'rmlworkbench@gmail.com'
+    address: process.env.SMTP_FROM_ADDRESS || 'RML.AMMA@gmail.com'
   },
   credentials: {
-    user: process.env.SMTP_USERNAME || 'rmlworkbench@gmail.com',
-    password: process.env.SMTP_PASSWORD || 'adminroot',
+    user: process.env.SMTP_USERNAME || 'RML.AMMA@gmail.com',
+    password: process.env.SMTP_PASSWORD || 'rmlmapper',
     host: process.env.SMTP_HOST || 'smtp.gmail.com',
-    tls: true
+    ssl: true
   }
 };
 exports.oauth = {

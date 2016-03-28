@@ -6,7 +6,7 @@ var SparqlGenerator = require('sparqljs').Generator;
 var generator = new SparqlGenerator();
 var saver = require('./Saver');
 var clearer = require('./Clearer');
-var loader = requrie('./Loader');
+var loader = require('./Loader');
  
 // use the request module for all requests
 SparqlHttp.request = SparqlHttp.requestModuleRequest(request)
@@ -81,9 +81,9 @@ exports = module.exports = {
 //return a new Sparqlendpoint
 var endpoint = function(url) {
     return new SparqlHttp({ endpointUrl: url });
-},
+};
 
 //return a query from json 
 var generateQueryFromJson = function(query) {
     return generator.stringify(query);
-}
+};

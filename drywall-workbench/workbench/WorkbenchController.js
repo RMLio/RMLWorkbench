@@ -26,7 +26,7 @@ var exports = module.exports = {
 
     //remove a sparql endpoint form the users collection 
     removeSparqlEndpoint: function(req, res) {
-        sparql.removeSparqlEndpoint(req.params.endpoint_id, req.user, 
+        sparql.removeEndpoint(req.body.endpoint, req.user, 
         req.app.db.models, () => {
             //?
             res.send();
@@ -34,7 +34,7 @@ var exports = module.exports = {
     }, 
     
     removeAllSparqlEndpoints: function(req, res) {
-        sparql.removeAllSparqlEndpoints(req.user, req.app.db.models, () => {
+        sparql.removeEndpoints(req.user, req.app.db.models, () => {
             //?
             res.send();      
         });
@@ -42,9 +42,9 @@ var exports = module.exports = {
 
     //execute sparqlqueries
     executeQueries: function(req, res) {
-        sparql.executeQueries(req.body.queries, req.body.url, req.body.isJson, ()=> {
+        sparql.executeQueries(req.body.queries, req.body.url, req.body.isJson, (responses)=> {
             //?
-            res.send();
+            res.send(responses);
         })
     },
 

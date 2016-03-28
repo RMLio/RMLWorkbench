@@ -1,6 +1,15 @@
 'use strict'
 
 exports = module.exports =  {
+    
+    //adds an endpoint
+    saveEndpoint : function(endpoint, user, models, callback) {
+        models.User.update({_id : user._id}, {$addToSet : {endpoints : endpoint}}, (err) => {
+            if(err) throw err;
+            callback();
+        });    
+    },
+    
 
 	//save the mapping
 	saveMapping : function(mapping, models, user, callback) {

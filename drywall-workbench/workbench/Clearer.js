@@ -118,5 +118,28 @@ var exports = module.exports = {
         });
       }
   },
+  
+  clearEndpoint: function(endpoint, user, models, callback) {
+    console.log('[WORKBENCH LOG] Removing endpoint.');
+    model.User.update({_id : user._id}, 
+    {"$pull" : {"endpoints" : { "name" : endpoint.name }}}, (err) => {
+        if(err) throw err;
+        console.log('[WORKBENCH LOG] Endpoint removed.');
+        callback();
+    });  
+    
+  },
+  
+  clearEndpoints : function(user, models, callback) {
+    console.log('[WORKBENCH LOG] Removing endpoints.');  
+    model.User.update({_id : user._id}, 
+    {"endpoints" : []}, (err) => {
+        if(err) throw err;
+        console.log('[WORKBENCH LOG] Endpoints removed.');
+        callback();
+    });  
+  } 
+    
+  
     
 }

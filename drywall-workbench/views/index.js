@@ -1,5 +1,9 @@
 'use strict';
 
 exports.init = function(req, res){
-  res.render('index');
+  if (req.isAuthenticated()) {
+    res.redirect('/workbench/');
+  } else {
+    res.render('index');
+  }
 };

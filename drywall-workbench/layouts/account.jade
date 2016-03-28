@@ -5,6 +5,7 @@ html
       title #{title}
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     link(rel='stylesheet', href='/layouts/core.min.css?#{cacheBreaker}')
+    link(rel='stylesheet', href='/views/workbench/index.min.css?#{cacheBreaker}')
     block neck
   body
     div.navbar.navbar-default.navbar-fixed-top
@@ -19,11 +20,15 @@ html
             span.icon-bar
         div.navbar-collapse.my-navbar-collapse.collapse
           ul.nav.navbar-nav
+            li: a(href='/workbench/') Workbench
             li: a(href='/account/') My Account
-            li: a(href='/account/settings/') Settings
+            li: a(href='/account/settings/') Settings            
           ul.nav.navbar-nav.pull-right
+            li: a(href='#{user.defaultReturnUrl}')
+                    i.fa.fa-user
+                    |  #{user.username}
             li: a(href='/logout/')
-              i.fa.fa-user
+              i.fa.fa-sign-out
               |  Sign Out
 
     div.page

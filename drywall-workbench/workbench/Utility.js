@@ -3,7 +3,8 @@
 var mongoose = require('mongoose');
 
 var exports = module.exports =  {
-	/**
+ 
+ /**
  * Utility functions
  **/
 

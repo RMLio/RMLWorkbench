@@ -7,7 +7,7 @@ var generator = new SparqlGenerator();
 var saver = require('./Saver');
 var clearer = require('./Clearer');
 var loader = require('./Loader');
- 
+
 // use the request module for all requests
 SparqlHttp.request = SparqlHttp.requestModuleRequest(request)
  
@@ -22,44 +22,40 @@ exports = module.exports = {
     },
 
     //remove a sparql endpoint form the users collection 
-    removeSparqlEndpoint: function(endpoint, user, models, callback) {
+    removeEndpoint: function(endpoint, user, models, callback) {
         clearer.clearEndpoint(endpoint, user, models, () => {
             console.log('[WORKBENCH LOG] Sparql endpoint removed.');
             callback(); 
         });
     },    
-
-    //execute a query in normal/json format
-    executeQuery: function(query, url, isJson, callback) {
-        if(isJson) query = generateQueryFromJson(query);
-        var endpoint = endpoint(url);
-        endpoint.selectQuery(query, (err, response) => {
-            if(err) throw err;
-            console.log('[WORKBENCH LOG] Sparql query executed.');
-            callback(response);
-        });    
-    },
     
     //execute multiple queries in normal/json format
     executeQueries: function(queries, url, isJson, callback) {
+        console.log('[WORKBENCH LOG] Executing queries (' + queries.length + '...');
         var query;
-        var endpoint = endpoint(url);   
+        var endpoint = new SparqlHttp({ endpointUrl: url });   
         var done = 0;
-        var responses = [];
+        var responses = [];        
         for(var i = 0; i < queries.length; i++) {
             query = queries[i];
-            if(isJson) query = generateQueryFromJson(query);
+            if(isJson) query = generator.stringify(query);
+            console.log(isJson)
+            console.log(query);
             endpoint.selectQuery(query, (err, response) => {
-                if(err) throw err;
-                console.log('[WORKBENCH LOG] Sparql query executed.');
+                if(err) throw err;                
                 responses.push(response);
                 done++;
+                console.log('[WORKBENCH LOG] Sparql query executed. (' + done + ')');
                 if(done == queries.length) {
                     console.log('[WORKBENCH LOG] All queries done.');
                     callback(responses);
                 }
             })
-        }        
+        }     
+        if(queries.length == 0) {
+            console.log('[WORKBENCH LOG] No queries to be executed.');
+            callback(null);
+        }   
     }, 
 
     //returns all endpoints from a user
@@ -70,7 +66,7 @@ exports = module.exports = {
     },
     
     //clears all endpoints
-    clearEndpoints: function(user, models, callback) {
+    removeEndpoints: function(user, models, callback) {
         clearer.clearEndpoints(user, models, () => {
             callback();
         });
@@ -78,12 +74,3 @@ exports = module.exports = {
             
 }
 
-//return a new Sparqlendpoint
-var endpoint = function(url) {
-    return new SparqlHttp({ endpointUrl: url });
-};
-
-//return a query from json 
-var generateQueryFromJson = function(query) {
-    return generator.stringify(query);
-};

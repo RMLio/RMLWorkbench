@@ -40,6 +40,8 @@
     "passport-twitter": "^1.x.x",
     "request": "^2.69.0",
     "serve-static": "^1.9.x",
+    "sparql-http-client": "^0.1.0",
+    "sparqljs": "^1.1.4",
     "underscore": "^1.x.x"
   },
   "devDependencies": {

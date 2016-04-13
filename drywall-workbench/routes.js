@@ -51,16 +51,27 @@ exports = module.exports = function(app, passport, upload, ldfserver) {
 
   //mapping on workbench
   app.post('/workbench/mapping/execute/:mapping_id', workbenchCtrl.executeMappingFromFile);
-  app.post('/workbench/mapping/execute/:mapping_id/triples', workbenchCtrl.generateRDFfromTriples);
+  app.post('/workbench/mapping/execute/:mapping_id/triples', workbenchCtrl.executeMappingFromTriples);
 
   //scheduling on workbench
   app.post('/workbench/addToSchedule', workbenchCtrl.addToSchedule);
 
   //clearing workbench
+  app.post('/workbench/clear/all/source', workbenchCtrl.clearAllSources);
+  app.post('/workbench/clear/all/mapping', workbenchCtrl.clearAllMappings);
+  app.post('/workbench/clear/all/rdf', workbenchCtrl.clearAllRdf);
+  app.post('/workbench/clear/all', workbenchCtrl.clearAll);
   app.post('/workbench/clear/source', workbenchCtrl.clearSources);
   app.post('/workbench/clear/mapping', workbenchCtrl.clearMappings);
   app.post('/workbench/clear/rdf', workbenchCtrl.clearRdf);
   app.post('/workbench/clear/all', workbenchCtrl.clearAll);
+  app.post('/workbench/clear/endpoint', workbenchCtrl.removeSparqlEndpoint);
+  app.post('/workbench/clear/all/endpoint', workbenchCtrl.removeAllSparqlEndpoints);
+  
+  //sparql interface
+  app.post('/workbench/sparql/endpoint', workbenchCtrl.addSparqlEndpoint);
+  app.post('/workbench/sparql/execute', workbenchCtrl.executeQueries);
+  app.get('/workbench/sparql/endpoints', workbenchCtrl.getEndpoints);
   
 
   /**

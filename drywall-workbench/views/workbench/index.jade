@@ -1,4 +1,4 @@
-extends ../../layouts/default
+extends ../../layouts/account
 
 block head
   title Workbench
@@ -12,61 +12,11 @@ block head
   script(type='text/javascript' src='/js/backbone/publish/file.js')
   script(type='text/javascript' src='/vendor/bootstrap-select/bootstrap-select.min.js') 
 
-block neck
-  link(rel='stylesheet', href='/views/workbench/index.min.css?#{cacheBreaker}')
+block neck  
   link(rel='stylesheet', href='/vendor/bootstrap-select/bootstrap-select.min.css')
 
 block body
-  div.page-header
-    h1 Workbench
-  div.row
-    div.col-md-4
-      div(class='panel panel-primary')
-        div.panel-heading
-          h3.panel-title Step 1: Input
-        div.panel-body.text-center
-          div.btn-group-vertical(role='group')
-           form(enctype='multipart/form-data' action='/workbench/fetch/input' method='post')
-             input(type='hidden', name='_csrf', value=_csrf)
-             label(class='btn btn-primary btn-lg')
-               | Upload Mapping Triples
-               input(type='file' name='sourceUpload' style='display:none;' data-allowed-file-extensions="['rml.ttl', 'rml', 'ttl']")
-            button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#api-input').
-             Web API            
-   
-    div.col-md-4
-      div(class='panel panel-primary')
-        div.panel-heading
-          h3.panel-title Step 2: Mapping
-        div.panel-body.text-center(id='mapping-rules')
-          textarea.hidden(id='mapping-rules-text' rows='20' cols='34')
-          div.btn-group-vertical(role='group')
-            form(id='mapping-upload-form' enctype='multipart/form-data' action='/workbench/fetch/mapping'  method='post')
-              input(type='hidden', name='_csrf', value=_csrf)
-              label(class='btn btn-primary btn-lg' for='mapping-upload-input')
-                 | Upload Mapping Triples
-                 input(type='file' id='mapping-upload-input' name='mappingUpload' style='display:none;' data-allowed-file-extensions="['rml.ttl', 'rml', 'ttl']")
-             
-            a.button(type='button' href='/log/content' class='btn btn-primary btn-lg' method='get').
-              Edit Mappings            
-            a.button(type='button' class='btn btn-primary btn-lg' href='/execute').
-              Execute Mappings
-
-    div.col-md-4
-      div(class='panel panel-primary')
-        div.panel-heading
-          h3.panel-title Step 3: Publish
-        div.panel-body.text-center
-          div.btn-group-vertical(role='group')
-            a.btn.btn-primary.btn-lg(data-toggle='modal' data-target='#publish')
-              | Publish 
-            button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#schedule').
-              Schedule
-            a.btn.btn-primary.btn-lg(onclick="window.open('http://localhost:5000/', '_blank');")
-              | Local LDF Server
-            a.btn.btn-primary.btn-lg(href='/download/rdf')
-              | Download RDF
-              
+  div.page-header         
               
               
   div(id='upload-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' style='display: none;')
@@ -119,7 +69,7 @@ block body
                   option Q Public License (QPL-1.0)
                   option Universal Permissive License (UPL)
                   option zlib/libpng license (Zlib)
-            button.btn.btn-default(id="btn_file_input") Upload
+            button.btn.btn-primary(id="btn_file_input") Upload
 
   div(id='db-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='databaseInputLabel' style='display: none;')
     div.modal-dialog(role='document')
@@ -176,7 +126,7 @@ block body
                   option Q Public License (QPL-1.0)
                   option Universal Permissive License (UPL)
                   option zlib/libpng license (Zlib)
-            button.btn.btn-default(id="btn_db_input") Connect
+            button.btn.btn-primary(id="btn_db_input") Connect
 
   div(id='api-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='apiInputLabel' style='display: none;')
     div.modal-dialog(role='document')
@@ -233,7 +183,7 @@ block body
                   option Q Public License (QPL-1.0)
                   option Universal Permissive License (UPL)
                   option zlib/libpng license (Zlib)
-            button.btn.btn-default(id="btn_db_input") Connect
+            button.btn.btn-primary(id="btn_db_input") Connect
 
 
 
@@ -287,11 +237,130 @@ block body
               input(class='form-control' id='publish_description' placeholder='Enter description')       
             div(id='publish_fileSelector' class='form-group')
               label(for='setting')
-                | File
-                                                
+                | File                                               
             
-            button(type='submit' id='publish_submit' class='btn btn-default')
+            button(type='submit' id='publish_submit' class='btn btn-primary')
                 | Publish
+                
+                
+                
+  ul#myTab.nav.nav-tabs.tabs-left.sideways.primary
+      li.active
+        a(href='#access', data-toggle='tab')
+          | Data Access Interface
+      li
+        a(href='#mapping', data-toggle='tab') 
+          | Mapping Interface
+      li
+        a(href='#publishing', data-toggle='tab')
+          | Publish Interface
+      li
+        a(href='#schedule', data-toggle='tab') 
+          | Schedule Interface 
+        
+      
+      
+    #myTabContent.tab-content      
+      #access.tab-pane.fade.in.active
+       br
+       div.container-fluid
+        div.row
+          div.col-md-3
+            div(class='panel panel-primary')
+              div.panel-heading
+                h3.panel-title Menu
+              div.panel-body.text-center
+                div.btn-group-vertical(role='group')
+                  form(enctype='multipart/form-data' action='/workbench/fetch/input' method='post')
+                  input(type='hidden', name='_csrf', value=_csrf)
+                  label(class='btn btn-primary btn-lg')
+                    | Upload Dataset
+                    input(type='file' name='sourceUpload' style='display:none;' data-allowed-file-extensions="['rml.ttl', 'rml', 'ttl']")
+                  button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#api-input')
+                    | Sparql
+                  button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#api-input')
+                    | Database  
+                  button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#api-input')
+                    | Web API                  
+          div.col-md-9
+            div.panel.panel-info
+               div.panel-heading
+                 h3.panel-title Overview Data Access
+               div.panel-body              
+      
+                    
+
+        
+                    
+      #mapping.tab-pane.fade
+        br
+        div.container-fluid
+         div.row
+           div.col-md-3
+             div(class='panel panel-primary')
+               div.panel-heading
+                 h3.panel-title Menu
+               div.panel-body.text-center
+                 div.btn-group-vertical(role='group')
+                   form(enctype='multipart/form-data' action='/workbench/fetch/input' method='post')
+                   input(type='hidden', name='_csrf', value=_csrf)
+                   label(class='btn btn-primary btn-lg')
+                     | Upload Mapping
+                     input(type='file' name='sourceUpload' style='display:none;' data-allowed-file-extensions="['rml.ttl', 'rml', 'ttl']")
+                   button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#api-input')
+                     | Edit Mapping
+                   button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#api-input')
+                     | Execute Mapping                   
+           div.col-md-9
+             div.panel.panel-info
+               div.panel-heading
+                 h3.panel-title Overview Mappings
+               div.panel-body 
+                        
+      #publishing.tab-pane.fade
+        br
+        div.container-fluid
+         div.row
+           div.col-md-3
+             div(class='panel panel-primary')
+               div.panel-heading
+                 h3.panel-title Menu
+               div.panel-body.text-center
+                 div.btn-group-vertical(role='group')
+                   form(enctype='multipart/form-data' action='/workbench/fetch/input' method='post')
+                   input(type='hidden', name='_csrf', value=_csrf)
+                   label(class='btn btn-primary btn-lg')
+                     | Upload Dataset
+                     input(type='file' name='sourceUpload' style='display:none;' data-allowed-file-extensions="['rml.ttl', 'rml', 'ttl']")
+                   button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#api-input')
+                     | Publish Dataset                    
+           div.col-md-9
+            div.panel.panel-info
+               div.panel-heading
+                 h3.panel-title Overview Publishing
+               div.panel-body
+                         
+      #schedule.tab-pane.fade
+        br
+        div.container-fluid
+         div.row
+           div.col-md-3
+             div(class='panel panel-primary')
+               div.panel-heading
+                 h3.panel-title Menu
+               div.panel-body.text-center
+                 div.btn-group-vertical(role='group')
+                   form(enctype='multipart/form-data' action='/workbench/fetch/input' method='post')
+                   input(type='hidden', name='_csrf', value=_csrf)
+                   label(class='btn btn-primary btn-lg')
+                     | Create New Job
+                     input(type='file' name='sourceUpload' style='display:none;' data-allowed-file-extensions="['rml.ttl', 'rml', 'ttl']")     
+                                   
+           div.col-md-9
+            div.panel.panel-info
+               div.panel-heading
+                 h3.panel-title Overview Schedules
+               div.panel-body                          
                 
   script(type='text/javascript' src='/js/backbone/publish/publish.js') 
   script(type='text/javascript' src='/js/backbone/publish/file.js') 

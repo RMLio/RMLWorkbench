@@ -1,6 +1,15 @@
 'use strict'
 
 exports = module.exports =  {
+    
+    //adds an endpoint
+    saveEndpoint : function(endpoint, user, models, callback) {
+        models.User.update({_id : user._id}, {$addToSet : {endpoints : endpoint}}, (err) => {
+            if(err) throw err;
+            callback();
+        });    
+    },
+    
 
 	//save the mapping
 	saveMapping : function(mapping, models, user, callback) {
@@ -46,8 +55,8 @@ exports = module.exports =  {
 	                            }
 	                        }, () => {
 	                            if (err) throw err
-	                            callback();
-	                            console.log('[WORKBENCH LOG] Upload successful!');
+                                console.log('[WORKBENCH LOG] Updating user mapping files successful!');
+	                            callback();	                            
 	                        });
 	                    }
 	                });
@@ -80,8 +89,8 @@ exports = module.exports =  {
 	            }
 	        }, () => {
 	            if (err) throw err
+                console.log('[WORKBENCH LOG] Updating user source files successful!');
 	            callback();
-	            console.log('[WORKBENCH LOG] Upload successful!');
 	        });
 	    });
 	},
@@ -107,8 +116,8 @@ exports = module.exports =  {
 	            }
 	        }, () => {
 	            if (err) throw err
-	            callback();
-	            console.log('[WORKBENCH LOG] Upload successful!');
+                console.log('[WORKBENCH LOG] Updating user rdf files successful!');
+	            callback();                
 	        });
 	    });
 	}

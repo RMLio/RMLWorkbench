@@ -1,0 +1,46 @@
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix sd : <http://www.w3.org/ns/sparql-service-description#> .
+@prefix csvw : <http://www.w3.org/ns/csvw#> .
+@prefix d2rq : <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix hydra : <http://www.w3.org/ns/hydra/core#> .
+
+<#DCAT_source>
+    a dcat:Dataset ;
+    dcat:distribution [
+        a dcat:Distribution;
+        dcat:downloadURL "http://example.org/file.xml" ].
+        
+<#API_template_source>
+    a hydra:IriTemplate
+    hydra:template "https://biblio.ugent.be/publication/{id}?format={format}";
+    hydra:mapping 
+        [ a hydra:TemplateMapping ;
+          hydra:variable "id";
+          hydra:required true ],
+        [ a hydra:TemplateMapping ;
+          hydra:variable "format";
+          hydra:required false ] . 
+          
+<#DB_source> a d2rq:Database;
+    d2rq:jdbcDSN "jdbc:mysql://localhost/example";
+    d2rq:jdbcDriver "com.mysql.jdbc.Driver";
+    d2rq:username "user";
+    d2rq:password "password" . 
+    
+<#SPARQL_JSON_source> a sd:Service ;
+    sd:endpoint <http://dbpedia.org/sparql/> ;
+    sd:supportedLanguage sd:SPARQL11Query ;
+    sd:resultFormat <http://www.w3.org/ns/formats/SPARQL_Results_JSON> .
+    
+<#SPARQL_XML_source> a sd:Service ;
+    sd:endpoint <http://dbpedia.org/sparql/> ;
+    sd:supportedLanguage sd:SPARQL11Query ;
+    sd:resultFormat <http://www.w3.org/ns/formats/SPARQL_Results_XML> .
+    
+    
+<#CSVW_source> a csvw:Table;
+    csvw:url "http://rml.io/data/csvw/Airport.csv" ;
+    csvw:dialect [ a csvw:Dialect;
+        csvw:delimiter ";";
+        csvw:encoding "UTF-8";
+        csvw:header "1"^^xsd:boolean ] .

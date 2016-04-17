@@ -10,6 +10,27 @@ exports = module.exports =  {
         });    
     },
     
+    //save description
+    
+    saveDescription : function(description, models, user, callback) {
+        console.log('[WORKBENCH LOG] Description name: ' + description.name);
+        console.log('[WORKBENCH LOG] Creating new description entry in database...');
+        models.description.create(description, (err, descriptionSchema) => {
+           if(err) throw err;
+           console.log('[WORKBENCH LOG] Updating user description files...');
+           models.User.update({
+	            _id: user._id
+	        }, {
+	            $addToSet: {
+	                descriptions: descriptionSchema._id
+	            }
+	        }, () => {
+	            if (err) throw err
+                console.log('[WORKBENCH LOG] Updating user descriptions successful!');
+	            callback();
+	        }); 
+        });    
+    },    
 
 	//save the mapping
 	saveMapping : function(mapping, models, user, callback) {

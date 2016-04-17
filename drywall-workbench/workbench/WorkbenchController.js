@@ -140,7 +140,48 @@ var exports = module.exports = {
             });
         });
     },
+    
+    
+    /**
+     * Descriptions
+     */      
 
+    extractDescriptionsFromMapping: function(req, res) {         
+        var models = req.app.db.models;
+        var user = req.user;
+        var mapping_id = req.body.mapping_id;        
+        util.retrieveFile(mapping_id, models.Mapping, (mapping) => {
+           //extract description 
+           descriptions = sourceExtractor.parseMappingForSources(mapping); 
+           for(var i = 0; i < descriptions.length; i++) {
+               //save description
+                saver.saveDescription(descriptions,models, req.user, () => {
+                   res.send(); 
+                });   
+           }           
+        });
+    },
+    
+    //create a new description for the user
+    createDescription: function(req, res) {
+      //TODO  
+    },
+    
+    //removes a description from the users collection
+    removeDescription: function(req, res) {
+      //TODO  
+    },
+    
+    //add a description to a mapping file
+    addDescriptionToMapping: function(req, res) {
+      //TODO  
+    },
+    
+    //remove a description from a mapping file
+    removeDescriptionFromMapping: function(req, res) {
+      //TODO      
+    },    
+    
 
     /**
      * Scheduling 

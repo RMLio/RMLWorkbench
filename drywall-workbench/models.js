@@ -10,7 +10,8 @@ exports = module.exports = function(app, mongoose) {
   require('./schema/Mapping')(app, mongoose);
   require('./schema/Source')(app, mongoose);
   require('./schema/RDF')(app, mongoose);
-
+  require('./schema/License')(app, mongoose);
+  
   //then regular docs
   require('./schema/User')(app, mongoose);
   require('./schema/Admin')(app, mongoose);

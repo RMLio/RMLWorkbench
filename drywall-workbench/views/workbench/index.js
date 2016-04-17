@@ -1,7 +1,10 @@
 'use strict';
 
 exports.init = function(req, res){
-
-	
-  res.render('workbench/index');
+  
+  req.app.db.models.License.find({},function(err, ls) {
+      res.render('workbench/index',{licenses : ls});
+  });
 };
+
+

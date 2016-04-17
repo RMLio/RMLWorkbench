@@ -17,7 +17,10 @@ block neck
 
 block body
   div.page-header         
-              
+  ul 
+   div licenses
+    each license in licenses   
+      li= license   
               
   div(id='upload-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' style='display: none;')
     div.modal-dialog(role='document')

@@ -1,125 +1,25 @@
-{
-  "name": "License-free",
-  "abbreviation": "License-free",
-  "category": "Standard"                  
-},
-{
-  "name": "Apache License, 2.0",
-  "abbreviation": "Apache-2.0",
-  "category": "Popular"                  
-},
-{
-  "name": "BSD 3-Clause 'New' or 'Revised' license",
-  "abbreviation": "BSD-3-Clause",
-  "category": "Popular"                  
-},
-{
-  "name": "BSD 2-Clause 'Simplified' or 'FreeBSD' license",
-  "abbreviation": "BSD-2-Clause",
-  "category": "Popular"                  
-},
-{
-  "name": "GNU General Public License",
-  "abbreviation": "GPL",
-  "category": "Popular"                  
-},
-{
-  "name": "GNU Library or 'Lesser General Public License",
-  "abbreviation": "LGPL",
-  "category": "Popular"                  
-},
-{
-  "name": "MIT license",
-  "abbreviation": "MIT",
-  "category": "Popular"                  
-},
-{
-  "name": "Mozilla Public License 2.0 ",
-  "abbreviation": "MPL-2.0",
-  "category": "Popular"                  
-},
-{
-  "name": "Common Development and Distribution License",
-  "abbreviation": "CDDL-1.0",
-  "category": "Popular"                  
-},
-{
-  "name": "Eclipse Public License",
-  "abbreviation": "EPL-1.0",
-  "category": "Popular"                  
-},
-{
-  "name": "Licence Libre du Québec – Permissive version 1.1",
-  "abbreviation": "LiLiQ-P",
-  "category": "International"                  
-},
-{
-  "name": "Licence Libre du Québec – Réciprocité version 1.1",
-  "abbreviation": "LiLiQ-R",
-  "category": "International"                  
-},
-{
-  "name": "Licence Libre du Québec – Réciprocité forte version 1.1",
-  "abbreviation": "LiLiQ-R+",
-  "category": "International"                  
-},
-{
-  "name": "Educational Community License, Version 2.0",
-  "abbreviation": "ECL-2.0",
-  "category": "Special"                  
-},
-{
-  "name": "IPA Font License",
-  "abbreviation": "IPA",
-  "category": "Special"                  
-},
-{
-  "name": "NASA Open Source Agreement 1.3",
-  "abbreviation": "NASA-1.3",
-  "category": "Special"                  
-},
-{
-  "name": "OSET Public License version 2.1",
-  "abbreviation": "OSET-PL",
-  "category": "Special"                  
-},
-{
-  "name": "SIL Open Font License 1.1",
-  "abbreviation": "OFL-1.1",
-  "category": "Special"                  
-},
-{
-  "name": "Adaptive Public License",
-  "abbreviation": "APL-1.0",
-  "category": "Other"                  
-},
-{
-  "name": "Artistic license 2.0",
-  "abbreviation": "Artistic-2.0",
-  "category": "Other"                  
-},
-{
-  "name": "Free Public License 1.0.0",
-  "abbreviation": "FPL-1.0.0",
-  "category": "Other"                  
-},
-{
-  "name": "Open Software License",
-  "abbreviation": "OSL-3.0",
-  "category": "Other"                  
-},
-{
-  "name": "Q Public License",
-  "abbreviation": "QPL-1.0",
-  "category": "Other"                  
-},
-{
-  "name": "Universal Permissive License",
-  "abbreviation": "UPL",
-  "category": "Other"                  
-},
-{
-  "name": "zlib/libpng license",
-  "abbreviation": "Zlib",
-  "category": "Other"                  
-}
+{"name":"License-free","abbreviation":"License-free","category":"Standard"}
+{"name":"Apache License, 2.0","abbreviation":"Apache-2.0","category":"Popular"}
+{"name":"BSD 3-Clause 'New' or 'Revised' license","abbreviation":"BSD-3-Clause","category":"Popular"}
+{"name":"BSD 2-Clause 'Simplified' or 'FreeBSD' license","abbreviation":"BSD-2-Clause","category":"Popular"}
+{"name":"GNU General Public License","abbreviation":"GPL","category":"Popular"}
+{"name":"GNU Library or 'Lesser General Public License","abbreviation":"LGPL","category":"Popular"}
+{"name":"MIT license","abbreviation":"MIT","category":"Popular"}
+{"name":"Mozilla Public License 2.0 ","abbreviation":"MPL-2.0","category":"Popular"}
+{"name":"Common Development and Distribution License","abbreviation":"CDDL-1.0","category":"Popular"}
+{"name":"Eclipse Public License","abbreviation":"EPL-1.0","category":"Popular"}
+{"name":"Licence Libre du Québec – Permissive version 1.1","abbreviation":"LiLiQ-P","category":"International"}
+{"name":"Licence Libre du Québec – Réciprocité version 1.1","abbreviation":"LiLiQ-R","category":"International"}
+{"name":"Licence Libre du Québec – Réciprocité forte version 1.1","abbreviation":"LiLiQ-R+","category":"International"}
+{"name":"Educational Community License, Version 2.0","abbreviation":"ECL-2.0","category":"Special"}
+{"name":"IPA Font License","abbreviation":"IPA","category":"Special"}
+{"name":"NASA Open Source Agreement 1.3","abbreviation":"NASA-1.3","category":"Special"}
+{"name":"OSET Public License version 2.1","abbreviation":"OSET-PL","category":"Special"}
+{"name":"SIL Open Font License 1.1","abbreviation":"OFL-1.1","category":"Special"}
+{"name":"Adaptive Public License","abbreviation":"APL-1.0","category":"Other"}
+{"name":"Artistic license 2.0","abbreviation":"Artistic-2.0","category":"Other"}
+{"name":"Free Public License 1.0.0","abbreviation":"FPL-1.0.0","category":"Other"}
+{"name":"Open Software License","abbreviation":"OSL-3.0","category":"Other"}
+{"name":"Q Public License","abbreviation":"QPL-1.0","category":"Other"}
+{"name":"Universal Permissive License","abbreviation":"UPL","category":"Other"}
+{"name":"zlib/libpng license","abbreviation":"Zlib","category":"Other"}

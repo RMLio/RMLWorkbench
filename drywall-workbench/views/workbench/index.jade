@@ -14,15 +14,24 @@ block head
 
 block neck  
   link(rel='stylesheet', href='/vendor/bootstrap-select/bootstrap-select.min.css')
-mixin licenses
-  each cat in licenses
-    optgroup(label=cat[0].category)
-      each l in cat
-        option= l.name + ' (' + l.abbreviation + ')'   
-        
+
+  
+block feet
+  script(src='/views/workbench/index.js')
+
 block body
   div
     div= '' + inputs
+
+  
+    
+  mixin licenses
+
+    each cat in licenses
+      optgroup(label=cat[0].category)
+        each l in cat
+          option= l.name + ' (' + l.abbreviation + ')'        
+
 
   div(id='upload-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' style='display: none;')
     div.modal-dialog(role='document')
@@ -229,7 +238,9 @@ block body
              div.panel.panel-info
                div.panel-heading
                  h3.panel-title Overview Mappings
-               div.panel-body 
+               div.panel-body(id='mappingMain') 
+                 script#mapping-list-item(type='text/template').
+                   <a href='#mappings/<%= _id %>'><%= filename %></a>
                         
       #publishing.tab-pane.fade
         br

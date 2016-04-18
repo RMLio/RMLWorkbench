@@ -14,7 +14,7 @@ exports.init = function(req, res){
             }
          }
       }
-      res.render('workbench/index',{licenses : licenseCats});
+      res.render('workbench/index',{licenses : licenseCats, inputs : req.user.sourcefiles});
   });
 };
 

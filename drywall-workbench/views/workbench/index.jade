@@ -14,6 +14,9 @@ block head
 
 block neck  
   link(rel='stylesheet', href='/vendor/bootstrap-select/bootstrap-select.min.css')
+  
+block feet
+  script(src='/views/workbench/index.js')
 
 block body
   
@@ -300,7 +303,9 @@ block body
              div.panel.panel-info
                div.panel-heading
                  h3.panel-title Overview Mappings
-               div.panel-body 
+               div.panel-body(id='mappingMain') 
+                 script#mapping-list-item(type='text/template').
+                   <a href='#mappings/<%= _id %>'><%= filename %></a>
                         
       #publishing.tab-pane.fade
         br

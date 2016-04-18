@@ -97,7 +97,6 @@ var exports = module.exports = {
                             type : 'rdf',
                             _id : mongoose.Types.ObjectId()
                         };
-
                     
                 
                     fs.unlink('./output.rdf', function (err) {  //deleting temp files

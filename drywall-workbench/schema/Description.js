@@ -3,6 +3,7 @@ exports = module.exports = function(app, mongoose) {
     _id: { type: mongoose.Schema.Types.ObjectId },
     name: { type: String, default: '' },    
     type: { type: String, default: ''},
+    prefix: { type: String, default: ''},
     data : { type: String, default: ''},
     metadata: { 
       timeCreated: { type: Date, default: Date.now }

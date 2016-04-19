@@ -8,30 +8,23 @@ block head
   script(type='text/javascript' src='/js/file_uploads.js')
   script(type='text/javascript' src='/vendor/underscore/underscore.js')
   script(type='text/javascript' src='/vendor/backbone/backbone.js')
-  script(type='text/javascript' src='/js/backbone/publish/publish.js') 
+  script(type='text/javascript' src='/js/backbone/publish/publish.js')
   script(type='text/javascript' src='/js/backbone/publish/file.js')
-  script(type='text/javascript' src='/vendor/bootstrap-select/bootstrap-select.min.js') 
+  script(type='text/javascript' src='/vendor/bootstrap-select/bootstrap-select.min.js')
 
-block neck  
+block neck
   link(rel='stylesheet', href='/vendor/bootstrap-select/bootstrap-select.min.css')
 
-  
+
 block feet
   script(src='/views/workbench/index.js')
 
+mixin licenses
+  each cat in licenses
+    optgroup(label=cat[0].category)
+      each l in cat
+          option= l.name + ' (' + l.abbreviation + ')'
 block body
-  div
-    div= '' + inputs
-
-  
-    
-  mixin licenses
-
-    each cat in licenses
-      optgroup(label=cat[0].category)
-        each l in cat
-          option= l.name + ' (' + l.abbreviation + ')'        
-
 
   div(id='upload-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' style='display: none;')
     div.modal-dialog(role='document')
@@ -46,14 +39,14 @@ block body
             div.form-group
               label(for='inputFileName') Name
               input.form-control(id='inputFileName' type='text' placeholder='Descriptive name')
-            div.form-group              
+            div.form-group
               label(for='my-file-selector') File
               input(id='my-file-selector' type='file' data-allowed-file-extensions="['csv', 'xml', 'txt', 'json']")
               p.help-block Only CSV, XML and JSON are supported.
-            div.form-group 
+            div.form-group
               label(for='inputFileLicense') License
               select.selectpicker.form-control(id='inputFileLicense' data-live-search='true' title="Choose a license.")
-                +licenses              
+                +licenses
             button.btn.btn-primary(id="btn_file_input") Upload
 
   div(id='db-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='databaseInputLabel' style='display: none;')
@@ -69,19 +62,19 @@ block body
             div.form-group
               label(for='inputDBName') Name
               input.form-control(id='inputDBName' type='text' placeholder='Descriptive name')
-            div.form-group              
+            div.form-group
               label(for='inputDBURL') URL
               input.form-control(id='inputDBURL' type='text' placeholder='url')
-            div.form-group              
+            div.form-group
               label(for='inputDBPass') Username
               input.form-control(id='inputDBPass' type='password' placeholder='user')
-            div.form-group              
+            div.form-group
               label(for='inputDBPass') Password
               input.form-control(id='inputDBPass' type='password' placeholder='password')
-            div.form-group 
+            div.form-group
               label(for='inputDBLicense') License
               select.selectpicker.form-control(id='inputDBLicense' data-live-search='true' title="Choose a license.")
-                +licenses 
+                +licenses
             button.btn.btn-primary(id="btn_db_input") Connect
 
   div(id='api-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='apiInputLabel' style='display: none;')
@@ -97,19 +90,19 @@ block body
             div.form-group
               label(for='inputAPIName') Name
               input.form-control(id='inputDBName' type='text' placeholder='Descriptive name')
-            div.form-group              
+            div.form-group
               label(for='inputAPIURL') Template URL
               input.form-control(id='inputAPIURL' type='text' placeholder='url')
-            div.form-group           
+            div.form-group
               label(for='inputTemplateParam') Template Parameter
               input.form-control(id='inputTemplateParam' type='text' placeholder='{example}')
               label
                 input(type='checkbox')
                 | Required
-            div.form-group 
+            div.form-group
               label(for='inputAPILicense') License
               select.selectpicker.form-control(id='inputAPILicense' data-live-search='true' title="Choose a license.")
-                +licenses 
+                +licenses
             button.btn.btn-primary(id="btn_db_input") Connect
 
 
@@ -123,12 +116,12 @@ block body
           h4.modal-title Upload an RML file
         div.modal-body
           h4 File format
-          p Currently only XML, CSV and JSON are supported. We will attempt to 
+          p Currently only XML, CSV and JSON are supported. We will attempt to
           form(action="...", method="post" class='btn btn-primary' for='mapping-selector')
             input(id='mapping-selector' type='file' style='display:none;' data-allowed-file-extensions="['rml.ttl', 'rml', 'ttl']")
             |  Choose a mapping file
-           
-                
+
+
 
    div(id='publish' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' style='display: none;')
     div.modal-dialog(role='document')
@@ -148,46 +141,46 @@ block body
               label(for='type')
                 | Type
               select(name='type' id='publish_type' form='typeform' class='form-control')
-                option(value='HdtDataSource') 
+                option(value='HdtDataSource')
                     | HDT file
                 option(value='TurtleDatasource')
                     | N-Triples document
                 option(value='TurtleDatasource')
                     | Turtle document
-                option(value='SparqlDatasource') 
+                option(value='SparqlDatasource')
                     | SPARQL endpoint
                 option(value='JsonLdDatasource')
                     | JSON-LD document
             div(class='form-group')
               label(for='description')
                 | Description
-              input(class='form-control' id='publish_description' placeholder='Enter description')       
+              input(class='form-control' id='publish_description' placeholder='Enter description')
             div(id='publish_fileSelector' class='form-group')
               label(for='setting')
-                | File                                               
-            
+                | File
+
             button(type='submit' id='publish_submit' class='btn btn-primary')
                 | Publish
-                
-                
-                
+
+
+
   ul#myTab.nav.nav-tabs.tabs-left.sideways.primary
       li.active
         a(href='#access', data-toggle='tab')
           | Data Access Interface
       li
-        a(href='#mapping', data-toggle='tab') 
+        a(href='#mapping', data-toggle='tab')
           | Mapping Interface
       li
         a(href='#publishing', data-toggle='tab')
           | Publish Interface
       li
-        a(href='#schedule', data-toggle='tab') 
-          | Schedule Interface 
-        
-      
-      
-    #myTabContent.tab-content      
+        a(href='#schedule', data-toggle='tab')
+          | Schedule Interface
+
+
+
+    #myTabContent.tab-content
       #access.tab-pane.fade.in.active
        br
        div.container-fluid
@@ -200,21 +193,23 @@ block body
                 div.btn-group-vertical(role='group')
                   form(enctype='multipart/form-data' action='/workbench/fetch/input' method='post')
                   input(type='hidden', name='_csrf', value=_csrf)
-                  label(class='btn btn-primary btn-lg')
+                  button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#upload-input')
+                    | Upload Dataset
+                  //label(class='btn btn-primary btn-lg')
                     | Upload Dataset
                     input(type='file' name='sourceUpload' style='display:none;' data-allowed-file-extensions="['rml.ttl', 'rml', 'ttl']")
                   button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#api-input')
                     | Sparql
+                  button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#db-input')
+                    | Database
                   button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#api-input')
-                    | Database  
-                  button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#api-input')
-                    | Web API                  
+                    | Web API
           div.col-md-9
             div.panel.panel-info
                div.panel-heading
                  h3.panel-title Overview Data Access
-               div.panel-body              
-                    
+               div.panel-body
+
       #mapping.tab-pane.fade
         br
         div.container-fluid
@@ -233,15 +228,15 @@ block body
                    button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#api-input')
                      | Edit Mapping
                    button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#api-input')
-                     | Execute Mapping                   
+                     | Execute Mapping
            div.col-md-9
              div.panel.panel-info
                div.panel-heading
                  h3.panel-title Overview Mappings
-               div.panel-body(id='mappingMain') 
+               div.panel-body(id='mappingMain')
                  script#mapping-list-item(type='text/template').
                    <a href='#mappings/<%= _id %>'><%= filename %></a>
-                        
+
       #publishing.tab-pane.fade
         br
         div.container-fluid
@@ -258,13 +253,13 @@ block body
                      | Upload Dataset
                      input(type='file' name='sourceUpload' style='display:none;' data-allowed-file-extensions="['rml.ttl', 'rml', 'ttl']")
                    button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#api-input')
-                     | Publish Dataset                    
+                     | Publish Dataset
            div.col-md-9
             div.panel.panel-info
                div.panel-heading
                  h3.panel-title Overview Publishing
                div.panel-body
-                         
+
       #schedule.tab-pane.fade
         br
         div.container-fluid
@@ -279,15 +274,12 @@ block body
                    input(type='hidden', name='_csrf', value=_csrf)
                    label(class='btn btn-primary btn-lg')
                      | Create New Job
-                     input(type='file' name='sourceUpload' style='display:none;' data-allowed-file-extensions="['rml.ttl', 'rml', 'ttl']")     
-                                   
+                     input(type='file' name='sourceUpload' style='display:none;' data-allowed-file-extensions="['rml.ttl', 'rml', 'ttl']")
+
            div.col-md-9
             div.panel.panel-info
                div.panel-heading
                  h3.panel-title Overview Schedules
-               div.panel-body                          
-                
-  script(type='text/javascript' src='/js/backbone/publish/publish.js') 
-  script(type='text/javascript' src='/js/backbone/publish/file.js') 
-    
-             
+               div.panel-body
+
+

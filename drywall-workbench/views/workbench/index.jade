@@ -17,7 +17,7 @@ block head
 block neck
   link(rel='stylesheet', href='/vendor/bootstrap-select/bootstrap-select.min.css')
   link(rel='stylesheet', href='/vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js')
-
+  link(rel='stylesheet', href='/layouts/rml.css')
 
 block feet
   
@@ -323,16 +323,23 @@ block body
                        input(type='file' id='mapping-upload-input' name='mappingUpload' style='display:none;' data-allowed-file-extensions="['rml.ttl', 'rml', 'ttl']")
                    button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#publish')
                      | Edit Mapping
-                   button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#publish')
-                     | Execute Mapping
+                   div(id='mappingmenu')
+                   script#execute(type='text/template').
+                     <button type='button' class='btn btn-primary btn-lg executemapping'>
+                        Execute Mapping
+                     </button>                   
            div.col-md-9
             div.panel.panel-info
                div.panel-heading
                  h3.panel-title Overview Mapping
-               div.panel-body(id='mappingMain')
-                 script#mapping-list-item(type='text/template').
-                   <a href='#mappings/<%= _id %>'><%= filename %></a>
-
+               div.panel-body
+                 div.row 
+                   div.col-md-2(id='mappingMain')
+                     script#mapping-list-item(type='text/template').
+                       <h5><%= filename %></h5>                       
+                   div.col-md-10(id='mappingContent')
+                     script#mapping-content(type='text/template').
+                       <%= data %>
       #publishing.tab-pane.fade
         br
         div.container-fluid
@@ -355,6 +362,13 @@ block body
                div.panel-heading
                  h3.panel-title Overview Publishing
                div.panel-body
+                  div.row 
+                      div.col-md-2(id='publishMain')
+                        script#publish-list-item(type='text/template').
+                          <h5><%= filename %></h5>                       
+                      div.col-md-10(id='publishContent')
+                        script#publish-content(type='text/template').
+                          <%= data %>
 
       #schedule.tab-pane.fade
         br

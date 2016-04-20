@@ -1,9 +1,9 @@
 # Installation guide
 
 ### Dependencies
-Node.js v4.3.x
-npm v2.4.x
-mongo 2.6.x
+    Node.js v4.3.x
+    npm v2.4.x
+    mongo 2.6.x
 
 
 ## Installation guide

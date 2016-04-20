@@ -20,6 +20,7 @@ block neck
 
 
 block feet
+  
   script(src='/views/workbench/index.js')
 
 
@@ -264,7 +265,7 @@ block body
         a(href='#access', data-toggle='tab')
           | Data Access Interface
       li
-        a(href='#mapping', data-toggle='tab')
+        a(href='#mapping2', data-toggle='tab')
           | Mapping Interface
       li
         a(href='#publishing', data-toggle='tab')
@@ -304,8 +305,8 @@ block body
                div.panel-heading
                  h3.panel-title Overview Data Access
                div.panel-body
-
-      #mapping.tab-pane.fade
+               
+      #mapping2.tab-pane.fade
         br
         div.container-fluid
          div.row
@@ -315,19 +316,19 @@ block body
                  h3.panel-title Menu
                div.panel-body.text-center
                  div.btn-group-vertical(role='group')
-                   form(enctype='multipart/form-data' action='/workbench/fetch/input' method='post')
-                   input(type='hidden', name='_csrf', value=_csrf)
-                   label(class='btn btn-primary btn-lg')
-                     | Upload Mapping
-                     input(type='file' name='sourceUpload' style='display:none;' data-allowed-file-extensions="['rml.ttl', 'rml', 'ttl']")
-                   button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#api-input')
+                   form(id='mapping-upload-form' enctype='multipart/form-data' action='/workbench/fetch/mapping' method='post')
+                     input(type='hidden', name='_csrf', value=_csrf)
+                     label(class='btn btn-primary btn-lg' for='mapping-upload-input')
+                       | Upload Mapping
+                       input(type='file' id='mapping-upload-input' name='mappingUpload' style='display:none;' data-allowed-file-extensions="['rml.ttl', 'rml', 'ttl']")
+                   button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#publish')
                      | Edit Mapping
-                   button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#api-input')
+                   button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#publish')
                      | Execute Mapping
            div.col-md-9
-             div.panel.panel-info
+            div.panel.panel-info
                div.panel-heading
-                 h3.panel-title Overview Mappings
+                 h3.panel-title Overview Mapping
                div.panel-body(id='mappingMain')
                  script#mapping-list-item(type='text/template').
                    <a href='#mappings/<%= _id %>'><%= filename %></a>

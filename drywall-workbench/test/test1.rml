@@ -1,0 +1,1115 @@
+@prefix rr:     <http://www.w3.org/ns/r2rml#>.
+@prefix rml:    <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql:     <http://semweb.mmlab.be/ns/ql#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix oslo:   <http://purl.org/oslo/ns/localgov#>.
+@prefix adms:   <http://www.w3.org/ns/adms#>.
+@prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
+@prefix vcard:  <http://www.w3.org/2006/vcard/ns#> .
+@prefix dcterms:<http://purl.org/dc/terms/> .
+@prefix adms:   <http://www.w3.org/ns/adms#>.
+@prefix schema: <http://schema.org/>.
+@prefix person: <http://www.w3.org/ns/person#>.
+@prefix rov:    <http://www.w3.org/ns/regorg#>.
+@prefix locn:   <http://www.w3.org/ns/locn#>.
+@prefix org:    <http://www.w3.org/ns/org#>.
+
+#LIJSTFunctietype
+
+<#LIJSTFunctietype>
+
+    rml:logicalSource [
+	rml:source "http://rml.io/rml/data/CD_EWI/LIJST/codingfuncties.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/cd/id/functietype/{Sleutel}" ;
+        rr:class oslo:Code
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate dcterms:identifier;
+        rr:objectMap [
+            rml:reference "Sleutel";
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate rdfs:label;
+        rr:objectMap [
+            rml:reference "Label";
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate dcterms:description;
+        rr:objectMap [
+            rml:reference "Omschrijving";
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate adms:schemeAgency;
+        rr:objectMap [
+            rml:reference "Bron";
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate adms:version;
+        rr:objectMap [
+            rml:reference "Versie";
+        ]
+    ].
+
+
+
+ # LIJSTRoltype
+ 
+ <#LIJSTRoltype>
+    rml:logicalSource [
+	rml:source "http://rml.io/rml/data/CD_EWI/LIJST/codingroletype.csv";
+        #rml:sourceName "LIJSTRoltype.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/cd/id/roltype/{Sleutel}";
+        rr:class oslo:Code
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate dcterms:identifier;
+        rr:objectMap [
+            rml:reference "Sleutel";
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate rdfs:label;
+        rr:objectMap [
+            rml:reference "label";
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate adms:schemeAgency;
+        rr:objectMap [
+            rml:reference "bron";
+        ]
+    ].
+
+
+
+  # LIJSTProducttype
+ 
+ <#LIJSTProducttype>
+    rml:logicalSource [
+	rml:source "http://rml.io/rml/data/CD_EWI/LIJST/codingproducttypes.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+
+    rr:subjectMap [
+        rml:reference "Omschrijving";
+        rr:termType rr:IRI;
+        rr:class oslo:Code
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate rdfs:label;
+        rr:objectMap [
+            rml:reference "Label";
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate dcterms:identifier;
+        rr:objectMap [
+            rml:reference "Sleutel";
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate adms:schemeAgency;
+        rr:objectMap [
+            rml:reference "Bron";
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate adms:version;
+        rr:objectMap [
+            rml:reference "Versie";
+        ]
+    ].   
+
+
+
+#LIJSTBeleidsvelden
+
+<#LIJSTBeleidsvelden>
+
+    rml:logicalSource [
+	rml:source "http://rml.io/rml/data/CD_EWI/LIJST/codingbeleidsvelden.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/cd/id/beleidsveld/{Sleutel}";
+        rr:class oslo:Code
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate dcterms:identifier;
+        rr:objectMap [
+            rml:reference "Sleutel";
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate rdfs:label;
+        rr:objectMap [
+            rml:reference "Label";
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate dcterms:description;
+        rr:objectMap [
+            rml:reference "Omschrijving";
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate adms:schemeAgency;
+        rr:objectMap [
+            rml:reference "Bron";
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate adms:version;
+        rr:objectMap [
+            rml:reference "Versie";
+        ]
+    ].
+
+
+
+
+#LIJSTkanaal
+
+<#LIJSTkanaal>
+
+    rml:logicalSource [
+	rml:source "http://rml.io/rml/data/CD_EWI/LIJST/codingkanalen.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/cd/type/kanaal/{Sleutel}";
+        rr:class oslo:Code
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate dcterms:identifier;
+    rr:objectMap [
+            rml:reference "Sleutel";
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate rdfs:label;
+        rr:objectMap [
+            rml:reference "Label";
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate adms:schemeAgency;
+        rr:objectMap [
+            rml:reference "Bron";
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate dcterms:description;
+        rr:objectMap [
+            rml:reference "Omschrijving";
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate adms:version;
+        rr:objectMap [
+            rml:reference "Versie";
+        ]
+    ]. 
+
+
+
+#1.Persoon
+
+<#PersoonIdentificatie>
+
+    rml:logicalSource [
+	rml:source "http://rml.io/rml/data/CD_EWI/Kortrijk/input_CSV/1.Persoon.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/cd/id/identificatie/{Identificatie}";
+        rr:class adms:Identifier
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate skos:notation;
+        rr:objectMap [
+            rml:reference "Identificatie";
+        ]
+    ].
+
+
+<#Persoon>
+
+    rml:logicalSource [
+	rml:source "http://rml.io/rml/data/CD_EWI/Kortrijk/input_CSV/1.Persoon.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/cd/id/persoon/{Identificatie}";
+        rr:class person:Person
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate person:givenName;
+        rr:objectMap [
+            rml:reference "Voornaam";
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate person:familyName;
+        rr:objectMap [
+            rml:reference "Naam";
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate person:patronymicName;
+        rr:objectMap [
+            rml:reference "Andere voornamen";
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate schema:gender;
+        rr:objectMap [
+            rml:reference "Geslacht";
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate adms:identifier;
+        rr:objectMap [
+            rr:parentTriplesMap <#PersoonIdentificatie>;
+        ]
+    ].     
+
+
+
+#3.Product
+
+<#ProductIdentificatie>
+
+    rml:logicalSource [
+	rml:source "http://rml.io/rml/data/CD_EWI/Kortrijk/input_CSV/3.Product.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/cd/id/identificatie/{Identificatie}";
+        rr:class adms:Identifier
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate skos:notation;
+        rr:objectMap [
+            rml:reference "Identificatie";
+        ]
+    ].
+
+
+<#Product>
+
+    rml:logicalSource [
+	rml:source "http://rml.io/rml/data/CD_EWI/Kortrijk/input_CSV/3.Product.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/cd/id/product/{Identificatie}";
+        rr:class oslo:Product
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate dcterms:title;
+        rr:objectMap [
+            rml:reference "Naam";
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate dcterms:description;
+        rr:objectMap [
+            rml:reference "Inhoud";
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate oslo:validityPeriod;
+        rr:objectMap [
+            rml:reference "Geldigheidsduur";
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate dcterms:coverage;
+        rr:objectMap [
+            rml:reference "Heeft toepassingsgebied";
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate oslo:productType;
+        rr:objectMap [
+            rr:parentTriplesMap <#LIJSTProducttype>;
+            rr:joinCondition [
+                rr:child "product_sleutel" ;
+                rr:parent "Sleutel"
+            ]
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate oslo:belongsTo;
+        rr:objectMap [
+            rr:parentTriplesMap <#LIJSTBeleidsvelden>;
+            rr:joinCondition [
+                rr:child "LIJSTBeleidsveld_id" ;
+                rr:parent "Sleutel"
+            ]
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate adms:identifier;
+        rr:objectMap [
+            rr:parentTriplesMap <#ProductIdentificatie>;
+        ]
+    ].
+
+
+#4.Kannal
+
+<#KanaalIdentificatie>
+
+    rml:logicalSource [
+	rml:source "http://rml.io/rml/data/CD_EWI/Kortrijk/input_CSV/4.Kanaal.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/cd/id/identificatie/{Identificatie}";
+        rr:class adms:Identifier
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate skos:notation;
+        rr:objectMap [
+            rml:reference "Identificatie";
+        ]
+    ].
+
+
+<#Kanaal>
+
+    rml:logicalSource [
+	rml:source "http://rml.io/rml/data/CD_EWI/Kortrijk/input_CSV/4.Kanaal.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/cd/id/kanaal/{Identificatie}";
+        rr:class oslo:Channel
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate dcterms:description;
+        rr:objectMap [
+            rml:reference "Omschrijving type";
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate dcterms:type;
+        rr:objectMap [
+            rr:parentTriplesMap <#LIJSTkanaal>;
+            rr:joinCondition [
+                rr:child "Sleutel" ;
+                rr:parent "Sleutel"]
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate oslo:providesAccessTo;
+        rr:objectMap [
+            rr:parentTriplesMap <#Product>;
+            rr:joinCondition [
+                rr:child "product_id" ;
+                rr:parent "Identificatie"]
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate adms:identifier;
+        rr:objectMap [
+            rr:parentTriplesMap <#KanaalIdentificatie>;
+        ]
+    ].
+
+
+<#OrganisatieKanaal>
+
+    rml:logicalSource [
+	rml:source "http://rml.io/rml/data/CD_EWI/Kortrijk/input_CSV/4.Kanaal.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/cd/id/organisatie/{organisatie_id}";
+        rr:class oslo:Organization
+    ];
+
+        rr:predicateObjectMap [
+        rr:predicate oslo:hasChannel;
+        rr:objectMap [
+            rr:parentTriplesMap <#Kanaal>;
+            rr:joinCondition [
+                rr:child "organisatie_id" ;
+                rr:parent "organisatie_id"]
+        ]
+    ].
+
+
+
+#5. Organisatie
+
+<#OrganisatieIdentificatie>
+
+    rml:logicalSource [
+	rml:source "http://rml.io/rml/data/CD_EWI/Kortrijk/input_CSV/5.Organisatie.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/cd/id/identificatie/{Identificatie}";
+        rr:class adms:Identifier
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate skos:notation;
+        rr:objectMap [
+            rml:reference "Identificatie";
+        ]
+    ].
+
+
+<#Organisatie>
+
+    rml:logicalSource [
+	rml:source "http://rml.io/rml/data/CD_EWI/Kortrijk/input_CSV/5.Organisatie.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/cd/id/organisatie/{Identificatie}";
+        rr:class oslo:Organization
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate rov:legalName;
+        rr:objectMap [
+            rml:reference "Maatschappelijke naam";
+        ]
+    ]; 
+
+    rr:predicateObjectMap [
+        rr:predicate dcterms:alternative;
+        rr:objectMap [
+            rml:reference "CommerciÃ«le naam";
+        ]
+    ];   
+
+    rr:predicateObjectMap [
+        rr:predicate dcterms:alternative;
+        rr:objectMap [
+            rml:reference "Afgekorte naam";
+        ]
+    ];  
+
+    rr:predicateObjectMap [
+        rr:predicate rov:companyType;
+        rr:objectMap [
+            rml:reference "Type";
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate adms:identifier;
+        rr:objectMap [
+            rr:parentTriplesMap <#OrganisatieIdentificatie>;
+        ]
+    ].  
+    
+
+
+#6. Hoedanigheid|Functie
+
+<#HoedanigheidFunctieIdentificatie>
+
+    rml:logicalSource [
+	rml:source "http://rml.io/rml/data/CD_EWI/Kortrijk/input_CSV/6.HoedanigheidFunctie.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/cd/id/identificatie/{Identificatie}";
+        rr:class adms:Identifier
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate skos:notation;
+        rr:objectMap [
+            rml:reference "Identificatie"
+        ]
+    ].
+
+
+<#HoedanigheidFunctie>
+
+    rml:logicalSource [
+	rml:source "http://rml.io/rml/data/CD_EWI/Kortrijk/input_CSV/6.HoedanigheidFunctie.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/cd/id/hoedanigheidFunctie/{Identificatie}";
+        rr:class oslo:Membership
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate oslo:membershipType;
+        rr:objectMap [
+            rr:parentTriplesMap <#LIJSTFunctietype>;
+            rr:joinCondition [
+                rr:child "Functietype_id" ;
+                rr:parent "Sleutel"
+            ]
+        ]
+    ]; 
+
+    rr:predicateObjectMap [
+        rr:predicate org:organization;
+        rr:objectMap [
+            rr:parentTriplesMap <#Organisatie>;
+            rr:joinCondition [
+                rr:child "Organisatie_id" ;
+                rr:parent "Identificatie"]
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate adms:identifier;
+        rr:objectMap [
+            rr:parentTriplesMap <#HoedanigheidFunctie>;
+        ]
+    ].   
+
+
+
+#7. Locatie
+
+<#LocatieIdentificatie>
+
+    rml:logicalSource [
+	rml:source "http://rml.io/rml/data/CD_EWI/Kortrijk/input_CSV/7.Locatie.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/cd/id/identificatie/{Identificatie}";
+        rr:class adms:Identifier
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate skos:notation;
+        rr:objectMap [
+            rml:reference "Identificatie";
+        ]
+    ].
+
+
+
+<#Locatie>
+
+    rml:logicalSource [
+	rml:source "http://rml.io/rml/data/CD_EWI/Kortrijk/input_CSV/7.Locatie.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/cd/id/locatie/{Identificatie}";
+        rr:class oslo:ResidenceObject
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate adms:identifier;
+        rr:objectMap [
+            rr:parentTriplesMap <#LocatieIdentificatie>;
+        ]
+    ].  
+
+
+
+<#OrganisatieLocatie>
+
+    rml:logicalSource [
+	rml:source "http://rml.io/rml/data/CD_EWI/Kortrijk/input_CSV/7.Locatie.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/cd/id/organisatie/{organisatie_id}";
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate oslo:mailingLocation;
+        rr:objectMap [
+            rr:template "http://ewi.mmlab.be/cd/id/locatie/{Identificatie}";
+        ]
+    ].
+
+
+
+<#HoedanigheidFunctieLocatie>
+
+    rml:logicalSource [
+	rml:source "http://rml.io/rml/data/CD_EWI/Kortrijk/input_CSV/7.Locatie.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/cd/id/hoedanigheidfunctie/{Hoedanigheidfunctie_id}";
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate oslo:mailingLocation;
+        rr:objectMap [
+            rr:template "http://ewi.mmlab.be/cd/id/locatie/{Identificatie}";
+        ]
+    ].        
+
+
+
+<#KanaalLocatie>
+
+    rml:logicalSource [
+	rml:source "http://rml.io/rml/data/CD_EWI/Kortrijk/input_CSV/7.Locatie.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/cd/id/kanaal/{kanaal_id}";
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate oslo:availableAt;
+        rr:objectMap [
+            rr:template "http://ewi.mmlab.be/cd/id/locatie/{Identificatie}";
+        ]
+    ].    
+
+
+
+<#AddressLocatie>
+
+    rml:logicalSource [
+	rml:source "http://rml.io/rml/data/CD_EWI/Kortrijk/input_CSV/7.Locatie.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/cd/id/address/{Identificatie}";
+        rr:class oslo:BasicAddress
+    ];
+  
+
+    rr:predicateObjectMap [
+        rr:predicate oslo:country;
+        rr:objectMap [
+            rml:reference "Land";
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate locn:postName;
+        rr:objectMap [
+            rml:reference "Gemeente";
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate locn:postCode;
+        rr:objectMap [
+            rml:reference "Postcode";
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate locn:thoroughfare;
+        rr:objectMap [
+            rml:reference "Straatnaam";
+        ]
+    ]; 
+
+    rr:predicateObjectMap [
+        rr:predicate oslo:locatorDesignator;
+        rr:objectMap [
+            rml:reference "Huisnummer (huisnummeraanduiding)";
+        ]
+    ]; 
+
+    rr:predicateObjectMap [
+        rr:predicate oslo:locatorDesignator;
+        rr:objectMap [
+            rml:reference "Locator (busnummer)";
+        ]
+    ].
+
+
+
+#8. Contactinformatie
+
+<#ContactinformatieIdentificatie>
+
+    rml:logicalSource [
+	rml:source "http://rml.io/rml/data/CD_EWI/Kortrijk/input_CSV/8.Contactinformatie.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/cd/id/identificatie/{Identificatie}";
+        rr:class adms:Identifier
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate skos:notation;
+        rr:objectMap [
+            rml:reference "Identificatie";
+        ]
+    ].
+
+
+
+<#Contactinformatie>
+
+    rml:logicalSource [
+	rml:source "http://rml.io/rml/data/CD_EWI/Kortrijk/input_CSV/8.Contactinformatie.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/cd/id/contact/{Identificatie}";
+        rr:class vcard:Contact
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate vcard:telephone;
+        rr:objectMap [
+            rr:parentTriplesMap <#PhoneContactInformatie>
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate vcard:hasTelephone;
+        rr:objectMap [
+            rr:parentTriplesMap <#MobielContactInformatie>
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate vcard:hasTelephone;
+        rr:objectMap [
+            rr:parentTriplesMap <#FaxContactInformatie>
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate vcard:hasEmail;
+        rr:objectMap [
+            rr:parentTriplesMap <#MailContactInformatie>
+        ]
+    ]; 
+
+    rr:predicateObjectMap [
+        rr:predicate vcard:hasURL;
+        rr:objectMap [
+            rml:reference "Website";
+            rr:termType rr:IRI
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate adms:identifier;
+        rr:objectMap [
+            rr:parentTriplesMap <#ContactinformatieIdentificatie>;
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate rdfs:comment;
+        rr:objectMap [
+            rml:reference "Opmerking";
+        ]
+    ].
+
+
+<#OrganisatieContactinformatie>
+
+    rml:logicalSource [
+	rml:source "http://rml.io/rml/data/CD_EWI/Kortrijk/input_CSV/8.Contactinformatie.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/cd/id/organisatie/{organisatie_id}";
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate oslo:contact;
+        rr:objectMap [
+            rr:parentTriplesMap <#Contactinformatie>;
+            rr:joinCondition [
+                rr:child "Identificatie" ;
+                rr:parent "Identificatie"]
+        ]
+    ].
+
+
+
+<#KanaalContactinformatie>
+
+    rml:logicalSource [
+	rml:source "http://rml.io/rml/data/CD_EWI/Kortrijk/input_CSV/8.Contactinformatie.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/cd/id/kanaal/{kanaal_id}";
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate oslo:contact;
+        rr:objectMap [
+            rr:parentTriplesMap <#Contactinformatie>;
+            rr:joinCondition [
+                rr:child "Identificatie" ;
+                rr:parent "Identificatie"]
+        ]
+    ].    
+
+
+
+<#PhoneContactInformatie>
+
+    rml:logicalSource [
+	rml:source "http://rml.io/rml/data/CD_EWI/Kortrijk/input_CSV/8.Contactinformatie.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/cd/id/phone/{Telefoon}";
+        rr:class vcard:Work
+    ];   
+
+    rr:predicateObjectMap [
+        rr:predicate vcard:value;
+        rr:objectMap [
+            rml:reference "Telefoon";
+        ]
+    ]. 
+
+
+
+<#MobielContactInformatie>
+
+    rml:logicalSource [
+	rml:source "http://rml.io/rml/data/CD_EWI/Kortrijk/input_CSV/8.Contactinformatie.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/cd/id/mobiel/{Mobiel}";
+        rr:class vcard:Cell
+    ];   
+
+    rr:predicateObjectMap [
+        rr:predicate vcard:value;
+        rr:objectMap [
+            rml:reference "Mobiel";
+        ]
+    ]. 
+
+
+
+<#FaxContactInformatie>
+
+    rml:logicalSource [
+	rml:source "http://rml.io/rml/data/CD_EWI/Kortrijk/input_CSV/8.Contactinformatie.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/cd/id/fax/{Fax}";
+        rr:class vcard:Fax
+    ];   
+
+    rr:predicateObjectMap [
+        rr:predicate vcard:value;
+        rr:objectMap [
+            rml:reference "Fax";
+        ]
+    ].
+
+
+
+<#MailContactInformatie>
+
+    rml:logicalSource [
+	rml:source "http://rml.io/rml/data/CD_EWI/Kortrijk/input_CSV/8.Contactinformatie.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+
+    rr:subjectMap [
+        rr:template "mailto:{E-mailadres}";
+        rr:class vcard:Email
+    ].             
+
+
+
+#9. BezigheidRoltype
+
+<#BezigheidRoltypeIdentificatie>
+
+    rml:logicalSource [
+	rml:source "http://rml.io/rml/data/CD_EWI/Kortrijk/input_CSV/9.BezigheidRoltype.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/cd/id/identificatie/{Identificatie}";
+        rr:class adms:Identifier
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate skos:notation;
+        rr:objectMap [
+            rml:reference "Identificatie";
+        ]
+    ].
+
+
+
+<#BezigheidRoltype>
+
+    rml:logicalSource [
+	rml:source "http://rml.io/rml/data/CD_EWI/Kortrijk/input_CSV/9.BezigheidRoltype.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/cd/id/bezigheid/{Identificatie}";
+        rr:class oslo:Activity
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate oslo:roleType;
+        rr:objectMap [
+            rr:parentTriplesMap <#LIJSTRoltype>;
+            rr:joinCondition [
+                rr:child "Roltype" ;
+                rr:parent "Sleutel"]
+        ]
+    ].
+
+
+
+<#ProductBezigheidRoltype>
+
+    rml:logicalSource [
+	rml:source "http://rml.io/rml/data/CD_EWI/Kortrijk/input_CSV/9.BezigheidRoltype.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/cd/id/product/{persoon_id}"
+    ];
+    rr:predicateObjectMap [
+        rr:predicate oslo:relatesTo;
+        rr:objectMap [
+            rr:template "http://ewi.mmlab.be/cd/id/bezigheid/{Identificatie}"
+        ]
+    ].    
+
+
+
+<#PersoonBezigheidRoltype>
+
+    rml:logicalSource [
+	rml:source "http://rml.io/rml/data/CD_EWI/Kortrijk/input_CSV/9.BezigheidRoltype.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/cd/id/persoon/{persoon_id}";
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate oslo:hasRoleInActivity;
+        rr:objectMap [
+            rr:template "http://ewi.mmlab.be/cd/id/bezigheid/{Identificatie}"
+        ]
+    ].
+
+
+
+<#OrganisatieBezigheidRoltype>
+
+    rml:logicalSource [
+	rml:source "http://rml.io/rml/data/CD_EWI/Kortrijk/input_CSV/9.BezigheidRoltype.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/cd/id/organisatie/{organisatie_id}";
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate oslo:hasRoleInActivity;
+        rr:objectMap [
+            rr:template "http://ewi.mmlab.be/cd/id/bezigheid/{Identificatie}"
+        ]
+    ].             

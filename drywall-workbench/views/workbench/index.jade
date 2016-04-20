@@ -11,13 +11,27 @@ block head
   script(type='text/javascript' src='/js/backbone/publish/publish.js')
   script(type='text/javascript' src='/js/backbone/publish/file.js')
   script(type='text/javascript' src='/vendor/bootstrap-select/bootstrap-select.min.js')
+  script(type='text/javascript' src='/vendor/momentjs/moment.js')
+  script(type='text/javascript' src='/vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js')
 
 block neck
   link(rel='stylesheet', href='/vendor/bootstrap-select/bootstrap-select.min.css')
+  link(rel='stylesheet', href='/vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js')
 
 
 block feet
   script(src='/views/workbench/index.js')
+
+
+
+mixin licensesId(Id)
+  div.form-group
+    label(for=Id) License
+    select.selectpicker.form-control(id=Id data-live-search='true' title="Choose a license.")
+      each cat in licenses
+        optgroup(label=cat[0].category)
+          each l in cat
+              option= l.name + ' (' + l.abbreviation + ')'
 
 mixin licenses
   each cat in licenses
@@ -89,11 +103,11 @@ block body
             input(type='hidden', name='_csrf', value=_csrf)
             div.form-group
               label(for='inputAPIName') Name
-              input.form-control(id='inputDBName' type='text' placeholder='Descriptive name')
+              input.form-control(id='inputAPIName' type='text' placeholder='Descriptive name')
             div.form-group
               label(for='inputAPIURL') Template URL
               input.form-control(id='inputAPIURL' type='text' placeholder='url')
-            div.form-group
+            //div.form-group
               label(for='inputTemplateParam') Template Parameter
               input.form-control(id='inputTemplateParam' type='text' placeholder='{example}')
               label
@@ -105,7 +119,36 @@ block body
                 +licenses
             button.btn.btn-primary(id="btn_db_input") Connect
 
-
+  div(id='sparql-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='sparqlInputLabel' style='display: none;')
+    div.modal-dialog(role='document')
+      div.modal-content
+        div.modal-header
+          button.close(type='button' data-dismiss='modal' aria-label='Close')
+            span(aria-hidden='true') ×
+          h4.modal-title Connect to an SPARQL endpoint
+        div.modal-body
+          form(role='form')
+            div.form-group
+              label(for='inputSparqlName') Name
+              input.form-control(id='inputSparqlName' type='text' placeholder='Descriptive name')
+            div.form-group
+              label(for='inputSparqlURL') Source
+              input.form-control(id='inputSparqlURL' type='text' placeholder='URL')
+            div.form-group
+              label(for='inputSparqlType') Type
+              select.selectpicker.form-control(id='inputSparqlType' title='Type')
+                option JSON
+                option XML
+                option CSV              
+            div.form-group
+              label(for='inputSparqlIterator') Iterator
+              input.form-control(id='inputSparqlIterator' type='text' placeholder='/')
+            div.form-group
+              label(for='inputSparqlQuery') DataQuery
+              textarea.form-control(id='inputSparqQuery' rows="2")      
+            +licensesId('inputSparqlLicense')                           
+            button.btn.btn-primary(id="btn_db_input") Connect
+           
 
   div(id='upload-mapping' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='AreTheseUsed' style='display: none;')
     div.modal-dialog(role='document')
@@ -120,7 +163,6 @@ block body
           form(action="...", method="post" class='btn btn-primary' for='mapping-selector')
             input(id='mapping-selector' type='file' style='display:none;' data-allowed-file-extensions="['rml.ttl', 'rml', 'ttl']")
             |  Choose a mapping file
-
 
 
    div(id='publish' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' style='display: none;')
@@ -158,10 +200,63 @@ block body
             div(id='publish_fileSelector' class='form-group')
               label(for='setting')
                 | File
-
             button(type='submit' id='publish_submit' class='btn btn-primary')
                 | Publish
 
+   div(id='scheduleModal' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' style='display: none;')
+    div.modal-dialog(role='document')
+      div.modal-content
+        div.modal-header
+          button.close(type='button' data-dismiss='modal' aria-label='Close')
+            span(aria-hidden='true') ×
+          h4.modal-title Schedule Publishing
+        div.modal-body
+          form(role='form')
+            input(type='hidden', name='_csrf', value=_csrf)
+            div(class='form-group')
+              label(for='title')
+                | Title
+              input(class='form-control' id='publish_title' placeholder='Enter title')
+            div(class='form-group')
+              label(for='mapping')
+                | Mapping
+              select(name='mapping' id='mapping' class='form-control')
+                option(value='HdtDataSource')
+                  | POPULATE LIST
+            div(class='form-group')
+              label(for='time')
+                | Schedule
+              div.input-group 
+                | Every
+                input(class='form-control' type='number' id='time' placeholder='2') 
+                select(name='mapping' id='mapping' class='form-control')
+                  option(value='Hour')
+                      | Hours
+                  option(value='Daily')
+                      | Days
+                  option(value='Weekly')
+                      | Weeks
+                  option(value='Monthly')
+                      | Months
+              p Starting from
+              div.input-group.date(id="datetimepicker1")
+                input.form-control(type="text")
+                span.input-group-addon
+                  span.glyphicon.glyphicon-calendar
+            script. 
+              (function($) {
+                "use strict";
+              $(function() {
+                $('#datetimepicker1').datetimepicker({
+                  locale: 'en'                  
+                });
+              });})(jQuery)
+            div(class='form-group')
+              label(for='description')
+                | Description
+              input(class='form-control' id='schedule_description' placeholder='Enter description')
+            button(type='submit' id='schedule_submit' class='btn btn-primary')
+                | Schedule
 
 
   ul#myTab.nav.nav-tabs.tabs-left.sideways.primary
@@ -198,8 +293,8 @@ block body
                   //label(class='btn btn-primary btn-lg')
                     | Upload Dataset
                     input(type='file' name='sourceUpload' style='display:none;' data-allowed-file-extensions="['rml.ttl', 'rml', 'ttl']")
-                  button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#api-input')
-                    | Sparql
+                  button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#sparql-input')
+                    | SPARQL
                   button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#db-input')
                     | Database
                   button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#api-input')
@@ -252,7 +347,7 @@ block body
                    label(class='btn btn-primary btn-lg')
                      | Upload Dataset
                      input(type='file' name='sourceUpload' style='display:none;' data-allowed-file-extensions="['rml.ttl', 'rml', 'ttl']")
-                   button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#api-input')
+                   button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#publish')
                      | Publish Dataset
            div.col-md-9
             div.panel.panel-info
@@ -270,11 +365,9 @@ block body
                  h3.panel-title Menu
                div.panel-body.text-center
                  div.btn-group-vertical(role='group')
-                   form(enctype='multipart/form-data' action='/workbench/fetch/input' method='post')
-                   input(type='hidden', name='_csrf', value=_csrf)
-                   label(class='btn btn-primary btn-lg')
+                   form(enctype='multipart/form-data' action='/workbench/fetch/input' method='post')                  
+                   button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#scheduleModal')
                      | Create New Job
-                     input(type='file' name='sourceUpload' style='display:none;' data-allowed-file-extensions="['rml.ttl', 'rml', 'ttl']")
 
            div.col-md-9
             div.panel.panel-info

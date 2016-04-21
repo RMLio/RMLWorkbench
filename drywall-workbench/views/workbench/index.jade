@@ -159,11 +159,17 @@ block body
             span(aria-hidden='true') ×
           h4.modal-title Upload an RML file
         div.modal-body
-          h4 File format
-          p Currently only XML, CSV and JSON are supported. We will attempt to
-          form(action="...", method="post" class='btn btn-primary' for='mapping-selector')
-            input(id='mapping-selector' type='file' style='display:none;' data-allowed-file-extensions="['rml.ttl', 'rml', 'ttl']")
-            |  Choose a mapping file
+          form(role='form')
+            input(type='hidden', name='_csrf', value=_csrf)
+            div.form-group
+              label(for='mappingFileName') Name
+              input.form-control(id='mappingFileName' type='text' placeholder='Descriptive name')
+            div.form-group
+              label(for='mapping-file-selector') File
+              input(id='mapping-file-selector' type='file' data-allowed-file-extensions="['csv', 'xml', 'txt', 'json']")
+              p.help-block Only RML files are supported.
+            +licensesId('mappingUploadLicense')   
+            button.btn.btn-primary(id="btn_file_input") Upload
 
 
    div(id='publish' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' style='display: none;')
@@ -204,6 +210,7 @@ block body
             button(type='submit' id='publish_submit' class='btn btn-primary')
                 | Publish
 
+
    div(id='scheduleModal' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' style='display: none;')
     div.modal-dialog(role='document')
       div.modal-content
@@ -229,7 +236,7 @@ block body
                 | Schedule
               div.input-group 
                 | Every
-                input(class='form-control' type='number' id='time' placeholder='2') 
+                input(class='form-control' type='number' id='time' value='2') 
                 select(name='mapping' id='mapping' class='form-control')
                   option(value='Hour')
                       | Hours
@@ -318,10 +325,10 @@ block body
                  div.btn-group-vertical(role='group')
                    form(id='mapping-upload-form' enctype='multipart/form-data' action='/workbench/fetch/mapping' method='post')
                      input(type='hidden', name='_csrf', value=_csrf)
-                     label(class='btn btn-primary btn-lg' for='mapping-upload-input')
-                       | Upload Mapping
-                       input(type='file' id='mapping-upload-input' name='mappingUpload' style='display:none;' data-allowed-file-extensions="['rml.ttl', 'rml', 'ttl']")
-                   button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#publish')
+                   button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#upload-mapping')
+                     | Upload Mapping
+                   input(type='file' id='mapping-upload-input' name='mappingUpload' style='display:none;' data-allowed-file-extensions="['rml.ttl', 'rml', 'ttl']")
+                   button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#editMapping')
                      | Edit Mapping
                    button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#publish')
                      | Execute Mapping

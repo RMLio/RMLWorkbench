@@ -61,7 +61,7 @@
 
     app.MappingsView = Backbone.View.extend({
         tagName: 'div',
-        className: 'list-group',
+        className: 'list-group mappingsView',
         
         initialize: function() {
 
@@ -191,9 +191,10 @@
             app.mappings = new app.Mappings();
             app.publishes = new app.Publishes();
             app.mappings.fetch({success: function() {
+                
                 app.mappingsView = new app.MappingsView({model:app.mappings});
                 app.mappingsContentView = new app.MappingsContentView({model: app.mappings.models[0]});
-                app.executeMappingView = new app.ExecuteMappingView({model: app.mappings.models[0]});
+                app.executeMappingView = new app.ExecuteMappingView({model: app.mappings.models[16]});
                 $('#mappingMain').html(app.mappingsView.render().el);    
                 $('#mappingContent').html(app.mappingsContentView.render().el);
                 $('#mappingmenu').html(app.executeMappingView.render().el);

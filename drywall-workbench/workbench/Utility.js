@@ -29,6 +29,8 @@ retrieveFiles : function(idfiles, schema, callback) {
         schema.findOne({
             _id: idfiles[i]
         }, (err, doc) => {
+            if(err) throw err
+            //console.log(doc);
             amountRetrieved++;
             files.push(doc);
             if (amountRetrieved == idfiles.length) {
@@ -51,18 +53,18 @@ retrieveFiles : function(idfiles, schema, callback) {
 
       //check for triple name
       if(!triple && content[i].substring(0, 2) == '<#') {
+        console.log(content[i]);
         //new triple found
         newTriple = {
           _id : mongoose.Types.ObjectId(),
           triplename : content[i].replace(/[><#]+/g, ''),    
+          
+          logicalsource : {}
         };
         triple = true;
       }
 
-      //check for logicalsource
-      if(triple && content[i] == 'rml:logicalSource') {
-        newTriple.logicalsource = {};
-      }
+      
 
       //check for rml:source 
       if(triple && content[i] == 'rml:source') {
@@ -70,11 +72,39 @@ retrieveFiles : function(idfiles, schema, callback) {
           //check if local or not
           if(source.substring(0, 4) == 'http' || source.substring(0,2) == '<#') {
               newTriple.local = false;
+          } else {
+              newTriple.local = true;
+          }
+          if(source.indexOf('#')) {
+              newTriple.tripleSource = true;
+          } else {
+              newTriple.tripleSource = false;
+          }
+          source.replace(/[><#]+/g, '');
+          //var regex = /(\w*\.\w*)$/;  //match filename
+          //var match = regex.exec(source);
+          newTriple.logicalsource.rmlsource = source;
+      }
+      
+      //check for sourceName
+      if(triple && content[i] == 'rml:sourceName') {
+          var source = content[i+1].replace(/['";]+/g, '');
+          if(source.substring(0, 4) == 'http' || source.substring(0,2) == '<#') {
+              newTriple.local = false;
+          } else {
+              newTriple.local = true;
+              
+              console.log('test');
+          }
+          if(source.indexOf('#')) {
+              newTriple.tripleSource = true;
+          } else {
+              newTriple.tripleSource = false;
           }
           source.replace(/[><#]+/g, '');
           var regex = /(\w*\.\w*)$/;  //match filename
           var match = regex.exec(source);
-          newTriple.logicalsource.rmlsource = match[0];
+          newTriple.logicalsource.rmlsource = source;              
       }
 
       //check for rml:referenceFormulation
@@ -103,14 +133,20 @@ retrieveFiles : function(idfiles, schema, callback) {
       }
 
       //check if triple has ended
-      if(content[i] == '].') {
+      if(triple && content[i].substring(content[i].length-1,content[i].length) === '.') {
         triple = false;
         triples.push(newTriple);
+        
       }
 
       //TO DO SERVICE DATADESCRIPTION
       
     }
+    console.log('Parsing');
+    console.log(triples);
+    
+    //console.log(triples[71]);
+    //console.log(triples);
     return triples;
   }
 

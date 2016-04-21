@@ -2,6 +2,15 @@
     max-height: 400px
 }
 
+#mappingMain {
+    max-height: 400px
+}
+
+.mappingsView {
+    max-height: 400px
+
+}
+
 pre {
     max-height:400px
 }

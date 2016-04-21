@@ -120,9 +120,13 @@ var exports = module.exports = {
 
         //execute the mapping
         mapper.executeMappingFromFile(mapping_id, models, user, sources, (rdf) => {
-            saver.saveRDF(rdf, models, user, () => {
+            if(rdf!=null) {
+                saver.saveRDF(rdf, models, user, () => {
+                    res.send();
+                });
+            } else {
                 res.send();
-            });
+            }
 
         });
     },

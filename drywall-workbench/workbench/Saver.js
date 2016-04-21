@@ -54,7 +54,12 @@ exports = module.exports =  {
 	        //create new triples from the mapping and add to triples of the user
 	        for (var i = 0; i < triples.length; i++) {
 	            models.Triple.create(triples[i], (err, tripleSchema) => {
-	                if (err) throw err;
+	                if (err) {
+						console.log(i);
+						console.log(triples[i]);
+						console.log(tripleSchema);
+						throw err;	
+					} 
 	                models.Mapping.update({
 	                    _id: mappingSchema._id
 	                }, {

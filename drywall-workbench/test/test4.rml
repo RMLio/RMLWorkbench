@@ -1,0 +1,1402 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#>.
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@prefix mail: <http://example.com/mail#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix ex: <http://www.example.com/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix transit: <http://vocab.org/transit/terms/> .
+@prefix wgs84_pos: <http://www.w3.org/2003/01/geo/wgs84_pos#>.
+@prefix schema: <http://schema.org/>.
+@prefix gn: <http://www.geonames.org/ontology#>.
+@prefix gs: <http://www.opengis.net/ont/geosparql/>.
+@prefix geosp: <http://www.telegraphis.net/ontology/geography/geography#> .
+@prefix ewins:  <http://ewi.mmlab.be/ns#> .
+@prefix ewi:    <http://ewi.mmlab.be/geo#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+<#Terms>
+    rml:logicalSource [
+        rml:sourceName "terms.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+        rml:reference "URI";
+        rr:class ewins:Statistic
+    ];
+    rr:predicateObjectMap [
+    rr:predicate rdfs:label;
+    rr:objectMap [
+        rml:reference "Label"
+        ]
+    ];
+    rr:predicateObjectMap [
+    rr:predicate ewins:inCategory;
+    rr:objectMap [
+        rr:parentTriplesMap <#Terms2>;
+        ]
+    ].
+    
+<#Terms2>
+    rml:logicalSource [
+        rml:sourceName "terms.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+        rml:reference "Category URI";
+#    rr:templateMap [
+#            rml:reference "Category URI";
+#         ];
+     rr:class ewins:StatisticCategory
+    ];
+    rr:predicateObjectMap [
+    rr:predicate rdfs:label;
+    rr:objectMap [
+        rml:reference "Category Label"
+        ]
+    ].
+
+  
+<#Gemeentes>
+    rml:logicalSource [
+    rml:sourceName "gemeentecodes.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+     rr:template "http://ewi.mmlab.be/datajournalism/gemeentes/{NIS code}";
+     rr:class schema:City, gn:Feature
+    ];
+    rr:predicateObjectMap [
+    rr:predicate gn:postalCode;
+    rr:objectMap [
+        rml:reference "Postcode"
+        ]
+    ];  
+    rr:predicateObjectMap [
+    rr:predicate rdfs:label;
+    rr:objectMap [
+        rml:reference "Gemeente"
+        ]
+    ];
+    rr:predicateObjectMap [
+    rr:predicate gn:locatedIn;
+    rr:objectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/provincies/{Provincie}"
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate gs:hasGeometry;
+        rr:objectMap [
+            rr:parentTriplesMap <#geo>;
+            rr:joinCondition [
+            rr:child "NIS code";
+            #was: rr:parent "gml:featureMember/agiv:Refgem/agiv:NISCODE";
+                        rr:parent "agiv:Refgem/agiv:NISCODE";
+            ]
+        ] 
+    ] .
+
+<#geo>
+    rml:logicalSource [
+      rml:sourceName "Refgem.gml";
+      rml:iterator "/agiv:FeatureCollection/gml:featureMember";
+      rml:queryLanguage ql:XPath;
+    ];
+    
+    rr:subjectMap [
+      rr:template "http://ewi.mmlab.be/datajournalism/geo/{agiv:Refgem/agiv:GEOMID}";
+      rr:class gs:Geometry 
+    ];
+  
+    rr:predicateObjectMap [
+        rr:predicate gs:asGML;
+        rr:objectMap [
+            rml:reference "agiv:Refgem/gml:polygonProperty/gml:Polygon";
+            rr:datatype <http://www.opengis.net/ont/geosparql#gmlLiteral>
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate gs:asGML;
+        rr:objectMap [
+            rml:reference "agiv:Refgem/gml:multiPolygonProperty/gml:MultiPolygon";
+            rr:datatype <http://www.opengis.net/ont/geosparql#gmlLiteral>
+        ]
+    ] .
+
+<#geo2>
+    rml:logicalSource [
+      rml:sourceName "Refprv.gml";
+      rml:iterator "/agiv:FeatureCollection/gml:featureMember";
+      rml:queryLanguage ql:XPath;
+    ];
+    
+    rr:subjectMap [
+      rr:template "http://ewi.mmlab.be/datajournalism/geo/{agiv:Refprv/agiv:ATTRGEOMID}";
+      rr:class gs:Geometry 
+    ];
+  
+    rr:predicateObjectMap [
+        rr:predicate gs:asGML;
+        rr:objectMap [
+            rml:reference "agiv:Refprv/gml:polygonProperty/gml:Polygon";
+            rr:datatype <http://www.opengis.net/ont/geosparql#gmlLiteral>
+        ]
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate gs:asGML;
+        rr:objectMap [
+            rml:reference "agiv:Refprv/gml:multiPolygonProperty/gml:MultiPolygon";
+            rr:datatype <http://www.opengis.net/ont/geosparql#gmlLiteral>
+        ]
+    ] .
+
+<#geo3>
+    rml:logicalSource [
+      rml:sourceName "Refarr.gml";
+      rml:iterator "/agiv:FeatureCollection/gml:featureMember";
+      rml:queryLanguage ql:XPath;
+    ];
+    
+    rr:subjectMap [
+      rr:template "http://ewi.mmlab.be/datajournalism/geo/{agiv:Refarr/agiv:ATTRGEOMID}";
+      rr:class gs:Geometry 
+    ];
+  
+    rr:predicateObjectMap [
+        rr:predicate gs:asGML;
+        rr:objectMap [
+            rml:reference "agiv:Refarr/gml:polygonProperty/gml:Polygon";
+            rr:datatype <http://www.opengis.net/ont/geosparql#gmlLiteral>
+        ]
+    ] .
+
+<#geo3-arrondissementen>
+    rml:logicalSource [
+      rml:sourceName "Refarr.gml";
+      rml:iterator "/agiv:FeatureCollection/gml:featureMember";
+      rml:queryLanguage ql:XPath;
+    ];
+    
+    rr:subjectMap [
+      rr:template "http://ewi.mmlab.be/datajournalism/arrondissementen/{agiv:Refarr/agiv:NAAM}";
+      rr:class  ewins:District, gn:Feature
+    ];
+
+    rr:predicateObjectMap [
+        rr:predicate gs:hasGeometry;
+        rr:objectMap [
+            rr:parentTriplesMap <#geo3>;
+        ] 
+    ];
+  
+    rr:predicateObjectMap [
+        rr:predicate rdfs:label;
+        rr:objectMap [
+            rml:reference "agiv:Refarr/agiv:NAAM";
+        ]
+    ] .
+
+
+
+<#Provincies>
+    rml:logicalSource [
+    rml:sourceName "gemeentecodes.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+     rr:template "http://ewi.mmlab.be/datajournalism/provincies/{Provincie}";
+     rr:class schema:State, gn:Feature
+    ];
+    rr:predicateObjectMap [
+    rr:predicate gn:locatedIn;
+    rr:objectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/gewesten/{Gewest}"
+        ]
+    ];
+    rr:predicateObjectMap [
+    rr:predicate rdfs:label;
+    rr:objectMap [
+        rml:reference "Provincie"
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate gs:hasGeometry;
+        rr:objectMap [
+            rr:parentTriplesMap <#geo2>;
+            rr:joinCondition [
+            rr:child "Provincie";
+                        rr:parent "agiv:Refprv/agiv:NAAM";
+            ]
+        ] 
+    ] .
+
+    
+#
+# Statistieken
+#
+
+<#timeMap> 
+    rr:predicate prov:generatedAtTime;
+    rr:objectMap [
+        rr:template "{Jaar}-01-01T00:00:00";
+        rr:datatype xsd:dateTime
+    ] .
+
+<#provincieMap>
+        rr:predicate ewins:location;
+        rr:objectMap [
+            rr:template "http://ewi.mmlab.be/datajournalism/provincies/{Provincie}"
+        ] .
+
+
+    
+#1_Bevolking_prov-csv.csv
+#-----------------------------------------------------------------------------------
+    
+<#provincie-population-datapoint>
+    rml:logicalSource [
+        rml:sourceName "1_Bevolking_prov-csv.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/provincies/{Provincie}/bevolking/{Jaar}";
+        rr:class ewins:Datapoint
+        
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:Population
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "Bevolking";
+            rr:datatype xsd:int
+        ]
+    ];
+    rr:predicateObjectMap <#timeMap>;
+    rr:predicateObjectMap <#provincieMap>.
+    
+# CULTJEUG001-csv.csv
+# -----------------------------------------------------------------------------------
+        
+<#provincie-youth-datapoint>
+    rml:logicalSource [
+        rml:sourceName "CULTJEUG001-csv.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/provincies/{Provincie}/youth-organisations/{Jaar}";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:YouthOrganisations
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "Jeugdbewegingen";
+            rr:datatype xsd:int
+        ]
+    ];
+    rr:predicateObjectMap <#timeMap>;
+    rr:predicateObjectMap <#provincieMap>.
+    
+# CULTLETT010-csv.csv
+# -----------------------------------------------------------------------------------
+    
+    
+<#provincie-library-datapoint-lf>
+    rml:logicalSource [
+        rml:sourceName "CULTLETT010-csv.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/provincies/{Provincie}/library-lf/{Jaar}";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:LiteraryLibrary-Loan-frequency
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "Leen-frequentie";
+            rr:datatype xsd:double
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate prov:generatedAtTime;
+    rr:objectMap [
+            rr:template "{Jaar}-01-01T00:00:00";
+            rr:datatype xsd:dateTime
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewi:location;
+        rr:objectMap [
+            rr:template "http://ewi.mmlab.be/datajournalism/provincies/{Provincie}"
+        ]
+    ].
+
+<#provincie-library-datapoint-bc>
+    rml:logicalSource [
+        rml:sourceName "CULTLETT010-csv.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/provincies/{Provincie}/library-bc/{Jaar}";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:LiteraryLibrary-Possesion-coefficient
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "Bezits-coÃ«fficient";
+            rr:datatype xsd:double
+        ]
+    ];
+    rr:predicateObjectMap <#timeMap>;
+    rr:predicateObjectMap <#provincieMap>.
+    
+<#provincie-library-datapoint-uc>
+    rml:logicalSource [
+        rml:sourceName "CULTLETT010-csv.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/provincies/{Provincie}/library-uc/{Jaar}";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:LiteraryLibrary-Use-coefficient
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "Gebruiks-coÃ«fficient";
+            rr:datatype xsd:double
+        ]
+    ];
+    rr:predicateObjectMap <#timeMap>;
+    rr:predicateObjectMap <#provincieMap>.
+    
+# CULTLETT011-csv.csv
+# -----------------------------------------------------------------------------------
+    
+    
+<#provincie-avlibrary-datapoint-lf>
+    rml:logicalSource [
+        #rml:sourceName "CULTLETT011-csv.csv";
+        rml:sourceName "CULTLETT011-xls.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/provincies/{Provincie}/audiovisual-library-lf/{Jaar}";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:AudioVisualLibrary-Loan-frequency
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "Leen-frequentie";
+            rr:datatype xsd:double
+        ]
+    ];
+    rr:predicateObjectMap <#timeMap>;
+    rr:predicateObjectMap <#provincieMap>.
+
+<#provincie-avlibrary-datapoint-bc>
+    rml:logicalSource [
+        #rml:sourceName "CULTLETT011-csv.csv";
+        rml:sourceName "CULTLETT011-xls.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/provincies/{Provincie}/audiovisual-library-bc/{Jaar}";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:AudioVisualLibrary-Possesion-coefficient
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "Bezits-coÃ«fficient";
+            rr:datatype xsd:double
+        ]
+    ];
+    rr:predicateObjectMap <#timeMap>;
+    rr:predicateObjectMap <#provincieMap>.
+    
+<#provincie-avlibrary-datapoint-uc>
+    rml:logicalSource [
+        #rml:sourceName "CULTLETT011-csv.csv";
+        rml:sourceName "CULTLETT011-xls.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/provincies/{Provincie}/audiovisual-library-uc/{Jaar}";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:AudioVisualLibrary-Use-coefficient
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "Gebruiks-coÃ«fficient";
+            rr:datatype xsd:double
+        ]
+    ];
+    rr:predicateObjectMap <#timeMap>;
+    rr:predicateObjectMap <#provincieMap>.
+    
+# CULTVOLK003-csv.csv
+# ---------------------------------
+    
+<#cultverenigingen-datapoint>
+    rml:logicalSource [
+        rml:sourceName "CULTVOLK003-csv.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/provincies/{Provincie}/cultural-organisations/{Jaar}";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:Social-cultural-organisations-per-1000-inhabitants
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "sociaal-culturele-verenigingen-per-1000-inwoners";
+            rr:datatype xsd:double
+        ]
+    ];
+    rr:predicateObjectMap <#timeMap>;
+    rr:predicateObjectMap <#provincieMap>.
+    
+#MOBIOPEN005-csv.csv
+#------------------------------------------------------
+    
+<#delijn1>
+    rml:logicalSource [
+        rml:sourceName "MOBIOPEN005-csv.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/provincies/{Provincie}/voertuigkilometers-delijn/{Jaar}";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:VehicleKilometers
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "Voertuigkilometer";
+            rr:datatype xsd:double
+        ]
+    ];
+    rr:predicateObjectMap <#timeMap>;
+    rr:predicateObjectMap <#provincieMap>.
+    
+#MOBIOPEN004-csv.csv
+#------------------------------------------------------    
+
+<#delijn2>
+    rml:logicalSource [
+        rml:sourceName "MOBIOPEN004-csv.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/provincies/{Provincie}/reizigersritten-delijn/{Jaar}";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:Passengerrides
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "Reizigersritten";
+            rr:datatype xsd:double
+        ]
+    ];
+    rr:predicateObjectMap <#timeMap>;
+    rr:predicateObjectMap <#provincieMap>.
+    
+#    SPORTAANB003-csv.csv
+# ----------------------------------------------------------
+    
+<#sportaanbod>
+    rml:logicalSource [
+        rml:sourceName "SPORTAANB003-csv.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/provincies/{Provincie}/sportsoffer/{Jaar}";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:SportOffers
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "Sportaanbod";
+            rr:datatype xsd:int
+        ]
+    ];
+    rr:predicateObjectMap <#timeMap>;
+    rr:predicateObjectMap <#provincieMap>.
+
+# woonsoci010-csv.csv
+# ----------------------------------------------
+
+<#socialewoning1a>
+    rml:logicalSource [
+        rml:sourceName "woonsoci010-csv.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/provincies/{Provincie}/social-housing-belgians/{Jaar}";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:Residents-belgian
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "Belg";
+            rr:datatype xsd:double
+        ]
+    ];
+    rr:predicateObjectMap <#timeMap>;
+    rr:predicateObjectMap <#provincieMap>.
+
+<#socialewoning1b>
+    rml:logicalSource [
+        rml:sourceName "woonsoci010-csv.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/provincies/{Provincie}/social-housing-eu-non-belgians/{Jaar}";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:Residents-EU-non-belgian
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "EU, Niet Belg";
+            rr:datatype xsd:double
+        ]
+    ];
+    rr:predicateObjectMap <#timeMap>;
+    rr:predicateObjectMap <#provincieMap>.
+
+<#socialewoning1c>
+    rml:logicalSource [
+        rml:sourceName "woonsoci010-csv.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/provincies/{Provincie}/social-housing-non-eu/{Jaar}";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:Residents-non-EU
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "Niet EU";
+            rr:datatype xsd:double
+        ]
+    ];
+    rr:predicateObjectMap <#timeMap>;
+    rr:predicateObjectMap <#provincieMap>.
+    
+<#socialewoning1d>
+    rml:logicalSource [
+        rml:sourceName "woonsoci010-csv.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/provincies/{Provincie}/social-housing-unknown/{Jaar}";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:Residents-Unknown
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "Onbekend";
+            rr:datatype xsd:double
+        ]
+    ];
+    rr:predicateObjectMap <#timeMap>;
+    rr:predicateObjectMap <#provincieMap>.
+
+# woonsoci024-csv.csv
+# ----------------------------------------------
+
+
+<#socialewoning2>
+    rml:logicalSource [
+        rml:sourceName "woonsoci024-csv.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/provincies/{Provincie}/social-housing-applications/{Jaar}";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:Applications
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "Aanvragen";
+            rr:datatype xsd:int
+        ]
+    ];
+    rr:predicateObjectMap <#timeMap>;
+    rr:predicateObjectMap <#provincieMap>.
+    
+<#migratieEvolutie-intern>
+    rml:logicalSource [
+        rml:sourceName "4_Migratiecijfers_per_provincie-evolutie-xls.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/provincies/{Provincie}/migration-internal/{Jaar}";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:Migration-internal
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "Intern";
+            rr:datatype xsd:int
+        ]
+    ];
+    rr:predicateObjectMap <#timeMap>;
+    rr:predicateObjectMap <#provincieMap>.
+
+<#migratieEvolutie-external>
+    rml:logicalSource [
+        rml:sourceName "4_Migratiecijfers_per_provincie-evolutie-xls.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/provincies/{Provincie}/migration-external/{Jaar}";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:Migration-external
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "Extern";
+            rr:datatype xsd:int
+        ]
+    ];
+    rr:predicateObjectMap <#timeMap>;
+    rr:predicateObjectMap <#provincieMap>.
+    
+ <#migratieEvolutie-total>
+    rml:logicalSource [
+        rml:sourceName "4_Migratiecijfers_per_provincie-evolutie-xls.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/provincies/{Provincie}/migration-total/{Jaar}";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:Migration-total
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "Totaal";
+            rr:datatype xsd:int
+        ]
+    ];
+    rr:predicateObjectMap <#timeMap>;
+    rr:predicateObjectMap <#provincieMap>.   
+
+<#ontgroening14percent>
+    rml:logicalSource [
+        rml:sourceName "1_Ontgroening_prov-xls.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/provincies/{Provincie}/ontgroening-percent/{Jaar}";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:Population-0to14y-percentage
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "% 0-14 jaar";
+            rr:datatype xsd:double
+        ]
+    ];
+    rr:predicateObjectMap <#timeMap>;
+    rr:predicateObjectMap <#provincieMap>.
+    
+<#ontgroening14>
+    rml:logicalSource [
+        rml:sourceName "1_Ontgroening_prov-xls.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/provincies/{Provincie}/ontgroening/{Jaar}";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:Population-0to14y
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "Bevolking 0-14 jaar";
+            rr:datatype xsd:double
+        ]
+    ];
+    rr:predicateObjectMap <#timeMap>;
+    rr:predicateObjectMap <#provincieMap>.   
+
+<#ontgroening19percent>
+    rml:logicalSource [
+        rml:sourceName "1_Ontgroening_prov-xls.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/provincies/{Provincie}/ontgroening-19-percent/{Jaar}";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:Population-0to19y-percentage
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "% 0-19 jaar";
+            rr:datatype xsd:double
+        ]
+    ];
+    rr:predicateObjectMap <#timeMap>;
+    rr:predicateObjectMap <#provincieMap>.
+    
+<#ontgroening19>
+    rml:logicalSource [
+        rml:sourceName "1_Ontgroening_prov-xls.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/provincies/{Provincie}/ontgroening-19/{Jaar}";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:Population-0to19y
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "Bevolking 0-19 jaar";
+            rr:datatype xsd:double
+        ]
+    ];
+    rr:predicateObjectMap <#timeMap>;
+    rr:predicateObjectMap <#provincieMap>.
+
+<#vergrijzing>
+    rml:logicalSource [
+        rml:sourceName "2_Vergrijzing_prov-xls.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/provincies/{Provincie}/vergrijzing/{Jaar}";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:Population-65plus
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "Bevolking 65 jaar en ouder";
+            rr:datatype xsd:double
+        ]
+    ];
+    rr:predicateObjectMap <#timeMap>;
+    rr:predicateObjectMap <#provincieMap>.
+
+<#vergrijzingPercent>
+    rml:logicalSource [
+        rml:sourceName "2_Vergrijzing_prov-xls.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/provincies/{Provincie}/vergrijzing-percent/{Jaar}";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:Population-65plus-percentage
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "% 65-plus";
+            rr:datatype xsd:double
+        ]
+    ];
+    rr:predicateObjectMap <#timeMap>;
+    rr:predicateObjectMap <#provincieMap>.   
+
+
+#Gemeentes
+
+<#gemeentes>
+    rml:logicalSource [
+        rml:sourceName "1_Bevolking_en_bevolkingsdichtheid_gemeente-1-xls.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/gemeentes/{NIS-CODE}/bevolking/{jaar}";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:Population    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "TOTAAL BEVOLKING";
+            rr:datatype xsd:double
+        ]
+    ];
+    rr:predicateObjectMap [
+	rr:predicate ewins:location;
+        rr:objectMap [
+            rr:template "http://ewi.mmlab.be/datajournalism/gemeentes/{NIS-CODE}"
+        ]
+    ];
+    rr:predicateObjectMap [
+    	rr:predicate prov:generatedAtTime;
+    	rr:objectMap [
+        	rr:template "{jaar}-01-01T00:00:00";
+        	rr:datatype xsd:dateTime
+    	]
+    ].
+
+<#gemeentes-oppervlakte>
+    rml:logicalSource [
+        rml:sourceName "1_Bevolking_en_bevolkingsdichtheid_gemeente-1-xls.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/gemeentes/{NIS-CODE}/oppervlakte/{jaar}";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:Acreage    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "OPPERVLAKTE HA      A       CA";
+            rr:datatype xsd:double
+        ]
+    ];
+    rr:predicateObjectMap [
+	rr:predicate ewins:location;
+        rr:objectMap [
+            rr:template "http://ewi.mmlab.be/datajournalism/gemeentes/{NIS-CODE}"
+        ]
+    ];
+    rr:predicateObjectMap [
+    	rr:predicate prov:generatedAtTime;
+    	rr:objectMap [
+        	rr:template "{jaar}-01-01T00:00:00";
+        	rr:datatype xsd:dateTime
+    	]
+    ] .   
+
+<#gemeentes-dichtheid>
+    rml:logicalSource [
+        rml:sourceName "1_Bevolking_en_bevolkingsdichtheid_gemeente-1-xls.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/gemeentes/{NIS-CODE}/bevolkingsdichtheid/{jaar}";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:Average-population-density-per-kilometer    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "GEMIDDELDE BEVOLKINGSDICHTHEID PER KM2";
+            rr:datatype xsd:double
+        ]
+    ];
+    rr:predicateObjectMap [
+	rr:predicate ewins:location;
+        rr:objectMap [
+            rr:template "http://ewi.mmlab.be/datajournalism/gemeentes/{NIS-CODE}"
+        ]
+    ];
+    rr:predicateObjectMap [
+    	rr:predicate prov:generatedAtTime;
+    	rr:objectMap [
+        	rr:template "{jaar}-01-01T00:00:00";
+        	rr:datatype xsd:dateTime
+    	]
+    ] .
+
+<#gemeentes-bevolking-1jan>
+    rml:logicalSource [
+        rml:sourceName "1_Geboorten_per_gemeente-xls.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/gemeentes/{NIScode}/bevolking-jan1/{Jaar}";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:Population-jan1
+   ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "Bevolking op 1 januari";
+            rr:datatype xsd:int
+        ]
+    ];
+    rr:predicateObjectMap [
+	rr:predicate ewins:location;
+        rr:objectMap [
+            rr:template "http://ewi.mmlab.be/datajournalism/gemeentes/{NIScode}"
+        ]
+    ];
+    rr:predicateObjectMap [
+    	rr:predicate prov:generatedAtTime;
+    	rr:objectMap [
+        	rr:template "{Jaar}-01-01T00:00:00";
+        	rr:datatype xsd:dateTime
+    	]
+    ] .
+
+<#gemeentes-bevolking-31dec>
+    rml:logicalSource [
+        rml:sourceName "1_Geboorten_per_gemeente-xls.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/gemeentes/{NIScode}/bevolking-dec31/{Jaar}";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:Population-jan31
+   ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "Bevolking op 31 december";
+            rr:datatype xsd:int
+        ]
+    ];
+    rr:predicateObjectMap [
+	rr:predicate ewins:location;
+        rr:objectMap [
+            rr:template "http://ewi.mmlab.be/datajournalism/gemeentes/{NIScode}"
+        ]
+    ];
+    rr:predicateObjectMap [
+    	rr:predicate prov:generatedAtTime;
+    	rr:objectMap [
+        	rr:template "{Jaar}-01-01T00:00:00";
+        	rr:datatype xsd:dateTime
+    	]
+    ] .
+
+
+<#gemeentes-bevolking-bruto>
+    rml:logicalSource [
+        rml:sourceName "1_Geboorten_per_gemeente-xls.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/gemeentes/{NIScode}/bevolking-bruto/{Jaar}";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:Population-average
+   ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "Gemiddelde bevolking";
+            rr:datatype xsd:double
+        ]
+    ];
+    rr:predicateObjectMap [
+	rr:predicate ewins:location;
+        rr:objectMap [
+            rr:template "http://ewi.mmlab.be/datajournalism/gemeentes/{NIScode}"
+        ]
+    ];
+    rr:predicateObjectMap [
+    	rr:predicate prov:generatedAtTime;
+    	rr:objectMap [
+        	rr:template "{Jaar}-01-01T00:00:00";
+        	rr:datatype xsd:dateTime
+    	]
+    ] .
+
+<#gemeentes-geboorten>
+    rml:logicalSource [
+        rml:sourceName "1_Geboorten_per_gemeente-xls.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/gemeentes/{NIScode}/geboorten/{Jaar}";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:Births
+   ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "Geboorten";
+            rr:datatype xsd:int
+        ]
+    ];
+    rr:predicateObjectMap [
+	rr:predicate ewins:location;
+        rr:objectMap [
+            rr:template "http://ewi.mmlab.be/datajournalism/gemeentes/{NIScode}"
+        ]
+    ];
+    rr:predicateObjectMap [
+    	rr:predicate prov:generatedAtTime;
+    	rr:objectMap [
+        	rr:template "{Jaar}-01-01T00:00:00";
+        	rr:datatype xsd:dateTime
+    	]
+    ] .
+
+<#gemeentes-geboorten-bruto>
+    rml:logicalSource [
+        rml:sourceName "1_Geboorten_per_gemeente-xls.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/gemeentes/{NIScode}/geboorten/{Jaar}";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:Births-bruto
+   ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "Bruto geboortecijfer (â€°)";
+            rr:datatype xsd:double
+        ]
+    ];
+    rr:predicateObjectMap [
+	rr:predicate ewins:location;
+        rr:objectMap [
+            rr:template "http://ewi.mmlab.be/datajournalism/gemeentes/{NIScode}"
+        ]
+    ];
+    rr:predicateObjectMap [
+    	rr:predicate prov:generatedAtTime;
+    	rr:objectMap [
+        	rr:template "{Jaar}-01-01T00:00:00";
+        	rr:datatype xsd:dateTime
+    	]
+    ] .
+
+<#gemeentes-overlijdens>
+    rml:logicalSource [
+        rml:sourceName "2_Sterfgevallen_per_gemeente-1-xls.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/gemeentes/{NIScode}/overlijdens/{jaar}";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:Deaths
+   ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "Overlijdens";
+            rr:datatype xsd:int
+        ]
+    ];
+    rr:predicateObjectMap [
+	rr:predicate ewins:location;
+        rr:objectMap [
+            rr:template "http://ewi.mmlab.be/datajournalism/gemeentes/{NIScode}"
+        ]
+    ];
+    rr:predicateObjectMap [
+    	rr:predicate prov:generatedAtTime;
+    	rr:objectMap [
+        	rr:template "{jaar}-01-01T00:00:00";
+        	rr:datatype xsd:dateTime
+    	]
+    ] .
+
+<#gemeentes-overlijdens-bruto>
+    rml:logicalSource [
+        rml:sourceName "2_Sterfgevallen_per_gemeente-1-xls.csv";
+        rml:queryLanguage ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/gemeentes/{NIScode}/overlijdens-bruto/{jaar}";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:Deaths-bruto
+   ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "Bruto sterftecijfer (â€°)";
+            rr:datatype xsd:double
+        ]
+    ];
+    rr:predicateObjectMap [
+	rr:predicate ewins:location;
+        rr:objectMap [
+            rr:template "http://ewi.mmlab.be/datajournalism/gemeentes/{NIScode}"
+        ]
+    ];
+    rr:predicateObjectMap [
+    	rr:predicate prov:generatedAtTime;
+    	rr:objectMap [
+        	rr:template "{jaar}-01-01T00:00:00";
+        	rr:datatype xsd:dateTime
+    	]
+    ] .
+
+# CULTALGENIEUW3-1.csv
+
+<#cultalgem-loc-pom> rr:predicate ewins:location;
+        rr:objectMap [
+	    rr:parentTriplesMap <#Gemeentes>;
+            rr:joinCondition [
+		rr:child "gemeente";
+		rr:parent "Gemeente"
+            ]
+        ] .
+
+<#cultalgem-time-pom> 	rr:predicate prov:generatedAtTime;
+    	rr:objectMap [
+        	rr:constant "2011-01-01T00:00:00";
+        	rr:datatype xsd:dateTime
+    	] .
+
+<#cultalgem-logsource>   rml:sourceName "CULTALGENIEUW3-1-xls.csv";
+        rml:queryLanguage ql:CSV .
+
+
+
+<#cultalgem-cursus>
+    rml:logicalSource <#cultalgem-logsource>;
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/gemeentes/{gemeente}/cultuur-cursussen-en-voordrachten/2011";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:Courses-and-presentations
+   ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "cursussen en voordrachten";
+            rr:datatype xsd:int
+        ]
+    ];
+    rr:predicateObjectMap <#cultalgem-loc-pom>;
+    rr:predicateObjectMap <#cultalgem-time-pom>.
+
+<#cultalgem-evenementen>
+    rml:logicalSource <#cultalgem-logsource>;
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/gemeentes/{gemeente}/cultuur-evenementen/2011";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:Events
+   ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "evenementen";
+            rr:datatype xsd:int
+        ]
+    ];
+    rr:predicateObjectMap <#cultalgem-loc-pom>;
+    rr:predicateObjectMap <#cultalgem-time-pom>.
+
+<#cultalgem-expo>
+    rml:logicalSource <#cultalgem-logsource>;
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/gemeentes/{gemeente}/cultuur-expo/2011";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:Expositions
+   ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "expo";
+            rr:datatype xsd:int
+        ]
+    ];
+    rr:predicateObjectMap <#cultalgem-loc-pom>;
+    rr:predicateObjectMap <#cultalgem-time-pom>.
+
+<#cultalgem-film>
+    rml:logicalSource <#cultalgem-logsource>;
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/gemeentes/{gemeente}/cultuur-film/2011";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:Films
+   ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "film";
+            rr:datatype xsd:int
+        ]
+    ];
+    rr:predicateObjectMap <#cultalgem-loc-pom>;
+    rr:predicateObjectMap <#cultalgem-time-pom>.
+
+<#cultalgem-muziek>
+    rml:logicalSource <#cultalgem-logsource>;
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/gemeentes/{gemeente}/cultuur-muziek/2011";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:Music
+   ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "muziek";
+            rr:datatype xsd:int
+        ]
+    ];
+    rr:predicateObjectMap <#cultalgem-loc-pom>;
+    rr:predicateObjectMap <#cultalgem-time-pom>.
+
+<#cultalgem-podium>
+    rml:logicalSource <#cultalgem-logsource>;
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/gemeentes/{gemeente}/cultuur-podium/2011";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:Stage
+   ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "podium";
+            rr:datatype xsd:int
+        ]
+    ];
+    rr:predicateObjectMap <#cultalgem-loc-pom>;
+    rr:predicateObjectMap <#cultalgem-time-pom>.
+
+<#cultalgem-sport>
+    rml:logicalSource <#cultalgem-logsource>;
+    rr:subjectMap [
+        rr:template "http://ewi.mmlab.be/datajournalism/gemeentes/{gemeente}/cultuur-sport/2011";
+        rr:class ewins:Datapoint
+    ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:datapointFor;
+        rr:object ewi:Sports
+   ];
+    rr:predicateObjectMap [
+        rr:predicate ewins:value;
+        rr:objectMap [
+            rml:reference "sport";
+            rr:datatype xsd:int
+        ]
+    ];
+    rr:predicateObjectMap <#cultalgem-loc-pom>;
+    rr:predicate

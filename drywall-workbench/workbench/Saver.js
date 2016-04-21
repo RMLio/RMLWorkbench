@@ -50,7 +50,7 @@ exports = module.exports =  {
 	        var amountDone = 0;
 
 	        console.log('[WORKBENCH LOG]' + ' Creating new triple entries in database...');
-
+			if(amountOfTriples !==0 ) {
 	        //create new triples from the mapping and add to triples of the user
 	        for (var i = 0; i < triples.length; i++) {
 	            models.Triple.create(triples[i], (err, tripleSchema) => {
@@ -84,7 +84,7 @@ exports = module.exports =  {
 
 
 	            });
-	        }
+	        } }
 	    });
 
 	},

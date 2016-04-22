@@ -143,7 +143,6 @@ retrieveFiles : function(idfiles, schema, callback) {
       
     }
     console.log('Parsing');
-    console.log(triples);
     
     //console.log(triples[71]);
     //console.log(triples);

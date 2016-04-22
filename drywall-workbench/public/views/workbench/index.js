@@ -7,6 +7,8 @@
     console.log('executed...');
 
     app = app || {};
+    
+    app.currentModel;
 
     app.Publish = Backbone.Model.extend({
         idAttribute: '_id',
@@ -51,6 +53,52 @@
         
         initialize: function() {
             
+        },
+        
+        render: function() {
+           $(this.el).html(this.template(this.model.toJSON()));      
+           return this;            
+        }    
+    });
+    
+    app.ClearMappingView = Backbone.View.extend({
+        
+        template: _.template($('#clearmapping').html()),
+        
+        events: {
+          'click .clearmapping' : 'clearmapping'  
+        },
+        
+        clearmapping: function() {
+          //this.model.fetch({data:{'mapping_id':this.model.attributes._id},type:'POST' })  
+          $.post('/workbench/clear/mapping/',{mappings: [app.currentModel.attributes._id]},function() {console.log('succes')});  
+        },
+        
+        initialize: function() {
+            this.model = app.currentModel;    
+        },
+        
+        render: function() {
+           $(this.el).html(this.template(this.model.toJSON()));      
+           return this;            
+        }    
+    });
+    
+    app.ClearAllMappingsView = Backbone.View.extend({
+        
+        template: _.template($('#clearallmappings').html()),
+        
+        events: {
+          'click .clearallmappings' : 'clearallmappings'  
+        },
+        
+        clearallmappings: function() {
+          //this.model.fetch({data:{'mapping_id':this.model.attributes._id},type:'POST' })  
+          $.post('/workbench/clear/all/mapping',function() {console.log('succes')});  
+        },
+        
+        initialize: function() {
+            this.model = app.currentModel;    
         },
         
         render: function() {
@@ -108,6 +156,7 @@
                 console.log('test');
                 console.log(this.model);
                 app.mappingsContentView.model = this.model; 
+                app.currentModel = this.model;
                 app.mappingsContentView.render(); 
                 //$('#mappingContent').html(app.mappingsContentView.render().el)  
         },
@@ -123,7 +172,7 @@
     
     app.PublishesView = Backbone.View.extend({
         tagName: 'div',
-        className: 'list-group',
+        className: 'list-group publishView',
         
         initialize: function() {
                     
@@ -190,26 +239,62 @@
         initialize: function() {
             app.mappings = new app.Mappings();
             app.publishes = new app.Publishes();
-            app.mappings.fetch({success: function() {
-                
+            app.mappings.fetch({success: function() {                
+                app.currentModel = app.mappings.models[0];
+                if(app.currentModel == undefined) {
+                    //app.currentModel = new app.Mapping();
+                }
                 app.mappingsView = new app.MappingsView({model:app.mappings});
-                app.mappingsContentView = new app.MappingsContentView({model: app.mappings.models[0]});
-                app.executeMappingView = new app.ExecuteMappingView({model: app.mappings.models[16]});
+                app.mappingsContentView = new app.MappingsContentView({model: app.currentModel});
+                app.executeMappingView = new app.ExecuteMappingView({model: app.currentModel});
+                app.clearMappingView = new app.ClearMappingView();
+                app.clearAllMappingsView = new app.ClearAllMappingsView();
                 $('#mappingMain').html(app.mappingsView.render().el);    
                 $('#mappingContent').html(app.mappingsContentView.render().el);
                 $('#mappingmenu').html(app.executeMappingView.render().el);
+                $('#clearmappingbutton').html(app.clearMappingView.render().el);
+                $('#clearallmappingsbutton').html(app.clearAllMappingsView.render().el);
             }});            
             app.publishes.fetch({success: function() {
                 app.publishesView = new app.PublishesView({model:app.publishes});
-                app.publishesContentView = new app.PublishesContentView({model: app.publishes.models[0]});
+                app.publishesContentView = new app.PublishContentView({model: app.currentModel});
                 $('#publishMain').html(app.publishesView.render().el);    
-                $('#publishContent').html(app.publishesContentView.render().el)         
+                $('#publishContent').html(app.publishesContentView.render().el);
+                         
             }});           
         },
         default: function() {                    
                             
         }
     });
+    
+    app.render = function() {
+        app.mappings = new app.Mappings();
+            app.publishes = new app.Publishes();
+            app.mappings.fetch({success: function() {                
+                app.currentModel = app.mappings.models[0];
+                if(app.currentModel == undefined) {
+                    app.currentModel = new app.Mapping();
+                }
+                app.mappingsView = new app.MappingsView({model:app.mappings});
+                app.mappingsContentView = new app.MappingsContentView({model: app.currentModel});
+                app.executeMappingView = new app.ExecuteMappingView({model: app.currentModel});
+                app.clearMappingView = new app.ClearMappingView();
+                app.clearAllMappingsView = new app.ClearAllMappingsView();
+                $('#mappingMain').html(app.mappingsView.render().el);    
+                $('#mappingContent').html(app.mappingsContentView.render().el);
+                $('#mappingmenu').html(app.executeMappingView.render().el);
+                $('#clearmappingbutton').html(app.clearMappingView.render().el);
+                $('#clearallmappingsbutton').html(app.clearAllMappingsView.render().el);
+            }});            
+            app.publishes.fetch({success: function() {
+                app.publishesView = new app.PublishesView({model:app.publishes});
+                app.publishesContentView = new app.PublishContentView({model: app.currentModel});
+                $('#publishMain').html(app.publishesView.render().el);    
+                $('#publishContent').html(app.publishesContentView.render().el);
+                         
+            }});    
+    };
 
     
         app.firstLoad = true;

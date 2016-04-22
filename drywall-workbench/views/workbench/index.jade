@@ -324,10 +324,20 @@ block body
                    button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#publish')
                      | Edit Mapping
                    div(id='mappingmenu')
+                   div(id='clearmappingbutton')
+                   div(id='clearallmappingsbutton')
                    script#execute(type='text/template').
                      <button type='button' class='btn btn-primary btn-lg executemapping'>
                         Execute Mapping
-                     </button>                   
+                     </button>     
+                   script#clearmapping(type='text/template').
+                     <button type='button' class='btn btn-primary btn-lg clearmapping'>
+                        Clear Mapping
+                     </button>       
+                   script#clearallmappings(type='text/template').
+                     <button type='button' class='btn btn-primary btn-lg clearallmappings'>
+                        Clear All Mappings
+                     </button>       
            div.col-md-9
             div.panel.panel-info
                div.panel-heading

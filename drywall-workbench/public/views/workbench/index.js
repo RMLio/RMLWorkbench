@@ -37,22 +37,58 @@
         url: '/workbench/fetch/mapping'
     });
     
+    app.Triple = Backbone.Model.extend({
+        idAttribute: '_id',
+        defaults: {}
+    });
+    
+    app.Triples = Backbone.Collection.extend({
+        model: app.Triple 
+    });
+    
+    
+    
+    
     app.ExecuteMappingView = Backbone.View.extend({
         
-        template: _.template($('#execute').html()),
+        template: _.template($('#execute').html()),        
         
-        events: {
-          'click .executemapping' : 'execute'  
-        },
         
         execute: function() {
           //this.model.fetch({data:{'mapping_id':this.model.attributes._id},type:'POST' })  
-          $.post('/workbench/mapping/execute/' + this.model.attributes._id,{},function() {console.log('succes')});
-          console.log('waw');  
+          
+           
         },
         
         initialize: function() {
-            
+               
+        },
+        
+        render: function() {
+           $(this.el).html(this.template(this.model.toJSON()));      
+           return this;            
+        }    
+    });
+    
+    app.ExecuteButtonView = Backbone.View.extend({
+        
+        template: _.template($('#executeMappingButton').html()),        
+        
+        events: {
+           'click button' : 'execute'
+        }, 
+        
+        execute: function() {
+            console.log('click');
+          //this.model.fetch({data:{'mapping_id':this.model.attributes._id},type:'POST' })  
+          $.post('/workbench/mapping/execute/' + this.model.attributes._id, function() {
+              app.render();
+              console.log('succes')});  
+        },          
+        
+        
+        initialize: function() {
+               
         },
         
         render: function() {
@@ -71,7 +107,9 @@
         
         clearmapping: function() {
           //this.model.fetch({data:{'mapping_id':this.model.attributes._id},type:'POST' })  
-          $.post('/workbench/clear/mapping/',{mappings: [app.currentModel.attributes._id]},function() {console.log('succes')});  
+          $.post('/workbench/clear/mapping/',{mappings: [app.currentModel.attributes._id]},function() {
+              app.render();
+              console.log('succes')});  
         },
         
         initialize: function() {
@@ -94,7 +132,9 @@
         
         clearallmappings: function() {
           //this.model.fetch({data:{'mapping_id':this.model.attributes._id},type:'POST' })  
-          $.post('/workbench/clear/all/mapping',function() {console.log('succes')});  
+          $.post('/workbench/clear/all/mapping',function() {
+              app.render();
+              console.log('succes')});  
         },
         
         initialize: function() {
@@ -129,13 +169,53 @@
        
        initialize: function(){
 		    this.model.on('change', this.render, this);
-       },     
-                    
+       },                
        
        render: function() {
             $(this.el).html(this.template(this.model.toJSON()));
             return this;  
        }
+    });
+    
+    app.TripleListView = Backbone.View.extend({
+        
+        events: {
+          'click .executeMappingButton' : 'execute'  
+        },
+        
+        execute: function() {
+            console.log('ac marche');  
+        },
+
+        initialize: function() {
+                
+        },     
+        render: function() {
+            $(this.el).empty();
+            _.each(this.model.models, function(triple) {
+                $(this.el).append(new app.TripleItemView({ model: triple }).render().el);
+            }, this);
+             
+            return this;
+        }       
+    });
+    
+    app.TripleItemView = Backbone.View.extend({
+        template: _.template($('#triplelist').html()),
+        initialize: function() {
+            
+        },
+        
+        events: {
+        },
+
+        render: function() {            
+            $(this.el).html(this.template(this.model.toJSON()));
+            $(this.el).change(function() {
+                console.log($(this.el).find('input'));
+            });
+            return this;
+        } 
     });
 
     app.MappingItemView = Backbone.View.extend({
@@ -149,14 +229,25 @@
         },
         
         events: {
-	        'click h5' : 'viewMapping'
+	        'click h6' : 'viewMapping'
         },
 
         viewMapping: function(ev){
-                console.log('test');
+                
                 console.log(this.model);
                 app.mappingsContentView.model = this.model; 
-                app.currentModel = this.model;
+                app.executeMappingView.model = this.model;
+                app.executeButtonView.model = this.model;
+                
+                var triples = [];
+                for(var i = 0; i < this.model.attributes.triples.length; i++) {
+                    triples.push(new app.Triple(this.model.attributes.triples[i]));
+                }              
+                
+                app.tripleListView.model = {models : triples};
+                
+                app.tripleListView.render();
+                app.executeButtonView.render();               
                 app.mappingsContentView.render(); 
                 //$('#mappingContent').html(app.mappingsContentView.render().el)  
         },
@@ -166,7 +257,7 @@
             $(this.el).attr('data-index', this.model.collection.indexOf(this.model));
             $(this.el).html(this.template(this.model.toJSON()));
             return this;
-        },
+        }
 
     });
     
@@ -216,7 +307,6 @@
         },
 
         viewPublish: function(ev){
-                console.log('test');
                 console.log(this.model);
                 app.publishContentView.model = this.model; 
                 app.publishContentView.render(); 
@@ -238,15 +328,33 @@
         },
         initialize: function() {
             app.mappings = new app.Mappings();
+            
+            
+            
             app.publishes = new app.Publishes();
-            app.mappings.fetch({success: function() {                
+            app.mappings.fetch({success: function() {   
+                
+                //replace <> with lt& en gt&    
+                for(var i = 0; i < app.mappings.models.length; i++) {
+                    var attributes = app.mappings.models[i].attributes;
+                    attributes.convertedData = attributes.data.replace(/</g,'&lt;').replace(/>/g, '&gt;');                                      
+                }         
                 app.currentModel = app.mappings.models[0];
                 if(app.currentModel == undefined) {
                     //app.currentModel = new app.Mapping();
                 }
+                
+                var triples = [];
+                for(var i = 0; i < app.currentModel.attributes.triples.length; i++) {
+                    triples.push(new app.Triple(app.currentModel.attributes.triples[i]));
+                }
+                
+                app.tripleListView = new app.TripleListView({model: { models:triples}});
+                
                 app.mappingsView = new app.MappingsView({model:app.mappings});
                 app.mappingsContentView = new app.MappingsContentView({model: app.currentModel});
                 app.executeMappingView = new app.ExecuteMappingView({model: app.currentModel});
+                app.executeButtonView = new app.ExecuteButtonView({model: app.currentModel});
                 app.clearMappingView = new app.ClearMappingView();
                 app.clearAllMappingsView = new app.ClearAllMappingsView();
                 $('#mappingMain').html(app.mappingsView.render().el);    
@@ -254,13 +362,19 @@
                 $('#mappingmenu').html(app.executeMappingView.render().el);
                 $('#clearmappingbutton').html(app.clearMappingView.render().el);
                 $('#clearallmappingsbutton').html(app.clearAllMappingsView.render().el);
+                $('#triplelistdiv').html(app.tripleListView.render().el);
+                $('#executeMappingButtonDiv').html(app.executeButtonView.render().el);
             }});            
             app.publishes.fetch({success: function() {
+                //replace <> with lt& en gt&    
+                for(var i = 0; i < app.publishes.models.length; i++) {
+                    var attributes = app.publishes.models[i].attributes;
+                    attributes.convertedData = attributes.data.replace(/</g,'&lt;').replace(/>/g, '&gt;');                                      
+                }
                 app.publishesView = new app.PublishesView({model:app.publishes});
-                app.publishesContentView = new app.PublishContentView({model: app.currentModel});
+                app.publishContentView = new app.PublishContentView({model: app.publishes.models[0]});
                 $('#publishMain').html(app.publishesView.render().el);    
-                $('#publishContent').html(app.publishesContentView.render().el);
-                         
+                $('#publishContent').html(app.publishContentView.render().el);                         
             }});           
         },
         default: function() {                    
@@ -269,33 +383,54 @@
     });
     
     app.render = function() {
-        app.mappings = new app.Mappings();
-            app.publishes = new app.Publishes();
-            app.mappings.fetch({success: function() {                
+        app.mappings.fetch({success: function() {   
+                
+                //replace <> with lt& en gt&    
+                for(var i = 0; i < app.mappings.models.length; i++) {
+                    var attributes = app.mappings.models[i].attributes;
+                    attributes.convertedData = attributes.data.replace(/</g,'&lt;').replace(/>/g, '&gt;');                                      
+                }         
                 app.currentModel = app.mappings.models[0];
+                //app.currentModel = app.mappings.models[0].attributes._id;
                 if(app.currentModel == undefined) {
-                    app.currentModel = new app.Mapping();
+                    //app.currentModel = new app.Mapping();
                 }
                 app.mappingsView = new app.MappingsView({model:app.mappings});
                 app.mappingsContentView = new app.MappingsContentView({model: app.currentModel});
                 app.executeMappingView = new app.ExecuteMappingView({model: app.currentModel});
+                app.executeButtonView = new app.ExecuteButtonView({model: app.currentModel});
                 app.clearMappingView = new app.ClearMappingView();
                 app.clearAllMappingsView = new app.ClearAllMappingsView();
+                
+                var triples = [];
+                for(var i = 0; i < app.currentModel.attributes.triples.length; i++) {
+                    triples.push(new app.Triple(app.currentModel.attributes.triples[i]));
+                }
+                
+                
+                app.tripleListView = new app.TripleListView({model: { models:triples}});
                 $('#mappingMain').html(app.mappingsView.render().el);    
                 $('#mappingContent').html(app.mappingsContentView.render().el);
                 $('#mappingmenu').html(app.executeMappingView.render().el);
                 $('#clearmappingbutton').html(app.clearMappingView.render().el);
                 $('#clearallmappingsbutton').html(app.clearAllMappingsView.render().el);
+                $('#triplelistdiv').html(app.tripleListView.render().el);
+                $('#executeMappingButtonDiv').html(app.executeButtonView.render().el);
             }});            
             app.publishes.fetch({success: function() {
+                //replace <> with lt& en gt&    
+                for(var i = 0; i < app.publishes.models.length; i++) {
+                    var attributes = app.publishes.models[i].attributes;
+                    attributes.convertedData = attributes.data.replace(/</g,'&lt;').replace(/>/g, '&gt;');                                      
+                }
                 app.publishesView = new app.PublishesView({model:app.publishes});
-                app.publishesContentView = new app.PublishContentView({model: app.currentModel});
+                app.publishContentView = new app.PublishContentView({model: app.publishes.models[0]});
                 $('#publishMain').html(app.publishesView.render().el);    
-                $('#publishContent').html(app.publishesContentView.render().el);
-                         
-            }});    
+                $('#publishContent').html(app.publishContentView.render().el);                         
+            }});   
     };
-
+    
+    
     
         app.firstLoad = true;
         app.router = new app.Router();

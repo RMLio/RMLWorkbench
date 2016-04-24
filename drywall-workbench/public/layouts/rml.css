@@ -1,7 +1,32 @@
 #mappingContent {
-    max-height: 400px
+    max-height: 400px;
+}
+
+#mappingMain {
+    max-height: 400px;
+}
+
+
+.mappingsView {
+    max-height: 400px;
+    overflow: auto;
+}
+
+#publishContent {
+    max-height: 400px;
+    min-height: 400px;
+}
+
+.publishView {
+    max-height: 400px;
+    overflow: auto
 }
 
 pre {
-    max-height:400px
+    max-height:400px;
+    min-height: 400px;
+}
+
+.menubutton {
+    min-width: 190px;
 }

@@ -149,6 +149,34 @@ block body
               textarea.form-control(id='inputSparqQuery' rows="2")      
             +licensesId('inputSparqlLicense')                           
             button.btn.btn-primary(id="btn_db_input") Connect
+            
+  div(id='executeMapping' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='executeMapping' style='display: none;')
+    div.modal-dialog(role='document')
+      div.modal-content
+        div.modal-header
+          button.close(type='button' data-dismiss='modal' aria-label='Close')
+            span(aria-hidden='true') ×
+          h4.modal-title Execute mapping
+        div.modal-body
+          form(role='form')
+            div.form-group
+              label Select triples  
+              div.well
+                div 
+                    label  
+                        input(id='radioAllTriples' type="checkbox") 
+                        | Select all
+                div(id='triplelistdiv')  
+                script#triplelist(type='text/template').
+                    <div>
+                        <label> 
+                            <input class='radioTriple' id='radioAllTriples' type="checkbox">     
+                            <%= triplename %>
+                        </label>
+                    </div>                       
+            div(id='executeMappingButtonDiv')      
+              script#executeMappingButton(type='text/template').
+                <button class='btn btn-primary' data-dismiss="modal" >Execute</button>
            
 
   div(id='upload-mapping' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='AreTheseUsed' style='display: none;')
@@ -209,7 +237,6 @@ block body
                 | File
             button(type='submit' id='publish_submit' class='btn btn-primary')
                 | Publish
-
 
    div(id='scheduleModal' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' style='display: none;')
     div.modal-dialog(role='document')
@@ -325,28 +352,38 @@ block body
                  div.btn-group-vertical(role='group')
                    form(id='mapping-upload-form' enctype='multipart/form-data' action='/workbench/fetch/mapping' method='post')
                      input(type='hidden', name='_csrf', value=_csrf)
-                   button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#upload-mapping')
+                   button(type='button' class='btn btn-primary btn-lg menubutton' for='mapping-upload-input' data-toggle='modal' data-target='#upload-mapping')
                      | Upload Mapping
                    input(type='file' id='mapping-upload-input' name='mappingUpload' style='display:none;' data-allowed-file-extensions="['rml.ttl', 'rml', 'ttl']")
                    button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#editMapping')
                      | Edit Mapping
                    div(id='mappingmenu')
+                   div(id='clearmappingbutton')
+                   div(id='clearallmappingsbutton')
                    script#execute(type='text/template').
-                     <button type='button' class='btn btn-primary btn-lg executemapping'>
+                     <button type='button' class='btn btn-primary btn-lg menubutton' data-toggle='modal' data-target='#executeMapping'>
                         Execute Mapping
-                     </button>                   
+                     </button>     
+                   script#clearmapping(type='text/template').
+                     <button type='button' class='btn btn-primary btn-lg clearmapping menubutton'>
+                        Clear Mapping
+                     </button>       
+                   script#clearallmappings(type='text/template').
+                     <button type='button' class='btn btn-primary btn-lg clearallmappings menubutton'>
+                        Clear All Mappings
+                     </button>       
            div.col-md-9
             div.panel.panel-info
                div.panel-heading
                  h3.panel-title Overview Mapping
                div.panel-body
                  div.row 
-                   div.col-md-2(id='mappingMain')
+                   div.col-md-3(id='mappingMain')
                      script#mapping-list-item(type='text/template').
-                       <h5><%= filename %></h5>                       
-                   div.col-md-10(id='mappingContent')
+                       <h6><%= filename %></h6>                       
+                   div.col-md-9(id='mappingContent')
                      script#mapping-content(type='text/template').
-                       <%= data %>
+                       <%= convertedData %>
       #publishing.tab-pane.fade
         br
         div.container-fluid
@@ -370,12 +407,12 @@ block body
                  h3.panel-title Overview Publishing
                div.panel-body
                   div.row 
-                      div.col-md-2(id='publishMain')
+                      div.col-md-3(id='publishMain')
                         script#publish-list-item(type='text/template').
-                          <h5><%= filename %></h5>                       
-                      div.col-md-10(id='publishContent')
+                          <h6><%= filename %></h6>                       
+                      div.col-md-9(id='publishContent')
                         script#publish-content(type='text/template').
-                          <%= data %>
+                          <%= convertedData %>
 
       #schedule.tab-pane.fade
         br

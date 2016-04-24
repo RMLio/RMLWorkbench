@@ -55,7 +55,7 @@ exports = module.exports = function(app, passport, upload, ldfserver) {
 
   //scheduling on workbench
   app.post('/workbench/addToSchedule', workbenchCtrl.addToSchedule);
-
+  
   //clearing workbench
   app.post('/workbench/clear/all/source', workbenchCtrl.clearAllSources);
   app.post('/workbench/clear/all/mapping', workbenchCtrl.clearAllMappings);

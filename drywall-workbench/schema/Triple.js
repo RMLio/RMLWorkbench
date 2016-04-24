@@ -4,6 +4,7 @@ exports = module.exports = function(app, mongoose) {
   var tripleSchema = new mongoose.Schema({
     _id: { type: mongoose.Schema.Types.ObjectId },
     triplename: { type: String, default: '' },    
+    local: {type: Boolean, default: false},
     logicalsource : {
       rmlsource : { type: String, default: '' },
       rmlreferenceformulation : { type: String, default: '' },

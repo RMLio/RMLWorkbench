@@ -1,7 +1,6 @@
 *~
 public/vendor/*
 
-
 drywall-workbench/node_modules/*
 
 *.min.js

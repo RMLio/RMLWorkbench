@@ -58,7 +58,8 @@ block body
               label(for='my-file-selector') File
               input(id='my-file-selector' type='file' data-allowed-file-extensions="['csv', 'xml', 'txt', 'json']")
               p.help-block Only CSV, XML and JSON are supported.
-            div.form-group
+            +licensesId('inputFileLicense')  
+            //div.form-group
               label(for='inputFileLicense') License
               select.selectpicker.form-control(id='inputFileLicense' data-live-search='true' title="Choose a license.")
                 +licenses
@@ -86,7 +87,8 @@ block body
             div.form-group
               label(for='inputDBPass') Password
               input.form-control(id='inputDBPass' type='password' placeholder='password')
-            div.form-group
+            +licensesId('inputDBLicense') 
+            //div.form-group
               label(for='inputDBLicense') License
               select.selectpicker.form-control(id='inputDBLicense' data-live-search='true' title="Choose a license.")
                 +licenses
@@ -108,17 +110,18 @@ block body
             div.form-group
               label(for='inputAPIURL') Template URL
               input.form-control(id='inputAPIURL' type='text' placeholder='url')
+            +licensesId('inputAPILicense') 
             //div.form-group
               label(for='inputTemplateParam') Template Parameter
               input.form-control(id='inputTemplateParam' type='text' placeholder='{example}')
               label
                 input(type='checkbox')
                 | Required
-            div.form-group
+            //div.form-group
               label(for='inputAPILicense') License
               select.selectpicker.form-control(id='inputAPILicense' data-live-search='true' title="Choose a license.")
                 +licenses
-            button.btn.btn-primary(id="btn_db_input") Connect
+            button.btn.btn-primary(id="btn_api_input") Connect
 
   div(id='sparql-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='sparqlInputLabel' style='display: none;')
     div.modal-dialog(role='document')
@@ -148,8 +151,33 @@ block body
               label(for='inputSparqlQuery') DataQuery
               textarea.form-control(id='inputSparqQuery' rows="2")      
             +licensesId('inputSparqlLicense')                           
+            button.btn.btn-primary(id="btn_sparql_input") Connect
+  
+  
+  div(id='description-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='descriptionLabel' style='display: none;')
+    div.modal-dialog(role='document')
+      div.modal-content
+        div.modal-header
+          button.close(type='button' data-dismiss='modal' aria-label='Close')
+            span(aria-hidden='true') ×
+          h4.modal-title Define a Description
+        div.modal-body
+          form(role='form')
+            div.form-group
+              label(for='DescriptionName') Name
+              input.form-control(id='DescriptionName' type='text' placeholder='Descriptive name')
+            div.form-group
+              label(for='DescriptionType') Type
+              input.form-control(id='DescriptionType' type='text' placeholder='type')
+            div.form-group
+              label(for='DescriptionPrefix') Prefix
+              input.form-control(id='DescriptionType' type='text' placeholder='prefix')
+            div.form-group
+              label(for='DescriptionData') Data
+              textarea.form-control(id='DescriptionData' rows="2")      
+            //+licensesId('DescriptionlLicense')                           
             button.btn.btn-primary(id="btn_db_input") Connect
-            
+         
   div(id='executeMapping' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='executeMapping' style='display: none;')
     div.modal-dialog(role='document')
       div.modal-content

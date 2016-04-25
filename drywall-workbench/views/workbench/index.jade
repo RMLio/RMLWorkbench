@@ -176,7 +176,7 @@ block body
               label(for='DescriptionData') Data
               textarea.form-control(id='DescriptionData' rows="2")      
             //+licensesId('DescriptionlLicense')                           
-            button.btn.btn-primary(id="btn_db_input") Connect
+            button.btn.btn-primary(id="btn_db_input") Add
          
   div(id='executeMapping' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='executeMapping' style='display: none;')
     div.modal-dialog(role='document')
@@ -362,6 +362,8 @@ block body
                     | Database
                   button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#api-input')
                     | Web API
+                  button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#description-input')
+                    | Data Description
           div.col-md-9
             div.panel.panel-info
                div.panel-heading

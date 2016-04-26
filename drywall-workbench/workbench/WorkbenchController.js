@@ -103,6 +103,7 @@ var exports = module.exports = {
         console.log('[WORKBENCH LOG] ' + user.username + ' tries to upload RDF file...');
         //create rdf fields
         reader.readRDFFields(file, (rdf) => {
+            
             saver.saveRDF(rdf, req.app.db.models, user, () => {
                 console.log('[WORKBENCH LOG] Upload successful!');
                 res.send(200);
@@ -318,6 +319,14 @@ var exports = module.exports = {
             console.log('[WORKBENCH LOG] Retrieving rdf successful!');
             res.send(rdf);
         });
+    },
+    
+    /**
+     * Provenance
+     */
+    
+    createProvenance: function(req, res) {
+        
     }
 
 }

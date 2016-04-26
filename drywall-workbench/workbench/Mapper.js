@@ -76,15 +76,16 @@ var exports = module.exports =  {
 		}       
         
 	
-		
-		if(needed.length == sourcenames.length) {
+		console.log(needed);
+        console.log(sourcenames);
+		//if(needed.length == sourcenames.length) {
 			//execute the mapping with the RML Mapper		
 			rmlMapper.execute(mappingfile, triples, needed, (rdf) => {
 				callback(rdf);
 			});
-		} else {
-			callback(null);
-		}
+		//} else {
+		//	callback(null);
+		//}
 	},
 
 	//executing multiple mappings

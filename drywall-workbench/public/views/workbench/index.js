@@ -25,7 +25,7 @@
     
     app.Mapping = Backbone.Model.extend({
         idAttribute: '_id',
-        defaults: {
+        defaults: { 
             _id: undefined,
             filename: ''
         },

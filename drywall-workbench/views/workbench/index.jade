@@ -33,11 +33,6 @@ mixin licensesId(Id)
           each l in cat
               option= l.name + ' (' + l.abbreviation + ')'
 
-mixin licenses
-  each cat in licenses
-    optgroup(label=cat[0].category)
-      each l in cat
-          option= l.name + ' (' + l.abbreviation + ')'
 block body
 
   div(id='upload-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' style='display: none;')
@@ -49,7 +44,6 @@ block body
           h4.modal-title Upload an input file
         div.modal-body
           form(role='form')
-            input(type='hidden', name='_csrf', value=_csrf)
             div.form-group
               label(for='inputFileName') Name
               input.form-control(id='inputFileName' type='text' placeholder='Descriptive name')
@@ -57,12 +51,26 @@ block body
               label(for='my-file-selector') File
               input(id='my-file-selector' type='file' data-allowed-file-extensions="['csv', 'xml', 'txt', 'json']")
               p.help-block Only CSV, XML and JSON are supported.
-            +licensesId('inputFileLicense')  
-            //div.form-group
-              label(for='inputFileLicense') License
-              select.selectpicker.form-control(id='inputFileLicense' data-live-search='true' title="Choose a license.")
-                +licenses
+            +licensesId('inputFileLicense')
             button.btn.btn-primary(id="btn_file_input") Upload
+
+  div(id='dcat-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='DCATInputLabel' style='display: none;')
+    div.modal-dialog(role='document')
+      div.modal-content
+        div.modal-header
+          button.close(type='button' data-dismiss='modal' aria-label='Close')
+            span(aria-hidden='true') ×
+          h4.modal-title Add a Data Catalog.
+        div.modal-body
+          form(role='form')
+            div.form-group
+              label(for='inputDCATName') Name
+              input.form-control(id='inputDDCATName' type='text' placeholder='Descriptive name')
+            div.form-group
+              label(for='inputDCATURL') URL
+              input.form-control(id='inputDCATURL' type='text' placeholder='url')
+            +licensesId('inputDCATLicense') 
+            button.btn.btn-primary(id="btn_dcat_input") Add
 
   div(id='db-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='databaseInputLabel' style='display: none;')
     div.modal-dialog(role='document')
@@ -70,7 +78,7 @@ block body
         div.modal-header
           button.close(type='button' data-dismiss='modal' aria-label='Close')
             span(aria-hidden='true') ×
-          h4.modal-title Connect to a Database
+          h4.modal-title Add a Database description
         div.modal-body
           form(role='form')
             input(type='hidden', name='_csrf', value=_csrf)
@@ -81,17 +89,28 @@ block body
               label(for='inputDBURL') URL
               input.form-control(id='inputDBURL' type='text' placeholder='url')
             div.form-group
-              label(for='inputDBPass') Username
-              input.form-control(id='inputDBPass' type='password' placeholder='user')
+              label(for='inputDBDriver') JDBC driver
+              select.selectpicker.form-control(id='inputDBDrive')
+                option com.mysql.jdbc.Driver
+                option org.firebirdsql.jdbc.FBDriver
+                option oracle.jdbc.OracleDriver
+                option org.h2.Driver
+                option org.hsqldb.jdbcDriver
+                option com.ibm.db2.jcc.DB2Driver
+                option com.ibm.as400.access.AS400JDBCDriver
+                option org.apache.derby.jdbc.EmbeddedDriver
+                option com.teradata.jdbc.TeraDriver
+                option com.sybase.jdbc3.jdbc.SybDriver
+                option com.microsoft.sqlserver.jdbc.SQLServerDriver
+                option net.sourceforge.jtds.jdbc.Driver
+            div.form-group
+              label(for='inputDBUser') Username
+              input.form-control(id='inputDBUser' type='password' placeholder='user')
             div.form-group
               label(for='inputDBPass') Password
               input.form-control(id='inputDBPass' type='password' placeholder='password')
             +licensesId('inputDBLicense') 
-            //div.form-group
-              label(for='inputDBLicense') License
-              select.selectpicker.form-control(id='inputDBLicense' data-live-search='true' title="Choose a license.")
-                +licenses
-            button.btn.btn-primary(id="btn_db_input") Connect
+            button.btn.btn-primary(id="btn_db_input") Add
 
   div(id='api-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='apiInputLabel' style='display: none;')
     div.modal-dialog(role='document')
@@ -99,10 +118,9 @@ block body
         div.modal-header
           button.close(type='button' data-dismiss='modal' aria-label='Close')
             span(aria-hidden='true') ×
-          h4.modal-title Connect to an API
+          h4.modal-title Add an Web API
         div.modal-body
           form(role='form')
-            input(type='hidden', name='_csrf', value=_csrf)
             div.form-group
               label(for='inputAPIName') Name
               input.form-control(id='inputAPIName' type='text' placeholder='Descriptive name')
@@ -110,17 +128,7 @@ block body
               label(for='inputAPIURL') Template URL
               input.form-control(id='inputAPIURL' type='text' placeholder='url')
             +licensesId('inputAPILicense') 
-            //div.form-group
-              label(for='inputTemplateParam') Template Parameter
-              input.form-control(id='inputTemplateParam' type='text' placeholder='{example}')
-              label
-                input(type='checkbox')
-                | Required
-            //div.form-group
-              label(for='inputAPILicense') License
-              select.selectpicker.form-control(id='inputAPILicense' data-live-search='true' title="Choose a license.")
-                +licenses
-            button.btn.btn-primary(id="btn_api_input") Connect
+            button.btn.btn-primary(id="btn_api_input") Add
 
   div(id='sparql-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='sparqlInputLabel' style='display: none;')
     div.modal-dialog(role='document')
@@ -128,7 +136,7 @@ block body
         div.modal-header
           button.close(type='button' data-dismiss='modal' aria-label='Close')
             span(aria-hidden='true') ×
-          h4.modal-title Connect to an SPARQL endpoint
+          h4.modal-title Add an SPARQL endpoint
         div.modal-body
           form(role='form')
             div.form-group
@@ -150,7 +158,74 @@ block body
               label(for='inputSparqlQuery') DataQuery
               textarea.form-control(id='inputSparqQuery' rows="2")      
             +licensesId('inputSparqlLicense')                           
-            button.btn.btn-primary(id="btn_sparql_input") Connect
+            button.btn.btn-primary(id="btn_sparql_input") Add
+            
+            
+  div(id='csvw-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='csvwInputLabel' style='display: none;')
+    div.modal-dialog(role='document')
+      div.modal-content
+        div.modal-header
+          button.close(type='button' data-dismiss='modal' aria-label='Close')
+            span(aria-hidden='true') ×
+          h4.modal-title Add a CSV on the Web description
+        div.modal-body
+          form(role='form')
+            div.form-group
+              label(for='inputcsvwName') Name
+              input.form-control(id='inputcsvwName' type='text' placeholder='Descriptive name')
+            div.form-group
+              label(for='inputcsvwURL') URL
+              input.form-control(id='inputcsvwURL' type='text' placeholder='URL')
+            div.form-group
+              label(for='inputcsvwIterator') Delimiter
+              input.form-control(id='inputcsvwDelimiter' type='text' placeholder='')
+            div.form-group
+              label(for='inputcsvwHeader') Header
+              input.form-control(id='inputcsvwHeader' type='text')
+            div.form-group
+              label(for='inputcsvwEncoding') Encoding
+              select.selectpicker.form-control(id='inputcsvwType')
+                option utf-8
+                option ibm866
+                option iso-8859-2
+                option iso-8859-3
+                option iso-8859-4
+                option iso-8859-5
+                option iso-8859-6
+                option iso-8859-7
+                option iso-8859-8
+                option iso-8859-8-i
+                option iso-8859-10
+                option iso-8859-13
+                option iso-8859-14
+                option iso-8859-15
+                option iso-8859-16
+                option koi8-r
+                option koi8-u
+                option macintosh
+                option windows-874
+                option windows-1250
+                option windows-1251
+                option windows-1252
+                option windows-1253
+                option windows-1254
+                option windows-1255
+                option windows-1256
+                option windows-1257
+                option windows-1258
+                option x-mac-cyrillic
+                option gbk
+                option gb18030
+                option big5
+                option euc-jp
+                option iso-2022-jp
+                option shift_jis
+                option euc-kr
+                option utf-16be
+                option utf-16le
+
+            +licensesId('inputcsvwLicense')                           
+            button.btn.btn-primary(id="btn_csvw_input") Add
   
   
   div(id='description-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='descriptionLabel' style='display: none;')
@@ -345,21 +420,20 @@ block body
                 h3.panel-title Menu
               div.panel-body.text-center
                 div.btn-group-vertical(role='group')
-                  form(enctype='multipart/form-data' action='/workbench/fetch/input' method='post')
-                  input(type='hidden', name='_csrf', value=_csrf)
+                  //form(enctype='multipart/form-data' action='/workbench/fetch/input' method='post')
                   button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#upload-input')
                     | Upload Dataset
-                  //label(class='btn btn-primary btn-lg')
-                    | Upload Dataset
-                    input(type='file' name='sourceUpload' style='display:none;' data-allowed-file-extensions="['rml.ttl', 'rml', 'ttl']")
-                  button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#sparql-input')
-                    | SPARQL
                   button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#db-input')
                     | Database
+                  button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#dcat-input')
+                    | DCAT                   
                   button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#api-input')
                     | Web API
-                  button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#description-input')
-                    | Data Description
+                  button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#sparql-input')
+                    | SPARQL
+                  button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#csvw-input')
+                    | CSVW   
+                    
           div.col-md-9
             div.panel.panel-info
                div.panel-heading

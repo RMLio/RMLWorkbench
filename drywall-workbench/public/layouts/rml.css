@@ -30,3 +30,8 @@ pre {
 .menubutton {
     min-width: 190px;
 }
+
+.triplewell {
+    max-height: 400px;
+    overflow:auto;
+}

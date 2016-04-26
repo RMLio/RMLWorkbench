@@ -263,10 +263,10 @@ block body
           form(role='form')
             div.form-group
               label Select triples  
-              div.well
+              div(class="well triplewell")
                 div 
                     label  
-                        input(id='radioAllTriples' type="checkbox") 
+                        input(id='selectAllCheckbox' type="checkbox") 
                         | Select all
                 div(id='triplelistdiv')  
                 script#triplelist(type='text/template').

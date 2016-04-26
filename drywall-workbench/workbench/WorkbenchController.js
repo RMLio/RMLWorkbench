@@ -140,9 +140,14 @@ var exports = module.exports = {
         var models = req.app.db.models;
         //execute the mapping
         mapper.executeMappingFromTriples(user, models, triples, mapping_id, (rdf) => {
-            saver.saveRDF(rdf, models, user, () => {
+            if(rdf!=null) {
+                saver.saveRDF(rdf, models, user, () => {
+                    res.send(200);
+                });
+            } else {
                 res.send(200);
-            });
+            }
+
         });
     },
     

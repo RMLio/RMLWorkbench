@@ -30,7 +30,11 @@ var exports = module.exports =  {
 	        util.retrieveFile(mapping_id, models.Mapping, (mapping) => {
                 util.retrieveFiles(triples, models.Triple, (triples) => {
                     exports.executeFromTriples(mapping, triples, sources, (rdf) => {
-	                    console.log('[WORKBENCH LOG] Generating RDF successful!');
+	                    if(rdf!=null) {
+	                		console.log('[WORKBENCH LOG] Generating RDF successful!');
+						} else {
+							console.log('[WORKBENCH LOG] Necessary sources not available!');
+						}
 	                    callback(rdf);
 	                });    
                 });	            
@@ -75,17 +79,17 @@ var exports = module.exports =  {
 			}
 		}       
         
-	
 		console.log(needed);
-        console.log(sourcenames);
-		//if(needed.length == sourcenames.length) {
+		console.log(sourcenames);
+		
+		if(needed.length == sourcenames.length) {
 			//execute the mapping with the RML Mapper		
 			rmlMapper.execute(mappingfile, triples, needed, (rdf) => {
 				callback(rdf);
 			});
-		//} else {
-		//	callback(null);
-		//}
+		} else {
+			callback(null);
+		}
 	},
 
 	//executing multiple mappings

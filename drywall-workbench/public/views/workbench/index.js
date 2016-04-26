@@ -9,6 +9,8 @@
     app = app || {};
     
     app.currentModel;
+    
+    app.currentTriples = [];
 
     app.Publish = Backbone.Model.extend({
         idAttribute: '_id',
@@ -66,6 +68,20 @@
         
         render: function() {
            $(this.el).html(this.template(this.model.toJSON()));      
+           $('#selectAllCheckbox').change(function() {
+               var selections = $('#triplelistdiv').children().children();
+               if($('#selectAllCheckbox').prop( "checked" )) {                    
+                    for(var i = 0; i < selections.length; i++) {
+                        var selection = selections.eq(i).find('input');
+                        selections.eq(i).find('input').prop('checked', true);
+                        
+                    }    
+               } else {
+                    for(var i = 0; i < selections.length; i++) {
+                        selections.eq(i).find('input').prop('checked', false);
+                    }   
+               }
+           });
            return this;            
         }    
     });
@@ -81,13 +97,20 @@
         execute: function() {
           
           var selections = $('#triplelistdiv').children().children();
-          
+          var triplesToBeExecuted = [];
           for(var i = 0; i < selections.length; i++) {
-              console.log(selections.eq(i).find('input').val());
+              if(selections.eq(i).find('input').prop('checked')) {
+                  triplesToBeExecuted.push(this.model.attributes.triples[i]._id);
+              }
           }  
+          
+          console.log(triplesToBeExecuted);
+          
+          var triples = {
+              triples: triplesToBeExecuted
+          }
             
-          $.post('/workbench/mapping/execute/' + this.model.attributes._id, function() {
-              
+          $.post('/workbench/mapping/execute/'+this.model.attributes._id+'/triples', triples , function() {              
               app.render();
           });  
         },          
@@ -391,11 +414,8 @@
     });
     
     app.render = function() {
-        app.mappings.fetch({success: function() {   
+        app.mappings.fetch({success: function() {           
             
-            
-                
-                
                 if(app.mappings.models.length != 0) {
                 
                     //replace <> with lt& en gt&    

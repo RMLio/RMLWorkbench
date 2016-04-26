@@ -4,7 +4,7 @@
 
     'use strict';
     
-    console.log('executed...');
+
 
     app = app || {};
     
@@ -79,11 +79,17 @@
         }, 
         
         execute: function() {
-            console.log('click');
-          //this.model.fetch({data:{'mapping_id':this.model.attributes._id},type:'POST' })  
+          
+          var selections = $('#triplelistdiv').children().children();
+          
+          for(var i = 0; i < selections.length; i++) {
+              console.log(selections.eq(i).find('input').val());
+          }  
+            
           $.post('/workbench/mapping/execute/' + this.model.attributes._id, function() {
+              
               app.render();
-              console.log('succes')});  
+          });  
         },          
         
         
@@ -109,7 +115,7 @@
           //this.model.fetch({data:{'mapping_id':this.model.attributes._id},type:'POST' })  
           $.post('/workbench/clear/mapping/',{mappings: [app.currentModel.attributes._id]},function() {
               app.render();
-              console.log('succes')});  
+              });  
         },
         
         initialize: function() {
@@ -134,7 +140,7 @@
           //this.model.fetch({data:{'mapping_id':this.model.attributes._id},type:'POST' })  
           $.post('/workbench/clear/all/mapping',function() {
               app.render();
-              console.log('succes')});  
+              });  
         },
         
         initialize: function() {
@@ -184,7 +190,7 @@
         },
         
         execute: function() {
-            console.log('ac marche');  
+  
         },
 
         initialize: function() {
@@ -211,9 +217,7 @@
 
         render: function() {            
             $(this.el).html(this.template(this.model.toJSON()));
-            $(this.el).change(function() {
-                console.log($(this.el).find('input'));
-            });
+            
             return this;
         } 
     });
@@ -233,8 +237,8 @@
         },
 
         viewMapping: function(ev){
-                
-                console.log(this.model);
+              
+               
                 app.mappingsContentView.model = this.model; 
                 app.executeMappingView.model = this.model;
                 app.executeButtonView.model = this.model;
@@ -307,7 +311,7 @@
         },
 
         viewPublish: function(ev){
-                console.log(this.model);
+               
                 app.publishContentView.model = this.model; 
                 app.publishContentView.render(); 
                 //$('#mappingContent').html(app.mappingsContentView.render().el)  
@@ -334,36 +338,40 @@
             app.publishes = new app.Publishes();
             app.mappings.fetch({success: function() {   
                 
-                //replace <> with lt& en gt&    
-                for(var i = 0; i < app.mappings.models.length; i++) {
-                    var attributes = app.mappings.models[i].attributes;
-                    attributes.convertedData = attributes.data.replace(/</g,'&lt;').replace(/>/g, '&gt;');                                      
-                }         
-                app.currentModel = app.mappings.models[0];
-                if(app.currentModel == undefined) {
-                    //app.currentModel = new app.Mapping();
+                if(app.mappings.models.length != 0) {
+                
+                    //replace <> with lt& en gt&    
+                    for(var i = 0; i < app.mappings.models.length; i++) {
+                        var attributes = app.mappings.models[i].attributes;
+                        attributes.convertedData = attributes.data.replace(/</g,'&lt;').replace(/>/g, '&gt;');                                      
+                    }         
+                    app.currentModel = app.mappings.models[0];
+                    if(app.currentModel == undefined) {
+                        //app.currentModel = new app.Mapping();
+                    }
+                    
+                    var triples = [];
+                    for(var i = 0; i < app.currentModel.attributes.triples.length; i++) {
+                        triples.push(new app.Triple(app.currentModel.attributes.triples[i]));
+                    }
+                    
+                    app.tripleListView = new app.TripleListView({model: { models:triples}});
+                    
+                    app.mappingsView = new app.MappingsView({model:app.mappings});
+                    app.mappingsContentView = new app.MappingsContentView({model: app.currentModel});
+                    app.executeMappingView = new app.ExecuteMappingView({model: app.currentModel});
+                    app.executeButtonView = new app.ExecuteButtonView({model: app.currentModel});
+                    app.clearMappingView = new app.ClearMappingView();
+                    app.clearAllMappingsView = new app.ClearAllMappingsView();
+                    $('#mappingMain').html(app.mappingsView.render().el);    
+                    $('#mappingContent').html(app.mappingsContentView.render().el);
+                    $('#mappingmenu').html(app.executeMappingView.render().el);
+                    $('#clearmappingbutton').html(app.clearMappingView.render().el);
+                    $('#clearallmappingsbutton').html(app.clearAllMappingsView.render().el);
+                    $('#triplelistdiv').html(app.tripleListView.render().el);
+                    $('#executeMappingButtonDiv').html(app.executeButtonView.render().el);
+                
                 }
-                
-                var triples = [];
-                for(var i = 0; i < app.currentModel.attributes.triples.length; i++) {
-                    triples.push(new app.Triple(app.currentModel.attributes.triples[i]));
-                }
-                
-                app.tripleListView = new app.TripleListView({model: { models:triples}});
-                
-                app.mappingsView = new app.MappingsView({model:app.mappings});
-                app.mappingsContentView = new app.MappingsContentView({model: app.currentModel});
-                app.executeMappingView = new app.ExecuteMappingView({model: app.currentModel});
-                app.executeButtonView = new app.ExecuteButtonView({model: app.currentModel});
-                app.clearMappingView = new app.ClearMappingView();
-                app.clearAllMappingsView = new app.ClearAllMappingsView();
-                $('#mappingMain').html(app.mappingsView.render().el);    
-                $('#mappingContent').html(app.mappingsContentView.render().el);
-                $('#mappingmenu').html(app.executeMappingView.render().el);
-                $('#clearmappingbutton').html(app.clearMappingView.render().el);
-                $('#clearallmappingsbutton').html(app.clearAllMappingsView.render().el);
-                $('#triplelistdiv').html(app.tripleListView.render().el);
-                $('#executeMappingButtonDiv').html(app.executeButtonView.render().el);
             }});            
             app.publishes.fetch({success: function() {
                 //replace <> with lt& en gt&    
@@ -384,38 +392,51 @@
     
     app.render = function() {
         app.mappings.fetch({success: function() {   
+            
+            
                 
-                //replace <> with lt& en gt&    
-                for(var i = 0; i < app.mappings.models.length; i++) {
-                    var attributes = app.mappings.models[i].attributes;
-                    attributes.convertedData = attributes.data.replace(/</g,'&lt;').replace(/>/g, '&gt;');                                      
-                }         
-                app.currentModel = app.mappings.models[0];
-                //app.currentModel = app.mappings.models[0].attributes._id;
-                if(app.currentModel == undefined) {
-                    //app.currentModel = new app.Mapping();
+                
+                if(app.mappings.models.length != 0) {
+                
+                    //replace <> with lt& en gt&    
+                    for(var i = 0; i < app.mappings.models.length; i++) {
+                        var attributes = app.mappings.models[i].attributes;
+                        attributes.convertedData = attributes.data.replace(/</g,'&lt;').replace(/>/g, '&gt;');                                      
+                    }       
+                    
+                    app.currentModel = app.mappings.models[0];
+
+
+                    app.mappingsView = new app.MappingsView({model:app.mappings});
+                    app.mappingsContentView = new app.MappingsContentView({model: app.currentModel});
+                    app.executeMappingView = new app.ExecuteMappingView({model: app.currentModel});
+                    app.executeButtonView = new app.ExecuteButtonView({model: app.currentModel});
+                    app.clearMappingView = new app.ClearMappingView();
+                    app.clearAllMappingsView = new app.ClearAllMappingsView();
+                    
+                    var triples = [];
+                    for(var i = 0; i < app.currentModel.attributes.triples.length; i++) {
+                        triples.push(new app.Triple(app.currentModel.attributes.triples[i]));
+                    }
+                    
+                    
+                    app.tripleListView = new app.TripleListView({model: { models:triples}});
+                    $('#mappingMain').html(app.mappingsView.render().el);    
+                    $('#mappingContent').html(app.mappingsContentView.render().el);
+                    $('#mappingmenu').html(app.executeMappingView.render().el);
+                    $('#clearmappingbutton').html(app.clearMappingView.render().el);
+                    $('#clearallmappingsbutton').html(app.clearAllMappingsView.render().el);
+                    $('#triplelistdiv').html(app.tripleListView.render().el);
+                    $('#executeMappingButtonDiv').html(app.executeButtonView.render().el);
+                } else {
+                    $('#mappingMain').empty()    
+                    $('#mappingContent').empty()
+                    $('#mappingmenu').empty()
+                    $('#clearmappingbutton').empty()
+                    $('#clearallmappingsbutton').empty()
+                    $('#triplelistdiv').empty()
+                    $('#executeMappingButtonDiv').empty()
                 }
-                app.mappingsView = new app.MappingsView({model:app.mappings});
-                app.mappingsContentView = new app.MappingsContentView({model: app.currentModel});
-                app.executeMappingView = new app.ExecuteMappingView({model: app.currentModel});
-                app.executeButtonView = new app.ExecuteButtonView({model: app.currentModel});
-                app.clearMappingView = new app.ClearMappingView();
-                app.clearAllMappingsView = new app.ClearAllMappingsView();
-                
-                var triples = [];
-                for(var i = 0; i < app.currentModel.attributes.triples.length; i++) {
-                    triples.push(new app.Triple(app.currentModel.attributes.triples[i]));
-                }
-                
-                
-                app.tripleListView = new app.TripleListView({model: { models:triples}});
-                $('#mappingMain').html(app.mappingsView.render().el);    
-                $('#mappingContent').html(app.mappingsContentView.render().el);
-                $('#mappingmenu').html(app.executeMappingView.render().el);
-                $('#clearmappingbutton').html(app.clearMappingView.render().el);
-                $('#clearallmappingsbutton').html(app.clearAllMappingsView.render().el);
-                $('#triplelistdiv').html(app.tripleListView.render().el);
-                $('#executeMappingButtonDiv').html(app.executeButtonView.render().el);
             }});            
             app.publishes.fetch({success: function() {
                 //replace <> with lt& en gt&    
@@ -429,6 +450,51 @@
                 $('#publishContent').html(app.publishContentView.render().el);                         
             }});   
     };
+    
+    
+    
+    
+    /*
+    *   ##########
+    *   # JQuery #
+    *   ##########
+    */
+    
+    $("#uploadMapping_Form").on("submit", function(event){
+        event.preventDefault();                     
+
+
+        var form_url = $("form[id='uploadMapping_Form']").attr("action");
+        var CSRF_TOKEN = $('input[name="_csrf"]').val();                    
+
+        var form = new FormData();
+        form.append('mappingUpload', $('input[id=mappingFile]')[0].files[0]); 
+
+        
+
+
+        $.ajax({
+            url:  form_url,
+            type: 'POST',
+            headers: {
+                'X-CSRF-Token': $.cookie("_csrfToken")
+            },
+            "mimeType": "multipart/form-data",
+            data: form,
+            contentType: false, 
+            processData: false,
+            
+            dataType: 'JSON',
+            statusCode: {
+                200: function() {
+                    app.render();
+                }   
+            }            
+        }); 
+        
+                           
+});
+    
     
     
     

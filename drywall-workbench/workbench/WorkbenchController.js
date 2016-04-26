@@ -20,7 +20,7 @@ var exports = module.exports = {
         sparql.addSparqlEndpoint(req.body.endpoint,req.user,
         req.app.db.models, () => {
             //?
-            res.send();
+            res.send(200);
         })
     },
 
@@ -29,14 +29,14 @@ var exports = module.exports = {
         sparql.removeEndpoint(req.body.endpoint, req.user, 
         req.app.db.models, () => {
             //?
-            res.send();
+            res.send(200);
         });
     }, 
     
     removeAllSparqlEndpoints: function(req, res) {
         sparql.removeEndpoints(req.user, req.app.db.models, () => {
             //?
-            res.send();      
+            res.send(200);      
         });
     },   
 
@@ -72,7 +72,7 @@ var exports = module.exports = {
             //save to db
             saver.saveMapping(mapping, models, user, () => {
                 console.log('[WORKBENCH LOG] Upload successful!');
-                res.send();
+                res.send(200);
             });
         });
 
@@ -88,7 +88,7 @@ var exports = module.exports = {
         reader.readSourceFields(file, (source) => {
             saver.saveSource(source, models, user, () => {
                 console.log('[WORKBENCH LOG] Upload successful!');
-                res.send();
+                res.send(200);
             });
         });
     },
@@ -105,7 +105,7 @@ var exports = module.exports = {
         reader.readRDFFields(file, (rdf) => {
             saver.saveRDF(rdf, req.app.db.models, user, () => {
                 console.log('[WORKBENCH LOG] Upload successful!');
-                res.send();
+                res.send(200);
             });
         });
     },
@@ -122,10 +122,10 @@ var exports = module.exports = {
         mapper.executeMappingFromFile(mapping_id, models, user, sources, (rdf) => {
             if(rdf!=null) {
                 saver.saveRDF(rdf, models, user, () => {
-                    res.send();
+                    res.send(200);
                 });
             } else {
-                res.send();
+                res.send(200);
             }
 
         });
@@ -140,7 +140,7 @@ var exports = module.exports = {
         //execute the mapping
         mapper.executeMappingFromTriples(user, models, triples, mapping_id, (rdf) => {
             saver.saveRDF(rdf, models, user, () => {
-                res.send();
+                res.send(200);
             });
         });
     },
@@ -160,7 +160,7 @@ var exports = module.exports = {
            for(var i = 0; i < descriptions.length; i++) {
                //save description
                 saver.saveDescription(descriptions,models, req.user, () => {
-                   res.send(); 
+                   res.send(200); 
                 });   
            }           
         });
@@ -224,7 +224,7 @@ var exports = module.exports = {
                 }
             });
         });
-        res.send();
+        res.send(200);
     },
 
     /**
@@ -234,49 +234,49 @@ var exports = module.exports = {
     //clear all data of the user
     clearAll: function(req, res) {
         clearer.clearAll(req.user, req.app.db.models, () => {
-            res.send();
+            res.send(200);
         });
     },
 
     //clear all sources of the user
     clearAllSources: function(req, res) {
         clearer.clearAllSources(req.user, req.app.db.models, () => {
-            res.send();
+            res.send(200);
         });
     },
 
     //clear all sources of the user
     clearSources: function(req, res) {
         clearer.clearSources(req.user, req.app.db.models, req.body.sources, () => {
-            res.send();
+            res.send(200);
         });
     },
 
     //clear all mappings
     clearAllMappings: function(req, res) {
         clearer.clearAllMappings(req.user, req.app.db.models, () => {
-            res.send();
+            res.send(200);
         });
     },
 
     //clear all mappings of the user
     clearMappings: function(req, res) {
         clearer.clearMappings(req.user, req.app.db.models, req.body.mappings, () => {
-            res.send();
+            res.send(200);
         });
     },
 
     //clear all rdfs
     clearAllRdf: function(req, res) {
         clearer.clearAllRdf(req.user, req.app.db.models, () => {
-            res.send();
+            res.send(200);
         });
     },
 
     //clear all rdf of the user
     clearRdf: function(req, res) {
         clearer.clearRdf(req.user, req.app.db.models, req.body.rdf, () => {
-            res.send();
+            res.send(200);
         });
     },
 

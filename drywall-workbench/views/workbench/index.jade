@@ -5,15 +5,14 @@ block head
   script(type='text/javascript' src='/vendor/jquery/jquery.js' )
   script(type='text/javascript' src='/vendor/jquery.cookie/jquery.cookie.js')
   script(type='text/javascript' src='/js/jquery.form.js')
-  script(type='text/javascript' src='/js/file_uploads.js')
   script(type='text/javascript' src='/vendor/underscore/underscore.js')
   script(type='text/javascript' src='/vendor/backbone/backbone.js')
   script(type='text/javascript' src='/js/backbone/publish/publish.js')
-  script(type='text/javascript' src='/js/backbone/publish/file.js')
+  script(type='text/javascript' src='/vendor/bootstrap/js/modal.js')
   script(type='text/javascript' src='/vendor/bootstrap-select/bootstrap-select.min.js')
   script(type='text/javascript' src='/vendor/momentjs/moment.js')
   script(type='text/javascript' src='/vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js')
-
+  script(type='text/javascript' src='/js/file_uploads.js')
 block neck
   link(rel='stylesheet', href='/vendor/bootstrap-select/bootstrap-select.min.css')
   link(rel='stylesheet', href='/vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js')
@@ -211,21 +210,18 @@ block body
     div.modal-dialog(role='document')
       div.modal-content
         div.modal-header
-          button.close(action='/workbench/fetch/mapping' type='button' data-dismiss='modal' aria-label='Close')
+          button.close( aria-label='Close')
             span(aria-hidden='true') ×
           h4.modal-title Upload an RML file
         div.modal-body
-          form(role='form')
-            input(type='hidden', name='_csrf', value=_csrf)
-            div.form-group
-              label(for='mappingFileName') Name
-              input.form-control(id='mappingFileName' type='text' placeholder='Descriptive name')
-            div.form-group
+          form(id='uploadMapping_Form' role='form' action='/workbench/fetch/mapping' method='post' enctype="multipart/form-data")                  
+              input(type='hidden', name='_csrf', value=_csrf)
               label(for='mapping-file-selector') File
-              input(id='mapping-file-selector' type='file' data-allowed-file-extensions="['csv', 'xml', 'txt', 'json']")
+              input(id='mappingFile' name='mappingUpload' type='file' data-allowed-file-extensions="['csv', 'xml', 'txt', 'json']")
               p.help-block Only RML files are supported.
-            +licensesId('mappingUploadLicense')   
-            button.btn.btn-primary(id="btn_file_input") Upload
+                //+licensesId('mappingUploadLicense')   
+              button.btn.btn-primary(id="submitMappingUpload" type='submit' ) Submit
+              
 
 
    div(id='publish' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' style='display: none;')

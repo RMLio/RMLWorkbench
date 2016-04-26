@@ -78,7 +78,7 @@ var exports = module.exports = {
             
             //logging
             spawn.stdout.on('data', (data) => {
-                //console.log(`stdout: ${data}`);
+                console.log(`stdout: ${data}`);
             });
             spawn.stderr.on('data', (data) => {
                 console.log(`stdout: ${data}`);

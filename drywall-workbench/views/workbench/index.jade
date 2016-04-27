@@ -52,7 +52,7 @@ block body
               input(id='my-file-selector' type='file' data-allowed-file-extensions="['csv', 'xml', 'txt', 'json']")
               p.help-block Only CSV, XML and JSON are supported.
             +licensesId('inputFileLicense')
-            button.btn.btn-primary(id="btn_file_input") Upload
+            button.btn.btn-primary(id="btn_file_input" data-dismiss="modal") Upload
 
   div(id='dcat-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='DCATInputLabel' style='display: none;')
     div.modal-dialog(role='document')
@@ -70,7 +70,7 @@ block body
               label(for='inputDCATURL') URL
               input.form-control(id='inputDCATURL' type='text' placeholder='url')
             +licensesId('inputDCATLicense') 
-            button.btn.btn-primary(id="btn_dcat_input") Add
+            button.btn.btn-primary(id="btn_dcat_input" data-dismiss="modal") Add
 
   div(id='db-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='databaseInputLabel' style='display: none;')
     div.modal-dialog(role='document')
@@ -110,7 +110,7 @@ block body
               label(for='inputDBPass') Password
               input.form-control(id='inputDBPass' type='password' placeholder='password')
             +licensesId('inputDBLicense') 
-            button.btn.btn-primary(id="btn_db_input") Add
+            button.btn.btn-primary(id="btn_db_input" data-dismiss="modal") Add
 
   div(id='api-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='apiInputLabel' style='display: none;')
     div.modal-dialog(role='document')
@@ -128,7 +128,7 @@ block body
               label(for='inputAPIURL') Template URL
               input.form-control(id='inputAPIURL' type='text' placeholder='url')
             +licensesId('inputAPILicense') 
-            button.btn.btn-primary(id="btn_api_input") Add
+            button.btn.btn-primary(id="btn_api_input" data-dismiss="modal") Add
 
   div(id='sparql-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='sparqlInputLabel' style='display: none;')
     div.modal-dialog(role='document')
@@ -158,7 +158,7 @@ block body
               label(for='inputSparqlQuery') DataQuery
               textarea.form-control(id='inputSparqQuery' rows="2")      
             +licensesId('inputSparqlLicense')                           
-            button.btn.btn-primary(id="btn_sparql_input") Add
+            button.btn.btn-primary(id="btn_sparql_input" data-dismiss="modal") Add
             
             
   div(id='csvw-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='csvwInputLabel' style='display: none;')
@@ -225,7 +225,7 @@ block body
                 option utf-16le
 
             +licensesId('inputcsvwLicense')                           
-            button.btn.btn-primary(id="btn_csvw_input") Add
+            button.btn.btn-primary(id="btn_csvw_input" data-dismiss="modal") Add
   
   
   div(id='description-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='descriptionLabel' style='display: none;')
@@ -250,7 +250,7 @@ block body
               label(for='DescriptionData') Data
               textarea.form-control(id='DescriptionData' rows="2")      
             //+licensesId('DescriptionlLicense')                           
-            button.btn.btn-primary(id="btn_db_input") Add
+            button.btn.btn-primary(id="btn_db_input" data-dismiss="modal") Add
          
   div(id='executeMapping' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='executeMapping' style='display: none;')
     div.modal-dialog(role='document')

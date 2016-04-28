@@ -67,6 +67,23 @@
     });
     
     
+     /***
+     * 
+     * MODELS SCHEDULES
+     * 
+     ***/
+    
+    app.Schedule = Backbone.Model.extend({
+        idAttribute: '_id',
+        defaults: {}
+    });
+    
+    app.Schedule = Backbone.Collection.extend({
+        model: app.Schedule,
+        url: '/workbench/fetch/schedule'
+    });
+    
+    
     /***
      * 
      * VIEWS MAPPING
@@ -436,6 +453,123 @@
      * 
      ***/
      
+       
+    /***
+     * 
+     * VIEWS SCHEDULING
+     * 
+     ***/
+    
+    app.scheduleesView = Backbone.View.extend({
+        tagName: 'div',
+        className: 'list-group scheduleView',
+        
+        initialize: function() {
+                    
+        },
+
+        render: function(eventName) {
+            _.each(this.model.models, function(schedule) {
+                $(this.el).append(new app.scheduleItemView({ model: schedule }).render().el);
+            }, this);
+            return this;
+        }
+    });
+    
+    app.scheduleContentView = Backbone.View.extend({
+       tagName: 'pre', 
+       template: _.template($('#schedule-content').html()),
+       
+       initialize: function(){
+		    this.model.on('change', this.render, this);
+       },     
+                    
+       
+       render: function() {
+            $(this.el).html(this.template(this.model.toJSON()));
+            return this;  
+       }
+    });
+
+    app.ScheduleItemView = Backbone.View.extend({
+        tagName: 'a',
+        className: 'list-group-item viewschedule',
+
+        template: _.template($('#schedule-list-item').html()),
+
+        initialize: function() {
+            
+        },
+        
+        events: {
+	        'click h6' : 'viewschedule'
+        },
+
+        viewschedule: function(ev){
+                app.currentModel = this.model;
+                app.scheduleContentView.model = this.model; 
+                app.scheduleContentView.render(); 
+        },
+
+        render: function(eventName) {
+            $(this.el).attr('href','#');
+            $(this.el).attr('data-index', this.model.collection.indexOf(this.model));
+            $(this.el).html(this.template(this.model.toJSON()));
+            return this;
+        },
+
+
+    });
+    
+    app.ClearscheduleingView = Backbone.View.extend({
+        
+        template: _.template($('#clearscheduleing').html()),
+        
+        events: {
+          'click .clearscheduleing' : 'clearscheduleing'  
+        },
+        
+        clearscheduleing: function() {
+          $.post('/workbench/clear/schedule',{rdf: [app.currentModel.attributes._id]},function() {
+              app.render();
+              });  
+        },
+        
+        initialize: function() {
+            this.model = app.schedules.models[0];    
+        },
+        
+        render: function() {
+           $(this.el).html(this.template(this.model.toJSON()));      
+           return this;            
+        }    
+    });
+    
+    app.ClearAllscheduleingsView = Backbone.View.extend({
+        
+        template: _.template($('#clearallscheduleings').html()),
+        
+        events: {
+          'click .clearallscheduleings' : 'clearallscheduleings'  
+        },
+        
+        clearallscheduleings: function() {
+ 
+          $.post('/workbench/clear/all/rdf',function() {
+              app.render();
+              });  
+        },
+        
+        initialize: function() {
+            this.model = app.schedulees.models[0];    
+        },
+        
+        render: function() {
+           $(this.el).html(this.template(this.model.toJSON()));      
+           return this;            
+        }    
+    });
+    
      
      /***
      * 
@@ -469,6 +603,8 @@
         app.mappings = new app.Mappings();                
             
         app.publishes = new app.Publishes();
+        
+        app.schedules = new app.Schedules();
         
         /***
         *
@@ -553,8 +689,43 @@
                     $('.workbenchElement').empty();   
                 }
             }});
+            
+            
+            /***
+            *
+            * RENDERING Schedule
+            *
+            ***/ 
+             
+                       
+            app.schedules.fetch({success: function() {
+                
+                if(app.schedules.models.length != 0) {
+                
+                    //replace <> with lt& en gt&    
+                    for(var i = 0; i < app.schedules.models.length; i++) {
+                        var attributes = app.schedules.models[i].attributes;
+                        attributes.convertedData = attributes.data.replace(/</g,'&lt;').replace(/>/g, '&gt;');                                      
+                    }
+                    //creating views
+                    app.schedulesView = new app.SchedulesView({model:app.schedules});
+                    app.scheduleContentView = new app.ScheduleContentView({model: app.schedules.models[0]});
+                    app.clearscheduleingView = new app.ClearScheduleingView();
+                    app.clearAllScheduleingsView = new app.ClearAllScheduleingsView();
+                    
+                    //rendering with jquery
+                    $('#scheduleMain').html(app.schedulesView.render().el);    
+                    $('#scheduleContent').html(app.scheduleContentView.render().el);    
+                    $('#clearscheduleingbutton').html(app.clearScheduleingView.render().el);
+                    $('#clearallscheduleingsbutton').html(app.clearAllScheduleingsView.render().el);  
+                                      
+                } else {
+                    $('.workbenchElement').empty();   
+                }
+            }});
     };
-    
+  
+ 
     
     
     

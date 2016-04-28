@@ -281,6 +281,22 @@ block body
                 <button class='btn btn-primary' data-dismiss="modal" >Execute</button>
            
 
+  div(id='upload-source' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='AreTheseUsed' style='display: none;')
+    div.modal-dialog(role='document')
+      div.modal-content
+        div.modal-header
+          button.close( aria-label='Close')
+            span(aria-hidden='true') ×
+          h4.modal-title Upload a source file
+        div.modal-body
+          form(id='uploadSource_Form' action='/workbench/fetch/input')                  
+              
+              label(for='source-file-selector') File
+              input(id='sourceFile' name='sourceUpload' type='file' data-allowed-file-extensions="['csv','xml']")
+              p.help-block All files are supported.
+                //+licensesId('sourceUploadLicense')   
+              button.btn.btn-primary(id="submitSourceUpload" type='submit') Upload
+
   div(id='upload-mapping' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='AreTheseUsed' style='display: none;')
     div.modal-dialog(role='document')
       div.modal-content
@@ -410,16 +426,16 @@ block body
 
 
   ul#myTab.nav.nav-tabs.tabs-left.sideways.primary
-      li.active
+      li.active(class="menuTab")
         a(href='#access', data-toggle='tab')
           | Data Access Interface
-      li
+      li(class="menuTab")
         a(href='#mapping2', data-toggle='tab')
           | Mapping Interface
-      li
+      li(class="menuTab")
         a(href='#publishing', data-toggle='tab')
           | Publish Interface
-      li
+      li(class="menuTab")
         a(href='#schedule', data-toggle='tab')
           | Schedule Interface
 
@@ -437,8 +453,8 @@ block body
               div.panel-body.text-center
                 div.btn-group-vertical(role='group')
                   //form(enctype='multipart/form-data' action='/workbench/fetch/input' method='post')
-                  button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#upload-input')
-                    | Upload Dataset
+                  button(type='button' class='btn btn-primary btn-lg menubutton' for='source-upload-input' data-toggle='modal' data-target='#upload-source')
+                     | Upload Source
                   button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#db-input')
                     | Database
                   button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#dcat-input')
@@ -512,8 +528,8 @@ block body
                      | Upload Dataset 
                    button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#publish')
                      | Publish Dataset
-                   div(id='clearpublishingbutton' class='workbenchElement')
-                   div(id='clearallpublishingsbutton' class='workbenchElement')
+                   div(id='clearpublishingbutton' class='publishElementt')
+                   div(id='clearallpublishingsbutton' class='publishElement')
                    script#clearpublishing(type='text/template').
                      <button type='button' class='btn btn-primary btn-lg clearpublishing menubutton'>
                         Clear Dataset
@@ -528,10 +544,10 @@ block body
                  h3.panel-title Overview Publishing
                div.panel-body
                   div.row 
-                      div.col-md-3(id='publishMain' class='workbenchElement')
+                      div.col-md-3(id='publishMain' class='publishElement')
                         script#publish-list-item(type='text/template').
                           <h6><%= filename %></h6>                       
-                      div.col-md-9(id='publishContent' class='workbenchElement')
+                      div.col-md-9(id='publishContent' class='publishElement')
                         script#publish-content(type='text/template').
                           <%= convertedData %>
 

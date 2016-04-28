@@ -5,259 +5,366 @@ RML Processor
 0 [main] INFO be.ugent.mmlab.rml.main.Main  - ========================================
 1 [main] INFO be.ugent.mmlab.rml.main.Main  - Retrieving the RML Mapping Document...
 1 [main] INFO be.ugent.mmlab.rml.main.Main  - ========================================
-22 [main] DEBUG org.openrdf.sail.memory.MemoryStore  - Initializing MemoryStore...
-32 [main] DEBUG org.openrdf.sail.memory.MemoryStore  - MemoryStore initialized
-69 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.trig.TriGParserFactory
-69 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.turtle.TurtleParserFactory
-70 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.ntriples.NTriplesParserFactory
-70 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.binary.BinaryRDFParserFactory
-70 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.n3.N3ParserFactory
-71 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.trix.TriXParserFactory
-71 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.rdfxml.RDFXMLParserFactory
-72 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.nquads.NQuadsParserFactory
-72 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.rdfjson.RDFJSONParserFactory
-73 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.jsonld.JSONLDParserFactory
-98 [main] DEBUG org.openrdf.rio.DatatypeHandlerRegistry  - Registered service class org.openrdf.rio.datatypes.XMLSchemaDatatypeHandler
-98 [main] DEBUG org.openrdf.rio.DatatypeHandlerRegistry  - Registered service class org.openrdf.rio.datatypes.RDFDatatypeHandler
-99 [main] DEBUG org.openrdf.rio.DatatypeHandlerRegistry  - Registered service class org.openrdf.rio.datatypes.DBPediaDatatypeHandler
-100 [main] DEBUG org.openrdf.rio.DatatypeHandlerRegistry  - Registered service class org.openrdf.rio.datatypes.VirtuosoGeometryDatatypeHandler
-100 [main] DEBUG org.openrdf.rio.DatatypeHandlerRegistry  - Registered service class org.openrdf.rio.datatypes.GeoSPARQLDatatypeHandler
-103 [main] DEBUG org.openrdf.rio.LanguageHandlerRegistry  - Registered service class org.openrdf.rio.languages.RFC3066LanguageHandler
-156 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.retrieval.RMLDocRetrieval  - Number of RML triples in the repository input.rml : 34 from local file
-157 [main] INFO be.ugent.mmlab.rml.main.Main  - ========================================
-157 [main] INFO be.ugent.mmlab.rml.main.Main  - Extracting the RML Mapping Definitions..
-157 [main] INFO be.ugent.mmlab.rml.main.Main  - ========================================
-157 [main] INFO be.ugent.mmlab.rml.mapdochandler.extraction.RMLMappingFactory  - Replacing Mapping Document shortcuts..
-172 [main] INFO be.ugent.mmlab.rml.mapdochandler.extraction.RMLMappingFactory  - Extracting Triples Maps..
-174 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.std.StdRMLMappingExtractor  - Triples Map statements were retrieved: true
-175 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.RMLMappingFactory  - Number of RML triples with type TriplesMap in file: 1
-176 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Extract TriplesMap subject : file:/home/wmaroy/github/enterprise/AMMA/drywall-workbench/input.rml#VolumeMapping
-180 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Reference Formulation CSS3
-180 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Iterator body
-180 [main] INFO be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Resource-valued Input Source
-182 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.ConcreteSourceFactory  - Resource-valued Input Source
-182 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.ConcreteSourceFactory  - source type http://www.w3.org/ns/hydra/core#IriTemplate
-182 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.ConcreteSourceFactory  - Source described with Hydra Core vocabulary.
-186 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Source extracted : [be.ugent.mmlab.rml.model.source.std.StdApiSource@51081592]
-187 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Query null
+15 [main] DEBUG org.openrdf.sail.memory.MemoryStore  - Initializing MemoryStore...
+27 [main] DEBUG org.openrdf.sail.memory.MemoryStore  - MemoryStore initialized
+56 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.trig.TriGParserFactory
+57 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.turtle.TurtleParserFactory
+57 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.ntriples.NTriplesParserFactory
+58 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.binary.BinaryRDFParserFactory
+59 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.n3.N3ParserFactory
+59 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.trix.TriXParserFactory
+60 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.rdfxml.RDFXMLParserFactory
+60 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.nquads.NQuadsParserFactory
+61 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.rdfjson.RDFJSONParserFactory
+61 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.jsonld.JSONLDParserFactory
+88 [main] DEBUG org.openrdf.rio.DatatypeHandlerRegistry  - Registered service class org.openrdf.rio.datatypes.XMLSchemaDatatypeHandler
+89 [main] DEBUG org.openrdf.rio.DatatypeHandlerRegistry  - Registered service class org.openrdf.rio.datatypes.RDFDatatypeHandler
+90 [main] DEBUG org.openrdf.rio.DatatypeHandlerRegistry  - Registered service class org.openrdf.rio.datatypes.DBPediaDatatypeHandler
+91 [main] DEBUG org.openrdf.rio.DatatypeHandlerRegistry  - Registered service class org.openrdf.rio.datatypes.VirtuosoGeometryDatatypeHandler
+92 [main] DEBUG org.openrdf.rio.DatatypeHandlerRegistry  - Registered service class org.openrdf.rio.datatypes.GeoSPARQLDatatypeHandler
+94 [main] DEBUG org.openrdf.rio.LanguageHandlerRegistry  - Registered service class org.openrdf.rio.languages.RFC3066LanguageHandler
+159 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.retrieval.RMLDocRetrieval  - Number of RML triples in the repository input.rml : 53 from local file
+159 [main] INFO be.ugent.mmlab.rml.main.Main  - ========================================
+159 [main] INFO be.ugent.mmlab.rml.main.Main  - Extracting the RML Mapping Definitions..
+159 [main] INFO be.ugent.mmlab.rml.main.Main  - ========================================
+159 [main] INFO be.ugent.mmlab.rml.mapdochandler.extraction.RMLMappingFactory  - Replacing Mapping Document shortcuts..
+173 [main] INFO be.ugent.mmlab.rml.mapdochandler.extraction.RMLMappingFactory  - Extracting Triples Maps..
+175 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.std.StdRMLMappingExtractor  - Triples Map statements were retrieved: true
+176 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.RMLMappingFactory  - Number of RML triples with type TriplesMap in file: 2
+178 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Extract TriplesMap subject : http://example.com/base#FromToMaps
+181 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Reference Formulation XPath
+182 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Iterator /notes/note
+182 [main] INFO be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Literal-valued Input Source
+186 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Query null
 188 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Triples Map extracted
-188 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Logical source extracted : [StdLogicalSource : iterator = body; source be.ugent.mmlab.rml.model.source.std.StdApiSource@51081592; referenceFormulation = CSS3]
+188 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Logical source extracted : [StdLogicalSource : iterator = /notes/note; source be.ugent.mmlab.rml.model.source.std.StdLocalFileSource@6a2bcfcb; referenceFormulation = XPath]
 190 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.SubjectMapExtractor  - Extract subject map...
-190 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.SubjectMapExtractor  - Found subject map : node1ahe9bt2tx2
-193 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - extractLiteralFromTermMap: Extracted template : http://ceur-ws.org/{span.CEURVOLNR}/
+191 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.SubjectMapExtractor  - Found subject map : node1aheppjmpx2
+193 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - extractLiteralFromTermMap: Extracted template : http://www.example.com/note/{@id}
 194 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - referenceValueStr null
 195 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - refMap.getReferenceValue(referenceValueStr) null
-195 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - extractURIsFromTermMap: class : http://purl.org/ontology/bibo/Volume
-196 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.SubjectMapExtractor  - Graph Maps returned []
-198 [main] DEBUG be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap  - setTermType: [AbstractTermMap:setTermType] No term type specified : use IRI by default.null
-199 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.SubjectMapExtractor  - Subject map extracted.
-200 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - More Predicate Map statements: true
-201 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - Extracted constant : http://semweb.mmlab.be/ns/spc/fullTitle
-202 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - referenceValueStr null
-202 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - refMap.getReferenceValue(referenceValueStr) null
-203 [main] DEBUG be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap  - setTermType: [AbstractTermMap:setTermType] No term type specified : use IRI by default.null
-203 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateMapExtractor  - Extracting predicate map done.
-204 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Object Map statements found: org.openrdf.repository.RepositoryResult@10bdf5e5
-205 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Extracting Referencing Object Maps..
-206 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extracting Referencing Object Map..
-207 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Parent Triples Maps were found null
-207 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extract join conditions..
-208 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extract join conditions done.
-209 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.BindingConditionExtractor  - Extracting Binding Conditions..
-210 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.BindingConditionExtractor  - Extract bind condition done.
-211 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Current Triples Map resource file:/home/wmaroy/github/enterprise/AMMA/drywall-workbench/input.rml#VolumeMapping
-211 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Not a Referencing Object Map.
-211 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Referencing Object Map statements found: []
-211 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ObjectMapExtractor  - Extract object map..
-213 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - extractLiteralFromTermMap: Extracted reference : span.CEURFULLTITLE
-213 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - referenceValueStr span.CEURFULLTITLE
-213 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - refMap.getReferenceValue(referenceValueStr) be.ugent.mmlab.rml.model.std.StdReferenceMap@35d176f7
-213 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ObjectMapExtractor  - reference value be.ugent.mmlab.rml.model.std.StdReferenceMap@1dfe2924
-214 [main] DEBUG be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap  - setTermType: [AbstractTermMap:setTermType] No term type specified : use Literal by default.
-215 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.GraphMapExtractor  - Gtraph Maps returned []
-215 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Extract predicate-object map done.
-216 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - Extracted constant : http://www.w3.org/2000/01/rdf-schema#label
-217 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - referenceValueStr null
-217 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - refMap.getReferenceValue(referenceValueStr) null
-217 [main] DEBUG be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap  - setTermType: [AbstractTermMap:setTermType] No term type specified : use IRI by default.null
-217 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateMapExtractor  - Extracting predicate map done.
-217 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Object Map statements found: org.openrdf.repository.RepositoryResult@1f7030a6
-217 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Extracting Referencing Object Maps..
-217 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extracting Referencing Object Map..
-217 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Parent Triples Maps were found null
-217 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extract join conditions..
-218 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extract join conditions done.
-218 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.BindingConditionExtractor  - Extracting Binding Conditions..
-218 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.BindingConditionExtractor  - Extract bind condition done.
-218 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Current Triples Map resource file:/home/wmaroy/github/enterprise/AMMA/drywall-workbench/input.rml#VolumeMapping
-218 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Not a Referencing Object Map.
-218 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Referencing Object Map statements found: []
-218 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ObjectMapExtractor  - Extract object map..
-220 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - extractLiteralFromTermMap: Extracted reference : span.CEURFULLTITLE
-220 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - referenceValueStr span.CEURFULLTITLE
-220 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - refMap.getReferenceValue(referenceValueStr) be.ugent.mmlab.rml.model.std.StdReferenceMap@51e2adc7
-220 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ObjectMapExtractor  - reference value be.ugent.mmlab.rml.model.std.StdReferenceMap@1a8a8f7c
-220 [main] DEBUG be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap  - setTermType: [AbstractTermMap:setTermType] No term type specified : use Literal by default.
+196 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - extractURIsFromTermMap: class : http://example.com/mail#note
+197 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.SubjectMapExtractor  - Graph Maps returned []
+200 [main] DEBUG be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap  - setTermType: [AbstractTermMap:setTermType] No term type specified : use IRI by default.null
+200 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.SubjectMapExtractor  - Subject map extracted.
+203 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - More Predicate Map statements: true
+204 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - Extracted constant : http://example.com/mail#body
+206 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - referenceValueStr null
+206 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - refMap.getReferenceValue(referenceValueStr) null
+207 [main] DEBUG be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap  - setTermType: [AbstractTermMap:setTermType] No term type specified : use IRI by default.null
+207 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateMapExtractor  - Extracting predicate map done.
+208 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Object Map statements found: org.openrdf.repository.RepositoryResult@27c20538
+208 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Extracting Referencing Object Maps..
+210 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extracting Referencing Object Map..
+210 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Parent Triples Maps were found null
+210 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extract join conditions..
+211 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extract join conditions done.
+213 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.BindingConditionExtractor  - Extracting Binding Conditions..
+214 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.BindingConditionExtractor  - Extract bind condition done.
+214 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Current Triples Map resource http://example.com/base#FromToMaps
+214 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Current Triples Map resource http://example.com/base#DateTime
+214 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Not a Referencing Object Map.
+214 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Referencing Object Map statements found: []
+215 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ObjectMapExtractor  - Extract object map..
+217 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - extractLiteralFromTermMap: Extracted reference : body
+217 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - referenceValueStr body
+217 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - refMap.getReferenceValue(referenceValueStr) be.ugent.mmlab.rml.model.std.StdReferenceMap@369f73a2
+218 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ObjectMapExtractor  - reference value be.ugent.mmlab.rml.model.std.StdReferenceMap@1f28c152
+218 [main] DEBUG be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap  - setTermType: [AbstractTermMap:setTermType] No term type specified : use Literal by default.
 220 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.GraphMapExtractor  - Gtraph Maps returned []
 220 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Extract predicate-object map done.
 221 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - More Predicate Map statements: true
-221 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - Extracted constant : http://purl.org/ontology/bibo/volume
-225 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - referenceValueStr null
-225 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - refMap.getReferenceValue(referenceValueStr) null
-225 [main] DEBUG be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap  - setTermType: [AbstractTermMap:setTermType] No term type specified : use IRI by default.null
-225 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateMapExtractor  - Extracting predicate map done.
-225 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Object Map statements found: org.openrdf.repository.RepositoryResult@3aeaafa6
-225 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Extracting Referencing Object Maps..
-225 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extracting Referencing Object Map..
-226 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Parent Triples Maps were found null
-226 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extract join conditions..
-226 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extract join conditions done.
-226 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.BindingConditionExtractor  - Extracting Binding Conditions..
-226 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.BindingConditionExtractor  - Extract bind condition done.
-226 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Current Triples Map resource file:/home/wmaroy/github/enterprise/AMMA/drywall-workbench/input.rml#VolumeMapping
-226 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Not a Referencing Object Map.
-226 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Referencing Object Map statements found: []
-226 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ObjectMapExtractor  - Extract object map..
-228 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - extractLiteralFromTermMap: Extracted reference : span.CEURVOLNR
-228 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - referenceValueStr span.CEURVOLNR
-228 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - refMap.getReferenceValue(referenceValueStr) be.ugent.mmlab.rml.model.std.StdReferenceMap@7276c8cd
-228 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ObjectMapExtractor  - reference value be.ugent.mmlab.rml.model.std.StdReferenceMap@544a2ea6
-228 [main] DEBUG be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap  - setTermType: [AbstractTermMap:setTermType] No term type specified : use Literal by default.
+221 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - Extracted constant : http://example.com/mail#when
+223 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - referenceValueStr null
+223 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - refMap.getReferenceValue(referenceValueStr) null
+223 [main] DEBUG be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap  - setTermType: [AbstractTermMap:setTermType] No term type specified : use IRI by default.null
+223 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateMapExtractor  - Extracting predicate map done.
+224 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Object Map statements found: org.openrdf.repository.RepositoryResult@2a17b7b6
+224 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Extracting Referencing Object Maps..
+224 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extracting Referencing Object Map..
+224 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Parent Triples Maps were found null
+224 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extract join conditions..
+225 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extract join conditions done.
+225 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.BindingConditionExtractor  - Extracting Binding Conditions..
+225 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.BindingConditionExtractor  - Extract bind condition done.
+225 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Current Triples Map resource http://example.com/base#FromToMaps
+225 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Current Triples Map resource http://example.com/base#DateTime
+225 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Not a Referencing Object Map.
+225 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Referencing Object Map statements found: []
+225 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ObjectMapExtractor  - Extract object map..
+226 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - extractLiteralFromTermMap: Extracted template : {@year}-{@month}-{@day}
+227 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - Extracted termType : http://www.w3.org/ns/r2rml#Literal
+227 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - Extracted datatype : http://www.w3.org/2001/XMLSchema#date
+228 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - referenceValueStr null
+228 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - refMap.getReferenceValue(referenceValueStr) null
+228 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ObjectMapExtractor  - reference value null
 228 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.GraphMapExtractor  - Gtraph Maps returned []
-228 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Extract predicate-object map done.
+229 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Extract predicate-object map done.
 229 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - More Predicate Map statements: true
-229 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - Extracted constant : http://purl.org/dc/terms/identifier
-229 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - referenceValueStr null
-229 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - refMap.getReferenceValue(referenceValueStr) null
-229 [main] DEBUG be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap  - setTermType: [AbstractTermMap:setTermType] No term type specified : use IRI by default.null
+229 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - Extracted constant : http://example.com/mail#from
+230 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - referenceValueStr null
+230 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - refMap.getReferenceValue(referenceValueStr) null
+230 [main] DEBUG be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap  - setTermType: [AbstractTermMap:setTermType] No term type specified : use IRI by default.null
 230 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateMapExtractor  - Extracting predicate map done.
-230 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Object Map statements found: org.openrdf.repository.RepositoryResult@1f021e6c
-230 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Extracting Referencing Object Maps..
-230 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extracting Referencing Object Map..
-230 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Parent Triples Maps were found null
-230 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extract join conditions..
-230 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extract join conditions done.
-230 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.BindingConditionExtractor  - Extracting Binding Conditions..
-230 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.BindingConditionExtractor  - Extract bind condition done.
-230 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Current Triples Map resource file:/home/wmaroy/github/enterprise/AMMA/drywall-workbench/input.rml#VolumeMapping
-230 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Not a Referencing Object Map.
-230 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Referencing Object Map statements found: []
-231 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ObjectMapExtractor  - Extract object map..
-232 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - extractLiteralFromTermMap: Extracted reference : span.CEURURN
-232 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - referenceValueStr span.CEURURN
-232 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - refMap.getReferenceValue(referenceValueStr) be.ugent.mmlab.rml.model.std.StdReferenceMap@70a9f84e
-232 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ObjectMapExtractor  - reference value be.ugent.mmlab.rml.model.std.StdReferenceMap@130f889
-232 [main] DEBUG be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap  - setTermType: [AbstractTermMap:setTermType] No term type specified : use Literal by default.
-232 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.GraphMapExtractor  - Gtraph Maps returned []
-232 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Extract predicate-object map done.
-233 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - More Predicate Map statements: true
-233 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - Extracted constant : http://purl.org/ontology/bibo/shortTitle
-234 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - referenceValueStr null
-234 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - refMap.getReferenceValue(referenceValueStr) null
-234 [main] DEBUG be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap  - setTermType: [AbstractTermMap:setTermType] No term type specified : use IRI by default.null
-234 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateMapExtractor  - Extracting predicate map done.
-234 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Object Map statements found: org.openrdf.repository.RepositoryResult@21a947fe
-234 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Extracting Referencing Object Maps..
-234 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extracting Referencing Object Map..
-234 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Parent Triples Maps were found null
-234 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extract join conditions..
-234 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extract join conditions done.
-234 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.BindingConditionExtractor  - Extracting Binding Conditions..
-235 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.BindingConditionExtractor  - Extract bind condition done.
-235 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Current Triples Map resource file:/home/wmaroy/github/enterprise/AMMA/drywall-workbench/input.rml#VolumeMapping
-235 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Not a Referencing Object Map.
-235 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Referencing Object Map statements found: []
-235 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ObjectMapExtractor  - Extract object map..
-237 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - extractLiteralFromTermMap: Extracted reference : span.CEURVOLACRONYM
-237 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - referenceValueStr span.CEURVOLACRONYM
-237 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - refMap.getReferenceValue(referenceValueStr) be.ugent.mmlab.rml.model.std.StdReferenceMap@226a82c4
-237 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ObjectMapExtractor  - reference value be.ugent.mmlab.rml.model.std.StdReferenceMap@731f8236
-237 [main] DEBUG be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap  - setTermType: [AbstractTermMap:setTermType] No term type specified : use Literal by default.
-237 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.GraphMapExtractor  - Gtraph Maps returned []
-237 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Extract predicate-object map done.
-238 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - More Predicate Map statements: true
-238 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - Extracted constant : http://semweb.mmlab.be/ns/spc/volTitle
-239 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - referenceValueStr null
-240 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - refMap.getReferenceValue(referenceValueStr) null
-240 [main] DEBUG be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap  - setTermType: [AbstractTermMap:setTermType] No term type specified : use IRI by default.null
-240 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateMapExtractor  - Extracting predicate map done.
-240 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Object Map statements found: org.openrdf.repository.RepositoryResult@ca263c2
-240 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Extracting Referencing Object Maps..
-240 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extracting Referencing Object Map..
-240 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Parent Triples Maps were found null
-240 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extract join conditions..
-240 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extract join conditions done.
-241 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.BindingConditionExtractor  - Extracting Binding Conditions..
-241 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.BindingConditionExtractor  - Extract bind condition done.
-241 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Current Triples Map resource file:/home/wmaroy/github/enterprise/AMMA/drywall-workbench/input.rml#VolumeMapping
-241 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Not a Referencing Object Map.
-241 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Referencing Object Map statements found: []
-241 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ObjectMapExtractor  - Extract object map..
-242 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - extractLiteralFromTermMap: Extracted reference : span.CEURVOLTITLE a
-242 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - referenceValueStr span.CEURVOLTITLE a
-242 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - refMap.getReferenceValue(referenceValueStr) be.ugent.mmlab.rml.model.std.StdReferenceMap@657c8ad9
-242 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ObjectMapExtractor  - reference value be.ugent.mmlab.rml.model.std.StdReferenceMap@436a4e4b
-243 [main] DEBUG be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap  - setTermType: [AbstractTermMap:setTermType] No term type specified : use Literal by default.
-243 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.GraphMapExtractor  - Gtraph Maps returned []
-243 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Extract predicate-object map done.
-243 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - Extracted constant : http://www.w3.org/2000/01/rdf-schema#label
+231 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Object Map statements found: org.openrdf.repository.RepositoryResult@6043cd28
+231 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Extracting Referencing Object Maps..
+231 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extracting Referencing Object Map..
+231 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Parent Triples Maps were found null
+231 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extract join conditions..
+231 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extract join conditions done.
+231 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.BindingConditionExtractor  - Extracting Binding Conditions..
+232 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.BindingConditionExtractor  - Extract bind condition done.
+232 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Current Triples Map resource http://example.com/base#FromToMaps
+232 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Current Triples Map resource http://example.com/base#DateTime
+232 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Not a Referencing Object Map.
+232 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Referencing Object Map statements found: []
+232 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ObjectMapExtractor  - Extract object map..
+234 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - extractLiteralFromTermMap: Extracted reference : from
+234 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - referenceValueStr from
+234 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - refMap.getReferenceValue(referenceValueStr) be.ugent.mmlab.rml.model.std.StdReferenceMap@13eb8acf
+234 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ObjectMapExtractor  - reference value be.ugent.mmlab.rml.model.std.StdReferenceMap@51c8530f
+234 [main] DEBUG be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap  - setTermType: [AbstractTermMap:setTermType] No term type specified : use Literal by default.
+235 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.GraphMapExtractor  - Gtraph Maps returned []
+235 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Extract predicate-object map done.
+235 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - More Predicate Map statements: true
+235 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - Extracted constant : http://example.com/mail#to
+236 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - referenceValueStr null
+237 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - refMap.getReferenceValue(referenceValueStr) null
+237 [main] DEBUG be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap  - setTermType: [AbstractTermMap:setTermType] No term type specified : use IRI by default.null
+237 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateMapExtractor  - Extracting predicate map done.
+237 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Object Map statements found: org.openrdf.repository.RepositoryResult@2f0a87b3
+237 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Extracting Referencing Object Maps..
+237 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extracting Referencing Object Map..
+237 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Parent Triples Maps were found null
+238 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extract join conditions..
+238 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extract join conditions done.
+238 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.BindingConditionExtractor  - Extracting Binding Conditions..
+238 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.BindingConditionExtractor  - Extract bind condition done.
+238 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Current Triples Map resource http://example.com/base#FromToMaps
+238 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Current Triples Map resource http://example.com/base#DateTime
+238 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Not a Referencing Object Map.
+238 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Referencing Object Map statements found: []
+238 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ObjectMapExtractor  - Extract object map..
+240 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - extractLiteralFromTermMap: Extracted reference : to
+241 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - referenceValueStr to
+241 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - refMap.getReferenceValue(referenceValueStr) be.ugent.mmlab.rml.model.std.StdReferenceMap@5e57643e
+241 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ObjectMapExtractor  - reference value be.ugent.mmlab.rml.model.std.StdReferenceMap@133e16fd
+241 [main] DEBUG be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap  - setTermType: [AbstractTermMap:setTermType] No term type specified : use Literal by default.
+241 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.GraphMapExtractor  - Gtraph Maps returned []
+242 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Extract predicate-object map done.
+242 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - More Predicate Map statements: true
+242 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - Extracted constant : http://example.com/mail#heading
 244 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - referenceValueStr null
 244 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - refMap.getReferenceValue(referenceValueStr) null
 244 [main] DEBUG be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap  - setTermType: [AbstractTermMap:setTermType] No term type specified : use IRI by default.null
 244 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateMapExtractor  - Extracting predicate map done.
-244 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Object Map statements found: org.openrdf.repository.RepositoryResult@27c86f2d
-244 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Extracting Referencing Object Maps..
-244 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extracting Referencing Object Map..
-244 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Parent Triples Maps were found null
-244 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extract join conditions..
-244 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extract join conditions done.
-244 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.BindingConditionExtractor  - Extracting Binding Conditions..
+245 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Object Map statements found: org.openrdf.repository.RepositoryResult@32a068d1
+245 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Extracting Referencing Object Maps..
+245 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extracting Referencing Object Map..
+245 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Parent Triples Maps were found null
+245 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extract join conditions..
+245 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extract join conditions done.
+245 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.BindingConditionExtractor  - Extracting Binding Conditions..
 245 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.BindingConditionExtractor  - Extract bind condition done.
-245 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Current Triples Map resource file:/home/wmaroy/github/enterprise/AMMA/drywall-workbench/input.rml#VolumeMapping
-245 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Not a Referencing Object Map.
-245 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Referencing Object Map statements found: []
-245 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ObjectMapExtractor  - Extract object map..
-246 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - extractLiteralFromTermMap: Extracted reference : span.CEURVOLTITLE a
-246 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - referenceValueStr span.CEURVOLTITLE a
-246 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - refMap.getReferenceValue(referenceValueStr) be.ugent.mmlab.rml.model.std.StdReferenceMap@33afa13b
-246 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ObjectMapExtractor  - reference value be.ugent.mmlab.rml.model.std.StdReferenceMap@7a4ccb53
-246 [main] DEBUG be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap  - setTermType: [AbstractTermMap:setTermType] No term type specified : use Literal by default.
-246 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.GraphMapExtractor  - Gtraph Maps returned []
-246 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Extract predicate-object map done.
-246 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Number of extracted predicate-object maps : 5
-246 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Extract of TriplesMap subject : file:/home/wmaroy/github/enterprise/AMMA/drywall-workbench/input.rml#VolumeMapping done.
-247 [main] INFO be.ugent.mmlab.rml.main.Main  - ========================================
-247 [main] INFO be.ugent.mmlab.rml.main.Main  - Running the RML Mapping..
-247 [main] INFO be.ugent.mmlab.rml.main.Main  - ========================================
-247 [main] DEBUG be.ugent.mmlab.rml.core.RMLEngine  - Running RML mapping... 
-247 [main] DEBUG be.ugent.mmlab.rml.core.RMLEngine  - Using direct file output.rdf
-249 [main] DEBUG org.openrdf.sail.memory.MemoryStore  - Initializing MemoryStore...
-249 [main] DEBUG org.openrdf.sail.memory.MemoryStore  - MemoryStore initialized
-252 [main] DEBUG org.openrdf.rio.RDFWriterRegistry  - Registered service class org.openrdf.rio.trig.TriGWriterFactory
-252 [main] DEBUG org.openrdf.rio.RDFWriterRegistry  - Registered service class org.openrdf.rio.turtle.TurtleWriterFactory
-253 [main] DEBUG org.openrdf.rio.RDFWriterRegistry  - Registered service class org.openrdf.rio.ntriples.NTriplesWriterFactory
-254 [main] DEBUG org.openrdf.rio.RDFWriterRegistry  - Registered service class org.openrdf.rio.binary.BinaryRDFWriterFactory
-255 [main] DEBUG org.openrdf.rio.RDFWriterRegistry  - Registered service class org.openrdf.rio.n3.N3WriterFactory
-256 [main] DEBUG org.openrdf.rio.RDFWriterRegistry  - Registered service class org.openrdf.rio.trix.TriXWriterFactory
-257 [main] DEBUG org.openrdf.rio.RDFWriterRegistry  - Registered service class org.openrdf.rio.rdfxml.RDFXMLWriterFactory
-257 [main] DEBUG org.openrdf.rio.RDFWriterRegistry  - Registered service class org.openrdf.rio.nquads.NQuadsWriterFactory
-258 [main] DEBUG org.openrdf.rio.RDFWriterRegistry  - Registered service class org.openrdf.rio.rdfjson.RDFJSONWriterFactory
-259 [main] DEBUG org.openrdf.rio.RDFWriterRegistry  - Registered service class org.openrdf.rio.jsonld.JSONLDWriterFactory
-261 [main] DEBUG be.ugent.mmlab.rml.core.RMLEngine  - Dataset repository generated
-261 [main] DEBUG be.ugent.mmlab.rml.core.RMLEngine  - Generating triples..
-262 [main] DEBUG be.ugent.mmlab.rml.core.RMLEngine  - Generate RDF triples... 
-Generating RDF triples for file:/home/wmaroy/github/enterprise/AMMA/drywall-workbench/input.rml#VolumeMapping
-262 [main] INFO be.ugent.mmlab.rml.core.RMLEngine  - Generating RML Processor..
-263 [main] DEBUG be.ugent.mmlab.rml.core.RMLEngine  - Logical Source: [StdLogicalSource : iterator = body; source be.ugent.mmlab.rml.model.source.std.StdApiSource@51081592; referenceFormulation = CSS3]
-263 [main] DEBUG be.ugent.mmlab.rml.core.RMLEngine  - Reference formulation: CSS3
-277 [main] INFO be.ugent.mmlab.rml.core.RMLEngine  - Generating Data Retrieval Processor..
-279 [main] DEBUG be.ugent.mmlab.rml.input.ConcreteLogicalSourceProcessorFactory  - Resource-valued Input Source
-279 [main] DEBUG be.ugent.mmlab.rml.input.ConcreteLogicalSourceProcessorFactory  - source type StdApiSource
-279 [main] DEBUG be.ugent.mmlab.rml.input.ConcreteLogicalSourceProcessorFactory  - Processor for API Source.
-280 [main] DEBUG be.ugent.mmlab.rml.core.RMLEngine  - Generating Input Stream..
-280 [main] DEBUG be.ugent.mmlab.rml.input.processor.ApiProcessor  - Getting Input source..
-281 [main] INFO be.ugent.mmlab.rml.input.processor.ApiProcessor  - Mapping http://ceur-ws.org/Vol-{number}/ input source.
-366 [main] DEBUG be.ugent.mmlab.rml.core.RMLEngine  - Generating Performer..
-366 [main] DEBUG be.ugent.mmlab.rml.core.RMLEngine  - Executing Mapping Processor..
-371 [main] ERROR be.ugent.mmlab.rml.core.RMLEngine  - Exception java.lang.NullPointerException
-371 [main] ERROR be.ugent.mmlab.rml.core.RMLEngine  - The execution of the mapping failed.
+245 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Current Triples Map resource http://example.com/base#FromToMaps
+246 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Current Triples Map resource http://example.com/base#DateTime
+246 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Not a Referencing Object Map.
+246 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Referencing Object Map statements found: []
+246 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ObjectMapExtractor  - Extract object map..
+247 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - extractLiteralFromTermMap: Extracted reference : heading
+247 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - referenceValueStr heading
+248 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - refMap.getReferenceValue(referenceValueStr) be.ugent.mmlab.rml.model.std.StdReferenceMap@7364985f
+248 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ObjectMapExtractor  - reference value be.ugent.mmlab.rml.model.std.StdReferenceMap@5d20e46
+248 [main] DEBUG be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap  - setTermType: [AbstractTermMap:setTermType] No term type specified : use Literal by default.
+248 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.GraphMapExtractor  - Gtraph Maps returned []
+249 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Extract predicate-object map done.
+249 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Number of extracted predicate-object maps : 5
+249 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Extract of TriplesMap subject : http://example.com/base#FromToMaps done.
+249 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Extract TriplesMap subject : http://example.com/base#DateTime
+249 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Reference Formulation XPath
+250 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Iterator /notes/note
+250 [main] INFO be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Literal-valued Input Source
+250 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Query null
+251 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Triples Map extracted
+251 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Logical source extracted : [StdLogicalSource : iterator = /notes/note; source be.ugent.mmlab.rml.model.source.std.StdLocalFileSource@491666ad; referenceFormulation = XPath]
+252 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.SubjectMapExtractor  - Extract subject map...
+252 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.SubjectMapExtractor  - Found subject map : node1aheppjmpx14
+254 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - extractLiteralFromTermMap: Extracted template : http://www.example.com/DateTime/{@year}{@month}{@day}
+255 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - referenceValueStr null
+255 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - refMap.getReferenceValue(referenceValueStr) null
+256 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - extractURIsFromTermMap: class : http://www.example.com/DateTime
+256 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.SubjectMapExtractor  - Graph Maps returned []
+256 [main] DEBUG be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap  - setTermType: [AbstractTermMap:setTermType] No term type specified : use IRI by default.null
+256 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.SubjectMapExtractor  - Subject map extracted.
+257 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - More Predicate Map statements: true
+257 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - Extracted constant : http://www.example.com/day
+259 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - referenceValueStr null
+259 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - refMap.getReferenceValue(referenceValueStr) null
+259 [main] DEBUG be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap  - setTermType: [AbstractTermMap:setTermType] No term type specified : use IRI by default.null
+259 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateMapExtractor  - Extracting predicate map done.
+260 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Object Map statements found: org.openrdf.repository.RepositoryResult@6295d394
+260 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Extracting Referencing Object Maps..
+260 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extracting Referencing Object Map..
+261 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Parent Triples Maps were found null
+261 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extract join conditions..
+261 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extract join conditions done.
+261 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.BindingConditionExtractor  - Extracting Binding Conditions..
+262 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.BindingConditionExtractor  - Extract bind condition done.
+262 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Current Triples Map resource http://example.com/base#FromToMaps
+262 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Current Triples Map resource http://example.com/base#DateTime
+262 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Not a Referencing Object Map.
+262 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Referencing Object Map statements found: []
+262 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ObjectMapExtractor  - Extract object map..
+263 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - extractLiteralFromTermMap: Extracted template : ---{@day}
+264 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - Extracted termType : http://www.w3.org/ns/r2rml#Literal
+264 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - Extracted datatype : http://www.w3.org/2001/XMLSchema#gDay
+265 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - referenceValueStr null
+265 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - refMap.getReferenceValue(referenceValueStr) null
+265 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ObjectMapExtractor  - reference value null
+266 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.GraphMapExtractor  - Gtraph Maps returned []
+266 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Extract predicate-object map done.
+267 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - More Predicate Map statements: true
+267 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - Extracted constant : http://www.example.com/month
+268 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - referenceValueStr null
+268 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - refMap.getReferenceValue(referenceValueStr) null
+268 [main] DEBUG be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap  - setTermType: [AbstractTermMap:setTermType] No term type specified : use IRI by default.null
+269 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateMapExtractor  - Extracting predicate map done.
+269 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Object Map statements found: org.openrdf.repository.RepositoryResult@56a6d5a6
+269 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Extracting Referencing Object Maps..
+269 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extracting Referencing Object Map..
+269 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Parent Triples Maps were found null
+269 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extract join conditions..
+269 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extract join conditions done.
+269 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.BindingConditionExtractor  - Extracting Binding Conditions..
+270 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.BindingConditionExtractor  - Extract bind condition done.
+270 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Current Triples Map resource http://example.com/base#FromToMaps
+270 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Current Triples Map resource http://example.com/base#DateTime
+270 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Not a Referencing Object Map.
+270 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Referencing Object Map statements found: []
+270 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ObjectMapExtractor  - Extract object map..
+270 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - extractLiteralFromTermMap: Extracted template : --{@month}
+271 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - Extracted termType : http://www.w3.org/ns/r2rml#Literal
+271 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - Extracted datatype : http://www.w3.org/2001/XMLSchema#gMonth
+272 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - referenceValueStr null
+272 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - refMap.getReferenceValue(referenceValueStr) null
+272 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ObjectMapExtractor  - reference value null
+272 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.GraphMapExtractor  - Gtraph Maps returned []
+272 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Extract predicate-object map done.
+272 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - More Predicate Map statements: true
+273 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - Extracted constant : http://www.example.com/year
+274 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - referenceValueStr null
+274 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - refMap.getReferenceValue(referenceValueStr) null
+274 [main] DEBUG be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap  - setTermType: [AbstractTermMap:setTermType] No term type specified : use IRI by default.null
+274 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateMapExtractor  - Extracting predicate map done.
+275 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Object Map statements found: org.openrdf.repository.RepositoryResult@6e4784bc
+275 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Extracting Referencing Object Maps..
+275 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extracting Referencing Object Map..
+276 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Parent Triples Maps were found null
+276 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extract join conditions..
+276 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extract join conditions done.
+276 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.BindingConditionExtractor  - Extracting Binding Conditions..
+277 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.BindingConditionExtractor  - Extract bind condition done.
+277 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Current Triples Map resource http://example.com/base#FromToMaps
+277 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Current Triples Map resource http://example.com/base#DateTime
+277 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Not a Referencing Object Map.
+277 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Referencing Object Map statements found: []
+277 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ObjectMapExtractor  - Extract object map..
+279 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - Extracted datatype : http://www.w3.org/2001/XMLSchema#gYear
+280 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - extractLiteralFromTermMap: Extracted reference : @year
+280 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - referenceValueStr @year
+280 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermMapExtractor  - refMap.getReferenceValue(referenceValueStr) be.ugent.mmlab.rml.model.std.StdReferenceMap@61df66b6
+280 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ObjectMapExtractor  - reference value be.ugent.mmlab.rml.model.std.StdReferenceMap@50eac852
+280 [main] DEBUG be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap  - setTermType: [AbstractTermMap:setTermType] No term type specified : use Literal by default.
+280 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.GraphMapExtractor  - Gtraph Maps returned []
+280 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Extract predicate-object map done.
+281 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Number of extracted predicate-object maps : 3
+281 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Extract of TriplesMap subject : http://example.com/base#DateTime done.
+281 [main] INFO be.ugent.mmlab.rml.main.Main  - ========================================
+281 [main] INFO be.ugent.mmlab.rml.main.Main  - Running the RML Mapping..
+281 [main] INFO be.ugent.mmlab.rml.main.Main  - ========================================
+281 [main] DEBUG be.ugent.mmlab.rml.core.RMLEngine  - Running RML mapping... 
+281 [main] DEBUG be.ugent.mmlab.rml.core.RMLEngine  - Using direct file output.rdf
+283 [main] DEBUG org.openrdf.sail.memory.MemoryStore  - Initializing MemoryStore...
+283 [main] DEBUG org.openrdf.sail.memory.MemoryStore  - MemoryStore initialized
+287 [main] DEBUG org.openrdf.rio.RDFWriterRegistry  - Registered service class org.openrdf.rio.trig.TriGWriterFactory
+288 [main] DEBUG org.openrdf.rio.RDFWriterRegistry  - Registered service class org.openrdf.rio.turtle.TurtleWriterFactory
+288 [main] DEBUG org.openrdf.rio.RDFWriterRegistry  - Registered service class org.openrdf.rio.ntriples.NTriplesWriterFactory
+288 [main] DEBUG org.openrdf.rio.RDFWriterRegistry  - Registered service class org.openrdf.rio.binary.BinaryRDFWriterFactory
+289 [main] DEBUG org.openrdf.rio.RDFWriterRegistry  - Registered service class org.openrdf.rio.n3.N3WriterFactory
+290 [main] DEBUG org.openrdf.rio.RDFWriterRegistry  - Registered service class org.openrdf.rio.trix.TriXWriterFactory
+291 [main] DEBUG org.openrdf.rio.RDFWriterRegistry  - Registered service class org.openrdf.rio.rdfxml.RDFXMLWriterFactory
+291 [main] DEBUG org.openrdf.rio.RDFWriterRegistry  - Registered service class org.openrdf.rio.nquads.NQuadsWriterFactory
+292 [main] DEBUG org.openrdf.rio.RDFWriterRegistry  - Registered service class org.openrdf.rio.rdfjson.RDFJSONWriterFactory
+292 [main] DEBUG org.openrdf.rio.RDFWriterRegistry  - Registered service class org.openrdf.rio.jsonld.JSONLDWriterFactory
+295 [main] DEBUG be.ugent.mmlab.rml.core.RMLEngine  - Dataset repository generated
+295 [main] DEBUG be.ugent.mmlab.rml.core.RMLEngine  - Generating triples..
+295 [main] DEBUG be.ugent.mmlab.rml.core.RMLEngine  - Generate RDF triples... 
+Generating RDF triples for http://example.com/base#FromToMaps
+296 [main] INFO be.ugent.mmlab.rml.core.RMLEngine  - Generating RML Processor..
+297 [main] DEBUG be.ugent.mmlab.rml.core.RMLEngine  - Logical Source: [StdLogicalSource : iterator = /notes/note; source be.ugent.mmlab.rml.model.source.std.StdLocalFileSource@6a2bcfcb; referenceFormulation = XPath]
+297 [main] DEBUG be.ugent.mmlab.rml.core.RMLEngine  - Reference formulation: XPath
+309 [main] INFO be.ugent.mmlab.rml.core.RMLEngine  - Generating Data Retrieval Processor..
+310 [main] DEBUG be.ugent.mmlab.rml.input.ConcreteLogicalSourceProcessorFactory  - Resource-valued Input Source
+311 [main] DEBUG be.ugent.mmlab.rml.input.ConcreteLogicalSourceProcessorFactory  - source type StdLocalFileSource
+311 [main] DEBUG be.ugent.mmlab.rml.input.ConcreteLogicalSourceProcessorFactory  - Processor for Local File Source.
+311 [main] DEBUG be.ugent.mmlab.rml.core.RMLEngine  - Generating Input Stream..
+312 [main] DEBUG be.ugent.mmlab.rml.core.RMLEngine  - Generating Performer..
+312 [main] DEBUG be.ugent.mmlab.rml.core.RMLEngine  - Executing Mapping Processor..
+496 [main] DEBUG be.ugent.mmlab.rml.processor.concrete.XPathProcessor  - Expression nodeset(/child::notes/child::note)
+498 [main] DEBUG be.ugent.mmlab.rml.model.std.StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable @id from string template http://www.example.com/note/{@id}
+573 [main] DEBUG be.ugent.mmlab.rml.model.dataset.FileDataset  - Add triple (http://www.example.com/note/M17, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://example.com/mail#note).
+575 [main] DEBUG be.ugent.mmlab.rml.model.dataset.FileDataset  - Add triple (http://www.example.com/note/M17, http://example.com/mail#heading, Reminder).
+576 [main] DEBUG be.ugent.mmlab.rml.model.dataset.FileDataset  - Add triple (http://www.example.com/note/M17, http://example.com/mail#body, Don't forget me this weekend!).
+577 [main] DEBUG be.ugent.mmlab.rml.model.std.StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable @year from string template {@year}-{@month}-{@day}
+577 [main] DEBUG be.ugent.mmlab.rml.model.std.StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable @month from string template {@year}-{@month}-{@day}
+577 [main] DEBUG be.ugent.mmlab.rml.model.std.StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable @day from string template {@year}-{@month}-{@day}
+578 [main] DEBUG be.ugent.mmlab.rml.model.dataset.FileDataset  - Add triple (http://www.example.com/note/M17, http://example.com/mail#when, 2008-01-10).
+579 [main] DEBUG be.ugent.mmlab.rml.model.dataset.FileDataset  - Add triple (http://www.example.com/note/M17, http://example.com/mail#to, Tove).
+579 [main] DEBUG be.ugent.mmlab.rml.model.dataset.FileDataset  - Add triple (http://www.example.com/note/M17, http://example.com/mail#from, Jani).
+580 [main] DEBUG be.ugent.mmlab.rml.processor.concrete.XPathProcessor  - Expression nodeset(/child::notes/child::note)
+581 [main] DEBUG be.ugent.mmlab.rml.model.std.StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable @id from string template http://www.example.com/note/{@id}
+581 [main] DEBUG be.ugent.mmlab.rml.model.dataset.FileDataset  - Add triple (http://www.example.com/note/M18, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://example.com/mail#note).
+582 [main] DEBUG be.ugent.mmlab.rml.model.dataset.FileDataset  - Add triple (http://www.example.com/note/M18, http://example.com/mail#heading, Update).
+582 [main] DEBUG be.ugent.mmlab.rml.model.dataset.FileDataset  - Add triple (http://www.example.com/note/M18, http://example.com/mail#body, We now leave at six).
+582 [main] DEBUG be.ugent.mmlab.rml.model.std.StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable @year from string template {@year}-{@month}-{@day}
+583 [main] DEBUG be.ugent.mmlab.rml.model.std.StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable @month from string template {@year}-{@month}-{@day}
+583 [main] DEBUG be.ugent.mmlab.rml.model.std.StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable @day from string template {@year}-{@month}-{@day}
+584 [main] DEBUG be.ugent.mmlab.rml.model.dataset.FileDataset  - Add triple (http://www.example.com/note/M18, http://example.com/mail#when, 2008-02-10).
+584 [main] DEBUG be.ugent.mmlab.rml.model.dataset.FileDataset  - Add triple (http://www.example.com/note/M18, http://example.com/mail#to, Chris).
+590 [main] DEBUG be.ugent.mmlab.rml.model.dataset.FileDataset  - Add triple (http://www.example.com/note/M18, http://example.com/mail#from, Rick).
+590 [main] INFO be.ugent.mmlab.rml.core.RMLEngine  - 12 triples were generated for http://example.com/base#FromToMaps
+Generating RDF triples for http://example.com/base#DateTime
+590 [main] INFO be.ugent.mmlab.rml.core.RMLEngine  - Generating RML Processor..
+590 [main] DEBUG be.ugent.mmlab.rml.core.RMLEngine  - Logical Source: [StdLogicalSource : iterator = /notes/note; source be.ugent.mmlab.rml.model.source.std.StdLocalFileSource@491666ad; referenceFormulation = XPath]
+590 [main] DEBUG be.ugent.mmlab.rml.core.RMLEngine  - Reference formulation: XPath
+591 [main] INFO be.ugent.mmlab.rml.core.RMLEngine  - Generating Data Retrieval Processor..
+591 [main] DEBUG be.ugent.mmlab.rml.input.ConcreteLogicalSourceProcessorFactory  - Resource-valued Input Source
+591 [main] DEBUG be.ugent.mmlab.rml.input.ConcreteLogicalSourceProcessorFactory  - source type StdLocalFileSource
+591 [main] DEBUG be.ugent.mmlab.rml.input.ConcreteLogicalSourceProcessorFactory  - Processor for Local File Source.
+591 [main] DEBUG be.ugent.mmlab.rml.core.RMLEngine  - Generating Input Stream..
+591 [main] DEBUG be.ugent.mmlab.rml.core.RMLEngine  - Generating Performer..
+591 [main] DEBUG be.ugent.mmlab.rml.core.RMLEngine  - Executing Mapping Processor..
+596 [main] DEBUG be.ugent.mmlab.rml.processor.concrete.XPathProcessor  - Expression nodeset(/child::notes/child::note)
+596 [main] DEBUG be.ugent.mmlab.rml.model.std.StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable @year from string template http://www.example.com/DateTime/{@year}{@month}{@day}
+596 [main] DEBUG be.ugent.mmlab.rml.model.std.StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable @month from string template http://www.example.com/DateTime/{@year}{@month}{@day}
+596 [main] DEBUG be.ugent.mmlab.rml.model.std.StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable @day from string template http://www.example.com/DateTime/{@year}{@month}{@day}
+598 [main] DEBUG be.ugent.mmlab.rml.model.dataset.FileDataset  - Add triple (http://www.example.com/DateTime/20080110, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://www.example.com/DateTime).
+599 [main] DEBUG be.ugent.mmlab.rml.model.std.StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable @month from string template --{@month}
+599 [main] DEBUG be.ugent.mmlab.rml.model.dataset.FileDataset  - Add triple (http://www.example.com/DateTime/20080110, http://www.example.com/month, --01).
+600 [main] DEBUG be.ugent.mmlab.rml.model.dataset.FileDataset  - Add triple (http://www.example.com/DateTime/20080110, http://www.example.com/year, 2008).
+600 [main] DEBUG be.ugent.mmlab.rml.model.std.StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable @day from string template ---{@day}
+600 [main] DEBUG be.ugent.mmlab.rml.model.dataset.FileDataset  - Add triple (http://www.example.com/DateTime/20080110, http://www.example.com/day, ---10).
+601 [main] DEBUG be.ugent.mmlab.rml.processor.concrete.XPathProcessor  - Expression nodeset(/child::notes/child::note)
+602 [main] DEBUG be.ugent.mmlab.rml.model.std.StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable @year from string template http://www.example.com/DateTime/{@year}{@month}{@day}
+602 [main] DEBUG be.ugent.mmlab.rml.model.std.StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable @month from string template http://www.example.com/DateTime/{@year}{@month}{@day}
+602 [main] DEBUG be.ugent.mmlab.rml.model.std.StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable @day from string template http://www.example.com/DateTime/{@year}{@month}{@day}
+604 [main] DEBUG be.ugent.mmlab.rml.model.dataset.FileDataset  - Add triple (http://www.example.com/DateTime/20080210, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://www.example.com/DateTime).
+604 [main] DEBUG be.ugent.mmlab.rml.model.std.StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable @month from string template --{@month}
+604 [main] DEBUG be.ugent.mmlab.rml.model.dataset.FileDataset  - Add triple (http://www.example.com/DateTime/20080210, http://www.example.com/month, --02).
+605 [main] DEBUG be.ugent.mmlab.rml.model.dataset.FileDataset  - Add triple (http://www.example.com/DateTime/20080210, http://www.example.com/year, 2008).
+605 [main] DEBUG be.ugent.mmlab.rml.model.std.StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable @day from string template ---{@day}
+606 [main] DEBUG be.ugent.mmlab.rml.model.dataset.FileDataset  - Add triple (http://www.example.com/DateTime/20080210, http://www.example.com/day, ---10).
+606 [main] INFO be.ugent.mmlab.rml.core.RMLEngine  - 20 triples were generated for http://example.com/base#DateTime
+606 [main] DEBUG be.ugent.mmlab.rml.core.RMLEngine  - Generating metadata..
+606 [main] INFO be.ugent.mmlab.rml.core.RMLEngine  - RML mapping done! Generated 20 in 0.32450509s . 
+606 [main] DEBUG be.ugent.mmlab.rml.model.dataset.FileDataset  - Closing file...

@@ -76,27 +76,66 @@ var exports = module.exports = {
         '    csvw:encoding "'+req.body.inputcsvwEncoding+'";\n' +
         '    csvw:header '+req.body.inputcsvwHeader+' \n' 
         
+        //Save Description here
+        
         res.send(200);
     },
     
   addDB: function(req, res) {
-res.send(200);
+      var name = req.body.inputDBName;
+      var license = req.body.inputDBLicense;      
+      var data = '@prefix d2rq : <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .\n'+
+                 '<#DB_source> a d2rq:Database;\n' +
+                 '    d2rq:jdbcDSN "'+req.body.inputDBURL+'";\n' +
+                 '    d2rq:jdbcDriver "'+req.body.inputDBDriver+'";\n' +
+                 '    d2rq:username "'+req.body.inputDBUser+'";\n' +
+                 '    d2rq:password "'+req.body.inputDBPass+'" . \n';      
+
+    res.send(200);
     },
     
   addAPI: function(req, res) {
+      var license = req.body.inputAPIicense;
+      var data =' @prefix hydra : <http://www.w3.org/ns/hydra/core#> .\n' +
+                '<#API_template_source>\n' +
+                'a hydra:IriTemplate\n' +
+                'hydra:template "'+req.body.inputAPIURL+'";\n';
+    // TODO: not supported?
+    var templateStuff = 'hydra:mapping \n' +
+    '    [ a hydra:TemplateMapping ;\n' +
+    '      hydra:variable "id";\n' +
+    '      hydra:required true ],\n' +
+    '    [ a hydra:TemplateMapping ;\n' +
+    '      hydra:variable "format";\n' +
+    '      hydra:required false ] . \n' ;
 res.send(200);
     },
     
   addSPARQL: function(req, res) {
-res.send(200);
+      var name = req.body.inputSPARQLName;
+      var license = req.body.inputSPARQLicense;      
+      var data = '@prefix sd : <http://www.w3.org/ns/sparql-service-description#> .\n' +
+                 '<#SPARQL_'+req.body.inputSPARQLType+'_source> a sd:Service ;\n' +
+                 '    sd:endpoint <'+req.body.inputSPARQLURL+'> ;\n' +
+                 '    sd:supportedLanguage sd:SPARQL11Query ;\n' +
+                 '    sd:resultFormat <http://www.w3.org/ns/formats/SPARQL_Results_'+req.body.inputSPARQLType+'> .'     
     },
     
   addDCAT: function(req, res) {
-res.send(200);
+      
+        var license = req.body.inputDCATLicense;
+        var prefix = 'dcat: <http://www.w3.org/ns/dcat#>';
+        var data = '@prefix dcat: <http://www.w3.org/ns/dcat#> .\n' +
+                    '<#DCAT_source>\n' +
+                    '   a dcat:Dataset ;\n' +
+                    '   dcat:distribution [\n' +
+                    'a dcat:Distribution;\n' +
+                    'dcat:downloadURL "'+req.body.inputDCATURL+'" ].\n';
+        res.send(200);
   },
      
   getDataDescriptions: function(req, res) {
-res.send(200);
+    res.send(200);
   },  
 
 

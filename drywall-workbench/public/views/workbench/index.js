@@ -742,16 +742,18 @@
      * 
      ***/
 
-function AddButtonNoFile(buttonId) {
-    console.log("wat");
- $('#' +buttonId).on("submit", function(event){
-        event.preventDefault();
+function AddButtonNoFile(formId) {
+   $(formId).on("submit", function(event){
+        event.preventDefault(); 
+        var form_url = $(formId).attr("action");
+        //var CSRF_TOKEN = $('input[name="_csrf"]').val();                    
+        var inputs = $(formId + ' .form-control');
         
-
-        var form_url = $("form[id='" + buttonId +"']").attr("action");
-        var CSRF_TOKEN = $('input[name="_csrf"]').val();                    
-
-        var form = new FormData();
+        var values = {};
+        inputs.each(function() {
+            values[ $(this).attr("id")] = $(this).val();
+            console.log( $(this).attr("id") + " " + $(this).val());
+        });
 
         $.ajax({
             url:  form_url,
@@ -759,11 +761,7 @@ function AddButtonNoFile(buttonId) {
             headers: {
                 'X-CSRF-Token': $.cookie("_csrfToken")
             },
-            "mimeType": "multipart/form-data",
-            data: form,
-            contentType: false, 
-            processData: false,
-            
+            data: values,            
             dataType: 'JSON',
             statusCode: {
                 200: function() {
@@ -774,9 +772,9 @@ function AddButtonNoFile(buttonId) {
                            
     });   
 }
+
  $('#csvw_input_Form').on("submit", function(event){
         event.preventDefault(); 
-        console.log('kanker')
         var form_url = $("form[id='csvw_input_Form']").attr("action");
         var CSRF_TOKEN = $('input[name="_csrf"]').val();                    
         var inputs = $('#csvw_input_Form .form-control');
@@ -803,10 +801,10 @@ function AddButtonNoFile(buttonId) {
         });       
    });        
 //AddButtonNoFile("csvw_input_Form");
-AddButtonNoFile("api_input_Form");
-AddButtonNoFile("db_input_Form");
-AddButtonNoFile("sparql_input_Form");
-AddButtonNoFile("dcat_input_Form");
+AddButtonNoFile("#api_input_Form");
+AddButtonNoFile("#db_input_Form");
+AddButtonNoFile("#sparql_input_Form");
+AddButtonNoFile("#dcat_input_Form");
 
       $("#uploadMapping_Form").on("submit", function(event){
         event.preventDefault();

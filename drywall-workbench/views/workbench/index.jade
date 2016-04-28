@@ -62,7 +62,8 @@ block body
             span(aria-hidden='true') ×
           h4.modal-title Add a Data Catalog.
         div.modal-body
-          form(role='form')
+          form(role='form' id='dcat_input_Form' action='/workbench/fetch/dcat')
+            input(type='hidden', name='_csrf', value=_csrf)
             div.form-group
               label(for='inputDCATName') Name
               input.form-control(id='inputDDCATName' type='text' placeholder='Descriptive name')
@@ -70,7 +71,7 @@ block body
               label(for='inputDCATURL') URL
               input.form-control(id='inputDCATURL' type='text' placeholder='url')
             +licensesId('inputDCATLicense') 
-            button.btn.btn-primary(id="btn_dcat_input" data-dismiss="modal") Add
+            button.btn.btn-primary(id="btn_dcat_input" form="dcat_input_Form" type='submit' data-dismiss="modal") Add
 
   div(id='db-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='databaseInputLabel' style='display: none;')
     div.modal-dialog(role='document')
@@ -80,7 +81,7 @@ block body
             span(aria-hidden='true') ×
           h4.modal-title Add a Database description
         div.modal-body
-          form(role='form')
+          form(role='form' id='db_input_Form' action='/workbench/fetch/db')
             input(type='hidden', name='_csrf', value=_csrf)
             div.form-group
               label(for='inputDBName') Name
@@ -110,7 +111,7 @@ block body
               label(for='inputDBPass') Password
               input.form-control(id='inputDBPass' type='password' placeholder='password')
             +licensesId('inputDBLicense') 
-            button.btn.btn-primary(id="btn_db_input" data-dismiss="modal") Add
+            button.btn.btn-primary(id="btn_db_input" form="db_input_Form" type="submit" data-dismiss="modal") Add
 
   div(id='api-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='apiInputLabel' style='display: none;')
     div.modal-dialog(role='document')
@@ -120,7 +121,8 @@ block body
             span(aria-hidden='true') ×
           h4.modal-title Add an Web API
         div.modal-body
-          form(role='form')
+          form(role='form' id='api_input_Form' action='/workbench/fetch/api')
+            input(type='hidden', name='_csrf', value=_csrf)
             div.form-group
               label(for='inputAPIName') Name
               input.form-control(id='inputAPIName' type='text' placeholder='Descriptive name')
@@ -128,7 +130,7 @@ block body
               label(for='inputAPIURL') Template URL
               input.form-control(id='inputAPIURL' type='text' placeholder='url')
             +licensesId('inputAPILicense') 
-            button.btn.btn-primary(id="btn_api_input" data-dismiss="modal") Add
+            button.btn.btn-primary(id="btn_api_input" form="api_input_Form" type='submit' data-dismiss="modal") Add
 
   div(id='sparql-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='sparqlInputLabel' style='display: none;')
     div.modal-dialog(role='document')
@@ -138,7 +140,8 @@ block body
             span(aria-hidden='true') ×
           h4.modal-title Add an SPARQL endpoint
         div.modal-body
-          form(role='form')
+          form(role='form' id='sparql_input_Form' action='/workbench/fetch/sparql')
+            input(type='hidden', name='_csrf', value=_csrf)
             div.form-group
               label(for='inputSparqlName') Name
               input.form-control(id='inputSparqlName' type='text' placeholder='Descriptive name')
@@ -158,18 +161,18 @@ block body
               label(for='inputSparqlQuery') DataQuery
               textarea.form-control(id='inputSparqQuery' rows="2")      
             +licensesId('inputSparqlLicense')                           
-            button.btn.btn-primary(id="btn_sparql_input" data-dismiss="modal") Add
+            button.btn.btn-primary(id="btn_sparql_input" form="sparql_input_Form" type='submit' data-dismiss="modal") Add
             
             
-  div(id='csvw-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='csvwInputLabel' style='display: none;')
+  div(id='csvw-input' class='modal' tabindex='-1' role='dialog' aria-labelledby='csvwInputLabel' style='display: none;')
     div.modal-dialog(role='document')
       div.modal-content
         div.modal-header
-          button.close(type='button' data-dismiss='modal' aria-label='Close')
+          button.close(type='button' data-dismiss='modal' aria-label='Close' id='closeCSVW')
             span(aria-hidden='true') ×
           h4.modal-title Add a CSV on the Web description
         div.modal-body
-          form(role='form' id='csvw_input_Form' action='/workbench/fetch/csvw')
+          form(role="form" id='csvw_input_Form' action='/workbench/fetch/csvw')
             input(type='hidden', name='_csrf', value=_csrf)
             div.form-group
               label(for='inputcsvwName') Name
@@ -178,7 +181,7 @@ block body
               label(for='inputcsvwURL') URL
               input.form-control(id='inputcsvwURL' type='text' placeholder='URL')
             div.form-group
-              label(for='inputcsvwIterator') Delimiter
+              label(for='inputcsvwDelimiter') Delimiter
               input.form-control(id='inputcsvwDelimiter' type='text' placeholder='')
             div.form-group
               label(for='inputcsvwHeader') Header
@@ -225,7 +228,7 @@ block body
                 option utf-16be
                 option utf-16le
             +licensesId('inputcsvwLicense')                           
-            button.btn.btn-primary(id="csvw_input" type="submit" data-dismiss="modal") Add
+            button.btn.btn-primary(form='csvw_input_Form' type="submit") Add
   
       
   div(id='executeMapping' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='executeMapping' style='display: none;')

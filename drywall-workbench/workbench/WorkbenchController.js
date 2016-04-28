@@ -64,9 +64,19 @@ var exports = module.exports = {
         var user = req.user;
         var models = req.app.db.models;
         console.log('[WORKBENCH LOG] User ' + user.username+ ' Adding CSVW');
-        console.log('[WORKBENCH LOG] User ' + req.data + ' Adding CSVW');
-        //read the file and make mapping fields
 
+       
+        var license = req.body.inputcsvwLicense;
+        
+        var data = '@prefix csvw : <http://www.w3.org/ns/csvw#> .\n' +
+        '<#CSVW_source> a csvw:Table;\n' +
+        '    csvw:url "' + req.body.inputcsvwURL + '" ;\n' +
+        '    csvw:dialect [ a csvw:Dialect;\n' +
+        '    csvw:delimiter "'+req.body.inputcsvwDelimiter+'";\n' +
+        '    csvw:encoding "'+req.body.inputcsvwEncoding+'";\n' +
+        '    csvw:header '+req.body.inputcsvwHeader+' \n' 
+        
+        res.send(200);
     },
     
   addDB: function(req, res) {

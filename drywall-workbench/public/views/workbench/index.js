@@ -775,12 +775,16 @@ function AddButtonNoFile(buttonId) {
     });   
 }
  $('#csvw_input_Form').on("submit", function(event){
-        event.preventDefault();        
-
+        event.preventDefault(); 
+        console.log('kanker')
         var form_url = $("form[id='csvw_input_Form']").attr("action");
         var CSRF_TOKEN = $('input[name="_csrf"]').val();                    
-
-        var form = new FormData();
+        var inputs = $('#csvw_input_Form .form-control');
+        var values = {};
+        inputs.each(function() {
+            values[ $(this).attr("id")] = $(this).val();
+            console.log( $(this).attr("id") + " " + $(this).val());
+        });
 
         $.ajax({
             url:  form_url,
@@ -788,10 +792,7 @@ function AddButtonNoFile(buttonId) {
             headers: {
                 'X-CSRF-Token': $.cookie("_csrfToken")
             },
-            "mimeType": "multipart/form-data",
-            data: form,
-            contentType: false, 
-            processData: false,
+            data: values,
             
             dataType: 'JSON',
             statusCode: {
@@ -802,10 +803,10 @@ function AddButtonNoFile(buttonId) {
         });       
    });        
 //AddButtonNoFile("csvw_input_Form");
-AddButtonNoFile("api_input");
-AddButtonNoFile("db_input");
-AddButtonNoFile("sparql_input");
-AddButtonNoFile("dcat_input");
+AddButtonNoFile("api_input_Form");
+AddButtonNoFile("db_input_Form");
+AddButtonNoFile("sparql_input_Form");
+AddButtonNoFile("dcat_input_Form");
 
       $("#uploadMapping_Form").on("submit", function(event){
         event.preventDefault();

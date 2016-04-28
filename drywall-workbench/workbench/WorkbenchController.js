@@ -55,6 +55,39 @@ var exports = module.exports = {
             res.send(endpoints);
         });
     },
+    
+    /*
+    * Data Descriptions
+    */
+    
+  addCSVW: function(req, res) {
+        var user = req.user;
+        var models = req.app.db.models;
+        console.log('[WORKBENCH LOG] User ' + user.username+ ' Adding CSVW');
+        console.log('[WORKBENCH LOG] User ' + req.data + ' Adding CSVW');
+        //read the file and make mapping fields
+
+    },
+    
+  addDB: function(req, res) {
+res.send(200);
+    },
+    
+  addAPI: function(req, res) {
+res.send(200);
+    },
+    
+  addSPARQL: function(req, res) {
+res.send(200);
+    },
+    
+  addDCAT: function(req, res) {
+res.send(200);
+  },
+     
+  getDataDescriptions: function(req, res) {
+res.send(200);
+  },  
 
 
     /*

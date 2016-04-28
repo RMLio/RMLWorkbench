@@ -169,7 +169,7 @@ block body
             span(aria-hidden='true') ×
           h4.modal-title Add a CSV on the Web description
         div.modal-body
-          form(role='form')
+          form(role='form' id='csvw_input_Form' action='/workbench/fetch/csvw')
             div.form-group
               label(for='inputcsvwName') Name
               input.form-control(id='inputcsvwName' type='text' placeholder='Descriptive name')
@@ -223,35 +223,10 @@ block body
                 option euc-kr
                 option utf-16be
                 option utf-16le
-
             +licensesId('inputcsvwLicense')                           
-            button.btn.btn-primary(id="btn_csvw_input" data-dismiss="modal") Add
+            button.btn.btn-primary(id="csvw_input" type='submit' data-dismiss="modal") Add
   
-  
-  div(id='description-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='descriptionLabel' style='display: none;')
-    div.modal-dialog(role='document')
-      div.modal-content
-        div.modal-header
-          button.close(type='button' data-dismiss='modal' aria-label='Close')
-            span(aria-hidden='true') ×
-          h4.modal-title Define a Description
-        div.modal-body
-          form(role='form')
-            div.form-group
-              label(for='DescriptionName') Name
-              input.form-control(id='DescriptionName' type='text' placeholder='Descriptive name')
-            div.form-group
-              label(for='DescriptionType') Type
-              input.form-control(id='DescriptionType' type='text' placeholder='type')
-            div.form-group
-              label(for='DescriptionPrefix') Prefix
-              input.form-control(id='DescriptionType' type='text' placeholder='prefix')
-            div.form-group
-              label(for='DescriptionData') Data
-              textarea.form-control(id='DescriptionData' rows="2")      
-            //+licensesId('DescriptionlLicense')                           
-            button.btn.btn-primary(id="btn_db_input" data-dismiss="modal") Add
-         
+      
   div(id='executeMapping' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='executeMapping' style='display: none;')
     div.modal-dialog(role='document')
       div.modal-content

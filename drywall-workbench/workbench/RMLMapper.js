@@ -70,28 +70,38 @@ var exports = module.exports = {
             console.log('[WORKBENCH LOG] Triples: ' + triplenames);
 
             //TODO check command --> pick triple functionality
-
+            console.log('COMMAND');
+            console.log('java -jar ./workbench/rmlmapper/RML-Mapper.jar -m input.rml -o output.rdf -tm ' + triplenames);
+            
             //map the file
             const spawner = require('child_process');
             const spawn = spawner.exec(
-            'java -jar ./workbench/rmlmapper/RML-Mapper.jar -m input.rml -o output.rdf [-tm ' + triplenames + ']');  
+            'java -jar ./workbench/rmlmapper/RML-Mapper.jar -m input.rml -o output.rdf ')// -tm ' + triplenames);  
             var rmlprocessoroutput = '';
             //logging
             spawn.stdout.on('data', (data) => {
+                console.log(`stdout: ${data}`);
                 rmlprocessoroutput += data;    
             });
             spawn.stderr.on('data', (data) => {
                 console.log(`stdout: ${data}`);
             });
+            
 
+            
             //save output.rdf and delete created files from directory
             spawn.on('close', () => {
                 
                 if(rmlprocessoroutput.indexOf('ERROR') > -1) {
                     console.log('[RMLPROCESSOR LOG] ERROR IN MAPPING!');
-                    fs.writeFile('mappinglog.txt', rmlprocessoroutput, 'utf8', (err) => {
+                    fs.writeFile('errormappinglog.txt', rmlprocessoroutput, 'utf8', (err) => {
                         console.log('[RMLPROCESSOR LOG] LOG WRITTEN TO "mappinglog.txt"!');         
                     });
+                } else {
+                    console.log('[RMLPROCESSOR LOG] NO ERRORS IN MAPPING!');
+                    fs.writeFile('mappinglog.txt', rmlprocessoroutput, 'utf8', (err) => {
+                        console.log('[RMLPROCESSOR LOG] LOG WRITTEN TO "mappinglog.txt"!');         
+                    });   
                 }
                 
                 fs.readFile('./output.rdf', 'utf8', (err, data) => { //using arrow function, this has no 'this'
@@ -123,6 +133,7 @@ var exports = module.exports = {
                     callback(result);
 
                 });
+                
         });
 
     }

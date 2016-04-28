@@ -6,6 +6,7 @@ var reader = require('./Reader');
 var clearer = require('./Clearer');
 var saver = require('./Saver');
 var sparql = require('./Sparql');
+var fs = require('fs');
 
 var exports = module.exports = {
 
@@ -272,7 +273,46 @@ res.send(200);
     //remove a description from a mapping file
     removeDescriptionFromMapping: function(req, res) {
       //TODO      
-    },    
+    }, 
+    
+    
+    /***
+     * 
+     * Publishing
+     * 
+     ***/   
+    publishToLDF: function(req, res) {
+        
+
+        //read configuration file (JSON) from local ldf server and add the new content
+        var obj = require('../ldf_server/config.json');
+
+        //count how many datasources there are in the local ldf server   
+        var key, count = 0;
+        for (key in obj.datasources) {
+            if (obj.datasources.hasOwnProperty(key)) {
+                count++;
+            }
+        }
+
+        //add request body (JSON) to config file of ldf server
+        obj.datasources['data_' + count] = req.body.dataset;
+        
+        fs.writeFile('./ldf_server/' + req.body.filename, req.body.data, function(err) {
+            if(err) throw err;  
+            console.log("[WORKBENCH LOG] Writing file..."); 
+        })
+
+        //write the config file back    
+        //Why is the path different? --> using fs
+        fs.writeFile('./ldf_server/config.json', JSON.stringify(obj), function(err) {
+            if (err) throw err;
+            console.log("[WORKBENCH LOG] Data added to local LDF server!");
+            res.status(200);
+            res.send();
+
+        });
+    },
     
 
     /**

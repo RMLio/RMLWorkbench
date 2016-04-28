@@ -67,6 +67,23 @@
     });
     
     
+    /***
+     * 
+     * MODELS SOURCES
+     * 
+     ***/
+    
+    app.Triple = Backbone.Model.extend({
+        idAttribute: '_id',
+        defaults: {}
+    });
+    
+    app.Triples = Backbone.Collection.extend({
+        model: app.Triple 
+    });
+    
+    
+    
      /***
      * 
      * MODELS SCHEDULES
@@ -638,8 +655,7 @@
                         triples.push(new app.Triple(app.currentModel.attributes.triples[i]));
                     }
                     
-                    app.tripleListView = new app.TripleListView({model: { models:triples}});
-                    
+                    app.tripleListView = new app.TripleListView({model: { models:triples}});                    
                     
                     //rendering with jquery
                     $('#mappingMain').html(app.mappingsView.render().el);    
@@ -686,7 +702,7 @@
                     $('#clearallpublishingsbutton').html(app.clearAllPublishingsView.render().el);  
                                       
                 } else {
-                    $('.workbenchElement').empty();   
+                    $('.publishElement').empty();   
                 }
             }});
             
@@ -722,7 +738,10 @@
                 } else {
                     $('.workbenchElement').empty();   
                 }
-            }}); */
+
+            }});
+            */
+
     };
   
  
@@ -908,6 +927,84 @@ AddButtonNoFile("#dcat_input_Form");
         
                            
     });
+    
+    /**
+     * 
+     * Uploading sourcefile
+     * 
+     */
+    
+    $("#uploadSource_Form").on("submit", function(event){
+        event.preventDefault();                     
+
+        var form_url = $("form[id='uploadSource_Form']").attr("action");
+        var CSRF_TOKEN = $('input[name="_csrf"]').val();                    
+
+        var form = new FormData();
+        form.append('sourceUpload', $('input[id=sourceFile]')[0].files[0]);        
+
+
+        $.ajax({
+            url:  form_url,
+            type: 'POST',
+            headers: {
+                'X-CSRF-Token': $.cookie("_csrfToken")
+            },
+            "mimeType": "multipart/form-data",
+            data: form,
+            contentType: false, 
+            processData: false,
+            
+            dataType: 'JSON',
+            statusCode: {
+                200: function() {
+                    app.render();
+                }   
+            }            
+        }); 
+        
+                           
+    });
+    
+    /***
+     * 
+     * Publishing a file
+     * 
+     ***/
+     
+     $('#publishToLDFForm').on('submit', function(event) {        
+        event.preventDefault();
+        
+        var rdf = app.currentModel.attributes;
+        var dataset = { 
+            title: rdf.filename,
+            type: 'TurtleDatasource',
+            description: 'default',
+            settings: {
+                file: './' + rdf.filename
+            }
+        };
+        
+        var data = {
+            dataset: dataset,
+            data: rdf.data,
+            filename: rdf.filename
+        }
+        
+         
+        $.ajax({
+            url : "/workbench/publish/ldf",
+            type: "POST", 
+            contentType: "application/json",
+            dataType: 'json',
+            data: JSON.stringify(data),
+            success    : function(){
+
+        }
+        });   
+     }); 
+ 
+       
     
     
     

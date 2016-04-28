@@ -2,6 +2,22 @@
 
 var rmlMapper = require('./RMLMapper');
 var util = require('./Utility');
+
+var uniq_fast = function(a) {
+    var seen = {};
+    var out = [];
+    var len = a.length;
+    var j = 0;
+    for(var i = 0; i < len; i++) {
+         var item = a[i];
+         if(seen[item] !== 1) {
+               seen[item] = 1;
+               out[j++] = item;
+         }
+    }
+    return out;
+};
+
 var exports = module.exports =  {
 
 	
@@ -56,6 +72,7 @@ var exports = module.exports =  {
 	// calls the rdf mapper to execute the mapping 
 	executeRMLMapper : function(mappingfile, triples, sources, callback) {
 		
+        
 		var sourcenames = [];	//stores the filenames necessary sources
 		var needed = [];		//store the necessary sources
 		var addednames = []; 	//store filenames that are already added in case of doubles
@@ -68,6 +85,11 @@ var exports = module.exports =  {
 			}
 		}
 		
+        //removing duplicates
+        sourcenames = uniq_fast(sourcenames);
+        console.log('SOURCENAMES');
+        console.log(sourcenames);
+        
 		for(var i = 0; i < sources.length; i++) {
 			for(var j = 0; j < sourcenames.length; j++) {
 				//compares the filenames and checks if the source isn't already added to the list
@@ -79,9 +101,10 @@ var exports = module.exports =  {
 			}
 		}       
         
-		console.log(needed);
-		console.log(sourcenames);
-		
+        //removing duplicates
+        needed = uniq_fast(needed);
+        console.log(needed);
+        		
 		if(needed.length == sourcenames.length) {
 			//execute the mapping with the RML Mapper		
 			rmlMapper.execute(mappingfile, triples, needed, (rdf) => {

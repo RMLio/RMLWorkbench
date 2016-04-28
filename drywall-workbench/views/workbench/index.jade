@@ -268,7 +268,7 @@ block body
                     label  
                         input(id='selectAllCheckbox' type="checkbox") 
                         | Select all
-                div(id='triplelistdiv')  
+                div(id='triplelistdiv' class='workbenchElement')  
                 script#triplelist(type='text/template').
                     <div>
                         <label> 
@@ -276,7 +276,7 @@ block body
                             <%= triplename %>
                         </label>
                     </div>                       
-            div(id='executeMappingButtonDiv')      
+            div(id='executeMappingButtonDiv' class='workbenchElement')      
               script#executeMappingButton(type='text/template').
                 <button class='btn btn-primary' data-dismiss="modal" >Execute</button>
            
@@ -289,13 +289,29 @@ block body
             span(aria-hidden='true') ×
           h4.modal-title Upload an RML file
         div.modal-body
-          form(id='uploadMapping_Form' role='form' action='/workbench/fetch/mapping' method='post' enctype="multipart/form-data")                  
-              input(type='hidden', name='_csrf', value=_csrf)
+          form(id='uploadMapping_Form' action='/workbench/fetch/mapping')                  
+              
               label(for='mapping-file-selector') File
-              input(id='mappingFile' name='mappingUpload' type='file' data-allowed-file-extensions="['csv', 'xml', 'txt', 'json']")
+              input(id='mappingFile' name='mappingUpload' type='file' data-allowed-file-extensions="['rml, 'rml.ttl']")
               p.help-block Only RML files are supported.
                 //+licensesId('mappingUploadLicense')   
-              button.btn.btn-primary(id="submitMappingUpload" data-dismiss="modal" type='submit' ) Submit
+              button.btn.btn-primary(id="submitMappingUpload" type='submit') Upload
+              
+   div(id='upload-publishing' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='AreTheseUsed' style='display: none;')
+    div.modal-dialog(role='document')
+      div.modal-content
+        div.modal-header
+          button.close( aria-label='Close')
+            span(aria-hidden='true') ×
+          h4.modal-title Upload RML file
+        div.modal-body
+          form(id='uploadPublishing_Form' action='/workbench/fetch/rdf')                  
+              
+              label(for='publishing-file-selector') File
+              input(id='publishingFile' name='rdfUpload' type='file' data-allowed-file-extensions="['rdf, ttl']")
+              p.help-block TTL & RDF files are supported.
+                //+licensesId('mappingUploadLicense')   
+              button.btn.btn-primary(id="submitPublishingUpload" type='submit') Upload
               
 
 
@@ -450,16 +466,14 @@ block body
                  h3.panel-title Menu
                div.panel-body.text-center
                  div.btn-group-vertical(role='group')
-                   form(id='mapping-upload-form' enctype='multipart/form-data' action='/workbench/fetch/mapping' method='post')
-                     input(type='hidden', name='_csrf', value=_csrf)
+                   
                    button(type='button' class='btn btn-primary btn-lg menubutton' for='mapping-upload-input' data-toggle='modal' data-target='#upload-mapping')
-                     | Upload Mapping
-                   input(type='file' id='mapping-upload-input' name='mappingUpload' style='display:none;' data-allowed-file-extensions="['rml.ttl', 'rml', 'ttl']")
+                     | Upload Mapping                   
                    button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#editMapping')
                      | Edit Mapping
-                   div(id='mappingmenu')
-                   div(id='clearmappingbutton')
-                   div(id='clearallmappingsbutton')
+                   div(id='mappingmenu' class='workbenchElement')
+                   div(id='clearmappingbutton' class='workbenchElement')
+                   div(id='clearallmappingsbutton' class='workbenchElement')
                    script#execute(type='text/template').
                      <button type='button' class='btn btn-primary btn-lg menubutton' data-toggle='modal' data-target='#executeMapping'>
                         Execute Mapping
@@ -478,10 +492,10 @@ block body
                  h3.panel-title Overview Mapping
                div.panel-body
                  div.row 
-                   div.col-md-3(id='mappingMain')
+                   div.col-md-3(id='mappingMain' class='workbenchElement')
                      script#mapping-list-item(type='text/template').
                        <h6><%= filename %></h6>                       
-                   div.col-md-9(id='mappingContent')
+                   div.col-md-9(id='mappingContent' class='workbenchElement')
                      script#mapping-content(type='text/template').
                        <%= convertedData %>
       #publishing.tab-pane.fade
@@ -494,23 +508,30 @@ block body
                  h3.panel-title Menu
                div.panel-body.text-center
                  div.btn-group-vertical(role='group')
-                   form(enctype='multipart/form-data' action='/workbench/fetch/input' method='post')
-                   input(type='hidden', name='_csrf', value=_csrf)
-                   label(class='btn btn-primary btn-lg')
-                     | Upload Dataset
-                     input(type='file' name='sourceUpload' style='display:none;' data-allowed-file-extensions="['rml.ttl', 'rml', 'ttl']")
+                   button(type='button' class='btn btn-primary btn-lg menubutton' for='publishing-upload-input' data-toggle='modal' data-target='#upload-publishing')
+                     | Upload Dataset 
                    button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#publish')
                      | Publish Dataset
+                   div(id='clearpublishingbutton' class='workbenchElement')
+                   div(id='clearallpublishingsbutton' class='workbenchElement')
+                   script#clearpublishing(type='text/template').
+                     <button type='button' class='btn btn-primary btn-lg clearpublishing menubutton'>
+                        Clear Dataset
+                     </button>       
+                   script#clearallpublishings(type='text/template').
+                     <button type='button' class='btn btn-primary btn-lg clearallpublishings menubutton'>
+                        Clear All Data
+                     </button>
            div.col-md-9
             div.panel.panel-info
                div.panel-heading
                  h3.panel-title Overview Publishing
                div.panel-body
                   div.row 
-                      div.col-md-3(id='publishMain')
+                      div.col-md-3(id='publishMain' class='workbenchElement')
                         script#publish-list-item(type='text/template').
                           <h6><%= filename %></h6>                       
-                      div.col-md-9(id='publishContent')
+                      div.col-md-9(id='publishContent' class='workbenchElement')
                         script#publish-content(type='text/template').
                           <%= convertedData %>
 

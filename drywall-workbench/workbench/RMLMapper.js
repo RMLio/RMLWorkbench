@@ -75,10 +75,10 @@ var exports = module.exports = {
             const spawner = require('child_process');
             const spawn = spawner.exec(
             'java -jar ./workbench/rmlmapper/RML-Mapper.jar -m input.rml -o output.rdf [-tm ' + triplenames + ']');  
-            
+            var rmlprocessoroutput = '';
             //logging
             spawn.stdout.on('data', (data) => {
-                console.log(`stdout: ${data}`);
+                rmlprocessoroutput += data;    
             });
             spawn.stderr.on('data', (data) => {
                 console.log(`stdout: ${data}`);
@@ -86,12 +86,19 @@ var exports = module.exports = {
 
             //save output.rdf and delete created files from directory
             spawn.on('close', () => {
-
+                
+                if(rmlprocessoroutput.indexOf('ERROR') > -1) {
+                    console.log('[RMLPROCESSOR LOG] ERROR IN MAPPING!');
+                    fs.writeFile('mappinglog.txt', rmlprocessoroutput, 'utf8', (err) => {
+                        console.log('[RMLPROCESSOR LOG] LOG WRITTEN TO "mappinglog.txt"!');         
+                    });
+                }
+                
                 fs.readFile('./output.rdf', 'utf8', (err, data) => { //using arrow function, this has no 'this'
                     if (err) throw err;
                         result = {
                             mapping_id: id,     
-                            filename: filename + '_result',
+                            filename: filename + '_result.ttl',
                             data : data,
                             metadata : 'empty',
                             type : 'rdf',

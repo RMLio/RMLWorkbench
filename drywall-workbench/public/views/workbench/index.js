@@ -538,8 +538,8 @@
 
     });
     
-    app.ClearscheduleingView = Backbone.View.extend({
-        
+    app.ClearScheduleingView = Backbone.View.extend({
+        /*
         template: _.template($('#clearscheduleing').html()),
         
         events: {
@@ -559,11 +559,11 @@
         render: function() {
            $(this.el).html(this.template(this.model.toJSON()));      
            return this;            
-        }    
+        }   
     });
     
     app.ClearAllscheduleingsView = Backbone.View.extend({
-        
+        /*
         template: _.template($('#clearallscheduleings').html()),
         
         events: {
@@ -587,7 +587,7 @@
         }    
     });
     
-     
+     */
      /***
      * 
      * APP CONFIG
@@ -738,8 +738,10 @@
                 } else {
                     $('.workbenchElement').empty();   
                 }
+
             }});
             */
+
     };
   
  
@@ -758,7 +760,106 @@
      * UPLOADING FILES
      * 
      ***/
-     
+
+/*
+function AddButtonNoFile(buttonId) {
+    console.log("wat");
+ $('#' +buttonId).on("submit", function(event){
+        event.preventDefault();
+        
+
+        var form_url = $("form[id='" + buttonId +"']").attr("action");
+        var CSRF_TOKEN = $('input[name="_csrf"]').val();                    
+
+        var form = new FormData();
+
+        $.ajax({
+            url:  form_url,
+            type: 'POST',
+            headers: {
+                'X-CSRF-Token': $.cookie("_csrfToken")
+            },
+            "mimeType": "multipart/form-data",
+            data: form,
+            contentType: false, 
+            processData: false,
+            
+            dataType: 'JSON',
+            statusCode: {
+                200: function() {
+                    app.render();
+                }   
+            }            
+        });       
+                           
+    });   
+}
+
+ $('#csvw_input_Form').on("submit", function(event){
+        event.preventDefault();        
+
+        var form_url = $("form[id='csvw_input_Form']").attr("action");
+        var CSRF_TOKEN = $('input[name="_csrf"]').val();                    
+
+        var form = new FormData();
+
+        $.ajax({
+            url:  form_url,
+            type: 'POST',
+            headers: {
+                'X-CSRF-Token': $.cookie("_csrfToken")
+            },
+            "mimeType": "multipart/form-data",
+            data: form,
+            contentType: false, 
+            processData: false,
+            
+            dataType: 'JSON',
+            statusCode: {
+                200: function() {
+                    app.render();
+                }   
+            }            
+        });       
+   });  
+       
+//AddButtonNoFile("csvw_input_Form");
+AddButtonNoFile("api_input");
+AddButtonNoFile("db_input");
+AddButtonNoFile("sparql_input");
+AddButtonNoFile("dcat_input");
+*/
+      $("#uploadMapping_Form").on("submit", function(event){
+        event.preventDefault();
+
+        var form_url = $("form[id='uploadMapping_Form']").attr("action");
+        var CSRF_TOKEN = $('input[name="_csrf"]').val();                    
+
+        var form = new FormData();
+        form.append('mappingUpload', $('input[id=mappingFile]')[0].files[0]);        
+
+
+        $.ajax({
+            url:  form_url,
+            type: 'POST',
+            headers: {
+                'X-CSRF-Token': $.cookie("_csrfToken")
+            },
+            "mimeType": "multipart/form-data",
+            data: form,
+            contentType: false, 
+            processData: false,
+            
+            dataType: 'JSON',
+            statusCode: {
+                200: function() {
+                    app.render();
+                }   
+            }            
+        }); 
+        
+                           
+    });   
      
     /*
     * Uploading mapping file
@@ -904,8 +1005,9 @@
             success    : function(){
 
         }
-    });    
-     });    
+        });   
+     }); 
+ 
        
     
     
@@ -914,5 +1016,6 @@
         app.firstLoad = true;
         app.router = new app.Router();
         Backbone.history.start();
+        app.render();
 
 }());

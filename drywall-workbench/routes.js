@@ -48,6 +48,12 @@ exports = module.exports = function(app, passport, upload, ldfserver) {
   app.get('/workbench/fetch/mapping', workbenchCtrl.getMappings);
   app.post('/workbench/fetch/rdf', upload.single('rdfUpload'), workbenchCtrl.uploadRDF);
   app.get('/workbench/fetch/rdf', workbenchCtrl.getRdf);
+  app.post('/workbench/fetch/csvw', workbenchCtrl.addCSVW);
+  app.post('/workbench/fetch/db', workbenchCtrl.addDB);
+  app.post('/workbench/fetch/api', workbenchCtrl.addAPI);
+  app.post('/workbench/fetch/sparql', workbenchCtrl.addSPARQL);  
+  app.post('/workbench/fetch/dcat', workbenchCtrl.addDCAT);    
+  app.get('/workbench/fetch/datadescriptions', workbenchCtrl.getDataDescriptions);
 
   //mapping on workbench
   app.post('/workbench/mapping/execute/:mapping_id', workbenchCtrl.executeMappingFromFile);

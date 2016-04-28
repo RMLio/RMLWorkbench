@@ -533,5 +533,11 @@ block body
                div.panel-heading
                  h3.panel-title Overview Schedules
                div.panel-body
-
+                  div.row 
+                      div.col-md-3(id='scheduleMain')
+                        script#schedule-list-item(type='text/template').
+                          <h6><%= filename %></h6>                       
+                      div.col-md-9(id='scheduleContent')
+                        script#schedule-content(type='text/template').
+                          <%= convertedData %>
 

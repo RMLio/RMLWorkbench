@@ -193,7 +193,7 @@
     });
     
     app.MappingsContentView = Backbone.View.extend({
-       tagName: 'pre', 
+       tagName: 'pre',
        template: _.template($('#mapping-content').html()),
        
        initialize: function(){
@@ -481,18 +481,14 @@
     */
     
     $("#uploadMapping_Form").on("submit", function(event){
-        event.preventDefault();                     
-
+        event.preventDefault();
 
         var form_url = $("form[id='uploadMapping_Form']").attr("action");
         var CSRF_TOKEN = $('input[name="_csrf"]').val();                    
 
         var form = new FormData();
         form.append('mappingUpload', $('input[id=mappingFile]')[0].files[0]); 
-
         
-
-
         $.ajax({
             url:  form_url,
             type: 'POST',
@@ -510,8 +506,7 @@
                     app.render();
                 }   
             }            
-        }); 
-        
+        });       
                            
 });
     

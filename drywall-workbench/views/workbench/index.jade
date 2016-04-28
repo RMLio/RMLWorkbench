@@ -170,6 +170,7 @@ block body
           h4.modal-title Add a CSV on the Web description
         div.modal-body
           form(role='form' id='csvw_input_Form' action='/workbench/fetch/csvw')
+            input(type='hidden', name='_csrf', value=_csrf)
             div.form-group
               label(for='inputcsvwName') Name
               input.form-control(id='inputcsvwName' type='text' placeholder='Descriptive name')
@@ -224,7 +225,7 @@ block body
                 option utf-16be
                 option utf-16le
             +licensesId('inputcsvwLicense')                           
-            button.btn.btn-primary(id="csvw_input" type='submit' data-dismiss="modal") Add
+            button.btn.btn-primary(id="csvw_input" type="submit" data-dismiss="modal") Add
   
       
   div(id='executeMapping' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='executeMapping' style='display: none;')

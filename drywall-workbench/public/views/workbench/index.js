@@ -743,11 +743,12 @@
      ***/
 
 function AddButtonNoFile(buttonId) {
- $(buttonId).on("submit", function(event){
+    console.log("wat");
+ $('#' +buttonId).on("submit", function(event){
         event.preventDefault();
-        console.log(buttonId);
+        
 
-        var form_url = $("form[id='" + buttonId +"_Form']").attr("action");
+        var form_url = $("form[id='" + buttonId +"']").attr("action");
         var CSRF_TOKEN = $('input[name="_csrf"]').val();                    
 
         var form = new FormData();
@@ -773,8 +774,34 @@ function AddButtonNoFile(buttonId) {
                            
     });   
 }
+ $('#csvw_input_Form').on("submit", function(event){
+        event.preventDefault();        
 
-AddButtonNoFile("csvw_input");
+        var form_url = $("form[id='csvw_input_Form']").attr("action");
+        var CSRF_TOKEN = $('input[name="_csrf"]').val();                    
+
+        var form = new FormData();
+
+        $.ajax({
+            url:  form_url,
+            type: 'POST',
+            headers: {
+                'X-CSRF-Token': $.cookie("_csrfToken")
+            },
+            "mimeType": "multipart/form-data",
+            data: form,
+            contentType: false, 
+            processData: false,
+            
+            dataType: 'JSON',
+            statusCode: {
+                200: function() {
+                    app.render();
+                }   
+            }            
+        });       
+   });        
+//AddButtonNoFile("csvw_input_Form");
 AddButtonNoFile("api_input");
 AddButtonNoFile("db_input");
 AddButtonNoFile("sparql_input");

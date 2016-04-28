@@ -83,7 +83,12 @@ retrieveFiles : function(idfiles, schema, callback) {
           source.replace(/[><#]+/g, '');
           //var regex = /(\w*\.\w*)$/;  //match filename
           //var match = regex.exec(source);
-          newTriple.logicalsource.rmlsource = source;
+          //checking if local or not
+          if(source.indexOf('[') == -1 && source.indexOf('#') == -1) {
+            newTriple.logicalsource.rmlsource = source;
+          } else {
+              newTriple.local = false;
+          }
       }
       
       //check for sourceName
@@ -142,10 +147,7 @@ retrieveFiles : function(idfiles, schema, callback) {
       //TO DO SERVICE DATADESCRIPTION
       
     }
-    console.log('Parsing');
     
-    //console.log(triples[71]);
-    //console.log(triples);
     return triples;
   }
 

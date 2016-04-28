@@ -2,8 +2,7 @@
 
 (function() {
 
-    'use strict';
-    
+    'use strict';    
 
 
     app = app || {};
@@ -11,6 +10,13 @@
     app.currentModel;
     
     app.currentTriples = [];
+    
+    
+    /***
+     * 
+     * MODELS PUBLISH
+     * 
+     ***/
 
     app.Publish = Backbone.Model.extend({
         idAttribute: '_id',
@@ -24,6 +30,12 @@
         model: app.Publish,
         url: '/workbench/fetch/rdf'
     });
+    
+    /***
+     * 
+     * MODELS MAPPING
+     * 
+     ***/
     
     app.Mapping = Backbone.Model.extend({
         idAttribute: '_id',
@@ -39,6 +51,12 @@
         url: '/workbench/fetch/mapping'
     });
     
+    /***
+     * 
+     * MODELS TRIPLES
+     * 
+     ***/
+    
     app.Triple = Backbone.Model.extend({
         idAttribute: '_id',
         defaults: {}
@@ -49,6 +67,11 @@
     });
     
     
+    /***
+     * 
+     * VIEWS MAPPING
+     * 
+     ***/
     
     
     app.ExecuteMappingView = Backbone.View.extend({
@@ -265,6 +288,7 @@
                 app.mappingsContentView.model = this.model; 
                 app.executeMappingView.model = this.model;
                 app.executeButtonView.model = this.model;
+                app.currentModel = this.model;
                 
                 var triples = [];
                 for(var i = 0; i < this.model.attributes.triples.length; i++) {
@@ -287,6 +311,12 @@
         }
 
     });
+    
+    /***
+     * 
+     * VIEWS PUBLISHING
+     * 
+     ***/
     
     app.PublishesView = Backbone.View.extend({
         tagName: 'div',
@@ -330,11 +360,11 @@
         },
         
         events: {
-	        'click h5' : 'viewPublish'
+	        'click h6' : 'viewPublish'
         },
 
         viewPublish: function(ev){
-               
+                app.currentModel = this.model;
                 app.publishContentView.model = this.model; 
                 app.publishContentView.render(); 
                 //$('#mappingContent').html(app.mappingsContentView.render().el)  
@@ -347,75 +377,107 @@
             return this;
         },
 
+
     });
+    
+    app.ClearPublishingView = Backbone.View.extend({
+        
+        template: _.template($('#clearpublishing').html()),
+        
+        events: {
+          'click .clearpublishing' : 'clearpublishing'  
+        },
+        
+        clearpublishing: function() {
+          $.post('/workbench/clear/rdf',{rdf: [app.currentModel.attributes._id]},function() {
+              app.render();
+              });  
+        },
+        
+        initialize: function() {
+            this.model = app.publishes.models[0];    
+        },
+        
+        render: function() {
+           $(this.el).html(this.template(this.model.toJSON()));      
+           return this;            
+        }    
+    });
+    
+    app.ClearAllPublishingsView = Backbone.View.extend({
+        
+        template: _.template($('#clearallpublishings').html()),
+        
+        events: {
+          'click .clearallpublishings' : 'clearallpublishings'  
+        },
+        
+        clearallpublishings: function() {
+ 
+          $.post('/workbench/clear/all/rdf',function() {
+              app.render();
+              });  
+        },
+        
+        initialize: function() {
+            this.model = app.publishes.models[0];    
+        },
+        
+        render: function() {
+           $(this.el).html(this.template(this.model.toJSON()));      
+           return this;            
+        }    
+    });
+    
+    
+    /***
+     * 
+     * VIEWS DATA ACCESS
+     * 
+     ***/
+     
+     
+     /***
+     * 
+     * APP CONFIG
+     * 
+     ***/
+    
 
     app.Router = Backbone.Router.extend({
         routes: {
             '': 'default',
         },
-        initialize: function() {
-            app.mappings = new app.Mappings();
-            
-            
-            
-            app.publishes = new app.Publishes();
-            app.mappings.fetch({success: function() {   
-                
-                if(app.mappings.models.length != 0) {
-                
-                    //replace <> with lt& en gt&    
-                    for(var i = 0; i < app.mappings.models.length; i++) {
-                        var attributes = app.mappings.models[i].attributes;
-                        attributes.convertedData = attributes.data.replace(/</g,'&lt;').replace(/>/g, '&gt;');                                      
-                    }         
-                    app.currentModel = app.mappings.models[0];
-                    if(app.currentModel == undefined) {
-                        //app.currentModel = new app.Mapping();
-                    }
-                    
-                    var triples = [];
-                    for(var i = 0; i < app.currentModel.attributes.triples.length; i++) {
-                        triples.push(new app.Triple(app.currentModel.attributes.triples[i]));
-                    }
-                    
-                    app.tripleListView = new app.TripleListView({model: { models:triples}});
-                    
-                    app.mappingsView = new app.MappingsView({model:app.mappings});
-                    app.mappingsContentView = new app.MappingsContentView({model: app.currentModel});
-                    app.executeMappingView = new app.ExecuteMappingView({model: app.currentModel});
-                    app.executeButtonView = new app.ExecuteButtonView({model: app.currentModel});
-                    app.clearMappingView = new app.ClearMappingView();
-                    app.clearAllMappingsView = new app.ClearAllMappingsView();
-                    $('#mappingMain').html(app.mappingsView.render().el);    
-                    $('#mappingContent').html(app.mappingsContentView.render().el);
-                    $('#mappingmenu').html(app.executeMappingView.render().el);
-                    $('#clearmappingbutton').html(app.clearMappingView.render().el);
-                    $('#clearallmappingsbutton').html(app.clearAllMappingsView.render().el);
-                    $('#triplelistdiv').html(app.tripleListView.render().el);
-                    $('#executeMappingButtonDiv').html(app.executeButtonView.render().el);
-                
-                }
-            }});            
-            app.publishes.fetch({success: function() {
-                //replace <> with lt& en gt&    
-                for(var i = 0; i < app.publishes.models.length; i++) {
-                    var attributes = app.publishes.models[i].attributes;
-                    attributes.convertedData = attributes.data.replace(/</g,'&lt;').replace(/>/g, '&gt;');                                      
-                }
-                app.publishesView = new app.PublishesView({model:app.publishes});
-                app.publishContentView = new app.PublishContentView({model: app.publishes.models[0]});
-                $('#publishMain').html(app.publishesView.render().el);    
-                $('#publishContent').html(app.publishContentView.render().el);                         
-            }});           
+        initialize: function() {            
+            app.render();          
         },
         default: function() {                    
                             
         }
     });
     
+    
+    /***
+     * 
+     * APP RENDERING
+     * 
+     ***/
+    
+    
     app.render = function() {
-        app.mappings.fetch({success: function() {           
+        
+        app.mappings = new app.Mappings();                
             
+        app.publishes = new app.Publishes();
+        
+        /***
+        *
+        * RENDERING MAPPINGS
+        *
+        ***/
+        
+        app.mappings.fetch({success: function() {    
+                            
                 if(app.mappings.models.length != 0) {
                 
                     //replace <> with lt& en gt&    
@@ -424,9 +486,8 @@
                         attributes.convertedData = attributes.data.replace(/</g,'&lt;').replace(/>/g, '&gt;');                                      
                     }       
                     
+                    //creating views
                     app.currentModel = app.mappings.models[0];
-
-
                     app.mappingsView = new app.MappingsView({model:app.mappings});
                     app.mappingsContentView = new app.MappingsContentView({model: app.currentModel});
                     app.executeMappingView = new app.ExecuteMappingView({model: app.currentModel});
@@ -437,10 +498,12 @@
                     var triples = [];
                     for(var i = 0; i < app.currentModel.attributes.triples.length; i++) {
                         triples.push(new app.Triple(app.currentModel.attributes.triples[i]));
-                    }
-                    
+                    }                   
                     
                     app.tripleListView = new app.TripleListView({model: { models:triples}});
+                    
+                    
+                    //rendering with jquery
                     $('#mappingMain').html(app.mappingsView.render().el);    
                     $('#mappingContent').html(app.mappingsContentView.render().el);
                     $('#mappingmenu').html(app.executeMappingView.render().el);
@@ -449,26 +512,45 @@
                     $('#triplelistdiv').html(app.tripleListView.render().el);
                     $('#executeMappingButtonDiv').html(app.executeButtonView.render().el);
                 } else {
-                    $('#mappingMain').empty()    
-                    $('#mappingContent').empty()
-                    $('#mappingmenu').empty()
-                    $('#clearmappingbutton').empty()
-                    $('#clearallmappingsbutton').empty()
-                    $('#triplelistdiv').empty()
-                    $('#executeMappingButtonDiv').empty()
+                    //clearing workbench
+                    $('.workbenchElement').empty();
                 }
-            }});            
+                
+            }}); 
+            
+            
+            /***
+            *
+            * RENDERING PUBLISHINGS
+            *
+            ***/ 
+             
+                       
             app.publishes.fetch({success: function() {
-                //replace <> with lt& en gt&    
-                for(var i = 0; i < app.publishes.models.length; i++) {
-                    var attributes = app.publishes.models[i].attributes;
-                    attributes.convertedData = attributes.data.replace(/</g,'&lt;').replace(/>/g, '&gt;');                                      
+                
+                if(app.publishes.models.length != 0) {
+                
+                    //replace <> with lt& en gt&    
+                    for(var i = 0; i < app.publishes.models.length; i++) {
+                        var attributes = app.publishes.models[i].attributes;
+                        attributes.convertedData = attributes.data.replace(/</g,'&lt;').replace(/>/g, '&gt;');                                      
+                    }
+                    //creating views
+                    app.publishesView = new app.PublishesView({model:app.publishes});
+                    app.publishContentView = new app.PublishContentView({model: app.publishes.models[0]});
+                    app.clearPublishingView = new app.ClearPublishingView();
+                    app.clearAllPublishingsView = new app.ClearAllPublishingsView();
+                    
+                    //rendering with jquery
+                    $('#publishMain').html(app.publishesView.render().el);    
+                    $('#publishContent').html(app.publishContentView.render().el);    
+                    $('#clearpublishingbutton').html(app.clearPublishingView.render().el);
+                    $('#clearallpublishingsbutton').html(app.clearAllPublishingsView.render().el);  
+                                      
+                } else {
+                    $('.workbenchElement').empty();   
                 }
-                app.publishesView = new app.PublishesView({model:app.publishes});
-                app.publishContentView = new app.PublishContentView({model: app.publishes.models[0]});
-                $('#publishMain').html(app.publishesView.render().el);    
-                $('#publishContent').html(app.publishContentView.render().el);                         
-            }});   
+            }});
     };
     
     
@@ -480,17 +562,25 @@
     *   ##########
     */
     
+    
+    /***
+     * 
+     * UPLOADING FILES
+     * 
+     ***/
+     
+     
+    /*
+    * Uploading mapping file
+    */
     $("#uploadMapping_Form").on("submit", function(event){
         event.preventDefault();                     
-
 
         var form_url = $("form[id='uploadMapping_Form']").attr("action");
         var CSRF_TOKEN = $('input[name="_csrf"]').val();                    
 
         var form = new FormData();
-        form.append('mappingUpload', $('input[id=mappingFile]')[0].files[0]); 
-
-        
+        form.append('mappingUpload', $('input[id=mappingFile]')[0].files[0]);        
 
 
         $.ajax({
@@ -513,7 +603,43 @@
         }); 
         
                            
-});
+    });
+    
+    /**
+     * Uploading RDF file
+     */
+    
+    $("#uploadPublishing_Form").on("submit", function(event){
+        event.preventDefault();                     
+
+        var form_url = $("form[id='uploadPublishing_Form']").attr("action");
+        var CSRF_TOKEN = $('input[name="_csrf"]').val();                    
+
+        var form = new FormData();
+        form.append('rdfUpload', $('input[id=publishingFile]')[0].files[0]);        
+
+
+        $.ajax({
+            url:  form_url,
+            type: 'POST',
+            headers: {
+                'X-CSRF-Token': $.cookie("_csrfToken")
+            },
+            "mimeType": "multipart/form-data",
+            data: form,
+            contentType: false, 
+            processData: false,
+            
+            dataType: 'JSON',
+            statusCode: {
+                200: function() {
+                    app.render();
+                }   
+            }            
+        }); 
+        
+                           
+    });
     
     
     

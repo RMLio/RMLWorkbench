@@ -78,7 +78,7 @@ app.use(function(req, res, next) {
 var exec = require('child_process').exec;
 var cmd = 'ldf-server config.json 2500 4';
 var ldfserver;
-
+/*
 var ldfserver = exec(cmd, function(error, stdout, stderr) {
   // command output is in stdout
 });
@@ -86,7 +86,7 @@ var ldfserver = exec(cmd, function(error, stdout, stderr) {
 ldfserver.stdout.on('data', function(data) {
     console.log(data); 
 });
-
+*/
 
 
 

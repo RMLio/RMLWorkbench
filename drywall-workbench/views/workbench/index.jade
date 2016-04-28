@@ -323,7 +323,7 @@ block body
             span(aria-hidden='true') ×
           h4.modal-title Publish To LDF Server
         div.modal-body
-          form(role='form')
+          form(role='form' id='publishToLDFForm')
             input(type='hidden', name='_csrf', value=_csrf)
             div(class='form-group')
               label(for='title')
@@ -350,7 +350,7 @@ block body
             div(id='publish_fileSelector' class='form-group')
               label(for='setting')
                 | File
-            button(type='submit' id='publish_submit' class='btn btn-primary')
+            button(type='submit' id='publish_submit' form="publishToLDFForm" class='btn btn-primary')
                 | Publish
 
    div(id='scheduleModal' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' style='display: none;')

@@ -641,12 +641,56 @@
                            
     });
     
+    /***
+     * 
+     * Publishing a file
+     * 
+     ***/
+     
+     $('#publishToLDFForm').on('submit', function(event) {        
+        event.preventDefault();
+        
+        var rdf = app.currentModel.attributes;
+        var dataset = { 
+            title: rdf.filename,
+            type: 'TurtleDatasource',
+            description: 'default',
+            settings: {
+                file: './' + rdf.filename
+            }
+        };
+        
+        var data = {
+            dataset: dataset,
+            data: rdf.data,
+            filename: rdf.filename
+        }
+        
+         
+        $.ajax({
+            url : "/workbench/publish/ldf",
+            type: "POST", 
+            contentType: "application/json",
+            dataType: 'json',
+            data: JSON.stringify(data),
+            success    : function(){
+
+        }
+    });    
+     });
+     
+     
+    
     
     
     
         app.firstLoad = true;
         app.router = new app.Router();
         Backbone.history.start();
+        
+        $(document).ready(function() {
+            app.render();
+        });
     
 
 }());

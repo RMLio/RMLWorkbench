@@ -73,6 +73,9 @@ exports = module.exports = function(app, passport, upload, ldfserver) {
   app.post('/workbench/sparql/execute', workbenchCtrl.executeQueries);
   app.get('/workbench/sparql/endpoints', workbenchCtrl.getEndpoints);
   
+  //
+  app.post('/workbench/publish/ldf', workbenchCtrl.publishToLDF);
+  
 
   /**
   * User management

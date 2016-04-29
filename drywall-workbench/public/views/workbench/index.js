@@ -762,12 +762,13 @@
      ***/
 
 function AddButtonNoFile(formId) {
+    console.log(formId);
    $(formId).on("submit", function(event){
         event.preventDefault(); 
+        console.log(formId);
         var form_url = $(formId).attr("action");
         //var CSRF_TOKEN = $('input[name="_csrf"]').val();                    
-        var inputs = $(formId + ' .form-control');
-        
+        var inputs = $(formId + ' .form-control');    
         var values = {};
         inputs.each(function() {
             values[ $(this).attr("id")] = $(this).val();
@@ -792,6 +793,10 @@ function AddButtonNoFile(formId) {
     });   
 }
 
+AddButtonNoFile("#api_input_Form");
+AddButtonNoFile("#db_input_Form");
+AddButtonNoFile("#sparql_input_Form");
+AddButtonNoFile("#dcat_input_Form");
  $('#csvw_input_Form').on("submit", function(event){
         event.preventDefault(); 
         var form_url = $("form[id='csvw_input_Form']").attr("action");
@@ -819,44 +824,9 @@ function AddButtonNoFile(formId) {
             }            
         });       
    });        
-//AddButtonNoFile("csvw_input_Form");
-AddButtonNoFile("#api_input_Form");
-AddButtonNoFile("#db_input_Form");
-AddButtonNoFile("#sparql_input_Form");
-AddButtonNoFile("#dcat_input_Form");
-
-      $("#uploadMapping_Form").on("submit", function(event){
-        event.preventDefault();
-
-        var form_url = $("form[id='uploadMapping_Form']").attr("action");
-        var CSRF_TOKEN = $('input[name="_csrf"]').val();                    
-
-        var form = new FormData();
-        form.append('mappingUpload', $('input[id=mappingFile]')[0].files[0]);        
 
 
-        $.ajax({
-            url:  form_url,
-            type: 'POST',
-            headers: {
-                'X-CSRF-Token': $.cookie("_csrfToken")
-            },
-            "mimeType": "multipart/form-data",
-            data: form,
-            contentType: false, 
-            processData: false,
-            
-            dataType: 'JSON',
-            statusCode: {
-                200: function() {
-                    app.render();
-                }   
-            }            
-        }); 
-        
-                           
-    });   
-     
+   
     /*
     * Uploading mapping file
     */

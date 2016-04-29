@@ -52,7 +52,7 @@ block body
               input(id='my-file-selector' type='file' data-allowed-file-extensions="['csv', 'xml', 'txt', 'json']")
               p.help-block Only CSV, XML and JSON are supported.
             +licensesId('inputFileLicense')
-            button.btn.btn-primary(id="btn_file_input" data-dismiss="modal") Upload
+            button.btn.btn-primary(id="btn_file_input") Upload
 
   div(id='dcat-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='DCATInputLabel' style='display: none;')
     div.modal-dialog(role='document')
@@ -71,7 +71,7 @@ block body
               label(for='inputDCATURL') URL
               input.form-control(id='inputDCATURL' type='text' placeholder='url')
             +licensesId('inputDCATLicense') 
-            button.btn.btn-primary(id="btn_dcat_input" form="dcat_input_Form" type='submit' data-dismiss="modal") Add
+            button.btn.btn-primary(id="btn_dcat_input" form="dcat_input_Form" type='submit') Add
 
   div(id='db-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='databaseInputLabel' style='display: none;')
     div.modal-dialog(role='document')
@@ -106,12 +106,12 @@ block body
                 option net.sourceforge.jtds.jdbc.Driver
             div.form-group
               label(for='inputDBUser') Username
-              input.form-control(id='inputDBUser' type='password' placeholder='user')
+              input.form-control(id='inputDBUser' type='text' placeholder='user')
             div.form-group
               label(for='inputDBPass') Password
               input.form-control(id='inputDBPass' type='password' placeholder='password')
             +licensesId('inputDBLicense') 
-            button.btn.btn-primary(id="btn_db_input" form="db_input_Form" type="submit" data-dismiss="modal") Add
+            button.btn.btn-primary(form="db_input_Form" type="submit") Add
 
   div(id='api-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='apiInputLabel' style='display: none;')
     div.modal-dialog(role='document')
@@ -161,7 +161,7 @@ block body
               label(for='inputSparqlQuery') DataQuery
               textarea.form-control(id='inputSparqQuery' rows="2")      
             +licensesId('inputSparqlLicense')                           
-            button.btn.btn-primary(id="btn_sparql_input" form="sparql_input_Form" type='submit' data-dismiss="modal") Add
+            button.btn.btn-primary(id="btn_sparql_input" form="sparql_input_Form" type='submit') Add
             
             
   div(id='csvw-input' class='modal' tabindex='-1' role='dialog' aria-labelledby='csvwInputLabel' style='display: none;')

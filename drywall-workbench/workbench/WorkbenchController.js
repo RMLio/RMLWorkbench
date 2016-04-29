@@ -76,7 +76,7 @@ var exports = module.exports = {
         '    csvw:delimiter "'+req.body.inputcsvwDelimiter+'";\n' +
         '    csvw:encoding "'+req.body.inputcsvwEncoding+'";\n' +
         '    csvw:header '+req.body.inputcsvwHeader+' \n' 
-        
+        console.log(data);
         //Save Description here
         
         res.send(200);
@@ -91,11 +91,12 @@ var exports = module.exports = {
                  '    d2rq:jdbcDriver "'+req.body.inputDBDriver+'";\n' +
                  '    d2rq:username "'+req.body.inputDBUser+'";\n' +
                  '    d2rq:password "'+req.body.inputDBPass+'" . \n';      
-
-    res.send(200);
+       console.log(data);
+       res.send(200);
     },
     
   addAPI: function(req, res) {
+      var name = req.body.inputAPIName;
       var license = req.body.inputAPIicense;
       var data =' @prefix hydra : <http://www.w3.org/ns/hydra/core#> .\n' +
                 '<#API_template_source>\n' +
@@ -109,18 +110,21 @@ var exports = module.exports = {
     '    [ a hydra:TemplateMapping ;\n' +
     '      hydra:variable "format";\n' +
     '      hydra:required false ] . \n' ;
+    console.log(data);
 res.send(200);
     },
     
   addSPARQL: function(req, res) {
-      var name = req.body.inputSPARQLName;
-      var license = req.body.inputSPARQLicense;      
+      var name = req.body.inputSparqlName;
+      var license = req.body.inputSparqlicense;      
       var data = '@prefix sd : <http://www.w3.org/ns/sparql-service-description#> .\n' +
-                 '<#SPARQL_'+req.body.inputSPARQLType+'_source> a sd:Service ;\n' +
-                 '    sd:endpoint <'+req.body.inputSPARQLURL+'> ;\n' +
+                 '<#SPARQL_'+req.body.inputSparqlType+'_source> a sd:Service ;\n' +
+                 '    sd:endpoint <'+req.body.inputSparqlURL+'> ;\n' +
                  '    sd:supportedLanguage sd:SPARQL11Query ;\n' +
-                 '    sd:resultFormat <http://www.w3.org/ns/formats/SPARQL_Results_'+req.body.inputSPARQLType+'> .'     
-    },
+                 '    sd:resultFormat <http://www.w3.org/ns/formats/SPARQL_Results_'+req.body.inputSparqlType+'> .'     
+    console.log(data);
+    res.send(200);    
+},
     
   addDCAT: function(req, res) {
       
@@ -132,6 +136,7 @@ res.send(200);
                     '   dcat:distribution [\n' +
                     'a dcat:Distribution;\n' +
                     'dcat:downloadURL "'+req.body.inputDCATURL+'" ].\n';
+        console.log(data);
         res.send(200);
   },
      

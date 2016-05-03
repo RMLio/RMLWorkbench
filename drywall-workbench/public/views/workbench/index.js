@@ -767,7 +767,6 @@ function AddButtonNoFile(formId) {
         event.preventDefault(); 
         console.log(formId);
         var form_url = $(formId).attr("action");
-        //var CSRF_TOKEN = $('input[name="_csrf"]').val();                    
         var inputs = $(formId + ' .form-control');    
         var values = {};
         inputs.each(function() {
@@ -797,7 +796,8 @@ AddButtonNoFile("#api_input_Form");
 AddButtonNoFile("#db_input_Form");
 AddButtonNoFile("#sparql_input_Form");
 AddButtonNoFile("#dcat_input_Form");
- $('#csvw_input_Form').on("submit", function(event){
+AddButtonNoFile("#csvw_input_Form");
+ /*$('#csvw_input_Form').on("submit", function(event){
         event.preventDefault(); 
         var form_url = $("form[id='csvw_input_Form']").attr("action");
         var CSRF_TOKEN = $('input[name="_csrf"]').val();                    
@@ -823,7 +823,7 @@ AddButtonNoFile("#dcat_input_Form");
                 }   
             }            
         });       
-   });        
+   });  */      
 
 
    
@@ -857,9 +857,7 @@ AddButtonNoFile("#dcat_input_Form");
                     app.render();
                 }   
             }            
-        }); 
-        
-                           
+        });              
     });
     
     /**

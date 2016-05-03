@@ -66,10 +66,10 @@ block body
             input(type='hidden', name='_csrf', value=_csrf)
             div.form-group
               label(for='inputDCATName') Name
-              input.form-control(id='inputDDCATName' type='text' placeholder='Descriptive name')
+              input.form-control.required(id='inputDDCATName' type='text' placeholder='Descriptive name')
             div.form-group
               label(for='inputDCATURL') URL
-              input.form-control(id='inputDCATURL' type='text' placeholder='url')
+              input.form-control.required(id='inputDCATURL' type='text' placeholder='url')
             +licensesId('inputDCATLicense') 
             button.btn.btn-primary(id="btn_dcat_input" form="dcat_input_Form" type='submit') Add
 

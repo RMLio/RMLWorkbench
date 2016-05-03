@@ -62,82 +62,132 @@ var exports = module.exports = {
     */
     
   addCSVW: function(req, res) {
-        var user = req.user;
-        var models = req.app.db.models;
-        console.log('[WORKBENCH LOG] User ' + user.username+ ' Adding CSVW');
+      var user = req.user;
+      var models = req.app.db.models;
+      console.log('[WORKBENCH LOG] User ' + user.username + ' Adding CSVW');
 
-       
-        var license = req.body.inputcsvwLicense;
+      var license = req.body.inputcsvwLicense;
+      var prefix = 'csvw';
+      var data = '<#CSVW_source> a csvw:Table;\n' +
+          '    csvw:url "' + req.body.inputcsvwURL + '" ;\n' +
+          '    csvw:dialect [ a csvw:Dialect;\n' +
+          '    csvw:delimiter "' + req.body.inputcsvwDelimiter + '";\n' +
+          '    csvw:encoding "' + req.body.inputcsvwEncoding + '";\n' +
+          '    csvw:header ' + req.body.inputcsvwHeader + ' \n' 
         
-        var data = '@prefix csvw : <http://www.w3.org/ns/csvw#> .\n' +
-        '<#CSVW_source> a csvw:Table;\n' +
-        '    csvw:url "' + req.body.inputcsvwURL + '" ;\n' +
-        '    csvw:dialect [ a csvw:Dialect;\n' +
-        '    csvw:delimiter "'+req.body.inputcsvwDelimiter+'";\n' +
-        '    csvw:encoding "'+req.body.inputcsvwEncoding+'";\n' +
-        '    csvw:header '+req.body.inputcsvwHeader+' \n' 
-        console.log(data);
-        //Save Description here
-        
+    var description = { type: 'csvw',
+                        data: data,
+                        prefix: prefix,
+                        fullprefix: '@prefix ' + prefix +': <http://www.w3.org/ns/csvw#> .',
+                        metadata: { license: license } 
+                    };
+    saver.saveDescription(description, models, user, () => {
+        console.log('[WORKBENCH LOG] CSVW description added sucessfully!');
         res.send(200);
+    });
+
     },
     
   addDB: function(req, res) {
+      var user = req.user;
+      var models = req.app.db.models;
       var name = req.body.inputDBName;
-      var license = req.body.inputDBLicense;      
-      var data = '@prefix d2rq : <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .\n'+
-                 '<#DB_source> a d2rq:Database;\n' +
-                 '    d2rq:jdbcDSN "'+req.body.inputDBURL+'";\n' +
-                 '    d2rq:jdbcDriver "'+req.body.inputDBDriver+'";\n' +
-                 '    d2rq:username "'+req.body.inputDBUser+'";\n' +
-                 '    d2rq:password "'+req.body.inputDBPass+'" . \n';      
-       console.log(data);
-       res.send(200);
+      var license = req.body.inputDBLicense;
+      var prefix = 'd2rq';
+
+      var data = '@prefix d2rq : <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .\n' +
+          '<#DB_source> a d2rq:Database;\n' +
+          '    d2rq:jdbcDSN "' + req.body.inputDBURL + '";\n' +
+          '    d2rq:jdbcDriver "' + req.body.inputDBDriver + '";\n' +
+          '    d2rq:username "' + req.body.inputDBUser + '";\n' +
+          '    d2rq:password "' + req.body.inputDBPass + '" . \n';      
+       var description = { type: 'd2rq', 
+           data: data,
+           prefix: prefix,
+           fullprefix: '@prefix ' + prefix + ': <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .',
+           metadata: { license: license }
+       };
+       saver.saveDescription(description, models, user, () => {
+           console.log('[WORKBENCH LOG] DATABASE description added sucessfully!');
+           res.send(200);
+       });
     },
     
   addAPI: function(req, res) {
+      var user = req.user;
+      var models = req.app.db.models;
       var name = req.body.inputAPIName;
       var license = req.body.inputAPIicense;
-      var data =' @prefix hydra : <http://www.w3.org/ns/hydra/core#> .\n' +
-                '<#API_template_source>\n' +
-                'a hydra:IriTemplate\n' +
-                'hydra:template "'+req.body.inputAPIURL+'";\n';
-    // TODO: not supported?
-    var templateStuff = 'hydra:mapping \n' +
-    '    [ a hydra:TemplateMapping ;\n' +
-    '      hydra:variable "id";\n' +
-    '      hydra:required true ],\n' +
-    '    [ a hydra:TemplateMapping ;\n' +
-    '      hydra:variable "format";\n' +
-    '      hydra:required false ] . \n' ;
-    console.log(data);
-res.send(200);
+      var prefix = 'hydra';
+      var data = '<#API_template_source>\n' +
+          'a hydra:IriTemplate\n' +
+          'hydra:template "' + req.body.inputAPIURL + '";\n';
+      var templateStuff = 'hydra:mapping \n' +
+          '    [ a hydra:TemplateMapping ;\n' +
+          '      hydra:variable "id";\n' +
+          '      hydra:required true ],\n' +
+          '    [ a hydra:TemplateMapping ;\n' +
+          '      hydra:variable "format";\n' +
+          '      hydra:required false ] . \n';
+    var description =  
+    { type: 'hydra', 
+            data: data,
+            prefix: prefix,
+            fullprefix: '@prefix ' + prefix + ': <http://www.w3.org/ns/hydra/core#> .',
+            metadata: { license: license }
+        };
+    saver.saveDescription(description, models, user, () => {
+        console.log('[WORKBENCH LOG] HYDRA description added sucessfully!');
+        res.send(200);
+    });
     },
     
   addSPARQL: function(req, res) {
+      var user = req.user;
+      var models = req.app.db.models;
       var name = req.body.inputSparqlName;
-      var license = req.body.inputSparqlicense;      
+      var license = req.body.inputSparqlicense;
+      var prefix = 'sd';
       var data = '@prefix sd : <http://www.w3.org/ns/sparql-service-description#> .\n' +
-                 '<#SPARQL_'+req.body.inputSparqlType+'_source> a sd:Service ;\n' +
-                 '    sd:endpoint <'+req.body.inputSparqlURL+'> ;\n' +
-                 '    sd:supportedLanguage sd:SPARQL11Query ;\n' +
-                 '    sd:resultFormat <http://www.w3.org/ns/formats/SPARQL_Results_'+req.body.inputSparqlType+'> .'     
-    console.log(data);
-    res.send(200);    
+          '<#SPARQL_' + req.body.inputSparqlType + '_source> a sd:Service ;\n' +
+          '    sd:endpoint <' + req.body.inputSparqlURL + '> ;\n' +
+          '    sd:supportedLanguage sd:SPARQL11Query ;\n' +
+          '    sd:resultFormat <http://www.w3.org/ns/formats/SPARQL_Results_' + req.body.inputSparqlType + '> .'     
+    var   description = { type: 'sd', 
+                                    data: data,
+                                    prefix: prefix,
+                                    fullprefix: '@prefix ' + prefix +': <http://www.w3.org/ns/sparql-service-description#> .',
+                            metadata: {license: license} };
+    saver.saveDescription(description, models, user, () => {
+        console.log('[WORKBENCH LOG] SPARQL description added sucessfully!');
+        res.send(200);
+    });                    
 },
     
   addDCAT: function(req, res) {
-      
-        var license = req.body.inputDCATLicense;
-        var prefix = 'dcat: <http://www.w3.org/ns/dcat#>';
-        var data = '@prefix dcat: <http://www.w3.org/ns/dcat#> .\n' +
-                    '<#DCAT_source>\n' +
-                    '   a dcat:Dataset ;\n' +
-                    '   dcat:distribution [\n' +
-                    'a dcat:Distribution;\n' +
-                    'dcat:downloadURL "'+req.body.inputDCATURL+'" ].\n';
-        console.log(data);
-        res.send(200);
+      var user = req.user;
+      var models = req.app.db.models;
+      var name = req.body.inputDDCATName;
+      var license = req.body.inputDCATLicense;
+      var prefix = 'dcat';
+      var models = req.app.db.models;
+      var data = '<#DCAT_source>\n' +
+          '   a dcat:Dataset ;\n' +
+          '   dcat:distribution [\n' +
+          'a dcat:Distribution;\n' +
+          'dcat:downloadURL "' + req.body.inputDCATURL + '" ].\n';
+        var description = 
+        { type: 'dcat',
+            name: name,
+            data: data,
+            prefix: prefix,
+            fullprefix: '@prefix ' + prefix + ': <http://www.w3.org/ns/dcat#> .',
+            metadata: { license: license }
+          };  
+        saver.saveDescription(description, models, user, () =>{
+                console.log('[WORKBENCH LOG] DCat description added sucessfully!');
+                res.send(200);
+        });
   },
      
   getDataDescriptions: function(req, res) {

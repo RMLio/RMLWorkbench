@@ -457,11 +457,19 @@ block body
                div.panel-heading
                  h3.panel-title Overview Data Access
                div.panel-body
-                 div.row 
-                   div.col-md-3(id='descriptionMain' class='workbenchElement')
-                     script#description-list-item(type='text/template').
-                       <h6><%= name %></h6>                       
+                 div.row
+                   div.col-md-3
+                     h4 Local files
+                       div(id='descriptionMainLocal' class='workbenchElement')
+                         script#description-list-item-local(type='text/template').
+                           <h6><%= filename %></h6>
+                     h4 External descriptions
+                       div(id='descriptionMain' class='workbenchElement')
+                         script#description-list-item(type='text/template').
+                           <h6><%= name %></h6>
                    div.col-md-9(id='descriptionContent' class='workbenchElement')
+                     script#description-content-local(type='text/template').
+                       <%= convertedData %>
                      script#description-content(type='text/template').
                        <%= convertedData %>
       #mapping2.tab-pane.fade

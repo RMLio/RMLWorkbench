@@ -548,7 +548,7 @@
 
     });
     
-    app.ClearDescriptioningView = Backbone.View.extend({
+    app.ClearDescriptionView = Backbone.View.extend({
         
         template: _.template($('#cleardescription').html()),
         
@@ -572,7 +572,7 @@
         }    
     });
     
-    app.ClearAllDescriptioningsView = Backbone.View.extend({
+    app.ClearAllDescriptionsView = Backbone.View.extend({
         
         template: _.template($('#clearalldescriptions').html()),
         
@@ -853,14 +853,14 @@
                     //creating views
                     app.descriptionsView = new app.DescriptionsView({model:app.descriptions});
                     app.descriptionContentView = new app.DescriptionContentView({model: app.descriptions.models[0]});
-                    app.clearDescriptioningView = new app.ClearDescriptioningView();
-                    app.clearAllDescriptioningsView = new app.ClearAllDescriptioningsView();
+                    app.clearDescriptionView = new app.ClearDescriptionView();
+                    app.clearAllDescriptionsView = new app.ClearAllDescriptionsView();
                     
                     //rendering with jquery
                     $('#descriptionMain').html(app.descriptionsView.render().el);    
                     $('#descriptionContent').html(app.descriptionContentView.render().el);    
-                    $('#clearDescriptioningbutton').html(app.clearDescriptioningView.render().el);
-                    $('#clearallDescriptioningsbutton').html(app.clearAllDescriptioningsView.render().el);  
+                    $('#clearDescriptionbutton').html(app.clearDescriptionView.render().el);
+                    $('#clearallDescriptionsbutton').html(app.clearAllDescriptionsView.render().el);  
                                       
                 } else {
                     $('.descriptionElement').empty();   

@@ -79,6 +79,7 @@ var exports = module.exports = {
                         data: data,
                         prefix: prefix,
                         fullprefix: '@prefix ' + prefix +': <http://www.w3.org/ns/csvw#> .',
+                        _id : mongoose.Types.ObjectId(),
                         metadata: { license: license } 
                     };
     saver.saveDescription(description, models, user, () => {
@@ -105,6 +106,7 @@ var exports = module.exports = {
            data: data,
            prefix: prefix,
            fullprefix: '@prefix ' + prefix + ': <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .',
+           _id : mongoose.Types.ObjectId(),
            metadata: { license: license }
        };
        saver.saveDescription(description, models, user, () => {
@@ -134,6 +136,7 @@ var exports = module.exports = {
             data: data,
             prefix: prefix,
             fullprefix: '@prefix ' + prefix + ': <http://www.w3.org/ns/hydra/core#> .',
+            _id : mongoose.Types.ObjectId(),
             metadata: { license: license }
         };
     saver.saveDescription(description, models, user, () => {
@@ -157,6 +160,7 @@ var exports = module.exports = {
                                     data: data,
                                     prefix: prefix,
                                     fullprefix: '@prefix ' + prefix +': <http://www.w3.org/ns/sparql-service-description#> .',
+                                    _id : mongoose.Types.ObjectId(),
                             metadata: {license: license} };
     saver.saveDescription(description, models, user, () => {
         console.log('[WORKBENCH LOG] SPARQL description added sucessfully!');
@@ -182,6 +186,7 @@ var exports = module.exports = {
             data: data,
             prefix: prefix,
             fullprefix: '@prefix ' + prefix + ': <http://www.w3.org/ns/dcat#> .',
+            _id : mongoose.Types.ObjectId(),
             metadata: { license: license }
           };  
         saver.saveDescription(description, models, user, () =>{
@@ -191,7 +196,13 @@ var exports = module.exports = {
   },
      
   getDataDescriptions: function(req, res) {
-    res.send(200);
+        var sourceschema = req.app.db.models.Description;
+        var idsources = req.user.descriptions;
+        console.log('[WORKBENCH LOG] Retrieving data descriptions of ' + req.user.username + '...');
+        util.retrieveDescriptions(idsources, sourceschema, (sources) => {
+            console.log('[WORKBENCH LOG] Retrieving data descriptions successful!');
+            res.send(sources);
+        });
   },  
 
 
@@ -463,6 +474,19 @@ var exports = module.exports = {
         });
     },
 
+    //clear all rdfs
+    clearAllDescription: function(req, res) {
+        clearer.clearAllDescription(req.user, req.app.db.models, () => {
+            res.send(200);
+        });
+    },
+
+    //clear all rdf of the user
+    clearDescription: function(req, res) {
+        clearer.clearDescription(req.user, req.app.db.models, req.body.rdf, () => {
+            res.send(200);
+        });
+    },
 
 
     /**

@@ -13,6 +13,7 @@ exports = module.exports = function(app, mongoose) {
     sourcefiles: [],
     rdffiles: [],
     endpoints: [],
+    descriptions: [],
     isActive: String,
     timeCreated: { type: Date, default: Date.now },
     resetPasswordToken: String,

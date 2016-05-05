@@ -53,7 +53,7 @@ exports = module.exports = function(app, passport, upload, ldfserver) {
   app.post('/workbench/fetch/api', workbenchCtrl.addAPI);
   app.post('/workbench/fetch/sparql', workbenchCtrl.addSPARQL);  
   app.post('/workbench/fetch/dcat', workbenchCtrl.addDCAT);    
-  app.get('/workbench/fetch/datadescriptions', workbenchCtrl.getDataDescriptions);
+  app.get('/workbench/fetch/description', workbenchCtrl.getDataDescriptions);
 
   //mapping on workbench
   app.post('/workbench/mapping/execute/:mapping_id', workbenchCtrl.executeMappingFromFile);
@@ -66,10 +66,12 @@ exports = module.exports = function(app, passport, upload, ldfserver) {
   app.post('/workbench/clear/all/source', workbenchCtrl.clearAllSources);
   app.post('/workbench/clear/all/mapping', workbenchCtrl.clearAllMappings);
   app.post('/workbench/clear/all/rdf', workbenchCtrl.clearAllRdf);
+  app.post('/workbench/clear/all/description', workbenchCtrl.clearAllDescription);
   app.post('/workbench/clear/all', workbenchCtrl.clearAll);
   app.post('/workbench/clear/source', workbenchCtrl.clearSources);
   app.post('/workbench/clear/mapping', workbenchCtrl.clearMappings);
   app.post('/workbench/clear/rdf', workbenchCtrl.clearRdf);
+  app.post('/workbench/clear/description', workbenchCtrl.clearDescription);
   app.post('/workbench/clear/all', workbenchCtrl.clearAll);
   app.post('/workbench/clear/endpoint', workbenchCtrl.removeSparqlEndpoint);
   app.post('/workbench/clear/all/endpoint', workbenchCtrl.removeAllSparqlEndpoints);

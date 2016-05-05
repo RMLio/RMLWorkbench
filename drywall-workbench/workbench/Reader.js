@@ -53,6 +53,26 @@ var exports = module.exports = {
       	if (err) throw err;
       	}); 
     		callback(mapping);
+    	});  	
+    	
+  },
+  
+    //set fields for mapping
+  readScheduleFields : function(file, callback) {
+  	var mapping;
+  	fs.readFile(file.path, 'utf8', (err, data) => { //using arrow function, this has no 'this'
+    		if (err) throw err;      
+    		mapping = {
+                _id : mongoose.Types.ObjectId(),
+    						filename: file.originalname,
+    						data : data,
+                triples : []
+    						};
+        mapping.triples = util.parseTriples(mapping);
+    		fs.unlink(file.path, function (err) {
+      	if (err) throw err;
+      	}); 
+    		callback(mapping);
     	});
     	
     	

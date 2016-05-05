@@ -444,13 +444,26 @@ block body
                     | SPARQL
                   button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#csvw-input')
                     | CSVW   
-                    
+                  script#cleardescription(type='text/template').
+                    <button type='button' class='btn btn-primary btn-lg cleardescription menubutton'>
+                        Clear Description
+                    </button>       
+                  script#clearalldescriptions(type='text/template').
+                    <button type='button' class='btn btn-primary btn-lg clearalldescriptions menubutton'>
+                        Clear All Descriptions
+                    </button>    
           div.col-md-9
             div.panel.panel-info
                div.panel-heading
                  h3.panel-title Overview Data Access
                div.panel-body
-               
+                 div.row 
+                   div.col-md-3(id='descriptionMain' class='workbenchElement')
+                     script#description-list-item(type='text/template').
+                       <h6><%= name %></h6>                       
+                   div.col-md-9(id='descriptionContent' class='workbenchElement')
+                     script#description-content(type='text/template').
+                       <%= convertedData %>
       #mapping2.tab-pane.fade
         br
         div.container-fluid
@@ -493,6 +506,7 @@ block body
                    div.col-md-9(id='mappingContent' class='workbenchElement')
                      script#mapping-content(type='text/template').
                        <%= convertedData %>
+                       
       #publishing.tab-pane.fade
         br
         div.container-fluid

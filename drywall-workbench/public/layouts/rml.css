@@ -12,6 +12,14 @@
     overflow: auto;
 }
 
+#descriptionContent {
+    max-height: 400px;
+}
+
+#descriptionMain {
+    max-height: 400px;
+}
+
 #publishContent {
     max-height: 400px;
     min-height: 400px;

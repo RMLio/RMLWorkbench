@@ -82,6 +82,22 @@
         model: app.Triple 
     });
     
+     /***
+     * 
+     * MODELS Descrptions
+     * 
+     ***/
+    
+    app.Description = Backbone.Model.extend({
+        idAttribute: '_id',
+        defaults: {}
+    });
+    
+    app.Descriptions = Backbone.Collection.extend({
+        model: app.Description,
+        url: '/workbench/fetch/description'
+    });
+    
     
     
      /***
@@ -469,7 +485,117 @@
      * VIEWS DATA ACCESS
      * 
      ***/
-     
+    
+    app.DescriptionsView = Backbone.View.extend({
+        tagName: 'div',
+        className: 'list-group descriptionView',
+        
+        initialize: function() {
+                    
+        },
+
+        render: function(eventName) {
+            _.each(this.model.models, function(description) {
+                $(this.el).append(new app.DescriptionItemView({ model: description }).render().el);
+            }, this);
+            return this;
+        }
+    });
+    
+    app.DescriptionContentView = Backbone.View.extend({
+       tagName: 'pre', 
+       template: _.template($('#description-content').html()),
+       
+       initialize: function(){
+		    this.model.on('change', this.render, this);
+       },     
+                    
+       
+       render: function() {
+            $(this.el).html(this.template(this.model.toJSON()));
+            return this;  
+       }
+    });
+
+    app.DescriptionItemView = Backbone.View.extend({
+        tagName: 'a',
+        className: 'list-group-item viewDescription',
+
+        template: _.template($('#description-list-item').html()),
+
+        initialize: function() {
+            
+        },
+        
+        events: {
+	        'click h6' : 'viewDescription'
+        },
+
+        viewDescription: function(ev){
+                app.currentModel = this.model;
+                app.descriptionContentView.model = this.model; 
+                app.descriptionContentView.render(); 
+                //$('#mappingContent').html(app.mappingsContentView.render().el)  
+        },
+
+        render: function(eventName) {
+            $(this.el).attr('href','#');
+            $(this.el).attr('data-index', this.model.collection.indexOf(this.model));
+            $(this.el).html(this.template(this.model.toJSON()));
+            return this;
+        },
+
+
+    });
+    
+    app.ClearDescriptioningView = Backbone.View.extend({
+        
+        template: _.template($('#cleardescription').html()),
+        
+        events: {
+          'click .cleardescription' : 'cleardescription'  
+        },
+        
+        cleardescription: function() {
+          $.post('/workbench/clear/description',{description: [app.currentModel.attributes._id]},function() {
+              app.render();
+              });  
+        },
+        
+        initialize: function() {
+            this.model = app.descriptions.models[0];    
+        },
+        
+        render: function() {
+           $(this.el).html(this.template(this.model.toJSON()));      
+           return this;            
+        }    
+    });
+    
+    app.ClearAllDescriptioningsView = Backbone.View.extend({
+        
+        template: _.template($('#clearalldescriptions').html()),
+        
+        events: {
+          'click .clearalldescriptions' : 'clearalldescriptions'  
+        },
+        
+        clearalldescriptions: function() {
+ 
+          $.post('/workbench/clear/all/description',function() {
+              app.render();
+              });  
+        },
+        
+        initialize: function() {
+            this.model = app.descriptions.models[0];    
+        },
+        
+        render: function() {
+           $(this.el).html(this.template(this.model.toJSON()));      
+           return this;            
+        }    
+    });
        
     /***
      * 
@@ -621,6 +747,8 @@
             
         app.publishes = new app.Publishes();
         
+        app.descriptions = new app.Descriptions();
+        
         //app.schedules = new app.Schedules();
         
         /***
@@ -704,8 +832,40 @@
                 } else {
                     $('.publishElement').empty();   
                 }
-            }});
+            }}); 
             
+            /***
+            *
+            * RENDERING Descriptions
+            *
+            ***/ 
+             
+                       
+            app.descriptions.fetch({success: function() {
+                
+                if(app.descriptions.models.length != 0) {
+                
+                    //replace <> with lt& en gt&    
+                    for(var i = 0; i < app.descriptions.models.length; i++) {
+                        var attributes = app.descriptions.models[i].attributes;
+                        attributes.convertedData = attributes.data.replace(/</g,'&lt;').replace(/>/g, '&gt;');                                      
+                    }
+                    //creating views
+                    app.descriptionsView = new app.DescriptionsView({model:app.descriptions});
+                    app.descriptionContentView = new app.DescriptionContentView({model: app.descriptions.models[0]});
+                    app.clearDescriptioningView = new app.ClearDescriptioningView();
+                    app.clearAllDescriptioningsView = new app.ClearAllDescriptioningsView();
+                    
+                    //rendering with jquery
+                    $('#descriptionMain').html(app.descriptionsView.render().el);    
+                    $('#descriptionContent').html(app.descriptionContentView.render().el);    
+                    $('#clearDescriptioningbutton').html(app.clearDescriptioningView.render().el);
+                    $('#clearallDescriptioningsbutton').html(app.clearAllDescriptioningsView.render().el);  
+                                      
+                } else {
+                    $('.descriptionElement').empty();   
+                }
+            }});
             
             /***
             *

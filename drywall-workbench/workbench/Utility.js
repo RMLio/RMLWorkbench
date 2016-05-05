@@ -40,6 +40,28 @@ retrieveFiles : function(idfiles, schema, callback) {
     }
 },
 
+//retrieving files from database by id and schema
+retrieveDescriptions : function(idfiles, schema, callback) {
+    var amountRetrieved = 0;
+    var files = [];
+    if (idfiles.length == 0) {
+        callback(files);
+    }
+    for (var i = 0; i < idfiles.length; i++) {
+        schema.findOne({
+            _id: idfiles[i]
+        }, (err, doc) => {
+            if(err) throw err
+            //console.log(doc);
+            amountRetrieved++;
+            files.push(doc);
+            if (amountRetrieved == idfiles.length) {
+                callback(files);
+            }
+        });
+    }
+},
+
 //parse triples of a local mapping file
   parseTriples : function(mapping) {
     var content = mapping.data.replace(/(?:\r\n|\r|\n|\t)/g, ' ');

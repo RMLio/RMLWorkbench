@@ -428,8 +428,9 @@ var exports = module.exports = {
             });
         });
         
-        job.name = req.body.name;
-        job.date = req.body.description;
+        job.title = req.body.name;
+        job.date = date.toDateString();
+        job.description = req.body.description;
         job.user = req.user;        
         
         schedules.push(job);
@@ -437,6 +438,17 @@ var exports = module.exports = {
         
         
         res.send(200);
+    },
+    
+    getSchedules: function(req, res) {
+        console.log('[WORKBENCH LOG] Retrieving schedules..')
+        var response= [];
+        for(var i = 0; i < schedules.length; i++) {
+            if(schedules[i].user._id === req.user._id) {
+                response.push(schedules[i]);
+            }
+        }
+        res.send(schedules);   
     },
 
     /**

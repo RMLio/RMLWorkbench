@@ -516,6 +516,8 @@ block body
                             li
                                 a(href='#' data-toggle='modal' data-target='#executeMapping') Execute
                             li
+                                a(href='#' data-toggle='modal' data-target='#') Edit
+                            li
                                 a(href='#') Details
                             
                div.panel-body(id='mappingBody')
@@ -586,26 +588,34 @@ block body
         br
         div.container-fluid
          div.row
-           div.col-md-3
-             div(class='panel panel-primary')
-               div.panel-heading
-                 h3.panel-title Menu
-               div.panel-body.text-center
-                 div.btn-group-vertical(role='group')
-                   form(enctype='multipart/form-data' action='/workbench/fetch/input' method='post')                  
-                   button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#scheduleModal')
-                     | Create New Job
-
-           div.col-md-9
+           
+           div.col-md-12
             div.panel.panel-info
                div.panel-heading
-                 h3.panel-title Overview Schedules
-               div.panel-body
-                  div.row 
-                      div.col-md-3(id='scheduleMain')
-                        script#schedule-list-item(type='text/template').
-                          <h6><%= filename %></h6>                       
-                      div.col-md-9(id='scheduleContent')
-                        script#schedule-content(type='text/template').
-                          <%= convertedData %>
+                 div.row
+                   div.col-md-11           
+                     h3.panel-title Overview schedules
+                   div.col-md-1   
+                     div.dropdown
+                        button#dropdownMenu1.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
+                            | 
+                            span.caret
+                        ul.dropdown-menu(aria-labelledby='dropdownMenu1')
+                            li
+                              a(href='#' data-toggle='modal' data-target='#scheduleModal') Create new job  
+               div.panel-body(id='scheduleBody')                              
+                 table.table(id='scheduleTable')
+                    tr
+                    th Name
+                    
+                    th Date          
+                    
+                    th Description
+                    
+                    th Executed    
+                                           
+                        
+                   
+                           
+                        
 

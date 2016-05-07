@@ -475,7 +475,7 @@
      * VIEWS SCHEDULING
      * 
      ***/
-    
+    /*
     app.scheduleesView = Backbone.View.extend({
         tagName: 'div',
         className: 'list-group scheduleView',
@@ -536,7 +536,7 @@
 
 
     });
-    
+    */
     app.ClearScheduleingView = Backbone.View.extend({
         /*
         template: _.template($('#clearscheduleing').html()),
@@ -717,6 +717,16 @@
                 } else {
                     //clearing workbench
                     $('.workbenchElement').empty();
+                    $('#mappingTitle').text('No files...');
+                    //setting css   
+                    $('#mappingMain').css('min-height',$(window).height()*0.82 + 'px');
+                    $('#mappingMain').css('max-height',$(window).height()*0.82 + 'px');
+                    $('#mappingContent').css('min-height',$(window).height()*0.75 + 'px');
+                    $('#mappingContent').css('max-height',$(window).height()*0.75 + 'px');                                     
+                    $('#mappingBody').css('min-height',$(window).height()*0.82 + 'px');
+                    $('#mappingBody').css('max-height',$(window).height()*0.82 + 'px');
+                    $('pre').css('min-height',$(window).height()*0.75 + 'px');
+                    $('pre').css('max-height',$(window).height()*0.75 + 'px');
                 }
                 
             }}); 
@@ -778,7 +788,17 @@
                         
     
             } else {
-                    $('.publishElement').empty();   
+                    $('.publishElement').empty(); 
+                    $('#publishingTitle').text('No files...');
+                    //Setting css
+                    $('#publishMain').css('min-height',$(window).height()*0.82 + 'px');
+                    $('#publishMain').css('max-height',$(window).height()*0.82 + 'px');
+                    $('#publishContent').css('min-height',$(window).height()*0.75 + 'px');
+                    $('#publishContent').css('max-height',$(window).height()*0.75 + 'px');    
+                    $('#publishBody').css('min-height',$(window).height()*0.82 + 'px');
+                    $('#publishBody').css('max-height',$(window).height()*0.82 + 'px');    
+                    $('pre').css('min-height',$(window).height()*0.75 + 'px');
+                    $('pre').css('max-height',$(window).height()*0.75 + 'px');  
                 }
             }}); 
             
@@ -829,13 +849,21 @@
                }
                
                $.post('/workbench/addToSchedule',post,function() {
-                    app.render();
+                    app.render();                    
                }); 
                
             });           
             
             
-            
+            $.get('/workbench/schedules',function(schedules) {
+                $('#scheduleTable').empty();
+                $('#scheduleTable').append('<tr><th>Name</th><th>Date</th><th>#Mappings</th><th>Description</th><th>Executed</th></tr>')
+                for(var i = 0; i < schedules.length; i++) {
+                    $('#scheduleTable').append('<tr><td>'+schedules[i].title+'</td><td>'+schedules[i].date+'</td><td></td><td>'+schedules[i].description+'</td><td></td><td></td></tr>');   
+                }   
+                $('#scheduleBody').css('min-height',$(window).height()*0.82 + 'px');
+                $('#scheduleBody').css('max-height',$(window).height()*0.82 + 'px');                                 
+            });
             
             
             /***

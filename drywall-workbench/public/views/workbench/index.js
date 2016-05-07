@@ -814,8 +814,8 @@
                var description = $('#scheduleDescription').val();
                var title = $('#scheduleTitle').val();
                
-               var day = fulldate.substring(0,2);
-               var month = fulldate.substring(3,5);
+               var month = fulldate.substring(0,2);
+               var day = fulldate.substring(3,5);
                var year = fulldate.substring(6,10);
                var hour = fulldate.substring(11,13);
                if(hour.indexOf(':') > -1) {
@@ -857,9 +857,25 @@
             
             $.get('/workbench/schedules',function(schedules) {
                 $('#scheduleTable').empty();
-                $('#scheduleTable').append('<tr><th>Name</th><th>Date</th><th>#Mappings</th><th>Description</th><th>Executed</th></tr>')
+                $('#scheduleTable').append('<tr><th>Name</th><th>Date</th><th>#Mappings</th><th>Description</th><th>Executed</th></tr>');
                 for(var i = 0; i < schedules.length; i++) {
-                    $('#scheduleTable').append('<tr><td>'+schedules[i].title+'</td><td>'+schedules[i].date+'</td><td></td><td>'+schedules[i].description+'</td><td></td><td></td></tr>');   
+                    $('#scheduleTable').append(function() {                 
+                        
+                        
+                        
+                        return '<tr data-toggle="modal" data-target="#jobmodal" id='+schedules[i]._id+'><td>'+schedules[i].name+'</td><td>'+schedules[i].date+'</td><td></td><td>'+schedules[i].description+'</td><td></td><td></td></tr>'   
+                    });
+                    var t = i;
+                    $('#'+schedules[t]._id).click(function() {
+                        app.currentSchedule = schedules[t];
+                        $('#cancel_job').click(function() {
+                            console.log('?');
+                            $.post('/workbench/schedules/cancel', {schedule_id: app.currentSchedule._id},function() {
+                                app.render();                    
+                            });    
+                        }); 
+                    });
+                       
                 }   
                 $('#scheduleBody').css('min-height',$(window).height()*0.82 + 'px');
                 $('#scheduleBody').css('max-height',$(window).height()*0.82 + 'px');                                 

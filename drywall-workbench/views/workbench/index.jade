@@ -308,6 +308,18 @@ block body
                 //+licensesId('mappingUploadLicense')   
               button.btn.btn-primary(id="submitPublishingUpload" type='submit') Upload
               
+              
+   div(id='jobmodal' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='AreTheseUsed' style='display: none;')
+    div.modal-dialog(role='document')
+      div.modal-content
+        div.modal-header
+          button.close( aria-label='Close')
+            span(aria-hidden='true') ×
+          h4.modal-title Job details
+        div.modal-body
+          button.btn.btn-primary(id="cancel_job") Cancel job    
+              
+              
 
 
    div(id='publish' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' style='display: none;')

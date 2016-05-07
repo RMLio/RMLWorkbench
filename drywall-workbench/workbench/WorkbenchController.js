@@ -432,7 +432,7 @@ var exports = module.exports = {
         job.date = date.toDateString();
         job.description = req.body.description;
         job.user = req.user;        
-        
+        job._id = mongoose.Types.ObjectId();
         schedules.push(job);
         
         
@@ -449,6 +449,20 @@ var exports = module.exports = {
             }
         }
         res.send(schedules);   
+    },
+    
+    cancelJob: function(req, res) {
+        console.log('[WORKBENCH LOG] CANCELING JOB..');
+        for(var i = 0; i < schedules.length; i++) {
+            console.log(req.body.schedule_id);
+            console.log(schedules[i]._id);
+            if(req.body.schedule_id == schedules[i]._id) {
+                schedules[i].cancel();
+                schedules.splice(i, 1);
+                console.log('!!!!');
+            }
+        }
+        res.send(200);
     },
 
     /**

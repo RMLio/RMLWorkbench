@@ -21,7 +21,7 @@ var exports = module.exports = {
 
         //in case there are no local source files needed
         if(needed.length == 0) {
-            exports.spawnRmlMapper(mappingfile.id, mappingfile.filename, triplenames, needed, (result) => {
+            exports.spawnRmlMapper(mappingfile.id, mappingfile.filename, mappingfile.triples.length, triplenames, needed, (result) => {
                                 rdf = result;
                                 callback(rdf);
                             });           
@@ -44,7 +44,7 @@ var exports = module.exports = {
                     if(written == needed.length) {                    
                         fs.readFile(needed[j].filename, 'utf8', (err, data) => { //using arrow function, this has no 'this'
                             
-                            exports.spawnRmlMapper(mappingfile._id, mappingfile.filename, triplenames, needed, (result) => {
+                            exports.spawnRmlMapper(mappingfile._id, mappingfile.filename, mappingfile.triples.length, triplenames, needed, (result) => {
                                 rdf = result;
                                 callback(rdf);
                             });
@@ -63,20 +63,24 @@ var exports = module.exports = {
         
     },
 
-    spawnRmlMapper : function(id, filename, triplenames, needed, callback) {
+    spawnRmlMapper : function(id, filename, tripleamount, triplenames, needed, callback) {
 
             var result;
             
             console.log('[WORKBENCH LOG] Triples: ' + triplenames);
 
             //TODO check command --> pick triple functionality
-            console.log('COMMAND');
-            console.log('java -jar ./workbench/rmlmapper/RML-Mapper.jar -m input.rml -o output.rdf -tm ' + triplenames);
+            
+            
+            var command = 'java -jar ./workbench/rmlmapper/RML-Mapper.jar -m input.rml -o ./workbench/rmlmapper/output.rdf';
+            if(tripleamount != triplenames) {
+                command = command + ' -tm ' + triplenames;
+            }
             
             //map the file
             const spawner = require('child_process');
-            const spawn = spawner.exec(
-            'java -jar ./workbench/rmlmapper/RML-Mapper.jar -m input.rml -o output.rdf ')// -tm ' + triplenames);  
+            const spawn = spawner.exec(command);
+              
             var rmlprocessoroutput = '';
             //logging
             spawn.stdout.on('data', (data) => {
@@ -104,7 +108,7 @@ var exports = module.exports = {
                     });   
                 }
                 
-                fs.readFile('./output.rdf', 'utf8', (err, data) => { //using arrow function, this has no 'this'
+                fs.readFile('./workbench/rmlmapper/output.rdf', 'utf8', (err, data) => { //using arrow function, this has no 'this'
                     if (err) throw err;
                         result = {
                             mapping_id: id,     
@@ -116,15 +120,16 @@ var exports = module.exports = {
                         };
                     
                 
-                    fs.unlink('./output.rdf', function (err) {  //deleting temp files
+                    fs.unlink('./workbench/rmlmapper/output.rdf', function (err) {  //deleting temp files
                         if (err) throw err;
                     });
 
                     fs.unlink('./input.rml', function (err) {     // deleting temp files
                         if (err) throw err;
                     });
+                    console.log(needed);
                     for(var i = 0; i < needed.length; i++) {
-                        fs.unlink('./' + needed[i].filename, function (err) {   // deleting temp files
+                        fs.unlink(needed[i].filename, function (err) {   // deleting temp files
                             if (err) throw err;
                         });
                     }

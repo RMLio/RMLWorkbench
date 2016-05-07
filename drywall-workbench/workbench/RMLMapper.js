@@ -80,7 +80,7 @@ var exports = module.exports = {
             var rmlprocessoroutput = '';
             //logging
             spawn.stdout.on('data', (data) => {
-                console.log(`stdout: ${data}`);
+                //console.log(`stdout: ${data}`);
                 rmlprocessoroutput += data;    
             });
             spawn.stderr.on('data', (data) => {

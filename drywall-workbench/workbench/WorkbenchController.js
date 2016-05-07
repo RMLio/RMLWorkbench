@@ -399,15 +399,18 @@ var exports = module.exports = {
         var hour = req.body.date.hour;
         var minute = req.body.date.minute;
         var date = new Date(year, month, day, hour, minute);
-
+        console.log(req.body);
         var sources = req.user.sourcefiles;
         var models = req.app.db.models;
         var user = req.user;
         var mappingsFromTriples = req.body.mappingsFromTriples;
         var mappingsFromFile = req.body.mappingsFromFile;
-
+        //array gets undefined if empty for some reason :/
+        if(mappingsFromTriples == undefined) {
+            mappingsFromTriples = [];
+        }
         console.log("[WORKBENCH LOG] Job added! Scheduled for " + date);
-
+        console.log(mappingsFromTriples);
         //schedule the job with date
         var job = schedule.scheduleJob(date, (err) => {
             if (err) throw err;

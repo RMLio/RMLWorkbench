@@ -704,6 +704,16 @@
                     $('pre').css('min-height',$(window).height()*0.75 + 'px');
                     $('pre').css('max-height',$(window).height()*0.75 + 'px');
                     
+                    
+                    //Setting mapping list scheduling
+                    $('#scheduleMappingList').empty();
+                    $('#scheduleMappingList').append('<option>CHOOSE MAPPING</option>')
+                    for(var i =0; i < app.mappings.models.length; i++) {
+                        var mapping = app.mappings.models[i];
+                        $('#scheduleMappingList').append('<option value="' + mapping.attributes._id +'">' + mapping.attributes.filename + '</option>');
+                    }
+                    
+                    
                 } else {
                     //clearing workbench
                     $('.workbenchElement').empty();
@@ -773,13 +783,60 @@
             }}); 
             
             
-            /**
-             * 
-             * 
-             * RENDERING SCHEDULES
-             * 
+            /***
+             *              
+             * JQUERY SCHEDULING             
              * 
              */
+            
+            $('#scheduleButton').click(function() {
+               var fulldate = $('#scheduleDate').val();
+               var description = $('#scheduleDescription').val();
+               var title = $('#scheduleTitle').val();
+               
+               var day = fulldate.substring(0,2);
+               var month = fulldate.substring(3,5);
+               var year = fulldate.substring(6,10);
+               var hour = fulldate.substring(11,13);
+               if(hour.indexOf(':') > -1) {
+                   hour = fulldate.substring(11,12);
+                   var minute = fulldate.substring(13,15);
+                   if(fulldate.charAt(16) == 'P') {
+                       hour = parseInt(hour) + 12;
+                   }
+               } else {                   
+                   var minute = fulldate.substring(14,16);
+                   if(fulldate.charAt(17) == 'P') {
+                       hour = parseInt(hour) + 12;
+                   }
+               }
+               var date = {
+                       year: year,
+                       month: month-1,
+                       day: day,
+                       hour: hour,
+                       minute: minute
+                   }
+               var mappings = [];
+               var mappings2 = [];
+               mappings.push($('#scheduleMappingList').val());
+               var post = {
+                   name: title,
+                   description: description,
+                   date:date,
+                   mappingsFromFile : mappings,
+                   mappingsFromTriples: mappings2 
+               }
+               
+               $.post('/workbench/addToSchedule',post,function() {
+                    app.render();
+               }); 
+               
+            });           
+            
+            
+            
+            
             
             /***
             *

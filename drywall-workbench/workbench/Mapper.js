@@ -134,18 +134,23 @@ var exports = module.exports =  {
                         rdflist.push(rdf);
                         amountDone++;
                         if(amountDone == mappingsFromFile.length) {
-                        console.log("[WORKBENCH LOG] Execute mappings from triples...")    
-                        //Execute scheduled mappings from triples                                                            
-                            for (var j = 0; j < mappingsFromTriples.length; j++) {
-                                exports.executeMappingFromTriples(user, models, mappingsFromTriples[j].triples, mappingsFromTriples[j].mapping, (rdf) => {
-                                    rdflist.push(rdf);
-                                    amountDone++;
-                                    if (amountDone == amountofjobs) { 
-                                        callback(rdflist);                                                                               
-                                    }
-                                });
-                            }    
-                        }                    
+                            if(mappingsFromTriples.length != 0) {
+                                console.log("[WORKBENCH LOG] Execute mappings from triples...")    
+                                //Execute scheduled mappings from triples                                                            
+                                    for (var j = 0; j < mappingsFromTriples.length; j++) {
+                                        exports.executeMappingFromTriples(user, models, mappingsFromTriples[j].triples, mappingsFromTriples[j].mapping, (rdf) => {
+                                            rdflist.push(rdf);
+                                            amountDone++;
+                                            if (amountDone == amountofjobs) { 
+                                                callback(rdflist);                                                                               
+                                            }
+                                        });
+                                    }   
+                            } else {                                
+                                callback(rdflist);                        
+                            }
+                            
+                        }                   
                     });
 
                 }           

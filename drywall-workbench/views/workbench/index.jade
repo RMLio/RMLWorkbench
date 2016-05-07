@@ -361,7 +361,7 @@ block body
             div(class='form-group')
               label(for='title')
                 | Title
-              input(class='form-control' id='publish_title' placeholder='Enter title')
+              input(class='form-control' id='scheduleTitle' placeholder='Enter title')
             div(class='form-group')
               label(for='mapping')
                 | Mapping
@@ -371,21 +371,22 @@ block body
             div(class='form-group')
               label(for='time')
                 | Schedule
-              div.input-group 
-                | Every
-                input(class='form-control' type='number' id='time' value='2') 
-                select(name='mapping' id='mapping' class='form-control')
-                  option(value='Hour')
-                      | Hours
-                  option(value='Daily')
-                      | Days
-                  option(value='Weekly')
-                      | Weeks
-                  option(value='Monthly')
-                      | Months
-              p Starting from
+              //  
+                div.input-group 
+                    | Every
+                    input(class='form-control' type='number' id='time' value='2') 
+                    select(name='mapping' id='mapping' class='form-control')
+                    option(value='Hour')
+                        | Hours
+                    option(value='Daily')
+                        | Days
+                    option(value='Weekly')
+                        | Weeks
+                    option(value='Monthly')
+                        | Months
+              p Date
               div.input-group.date(id="datetimepicker1")
-                input.form-control(type="text")
+                input.form-control(type="text" id='scheduleDate')
                 span.input-group-addon
                   span.glyphicon.glyphicon-calendar
             script. 
@@ -399,8 +400,8 @@ block body
             div(class='form-group')
               label(for='description')
                 | Description
-              input(class='form-control' id='schedule_description' placeholder='Enter description')
-            button(type='submit' id='schedule_submit' class='btn btn-primary')
+              input(class='form-control' id='scheduleDescription' placeholder='Enter description')
+            button( id='scheduleButton' data-dismiss="modal" class='btn btn-primary')
                 | Schedule
 
 

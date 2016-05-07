@@ -8,6 +8,10 @@ var saver = require('./Saver');
 var sparql = require('./Sparql');
 var fs = require('fs');
 
+var schedules = [];
+
+var test = [];
+
 var exports = module.exports = {
 
     //TODO seperate controllers!
@@ -211,7 +215,9 @@ var exports = module.exports = {
     */
 
     //upload a mapping
-    uploadMapping: function(req, res) {
+    uploadMapping: function(req, res) {       
+        
+        
         var file = req.file;
         var user = req.user;
         var models = req.app.db.models;
@@ -403,7 +409,7 @@ var exports = module.exports = {
         console.log("[WORKBENCH LOG] Job added! Scheduled for " + date);
 
         //schedule the job with date
-        schedule.scheduleJob(date, (err) => {
+        var job = schedule.scheduleJob(date, (err) => {
             if (err) throw err;
             console.log("[WORKBENCH LOG] Executing jobs!");
             mapper.executeMultipleMappings(mappingsFromFile, mappingsFromTriples, sources, models, user, (rdflist) => {
@@ -418,6 +424,15 @@ var exports = module.exports = {
                 }
             });
         });
+        
+        job.name = req.body.name;
+        job.date = req.body.description;
+        job.user = req.user;        
+        
+        schedules.push(job);
+        
+        
+        
         res.send(200);
     },
 

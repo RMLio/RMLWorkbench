@@ -365,9 +365,9 @@ block body
             div(class='form-group')
               label(for='mapping')
                 | Mapping
-              select(name='mapping' id='mapping' class='form-control')
-                option(value='HdtDataSource')
-                  | POPULATE LIST
+              select(name='mapping' id='scheduleMappingList' class='form-control')
+                option(value='')
+                  | CHOOSE MAPPING FILE
             div(class='form-group')
               label(for='time')
                 | Schedule
@@ -476,42 +476,53 @@ block body
         br
         div.container-fluid
          div.row
-           div.col-md-3
-             div(class='panel panel-primary')
+           div.col-md-3(id='mappingButtons')
+             div(class='panel panel-info')
                div.panel-heading
-                 h3.panel-title Menu
-               div.panel-body.text-center
-                 div.btn-group-vertical(role='group')
-                   
-                   button(type='button' class='btn btn-primary btn-lg menubutton' for='mapping-upload-input' data-toggle='modal' data-target='#upload-mapping')
-                     | Upload Mapping                   
-                   button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#editMapping')
-                     | Edit Mapping
-                   div(id='mappingmenu' class='workbenchElement')
-                   div(id='clearmappingbutton' class='workbenchElement')
-                   div(id='clearallmappingsbutton' class='workbenchElement')
-                   script#execute(type='text/template').
-                     <button type='button' class='btn btn-primary btn-lg menubutton' data-toggle='modal' data-target='#executeMapping'>
-                        Execute Mapping
-                     </button>     
-                   script#clearmapping(type='text/template').
-                     <button type='button' class='btn btn-primary btn-lg clearmapping menubutton'>
-                        Clear Mapping
-                     </button>       
-                   script#clearallmappings(type='text/template').
-                     <button type='button' class='btn btn-primary btn-lg clearallmappings menubutton'>
-                        Clear All Mappings
-                     </button>       
+                 div.row
+                   div.col-md-9            
+                     h3.panel-title Mapping Files
+                   div.col-md-1   
+                     div.dropdown
+                        button#dropdownMenu1.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
+                            | 
+                            span.caret
+                        ul.dropdown-menu(aria-labelledby='dropdownMenu1')
+                            li
+                              a(href='#' data-toggle='modal' data-target='#upload-mapping') Upload file
+                            li
+                              a(href='#' id='clearMapping') Clear selected file
+                            li
+                              a(href='#' id='clearAllMappings') Clear all files 
+               div.panel-body.text-center(id='mappingMain' class='workbenchElement') 
+                
+                 script#mapping-list-item(type='text/template').
+                       <h6><%= filename %></h6>
+                         
+                          
            div.col-md-9
             div.panel.panel-info
-               div.panel-heading
-                 h3.panel-title Overview Mapping
-               div.panel-body
+               div.panel-heading  
+                 div.row    
+                   div.col-md-4            
+                     h3.panel-title Overview Mapping
+                   div.col-md-1.col-md-offset-7   
+                     div.dropdown
+                        button#dropdownMenu1.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
+                            | 
+                            span.caret
+                        ul.dropdown-menu(aria-labelledby='dropdownMenu1')
+                            li
+                                a(href='#' data-toggle='modal' data-target='#executeMapping') Execute
+                            li
+                                a(href='#') Details
+                            
+               div.panel-body(id='mappingBody')
                  div.row 
-                   div.col-md-3(id='mappingMain' class='workbenchElement')
-                     script#mapping-list-item(type='text/template').
-                       <h6><%= filename %></h6>                       
-                   div.col-md-9(id='mappingContent' class='workbenchElement')
+                   div.col-md-6
+                     h4(id='mappingTitle')          
+                 div.row                           
+                   div.col-md-12(id='mappingContent' class='workbenchElement')
                      script#mapping-content(type='text/template').
                        <%= convertedData %>
                        
@@ -520,37 +531,55 @@ block body
         div.container-fluid
          div.row
            div.col-md-3
-             div(class='panel panel-primary')
+             div(class='panel panel-info')
                div.panel-heading
-                 h3.panel-title Menu
-               div.panel-body.text-center
-                 div.btn-group-vertical(role='group')
-                   button(type='button' class='btn btn-primary btn-lg menubutton' for='publishing-upload-input' data-toggle='modal' data-target='#upload-publishing')
-                     | Upload Dataset 
-                   button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#publish')
-                     | Publish Dataset
-                   div(id='clearpublishingbutton' class='publishElementt')
-                   div(id='clearallpublishingsbutton' class='publishElement')
-                   script#clearpublishing(type='text/template').
-                     <button type='button' class='btn btn-primary btn-lg clearpublishing menubutton'>
-                        Clear Dataset
-                     </button>       
-                   script#clearallpublishings(type='text/template').
-                     <button type='button' class='btn btn-primary btn-lg clearallpublishings menubutton'>
-                        Clear All Data
-                     </button>
+                 div.row
+                   div.col-md-9            
+                     h3.panel-title Publishing Files
+                   div.col-md-1   
+                     div.dropdown
+                        button#dropdownMenu1.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
+                            | 
+                            span.caret
+                        ul.dropdown-menu(aria-labelledby='dropdownMenu1')
+                            li
+                              a(href='#' data-toggle='modal' data-target='#upload-publishing') Upload file                            
+                            li
+                              a(href='#' id='clearPublishing') Clear selected file
+                            li
+                              a(href='#' id='clearAllPublishings') Clear all files                  
+               div.panel-body.text-center(id='publishMain' class='publishElement')
+               
+                 script#publish-list-item(type='text/template').
+                   <h6><%= filename %></h6>      
            div.col-md-9
-            div.panel.panel-info
+             div.panel.panel-info
                div.panel-heading
-                 h3.panel-title Overview Publishing
-               div.panel-body
+                 div.row
+                   div.col-md-4            
+                     h3.panel-title Selected file
+                   div.col-md-1.col-md-offset-7   
+                     div.dropdown
+                        button#dropdownMenu1.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
+                            | 
+                            span.caret
+                        ul.dropdown-menu(aria-labelledby='dropdownMenu1')
+                            li
+                              a(href='#' data-toggle='modal' data-target='#publish') Publish file
+                            li
+                              a(href='#' ) Details
+                             
+               div.panel-body(id='publishBody')
                   div.row 
-                      div.col-md-3(id='publishMain' class='publishElement')
-                        script#publish-list-item(type='text/template').
-                          <h6><%= filename %></h6>                       
-                      div.col-md-9(id='publishContent' class='publishElement')
+                     div.col-md-6
+                       h4(id='publishingTitle')  
+                  div.row                                             
+                      div.col-md-12(id='publishContent' class='publishElement')
                         script#publish-content(type='text/template').
                           <%= convertedData %>
+                          
+                    
+                   
 
       #schedule.tab-pane.fade
         br

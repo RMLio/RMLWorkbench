@@ -124,40 +124,7 @@
      ***/
     
     
-    app.ExecuteMappingView = Backbone.View.extend({
-        
-        template: _.template($('#execute').html()),        
-        
-        
-        execute: function() {
-          //this.model.fetch({data:{'mapping_id':this.model.attributes._id},type:'POST' })  
-          
-           
-        },
-        
-        initialize: function() {
-               
-        },
-        
-        render: function() {
-           $(this.el).html(this.template(this.model.toJSON()));      
-           $('#selectAllCheckbox').change(function() {
-               var selections = $('#triplelistdiv').children().children();
-               if($('#selectAllCheckbox').prop( "checked" )) {                    
-                    for(var i = 0; i < selections.length; i++) {
-                        var selection = selections.eq(i).find('input');
-                        selections.eq(i).find('input').prop('checked', true);
-                        
-                    }    
-               } else {
-                    for(var i = 0; i < selections.length; i++) {
-                        selections.eq(i).find('input').prop('checked', false);
-                    }   
-               }
-           });
-           return this;            
-        }    
-    });
+    
     
     app.ExecuteButtonView = Backbone.View.extend({
         
@@ -175,9 +142,7 @@
               if(selections.eq(i).find('input').prop('checked')) {
                   triplesToBeExecuted.push(this.model.attributes.triples[i]._id);
               }
-          }  
-          
-          console.log(triplesToBeExecuted);
+          }           
           
           var triples = {
               triples: triplesToBeExecuted
@@ -197,57 +162,10 @@
            $(this.el).html(this.template(this.model.toJSON()));      
            return this;            
         }    
-    });
+    });    
     
-    app.ClearMappingView = Backbone.View.extend({
-        
-        template: _.template($('#clearmapping').html()),
-        
-        events: {
-          'click .clearmapping' : 'clearmapping'  
-        },
-        
-        clearmapping: function() {
-          //this.model.fetch({data:{'mapping_id':this.model.attributes._id},type:'POST' })  
-          $.post('/workbench/clear/mapping/',{mappings: [app.currentModel.attributes._id]},function() {
-              app.render();
-              });  
-        },
-        
-        initialize: function() {
-            this.model = app.currentModel;    
-        },
-        
-        render: function() {
-           $(this.el).html(this.template(this.model.toJSON()));      
-           return this;            
-        }    
-    });
     
-    app.ClearAllMappingsView = Backbone.View.extend({
-        
-        template: _.template($('#clearallmappings').html()),
-        
-        events: {
-          'click .clearallmappings' : 'clearallmappings'  
-        },
-        
-        clearallmappings: function() {
-          //this.model.fetch({data:{'mapping_id':this.model.attributes._id},type:'POST' })  
-          $.post('/workbench/clear/all/mapping',function() {
-              app.render();
-              });  
-        },
-        
-        initialize: function() {
-            this.model = app.currentModel;    
-        },
-        
-        render: function() {
-           $(this.el).html(this.template(this.model.toJSON()));      
-           return this;            
-        }    
-    });
+    
 
     app.MappingsView = Backbone.View.extend({
         tagName: 'div',
@@ -349,7 +267,8 @@
                 
                 app.tripleListView.render();
                 app.executeButtonView.render();               
-                app.mappingsContentView.render(); 
+                app.mappingsContentView.render();
+                $('#mappingTitle').text('Filename: ' + app.currentModel.attributes.filename); 
                 //$('#mappingContent').html(app.mappingsContentView.render().el)  
         },
 
@@ -417,6 +336,7 @@
                 app.currentModel = this.model;
                 app.publishContentView.model = this.model; 
                 app.publishContentView.render(); 
+                $('#publishingTitle').text('Filename: ' + app.currentModel.attributes.filename);
                 //$('#mappingContent').html(app.mappingsContentView.render().el)  
         },
 
@@ -430,54 +350,7 @@
 
     });
     
-    app.ClearPublishingView = Backbone.View.extend({
-        
-        template: _.template($('#clearpublishing').html()),
-        
-        events: {
-          'click .clearpublishing' : 'clearpublishing'  
-        },
-        
-        clearpublishing: function() {
-          $.post('/workbench/clear/rdf',{rdf: [app.currentModel.attributes._id]},function() {
-              app.render();
-              });  
-        },
-        
-        initialize: function() {
-            this.model = app.publishes.models[0];    
-        },
-        
-        render: function() {
-           $(this.el).html(this.template(this.model.toJSON()));      
-           return this;            
-        }    
-    });
     
-    app.ClearAllPublishingsView = Backbone.View.extend({
-        
-        template: _.template($('#clearallpublishings').html()),
-        
-        events: {
-          'click .clearallpublishings' : 'clearallpublishings'  
-        },
-        
-        clearallpublishings: function() {
- 
-          $.post('/workbench/clear/all/rdf',function() {
-              app.render();
-              });  
-        },
-        
-        initialize: function() {
-            this.model = app.publishes.models[0];    
-        },
-        
-        render: function() {
-           $(this.el).html(this.template(this.model.toJSON()));      
-           return this;            
-        }    
-    });
     
     
     /***
@@ -773,10 +646,8 @@
 
                     app.mappingsView = new app.MappingsView({model:app.mappings});
                     app.mappingsContentView = new app.MappingsContentView({model: app.currentModel});
-                    app.executeMappingView = new app.ExecuteMappingView({model: app.currentModel});
-                    app.executeButtonView = new app.ExecuteButtonView({model: app.currentModel});
-                    app.clearMappingView = new app.ClearMappingView();
-                    app.clearAllMappingsView = new app.ClearAllMappingsView();
+                    //app.executeMappingView = new app.ExecuteMappingView({model: app.currentModel});
+                    app.executeButtonView = new app.ExecuteButtonView({model: app.currentModel});                    
                     
                     var triples = [];
                     for(var i = 0; i < app.currentModel.attributes.triples.length; i++) {
@@ -788,11 +659,51 @@
                     //rendering with jquery
                     $('#mappingMain').html(app.mappingsView.render().el);    
                     $('#mappingContent').html(app.mappingsContentView.render().el);
-                    $('#mappingmenu').html(app.executeMappingView.render().el);
-                    $('#clearmappingbutton').html(app.clearMappingView.render().el);
-                    $('#clearallmappingsbutton').html(app.clearAllMappingsView.render().el);
+                    //$('#mappingmenu').html(app.executeMappingView.render().el);
                     $('#triplelistdiv').html(app.tripleListView.render().el);
                     $('#executeMappingButtonDiv').html(app.executeButtonView.render().el);
+                    
+                    //settint text
+                    $('#mappingTitle').text('Filename: ' + app.currentModel.attributes.filename);
+                    
+                    //setting button actions
+                    $('#clearMapping').click(function() {
+                        $.post('/workbench/clear/mapping/',{mappings: [app.currentModel.attributes._id]},function() {
+                            app.render();
+                        });
+                    });
+                    
+                    $('#clearAllMappings').click(function() {
+                        $.post('/workbench/clear/all/mapping',function() {
+                            app.render();
+                        });
+                    })
+                    
+                    $('#selectAllCheckbox').change(function() {
+                        var selections = $('#triplelistdiv').children().children();
+                        if($('#selectAllCheckbox').prop( "checked" )) {                    
+                                for(var i = 0; i < selections.length; i++) {
+                                    var selection = selections.eq(i).find('input');
+                                    selections.eq(i).find('input').prop('checked', true);
+                                    
+                                }    
+                        } else {
+                                for(var i = 0; i < selections.length; i++) {
+                                    selections.eq(i).find('input').prop('checked', false);
+                                }   
+                        }
+                    });
+                    
+                    //setting css   
+                    $('#mappingMain').css('min-height',$(window).height()*0.82 + 'px');
+                    $('#mappingMain').css('max-height',$(window).height()*0.82 + 'px');
+                    $('#mappingContent').css('min-height',$(window).height()*0.75 + 'px');
+                    $('#mappingContent').css('max-height',$(window).height()*0.75 + 'px');                                     
+                    $('#mappingBody').css('min-height',$(window).height()*0.82 + 'px');
+                    $('#mappingBody').css('max-height',$(window).height()*0.82 + 'px');
+                    $('pre').css('min-height',$(window).height()*0.75 + 'px');
+                    $('pre').css('max-height',$(window).height()*0.75 + 'px');
+                    
                 } else {
                     //clearing workbench
                     $('.workbenchElement').empty();
@@ -820,19 +731,55 @@
                     //creating views
                     app.publishesView = new app.PublishesView({model:app.publishes});
                     app.publishContentView = new app.PublishContentView({model: app.publishes.models[0]});
-                    app.clearPublishingView = new app.ClearPublishingView();
-                    app.clearAllPublishingsView = new app.ClearAllPublishingsView();
+                    
                     
                     //rendering with jquery
                     $('#publishMain').html(app.publishesView.render().el);    
                     $('#publishContent').html(app.publishContentView.render().el);    
-                    $('#clearpublishingbutton').html(app.clearPublishingView.render().el);
-                    $('#clearallpublishingsbutton').html(app.clearAllPublishingsView.render().el);  
-                                      
-                } else {
+                     
+                    app.currentModel = app.publishes.models[0];   
+                     
+                        
+                    //setting text
+                    $('#publishingTitle').text('Filename: ' + app.currentModel.attributes.filename);    
+                        
+                    //Setting css
+                    $('#publishMain').css('min-height',$(window).height()*0.82 + 'px');
+                    $('#publishMain').css('max-height',$(window).height()*0.82 + 'px');
+                    $('#publishContent').css('min-height',$(window).height()*0.75 + 'px');
+                    $('#publishContent').css('max-height',$(window).height()*0.75 + 'px');    
+                    $('#publishBody').css('min-height',$(window).height()*0.82 + 'px');
+                    $('#publishBody').css('max-height',$(window).height()*0.82 + 'px');    
+                    $('pre').css('min-height',$(window).height()*0.75 + 'px');
+                    $('pre').css('max-height',$(window).height()*0.75 + 'px');                  
+                
+                    //setting button actions
+                    $('#clearPublishing').click(function() {
+                        $.post('/workbench/clear/rdf/',{rdf: [app.currentModel.attributes._id]},function() {
+                            app.render();
+                        });
+                    });
+                    
+                    $('#clearAllPublishings').click(function() {
+                        $.post('/workbench/clear/all/rdf',function() {
+                            app.render();
+                        });
+                    })
+                        
+    
+            } else {
                     $('.publishElement').empty();   
                 }
             }}); 
+            
+            
+            /**
+             * 
+             * 
+             * RENDERING SCHEDULES
+             * 
+             * 
+             */
             
             /***
             *

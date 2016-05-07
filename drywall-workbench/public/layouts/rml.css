@@ -1,14 +1,6 @@
-#mappingContent {
-    max-height: 400px;
-}
-
-#mappingMain {
-    max-height: 400px;
-}
 
 
 .mappingsView {
-    max-height: 400px;
     overflow: auto;
 }
 
@@ -20,13 +12,11 @@
     max-height: 400px;
 }
 
-#publishContent {
-    max-height: 400px;
-    min-height: 400px;
+#mappingBody {
+    overflow:auto;
 }
 
 .publishView {
-    max-height: 400px;
     overflow: auto
 }
 

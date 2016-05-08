@@ -287,7 +287,7 @@ block body
           form(id='uploadMapping_Form' action='/workbench/fetch/mapping')                  
               
               label(for='mapping-file-selector') File
-              input(id='mappingFile' name='mappingUpload' type='file' data-allowed-file-extensions="['rml, 'rml.ttl']")
+              input(id='mappingFile' name='mappingUpload' type='file' data-allowed-file-extensions="['rml']")
               p.help-block Only RML files are supported.
                 //+licensesId('mappingUploadLicense')   
               button.btn.btn-primary(id="submitMappingUpload" type='submit') Upload
@@ -367,7 +367,7 @@ block body
           button.close(type='button' data-dismiss='modal' aria-label='Close')
             span(aria-hidden='true') ×
           h4.modal-title Schedule Publishing
-        div.modal-body
+        div.modal-body(id='scheduleModalFooter')
           form(role='form')
             input(type='hidden', name='_csrf', value=_csrf)
             div(class='form-group')
@@ -377,9 +377,14 @@ block body
             div(class='form-group')
               label(for='mapping')
                 | Mapping
-              select(name='mapping' id='scheduleMappingList' class='form-control')
-                option(value='')
-                  | CHOOSE MAPPING FILE
+              div(class="input-group")
+                select(name='mapping' id='scheduleMappingList' class='form-control')
+                    option(value='')
+                    | CHOOSE MAPPING FILE
+                span(class="input-group-btn")
+                    button(class="btn btn-default" id="addScheduleMappingButton" type="button") +
+              div(class="well")
+                ul(id='scheduleMappingWellList')      
             div(class='form-group')
               label(for='time')
                 | Schedule
@@ -487,14 +492,14 @@ block body
                        <%= convertedData %>
       #mapping2.tab-pane.fade
         br
-        div.container-fluid
+        div.container-fluid(id='mappingContainer')
          div.row
            div.col-md-3(id='mappingButtons')
              div(class='panel panel-info')
                div.panel-heading
                  div.row
                    div.col-md-9            
-                     h3.panel-title Mapping Files
+                     h3.panel-title Mapping files
                    div.col-md-1   
                      div.dropdown
                         button#dropdownMenu1.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
@@ -518,7 +523,7 @@ block body
                div.panel-heading  
                  div.row    
                    div.col-md-4            
-                     h3.panel-title Overview Mapping
+                     h3.panel-title Content
                    div.col-md-1.col-md-offset-7   
                      div.dropdown
                         button#dropdownMenu1.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
@@ -543,14 +548,14 @@ block body
                        
       #publishing.tab-pane.fade
         br
-        div.container-fluid
+        div.container-fluid(id='publishContainer')
          div.row
            div.col-md-3
              div(class='panel panel-info')
                div.panel-heading
                  div.row
                    div.col-md-9            
-                     h3.panel-title Publishing Files
+                     h3.panel-title Publishing files
                    div.col-md-1   
                      div.dropdown
                         button#dropdownMenu1.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
@@ -572,7 +577,7 @@ block body
                div.panel-heading
                  div.row
                    div.col-md-4            
-                     h3.panel-title Selected file
+                     h3.panel-title Content
                    div.col-md-1.col-md-offset-7   
                      div.dropdown
                         button#dropdownMenu1.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
@@ -598,7 +603,7 @@ block body
 
       #schedule.tab-pane.fade
         br
-        div.container-fluid
+        div.container-fluid(id='scheduleContainer')
          div.row
            
            div.col-md-12

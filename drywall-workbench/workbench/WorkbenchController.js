@@ -410,7 +410,6 @@ var exports = module.exports = {
             mappingsFromTriples = [];
         }
         console.log("[WORKBENCH LOG] Job added! Scheduled for " + date);
-        console.log(mappingsFromTriples);
         //schedule the job with date
         var job = schedule.scheduleJob(date, (err) => {
             if (err) throw err;
@@ -422,17 +421,22 @@ var exports = module.exports = {
                         done++;
                         if (done == rdflist.length) {
                             console.log("[WORKBENCH LOG] Jobs Done!");
+                            job.executed = true;
                         }
                     });
                 }
             });
         });
-        
+
         job.title = req.body.name;
         job.date = date.toDateString();
         job.description = req.body.description;
         job.user = req.user;        
         job._id = mongoose.Types.ObjectId();
+        job.amountMapping = mappingsFromFile.length;
+        job.amountPublishing = 0;
+        job.amountTriples = mappingsFromTriples.length;
+        job.executed = false;
         schedules.push(job);
         
         

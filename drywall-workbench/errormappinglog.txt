@@ -1,0 +1,129 @@
+0 [main] INFO package be.ugent.mmlab.rml.main  - =================================================
+1 [main] INFO package be.ugent.mmlab.rml.main  - RML Processor
+1 [main] INFO package be.ugent.mmlab.rml.main  - =================================================
+2 [main] INFO package be.ugent.mmlab.rml.main  - 
+29 [main] INFO package be.ugent.mmlab.rml.main  - ========================================
+29 [main] INFO package be.ugent.mmlab.rml.main  - Retrieving the RML Mapping Document...
+29 [main] INFO package be.ugent.mmlab.rml.main  - ========================================
+92 [main] DEBUG org.openrdf.sail.memory.MemoryStore  - Initializing MemoryStore...
+113 [main] DEBUG org.openrdf.sail.memory.MemoryStore  - MemoryStore initialized
+201 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.binary.BinaryRDFParserFactory
+202 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.jsonld.JSONLDParserFactory
+203 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.ntriples.NTriplesParserFactory
+205 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.nquads.NQuadsParserFactory
+206 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.n3.N3ParserFactory
+207 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.rdfjson.RDFJSONParserFactory
+209 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.rdfxml.RDFXMLParserFactory
+210 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.trix.TriXParserFactory
+211 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.turtle.TurtleParserFactory
+212 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.trig.TriGParserFactory
+326 [main] DEBUG org.openrdf.rio.DatatypeHandlerRegistry  - Registered service class org.openrdf.rio.datatypes.XMLSchemaDatatypeHandler
+330 [main] DEBUG org.openrdf.rio.DatatypeHandlerRegistry  - Registered service class org.openrdf.rio.datatypes.RDFDatatypeHandler
+333 [main] DEBUG org.openrdf.rio.DatatypeHandlerRegistry  - Registered service class org.openrdf.rio.datatypes.DBPediaDatatypeHandler
+334 [main] DEBUG org.openrdf.rio.DatatypeHandlerRegistry  - Registered service class org.openrdf.rio.datatypes.VirtuosoGeometryDatatypeHandler
+336 [main] DEBUG org.openrdf.rio.DatatypeHandlerRegistry  - Registered service class org.openrdf.rio.datatypes.GeoSPARQLDatatypeHandler
+351 [main] DEBUG org.openrdf.rio.LanguageHandlerRegistry  - Registered service class org.openrdf.rio.languages.RFC3066LanguageHandler
+605 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.retrieval.RMLDocRetrieval  - Number of RML triples in the repository input.rml : 16 from local file
+607 [main] INFO package be.ugent.mmlab.rml.main  - ========================================
+607 [main] INFO package be.ugent.mmlab.rml.main  - Extracting the RML Mapping Definitions..
+607 [main] INFO package be.ugent.mmlab.rml.main  - ========================================
+607 [main] INFO be.ugent.mmlab.rml.mapdochandler.extraction.RMLMappingFactory  - Replacing Mapping Document shortcuts..
+672 [main] INFO be.ugent.mmlab.rml.mapdochandler.extraction.RMLMappingFactory  - Extracting Triples Maps..
+673 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.std.StdRMLMappingExtractor  - Triples Map statements were retrieved: true
+684 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.RMLMappingFactory  - Number of RML triples with type TriplesMap in file: 1
+686 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Extract TriplesMap subject : file:/home/wmaroy/github/enterprise/AMMA/drywall-workbench/input.rml#AirportMapping
+693 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Reference Formulation CSV
+693 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Iterator null
+694 [main] INFO be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Resource-valued Input Source
+697 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.ConcreteSourceFactory  - Resource-valued Input Source
+698 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.ConcreteSourceFactory  - source type http://www.w3.org/ns/dcat#Distribution
+698 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.ConcreteSourceFactory  - Source described with DCAT vocabulary.
+706 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Source extracted : [be.ugent.mmlab.rml.model.source.std.StdApiSource@3567135c]
+706 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Query null
+709 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Triples Map extracted
+710 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Logical source extracted : [StdLogicalSource : iterator = null; source be.ugent.mmlab.rml.model.source.std.StdApiSource@3567135c; referenceFormulation = CSV]
+713 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.SubjectMapExtractor  - Extracting Subject Map...
+716 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermExtractor  - Extracted template : http://airport.example.com/{id}
+729 [main] DEBUG AbstractConditionExtractor  - Extracting Conditions...
+739 [main] DEBUG BindingConditionExtractor  - Extracting Binding Conditions..
+744 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.StdConditionExtractor  - Extracting Boolean Conditions..
+745 [main] DEBUG AbstractConditionExtractor  - booleanConditions []
+746 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.StdConditionExtractor  - Extracting Negation Conditions..
+746 [main] DEBUG AbstractConditionExtractor  - Extracting conditions completed.
+751 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermExtractor  - class : http://vocab.org/transit/terms/Stop
+752 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.SubjectMapExtractor  - Simple Subject Map extracted
+754 [main] DEBUG be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap  - No term type specified : use IRI by default.
+758 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - More Predicate Map statements: true
+764 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateMapExtractor  - Extracting Predicate Map..
+764 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermExtractor  - Extracted constant : http://vocab.org/transit/terms/service
+767 [main] DEBUG AbstractConditionExtractor  - Extracting Conditions...
+773 [main] DEBUG BindingConditionExtractor  - Extracting Binding Conditions..
+774 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.StdConditionExtractor  - Extracting Boolean Conditions..
+775 [main] DEBUG AbstractConditionExtractor  - booleanConditions []
+778 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.StdConditionExtractor  - Extracting Negation Conditions..
+778 [main] DEBUG AbstractConditionExtractor  - Extracting conditions completed.
+778 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateMapExtractor  - Simple Predicate Map extracted
+780 [main] DEBUG be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap  - No term type specified : use IRI by default.
+781 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Object Map statements found: org.openrdf.repository.RepositoryResult@5bcab519
+784 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Extracting Referencing Object Maps..
+786 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extracting Referencing Object Map..
+787 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Parent Triples Maps were found null
+787 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Referencing Object Map statements found: []
+789 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ObjectMapExtractor  - Extracting Object Map..
+796 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermExtractor  - Extracted reference : bus
+798 [main] DEBUG AbstractConditionExtractor  - Extracting Conditions...
+798 [main] DEBUG BindingConditionExtractor  - Extracting Binding Conditions..
+798 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.StdConditionExtractor  - Extracting Boolean Conditions..
+799 [main] DEBUG AbstractConditionExtractor  - booleanConditions []
+799 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.StdConditionExtractor  - Extracting Negation Conditions..
+800 [main] DEBUG AbstractConditionExtractor  - Extracting conditions completed.
+807 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ObjectMapExtractor  - Simple Object Map extracted.
+807 [main] DEBUG be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap  - No term type specified : use Literal by default.
+813 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.GraphMapExtractor  - Gtraph Maps returned []
+813 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Extract predicate-object map done.
+814 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - More Predicate Map statements: true
+814 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateMapExtractor  - Extracting Predicate Map..
+814 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermExtractor  - Extracted constant : http://www.w3.org/2003/01/geo/wgs84_pos#location
+816 [main] DEBUG AbstractConditionExtractor  - Extracting Conditions...
+816 [main] DEBUG BindingConditionExtractor  - Extracting Binding Conditions..
+816 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.StdConditionExtractor  - Extracting Boolean Conditions..
+820 [main] DEBUG AbstractConditionExtractor  - booleanConditions []
+820 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.StdConditionExtractor  - Extracting Negation Conditions..
+821 [main] DEBUG AbstractConditionExtractor  - Extracting conditions completed.
+821 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateMapExtractor  - Simple Predicate Map extracted
+821 [main] DEBUG be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap  - No term type specified : use IRI by default.
+822 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Object Map statements found: org.openrdf.repository.RepositoryResult@56aac163
+822 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Extracting Referencing Object Maps..
+822 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extracting Referencing Object Map..
+823 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Parent Triples Maps were found null
+823 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Referencing Object Map statements found: []
+823 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ObjectMapExtractor  - Extracting Object Map..
+824 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermExtractor  - Extracted reference : city
+825 [main] DEBUG AbstractConditionExtractor  - Extracting Conditions...
+825 [main] DEBUG BindingConditionExtractor  - Extracting Binding Conditions..
+826 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.StdConditionExtractor  - Extracting Boolean Conditions..
+826 [main] DEBUG AbstractConditionExtractor  - booleanConditions []
+826 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.StdConditionExtractor  - Extracting Negation Conditions..
+826 [main] DEBUG AbstractConditionExtractor  - Extracting conditions completed.
+827 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ObjectMapExtractor  - Simple Object Map extracted.
+827 [main] DEBUG be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap  - No term type specified : use Literal by default.
+827 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.GraphMapExtractor  - Gtraph Maps returned []
+828 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Extract predicate-object map done.
+828 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Number of extracted predicate-object maps : 2
+828 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Extract of TriplesMap subject : file:/home/wmaroy/github/enterprise/AMMA/drywall-workbench/input.rml#AirportMapping done.
+829 [main] DEBUG package be.ugent.mmlab.rml.main  - Generation Execution plan...
+829 [main] INFO be.ugent.mmlab.rml.config.RMLConfiguration  - TriplesMap to be processed file:/home/wmaroy/github/enterprise/AMMA/drywall-workbench/input.rml#AirportMapping
+829 [main] INFO package be.ugent.mmlab.rml.main  - ========================================
+829 [main] INFO package be.ugent.mmlab.rml.main  - Running the RML Mapping..
+829 [main] INFO package be.ugent.mmlab.rml.main  - ========================================
+852 [main] DEBUG org.openrdf.sail.memory.MemoryStore  - Initializing MemoryStore...
+854 [main] DEBUG org.openrdf.sail.memory.MemoryStore  - Reading data from ./workbench/rmlmapper/repositories/SYSTEM/memorystore.data...
+862 [main] WARN org.openrdf.sail.memory.MemoryStore  - Failed to lock directory: ./workbench/rmlmapper/repositories/SYSTEM
+866 [main] DEBUG org.openrdf.sail.memory.MemoryStore  - Data file read successfully
+866 [main] DEBUG org.openrdf.sail.memory.MemoryStore  - MemoryStore initialized
+871 [main] DEBUG org.openrdf.repository.manager.SystemRepository  - Initializing empty SYSTEM repository
+871 [main] ERROR StdRMLEngine  - Repository Exception org.openrdf.repository.RepositoryException: org.openrdf.sail.SailReadOnlyException: Unable to start transaction: data file is locked or read-only
+872 [main] DEBUG StdRMLEngine  - Running without metadata...
+872 [main] DEBUG StdRMLEngine  - Using direct file ./workbench/rmlmapper/output572e8324d0d26ea6262b6c7a.rdf
+875 [main] DEBUG org.openrdf.sail.memory.MemoryStore  - Initializing MemoryStore...
+877 [main] DEBUG org.openrdf.sail.memory.MemoryStore  - MemoryStore initialized

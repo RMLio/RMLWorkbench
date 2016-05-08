@@ -6,7 +6,7 @@ var exports = module.exports = {
     //execute a mapping using the RML processor
     execute : function(mappingfile, triples, needed, callback) {
         
-
+        var uniq= mongoose.Types.ObjectId();
         var rdf; //storing the rdf output
         var triplenames = ''; //storing the triple names for the command parameters
         //creating triplenames
@@ -21,14 +21,14 @@ var exports = module.exports = {
 
         //in case there are no local source files needed
         if(needed.length == 0) {
-            exports.spawnRmlMapper(mappingfile.id, mappingfile.filename, mappingfile.triples.length, triplenames, needed, (result) => {
+            exports.spawnRmlMapper(uniq,mappingfile.id, mappingfile.filename, mappingfile.triples.length, triplenames, needed, (result) => {
                                 rdf = result;
                                 callback(rdf);
                             });           
         }
 
     	//write file main directory 
-    	fs.writeFile('input.rml', mappingfile.data, 'utf8', (err) => {
+    	fs.writeFile('input'+uniq+'.rml', mappingfile.data, 'utf8', (err) => {
     		if(err) throw err;
     		console.log('[WORKBENCH LOG] Mapping filename: ' + mappingfile.filename);
 
@@ -44,7 +44,7 @@ var exports = module.exports = {
                     if(written == needed.length) {                    
                         fs.readFile(needed[j].filename, 'utf8', (err, data) => { //using arrow function, this has no 'this'
                             
-                            exports.spawnRmlMapper(mappingfile._id, mappingfile.filename, mappingfile.triples.length, triplenames, needed, (result) => {
+                            exports.spawnRmlMapper(uniq,mappingfile._id, mappingfile.filename, mappingfile.triples.length, triplenames, needed, (result) => {
                                 rdf = result;
                                 callback(rdf);
                             });
@@ -63,16 +63,18 @@ var exports = module.exports = {
         
     },
 
-    spawnRmlMapper : function(id, filename, tripleamount, triplenames, needed, callback) {
+    spawnRmlMapper : function(uniq,id, filename, tripleamount, triplenames, needed, callback) {
 
             var result;
+            
+            
             
             console.log('[WORKBENCH LOG] Triples: ' + triplenames);
 
             //TODO check command --> pick triple functionality
             
             
-            var command = 'java -jar ./workbench/rmlmapper/RML-Mapper.jar -m input.rml -o ./workbench/rmlmapper/output.rdf';
+            var command = 'java -jar ./workbench/rmlmapper/RML-Mapper.jar -m input.rml -o ./workbench/rmlmapper/output'+ uniq+'.rdf';
             if(tripleamount != triplenames) {
                 command = command + ' -tm ' + triplenames;
             }
@@ -99,16 +101,15 @@ var exports = module.exports = {
                 if(rmlprocessoroutput.indexOf('ERROR') > -1) {
                     console.log('[RMLPROCESSOR LOG] ERROR IN MAPPING!');
                     fs.writeFile('errormappinglog.txt', rmlprocessoroutput, 'utf8', (err) => {
-                        console.log('[RMLPROCESSOR LOG] LOG WRITTEN TO "mappinglog.txt"!');         
+                        console.log('[RMLPROCESSOR LOG] LOG WRITTEN TO "errormappinglog.txt"!');         
                     });
+                    callback(null);
                 } else {
                     console.log('[RMLPROCESSOR LOG] NO ERRORS IN MAPPING!');
                     fs.writeFile('mappinglog.txt', rmlprocessoroutput, 'utf8', (err) => {
                         console.log('[RMLPROCESSOR LOG] LOG WRITTEN TO "mappinglog.txt"!');         
                     });   
-                }
-                
-                fs.readFile('./workbench/rmlmapper/output.rdf', 'utf8', (err, data) => { //using arrow function, this has no 'this'
+                    fs.readFile('./workbench/rmlmapper/output'+uniq+'.rdf', 'utf8', (err, data) => { //using arrow function, this has no 'this'
                     if (err) throw err;
                         result = {
                             mapping_id: id,     
@@ -120,11 +121,11 @@ var exports = module.exports = {
                         };
                     
                 
-                    fs.unlink('./workbench/rmlmapper/output.rdf', function (err) {  //deleting temp files
+                    fs.unlink('./workbench/rmlmapper/output'+uniq+'.rdf', function (err) {  //deleting temp files
                         if (err) throw err;
                     });
 
-                    fs.unlink('./input.rml', function (err) {     // deleting temp files
+                    fs.unlink('./input'+uniq+'.rml', function (err) {     // deleting temp files
                         if (err) throw err;
                     });
                     console.log(needed);
@@ -138,6 +139,9 @@ var exports = module.exports = {
                     callback(result);
 
                 });
+                }
+                
+                
                 
         });
 

@@ -131,7 +131,11 @@ var exports = module.exports =  {
                 for (var i = 0; i < mappingsFromFile.length; i++) {
 
                     exports.executeMappingFromFile(mappingsFromFile[i], models, user, sources, (rdf) => {
-                        rdflist.push(rdf);
+                        if(rdf != null) {
+                            rdflist.push(rdf);
+                               
+                        }
+                        
                         amountDone++;
                         if(amountDone == mappingsFromFile.length) {
                             if(mappingsFromTriples.length != 0) {

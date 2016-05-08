@@ -148,7 +148,8 @@
               triples: triplesToBeExecuted
           }
             
-          $.post('/workbench/mapping/execute/'+this.model.attributes._id+'/triples', triples , function() {              
+          $.post('/workbench/mapping/execute/'+this.model.attributes._id+'/triples', triples , function() { 
+              $("#mappingContainer").prepend('<div style="margin-top:15px" class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Mapping successful!</strong></div>');              
               app.render();
           });  
         },          
@@ -268,7 +269,7 @@
                 app.tripleListView.render();
                 app.executeButtonView.render();               
                 app.mappingsContentView.render();
-                $('#mappingTitle').text('Filename: ' + app.currentModel.attributes.filename); 
+                $('#mappingTitle').text('File name: ' + app.currentModel.attributes.filename); 
                 //$('#mappingContent').html(app.mappingsContentView.render().el)  
         },
 
@@ -336,7 +337,7 @@
                 app.currentModel = this.model;
                 app.publishContentView.model = this.model; 
                 app.publishContentView.render(); 
-                $('#publishingTitle').text('Filename: ' + app.currentModel.attributes.filename);
+                $('#publishingTitle').text('File name: ' + app.currentModel.attributes.filename);
                 //$('#mappingContent').html(app.mappingsContentView.render().el)  
         },
 
@@ -622,6 +623,8 @@
         
         app.descriptions = new app.Descriptions();
         
+        app.currentScheduleMappings = [];
+        
         //app.schedules = new app.Schedules();
         
         /***
@@ -664,20 +667,9 @@
                     $('#executeMappingButtonDiv').html(app.executeButtonView.render().el);
                     
                     //settint text
-                    $('#mappingTitle').text('Filename: ' + app.currentModel.attributes.filename);
+                    $('#mappingTitle').text('File name: ' + app.currentModel.attributes.filename);
                     
-                    //setting button actions
-                    $('#clearMapping').click(function() {
-                        $.post('/workbench/clear/mapping/',{mappings: [app.currentModel.attributes._id]},function() {
-                            app.render();
-                        });
-                    });
                     
-                    $('#clearAllMappings').click(function() {
-                        $.post('/workbench/clear/all/mapping',function() {
-                            app.render();
-                        });
-                    })
                     
                     $('#selectAllCheckbox').change(function() {
                         var selections = $('#triplelistdiv').children().children();
@@ -761,7 +753,7 @@
                      
                         
                     //setting text
-                    $('#publishingTitle').text('Filename: ' + app.currentModel.attributes.filename);    
+                    $('#publishingTitle').text('File name: ' + app.currentModel.attributes.filename);    
                         
                     //Setting css
                     $('#publishMain').css('min-height',$(window).height()*0.82 + 'px');
@@ -773,18 +765,7 @@
                     $('pre').css('min-height',$(window).height()*0.75 + 'px');
                     $('pre').css('max-height',$(window).height()*0.75 + 'px');                  
                 
-                    //setting button actions
-                    $('#clearPublishing').click(function() {
-                        $.post('/workbench/clear/rdf/',{rdf: [app.currentModel.attributes._id]},function() {
-                            app.render();
-                        });
-                    });
                     
-                    $('#clearAllPublishings').click(function() {
-                        $.post('/workbench/clear/all/rdf',function() {
-                            app.render();
-                        });
-                    })
                         
     
             } else {
@@ -809,61 +790,22 @@
              * 
              */
             
-            $('#scheduleButton').click(function() {
-               var fulldate = $('#scheduleDate').val();
-               var description = $('#scheduleDescription').val();
-               var title = $('#scheduleTitle').val();
-               
-               var month = fulldate.substring(0,2);
-               var day = fulldate.substring(3,5);
-               var year = fulldate.substring(6,10);
-               var hour = fulldate.substring(11,13);
-               if(hour.indexOf(':') > -1) {
-                   hour = fulldate.substring(11,12);
-                   var minute = fulldate.substring(13,15);
-                   if(fulldate.charAt(16) == 'P') {
-                       hour = parseInt(hour) + 12;
-                   }
-               } else {                   
-                   var minute = fulldate.substring(14,16);
-                   if(fulldate.charAt(17) == 'P') {
-                       hour = parseInt(hour) + 12;
-                   }
-               }
-               var date = {
-                       year: year,
-                       month: month-1,
-                       day: day,
-                       hour: hour,
-                       minute: minute
-                   }
-               var mappings = [];
-               var mappings2 = [];
-               mappings.push($('#scheduleMappingList').val());
-               var post = {
-                   name: title,
-                   description: description,
-                   date:date,
-                   mappingsFromFile : mappings,
-                   mappingsFromTriples: mappings2 
-               }
-               
-               $.post('/workbench/addToSchedule',post,function() {
-                    app.render();                    
-               }); 
-               
-            });           
+                       
             
             
             $.get('/workbench/schedules',function(schedules) {
                 $('#scheduleTable').empty();
-                $('#scheduleTable').append('<tr><th>Name</th><th>Date</th><th>#Mappings</th><th>Description</th><th>Executed</th></tr>');
+                $('#scheduleTable').append('<tr><th>Name</th><th>Date</th><th>#Mappings</th><th>#Triples</th><th>#Publishings</th><th>Description</th><th>Executed</th></tr>');
                 for(var i = 0; i < schedules.length; i++) {
                     $('#scheduleTable').append(function() {                 
                         
+                        var executed = 'No';
                         
+                        if(schedules[i].executed == true) {
+                            executed = 'Yes';
+                        }
                         
-                        return '<tr data-toggle="modal" data-target="#jobmodal" id='+schedules[i]._id+'><td>'+schedules[i].name+'</td><td>'+schedules[i].date+'</td><td></td><td>'+schedules[i].description+'</td><td></td><td></td></tr>'   
+                        return '<tr data-toggle="modal" data-target="#jobmodal" id='+schedules[i]._id+'><td>'+schedules[i].title+'</td><td>'+schedules[i].date+'</td><td>'+schedules[i].amountMapping+'</td><td>'+schedules[i].amountTriples+'</td><td>'+schedules[i].amountPublishing+'</td><td>'+schedules[i].description+'</td><td>'+executed+'</td></tr>'   
                     });
                     var t = i;
                     $('#'+schedules[t]._id).click(function() {
@@ -1034,14 +976,143 @@ AddButtonNoFile("#csvw_input_Form");
    });  */      
 
 
+   /**
+    * 
+    * Schedeling button
+    */
+   $('#scheduleButton').click(function() {
+               var fulldate = $('#scheduleDate').val();
+               var description = $('#scheduleDescription').val();
+               var title = $('#scheduleTitle').val();
+               
+               var month = fulldate.substring(0,2);
+               var day = fulldate.substring(3,5);
+               var year = fulldate.substring(6,10);
+               var hour = fulldate.substring(11,13);
+               if(hour.indexOf(':') > -1) {
+                   hour = fulldate.substring(11,12);
+                   var minute = fulldate.substring(13,15);
+                   if(fulldate.charAt(16) == 'P') {
+                       hour = parseInt(hour) + 12;
+                   }
+               } else {                   
+                   var minute = fulldate.substring(14,16);
+                   if(fulldate.charAt(17) == 'P') {
+                       hour = parseInt(hour) + 12;
+                   }
+               }
+               var date = {
+                       year: year,
+                       month: month-1,
+                       day: day,
+                       hour: hour,
+                       minute: minute
+                   }
+               
+               var triples = [];
+               var post = {
+                   name: title,
+                   description: description,
+                   date:date,
+                   mappingsFromFile : app.currentScheduleMappings,
+                   mappingsFromTriples: triples 
+               }
+               
+               var newDate = new Date(year,month,day,hour,minute);
+               var now = new Date();
+               
+               if(newDate > now) {
+                   
+                   
+                        $.post('/workbench/addToSchedule',post,function() {
+                            app.render();               
+                        });
+                                               
+               } else {
+                   $("#scheduleContainer").prepend('<div style="margin-top:15px" class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Date has already passed..</strong></div>');
+            
+               }
+               
+            });
+            
+            
+    /***
+     * 
+     * 
+     * Actions
+     * 
+     * 
+     */
+    
+    //setting button actions
+    $('#clearMapping').click(function() {
+        $.post('/workbench/clear/mapping/',{mappings: [app.currentModel.attributes._id]},function() {
+            $("#mappingContainer").prepend('<div style="margin-top:15px" class="alert alert-info alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Mapping file cleared.</strong></div>');
+            app.render();
+        });
+    });
+    
+    $('#clearAllMappings').click(function() {
+        $.post('/workbench/clear/all/mapping',function() {
+            $("#mappingContainer").prepend('<div style="margin-top:15px" class="alert alert-info alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>All mapping files are cleared.</strong></div>');
+            app.render();
+        });
+    })
+    
+    //setting button actions
+    $('#clearPublishing').click(function() {
+        $.post('/workbench/clear/rdf/',{rdf: [app.currentModel.attributes._id]},function() {
+            $("#publishContainer").prepend('<div style="margin-top:15px" class="alert alert-info alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Publish file cleared.</strong></div>');
+            
+            app.render();
+        });
+    });
+    
+    $('#clearAllPublishings').click(function() {
+        $.post('/workbench/clear/all/rdf',function() {
+            $("#publishContainer").prepend('<div style="margin-top:15px" class="alert alert-info alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>All publish files are cleared.</strong></div>');
+            
+            app.render();
+        });
+    })
+
+            
+    /**
+     * 
+     * Rendering on tab click
+     * 
+     */
+    
+    $('.menuTab').click(function() {
+        app.render();
+    });
+    
+    
+    /**
+     * 
+     * Adding mapping to well (schedule modal)
+     * 
+     */
+    
+    $('#addScheduleMappingButton').click(function() {
+        if($('#scheduleMappingList').find("option:selected").text() !== 'CHOOSE MAPPING') {
+            $('#scheduleMappingWellList').append('<li>'+$('#scheduleMappingList').find("option:selected").text()+'</li>');
+            app.currentScheduleMappings.push($('#scheduleMappingList').val());
+        } else {
+            $("#scheduleModalFooter").append('<div style="margin-top:15px" class="alert alert-info alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Don'+"'"+'t add that one ;)</strong></div>');
+        }
+    });
+
    
     /*
     * Uploading mapping file
     */
     $("#uploadMapping_Form").on("submit", function(event){
         event.preventDefault();
-
-        var form_url = $("form[id='uploadMapping_Form']").attr("action");
+        var ext = $('input[id=mappingFile]')[0].files[0].name.replace(/^[^\.]*\./, '');
+        if(ext == 'rml' || ext == 'rml.ttl' ) {
+            
+            var form_url = $("form[id='uploadMapping_Form']").attr("action");
         var CSRF_TOKEN = $('input[name="_csrf"]').val();                    
 
         var form = new FormData();
@@ -1062,10 +1133,17 @@ AddButtonNoFile("#csvw_input_Form");
             dataType: 'JSON',
             statusCode: {
                 200: function() {
+                    $("#uploadMapping_Form").append('<div style="margin-top:15px" class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Upload successful!</strong></div>')
+        
                     app.render();
                 }   
             }            
-        });              
+        });
+            
+        } else {
+            $("#uploadMapping_Form").append('<div style="margin-top:15px" class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Wrong file type!</strong></div>')
+        }
+                      
     });
     
     /**
@@ -1074,32 +1152,39 @@ AddButtonNoFile("#csvw_input_Form");
     
     $("#uploadPublishing_Form").on("submit", function(event){
         event.preventDefault();                     
+        var ext = $('input[id=publishingFile]')[0].files[0].name.replace(/^.*\./, '');
+        if(ext=='ttl' || ext=='rdf') {
+            var form_url = $("form[id='uploadPublishing_Form']").attr("action");
+            var CSRF_TOKEN = $('input[name="_csrf"]').val();                    
 
-        var form_url = $("form[id='uploadPublishing_Form']").attr("action");
-        var CSRF_TOKEN = $('input[name="_csrf"]').val();                    
-
-        var form = new FormData();
-        form.append('rdfUpload', $('input[id=publishingFile]')[0].files[0]);        
+            var form = new FormData();
+            form.append('rdfUpload', $('input[id=publishingFile]')[0].files[0]);        
 
 
-        $.ajax({
-            url:  form_url,
-            type: 'POST',
-            headers: {
-                'X-CSRF-Token': $.cookie("_csrfToken")
-            },
-            "mimeType": "multipart/form-data",
-            data: form,
-            contentType: false, 
-            processData: false,
-            
-            dataType: 'JSON',
-            statusCode: {
-                200: function() {
-                    app.render();
-                }   
-            }            
-        }); 
+            $.ajax({
+                url:  form_url,
+                type: 'POST',
+                headers: {
+                    'X-CSRF-Token': $.cookie("_csrfToken")
+                },
+                "mimeType": "multipart/form-data",
+                data: form,
+                contentType: false, 
+                processData: false,
+                
+                dataType: 'JSON',
+                statusCode: {
+                    200: function() {
+                         $("#uploadPublishing_Form").append('<div style="margin-top:15px" class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Upload successful!</strong></div>')
+       
+                        app.render();
+                    }   
+                }            
+            }); 
+        } else {
+           $("#uploadPublishing_Form").append('<div style="margin-top:15px" class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Wrong file type!</strong></div>')
+         
+        }
         
                            
     });

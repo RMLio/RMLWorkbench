@@ -406,6 +406,9 @@ var exports = module.exports = {
         var mappingsFromTriples = req.body.mappingsFromTriples;
         var mappingsFromFile = req.body.mappingsFromFile;
         //array gets undefined if empty for some reason :/
+        if(mappingsFromFile == undefined) {
+            mappingsFromFile = [];
+        }
         if(mappingsFromTriples == undefined) {
             mappingsFromTriples = [];
         }

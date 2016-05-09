@@ -992,7 +992,7 @@ AddButtonNoFile("#csvw_input_Form");
 
    /**
     * 
-    * Schedeling button
+    * Scheduling button
     */
    $('#scheduleButton').click(function() {
                var fulldate = $('#scheduleDate').val();

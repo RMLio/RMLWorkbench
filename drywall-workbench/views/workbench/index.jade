@@ -33,24 +33,24 @@ mixin licensesId(Id)
 
 block body
 
-  div(id='upload-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' style='display: none;')
+  div(id='upload-logical' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' style='display: none;')
     div.modal-dialog(role='document')
       div.modal-content
         div.modal-header
           button.close(type='button' data-dismiss='modal' aria-label='Close')
             span(aria-hidden='true') ×
-          h4.modal-title Upload an input file
+          h4.modal-title Upload an logical file
         div.modal-body
           form(role='form')
             div.form-group
-              label(for='inputFileName') Name
-              input.form-control(id='inputFileName' type='text' placeholder='Descriptive name')
+              label(for='logicalFileName') Name
+              input.form-control(id='logicalFileName' type='text' placeholder='Descriptive name')
             div.form-group
               label(for='my-file-selector') File
-              input(id='my-file-selector' type='file' data-allowed-file-extensions="['csv', 'xml', 'txt', 'json']")
+              logical(id='my-file-selector' type='file' data-allowed-file-extensions="['csv', 'xml', 'txt', 'json']")
               p.help-block Only CSV, XML and JSON are supported.
-            +licensesId('inputFileLicense')
-            button.btn.btn-primary(id="btn_file_input") Upload
+            +licensesId('logicalFileLicense')
+            button.btn.btn-primary(id="btn_file_logical") Upload
 
   div(id='dcat-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='DCATInputLabel' style='display: none;')
     div.modal-dialog(role='document')
@@ -64,12 +64,32 @@ block body
             input(type='hidden', name='_csrf', value=_csrf)
             div.form-group
               label(for='inputDCATName') Name
-              input.form-control.required(id='inputDDCATName' type='text' placeholder='Descriptive name')
+              input.form-control.required(id='inputDCATName' type='text' placeholder='Descriptive name')
             div.form-group
               label(for='inputDCATURL') URL
               input.form-control.required(id='inputDCATURL' type='text' placeholder='url')
             +licensesId('inputDCATLicense') 
             button.btn.btn-primary(id="btn_dcat_input" form="dcat_input_Form" type='submit') Add
+
+  div(id='dcat-logical' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='DCATInputLabel' style='display: none;')
+    div.modal-dialog(role='document')
+      div.modal-content
+        div.modal-header
+          button.close(type='button' data-dismiss='modal' aria-label='Close')
+            span(aria-hidden='true') ×
+          h4.modal-title Add a Data Catalog.
+        div.modal-body
+          form(role='form' id='dcat_logical_Form' action='/workbench/fetch/dcat')
+            logical(type='hidden', name='_csrf', value=_csrf)
+            div.form-group
+              label(for='logicalDCATName') Name
+              input.form-control.required(id='logicalDCATName' type='text' placeholder='Descriptive name')
+            div.form-group
+              label(for='logicalDCATIterator') Iterator
+              input.form-control.required(id='logicalDCATIterator' type='text' placeholder=':')
+            +licensesId('logicalDCATLicense') 
+            button.btn.btn-primary(id="btn_dcat_logical" form="dcat_logical_Form" type='submit') Add
+
 
   div(id='db-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='databaseInputLabel' style='display: none;')
     div.modal-dialog(role='document')
@@ -90,18 +110,21 @@ block body
             div.form-group
               label(for='inputDBDriver') JDBC driver
               select.selectpicker.form-control(id='inputDBDrive')
-                option com.mysql.jdbc.Driver
-                option org.firebirdsql.jdbc.FBDriver
-                option oracle.jdbc.OracleDriver
-                option org.h2.Driver
-                option org.hsqldb.jdbcDriver
-                option com.ibm.db2.jcc.DB2Driver
-                option com.ibm.as400.access.AS400JDBCDriver
-                option org.apache.derby.jdbc.EmbeddedDriver
-                option com.teradata.jdbc.TeraDriver
-                option com.sybase.jdbc3.jdbc.SybDriver
-                option com.microsoft.sqlserver.jdbc.SQLServerDriver
-                option net.sourceforge.jtds.jdbc.Driver
+                option(value="com.mysql.jdbc.Driver") MySQL
+                option(value="postgresql.Driver") PostgreSQL (v6.5 and earlier)
+                option(value="org.postgresql.Driver") PostgreSQL (v7.0 and later)
+                option(value="org.firebirdsql.jdbc.FBDriver") Firebird (JCA/JDBC Driver)
+                option(value="oracle.jdbc.OracleDriver") Oracle OCI
+                option(value="org.h2.Driver") H2 Database Engine
+                option(value="hSql.hDriver") Hypersonic SQL (v1.2 and earlier)
+                option(value="org.hsqldb.jdbcDriver") Hypersonic SQL (v1.3 and later)
+                option(value="com.ibm.db2.jcc.DB2Driver") IBM DB2
+                option(value="com.ibm.as400.access.AS400JDBCDriver") IBM DB2 for iSeries
+                option(value="org.apache.derby.jdbc.EmbeddedDriver") Apache Derby
+                option(value="com.teradata.jdbc.TeraDriver") Teradata
+                option(value="com.sybase.jdbc3.jdbc.SybDriver") Sybase (jConnect 5.2)
+                option(value="com.microsoft.sqlserver.jdbc.SQLServerDriver") Microsoft SQL Server 2000 (Microsoft Driver)
+                option(value="net.sourceforge.jtds.jdbc.Driver") SQL Server (jTDS driver)
             div.form-group
               label(for='inputDBUser') Username
               input.form-control(id='inputDBUser' type='text' placeholder='user')
@@ -110,6 +133,29 @@ block body
               input.form-control(id='inputDBPass' type='password' placeholder='password')
             +licensesId('inputDBLicense') 
             button.btn.btn-primary(form="db_input_Form" type="submit") Add
+
+  div(id='db-logical' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='databaseInputLabel' style='display: none;')
+    div.modal-dialog(role='document')
+      div.modal-content
+        div.modal-header
+          button.close(type='button' data-dismiss='modal' aria-label='Close')
+            span(aria-hidden='true') ×
+          h4.modal-title Add a Database description
+        div.modal-body
+          form(role='form' id='db_logical_Form' action='/workbench/fetch/db')
+            logical(type='hidden', name='_csrf', value=_csrf)
+            div.form-group
+              label(for='logicalDBName') Name
+              input.form-control(id='logicalDBName' type='text' placeholder='Descriptive name')
+            div.form-group
+              label(for='logicalDBSource') Type
+              select.selectpicker.form-control(id='logicalDBSource' title='Source')
+                option POPULATE FROM THE PREVIOUS STEP  
+            div.form-group
+              label(for='logicalDBQuery') Data Query
+              textarea.form-control(id='logicalDBQuery' rows="2")   
+            +licensesId('logicalDBLicense') 
+            button.btn.btn-primary(form="db_logical_Form" type="submit") Add
 
   div(id='api-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='apiInputLabel' style='display: none;')
     div.modal-dialog(role='document')
@@ -129,6 +175,35 @@ block body
               input.form-control(id='inputAPIURL' type='text' placeholder='url')
             +licensesId('inputAPILicense') 
             button.btn.btn-primary(id="btn_api_input" form="api_input_Form" type='submit' data-dismiss="modal") Add
+            
+  div(id='api-logical' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='apiInputLabel' style='display: none;')
+    div.modal-dialog(role='document')
+      div.modal-content
+        div.modal-header
+          button.close(type='button' data-dismiss='modal' aria-label='Close')
+            span(aria-hidden='true') ×
+          h4.modal-title Add an Web API
+        div.modal-body
+          form(role='form' id='api_logical_Form' action='/workbench/fetch/api')
+            logical(type='hidden', name='_csrf', value=_csrf)
+            div.form-group
+              label(for='logicalAPIName') Name
+              input.form-control(id='logicalAPIName' type='text' placeholder='Descriptive name')
+            div.form-group
+              label(for='logicalAPISource') Type
+              select.selectpicker.form-control(id='logicalAPISource' title='Source')
+                option POPULATE FROM THE PREVIOUS STEP   
+            div.form-group
+              label(for='inputAPIType') Type
+              select.selectpicker.form-control(id='inputAPIType' title='Type')
+                option JSON
+                option XML
+                option CSV 
+            div.form-group
+              label(for='logicalAPIIterator') Iterator
+              input.form-control(id='logicalAPIIterator' type='text' placeholder='$')
+            +licensesId('logicalAPILicense') 
+            button.btn.btn-primary(id="btn_api_logical" form="api_logical_Form" type='submit' data-dismiss="modal") Add
 
   div(id='sparql-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='sparqlInputLabel' style='display: none;')
     div.modal-dialog(role='document')
@@ -151,16 +226,35 @@ block body
               select.selectpicker.form-control(id='inputSparqlType' title='Type')
                 option JSON
                 option XML
-                option CSV              
-            div.form-group
-              label(for='inputSparqlIterator') Iterator
-              input.form-control(id='inputSparqlIterator' type='text' placeholder='/')
-            div.form-group
-              label(for='inputSparqlQuery') DataQuery
-              textarea.form-control(id='inputSparqQuery' rows="2")      
+                option CSV 
             +licensesId('inputSparqlLicense')                           
             button.btn.btn-primary(id="btn_sparql_input" form="sparql_input_Form" type='submit') Add
-            
+ 
+   div(id='sparql-logical' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='sparqlLogicalLabel' style='display: none;')
+    div.modal-dialog(role='document')
+      div.modal-content
+        div.modal-header
+          button.close(type='button' data-dismiss='modal' aria-label='Close')
+            span(aria-hidden='true') ×
+          h4.modal-title Add an SPARQL logical source
+        div.modal-body
+          form(role='form' id='sparql_logical_Form' action='/workbench/fetch/sparql_logical')
+            logical(type='hidden', name='_csrf', value=_csrf)
+            div.form-group
+              label(for='LogicalSparqlName') Name
+              input.form-control(id='LogicalSparqlName' type='text' placeholder='Descriptive name')
+            div.form-group
+              label(for='logicalSparqlSource') Type
+              select.selectpicker.form-control(id='logicalSparqlSource' title='Source')
+                option POPULATE FROM THE PREVIOUS STEP          
+            div.form-group
+              label(for='logicalSparqlIterator') Iterator
+              input.form-control(id='logicalSparqlIterator' type='text' placeholder='/')
+            div.form-group
+              label(for='logicalSparqlQuery') DataQuery
+              textarea.form-control(id='logicalSparqQuery' rows="2")      
+            +licensesId('logicalSparqlLicense')                           
+            button.btn.btn-primary(id="btn_sparql_logical" form="sparql_logical_Form" type='submit') Add           
             
   div(id='csvw-input' class='modal' tabindex='-1' role='dialog' aria-labelledby='csvwInputLabel' style='display: none;')
     div.modal-dialog(role='document')
@@ -298,8 +392,7 @@ block body
             span(aria-hidden='true') ×
           h4.modal-title Upload RML file
         div.modal-body
-          form(id='uploadPublishing_Form' action='/workbench/fetch/rdf')                  
-              
+          form(id='uploadPublishing_Form' action='/workbench/fetch/rdf')
               label(for='publishing-file-selector') File
               input(id='publishingFile' name='rdfUpload' type='file' data-allowed-file-extensions="['rdf, ttl, rdf.ttl']")
               p.help-block RDF files in turle format are supported.
@@ -441,37 +534,69 @@ block body
 
     #myTabContent.tab-content
       #access.tab-pane.fade.in.active
-       br
-       div.container-fluid
-        div.row
-          div.col-md-3
-            div(class='panel panel-primary')
-              div.panel-heading
-                h3.panel-title Menu
-              div.panel-body.text-center
-                div.btn-group-vertical(role='group')
-                  //form(enctype='multipart/form-data' action='/workbench/fetch/input' method='post')
-                  button(type='button' class='btn btn-primary btn-lg menubutton' for='source-upload-input' data-toggle='modal' data-target='#upload-source')
-                     | Upload Source
-                  button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#db-input')
-                    | Database
-                  button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#dcat-input')
-                    | DCAT                   
-                  button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#api-input')
-                    | Web API
-                  button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#sparql-input')
-                    | SPARQL
-                  button(type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#csvw-input')
-                    | CSVW   
-                  script#cleardescription(type='text/template').
-                    <button type='button' class='btn btn-primary btn-lg cleardescription menubutton'>
-                        Clear Description
-                    </button>       
-                  script#clearalldescriptions(type='text/template').
-                    <button type='button' class='btn btn-primary btn-lg clearalldescriptions menubutton'>
-                        Clear All Descriptions
-                    </button>    
-          div.col-md-9
+        br
+        div.container-fluid(id='inputContainer')
+         div.row
+           div.col-md-3(id='inputButtons')
+             div(class='panel panel-info')
+               div.panel-heading
+                 div.row
+                   div.col-md-9            
+                     h3.panel-title Data sources
+                   div.col-md-1   
+                     div.dropdown
+                        button#dropdownInput.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
+                            | 
+                            span.caret
+                        ul.dropdown-menu(aria-labelledby='dropdownInput')
+                            li
+                              a(href='#' data-toggle='modal' data-target='#db-logical') Database
+                            li
+                              a(href='#' data-toggle='modal' data-target='#dcat-input') DCAT
+                            li
+                              a(href='#' data-toggle='modal' data-target='#api-input') Web API
+                            li
+                              a(href='#' data-toggle='modal' data-target='#sparql-input') SPARQL
+                            li
+                              a(href='#' data-toggle='modal' data-target='#csvw-input') CSVW
+                            li.divider( role="separator")
+                            li
+                              a(href='#' id='clearInput') Remove selected source
+                            li                           
+                              a(href='#' id='clearAllInput') Remove all sources
+               div.panel-body.text-center(id='inputMain' class='workbenchElement') 
+                
+                 script#logical-list-item(type='text/template').
+                       <h6><%= name %></h6>                        
+                          
+         div.col-md-9
+            div.panel.panel-info
+               div.panel-heading  
+                 div.row    
+                   div.col-md-4            
+                     h3.panel-title Content
+                   div.col-md-1.col-md-offset-7   
+                     div.dropdown
+                        button#dropdownInput2.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
+                            | 
+                            span.caret
+                        ul.dropdown-menu(aria-labelledby='dropdownInput2')
+                            li
+                                a(href='#' data-toggle='modal' data-target='#') Edit
+                            li
+                                a(href='#') Details
+                            
+               div.panel-body(id='inputBody')
+                 div.row 
+                   div.col-md-6
+                     h4(id='inputTitle')          
+                 div.row                           
+                   div.col-md-12(id='inputContent' class='workbenchElement')
+                     script#input-content(type='text/template').
+                       <%= convertedData %>
+                       
+                       
+          //div.col-md-9
             div.panel.panel-info
                div.panel-heading
                  h3.panel-title Overview Data Access
@@ -513,13 +638,13 @@ block body
                             li
                               a(href='#' data-toggle='modal' data-target='#upload-logical') Upload file
                             li
-                              a(href='#' data-toggle='modal' data-target='#upload-logical') Upload file
+                              a(href='#' data-toggle='modal' data-target='#dcat-logical') DCAT
                             li
-                              a(href='#' data-toggle='modal' data-target='#upload-logical') Upload file
+                              a(href='#' data-toggle='modal' data-target='#api-logical') API
                             li
-                              a(href='#' data-toggle='modal' data-target='#upload-logical') Upload file
+                              a(href='#' data-toggle='modal' data-target='#db-logical') Database
                             li
-                              a(href='#' data-toggle='modal' data-target='#upload-logical') Upload file
+                              a(href='#' data-toggle='modal' data-target='#sparql-logical') SPARQL
                             li.divider( role="separator")
                             li
                               a(href='#' id='clearLogical') Remove selected source
@@ -528,8 +653,7 @@ block body
                div.panel-body.text-center(id='logicalMain' class='workbenchElement') 
                 
                  script#logical-list-item(type='text/template').
-                       <h6><%= filename %></h6>
-                         
+                       <h6><%= name %></h6>                        
                           
            div.col-md-9
             div.panel.panel-info
@@ -539,12 +663,10 @@ block body
                      h3.panel-title Content
                    div.col-md-1.col-md-offset-7   
                      div.dropdown
-                        button#dropdownMenu1.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
+                        button#dropdownLogical2.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
                             | 
                             span.caret
-                        ul.dropdown-menu(aria-labelledby='dropdownMenu1')
-                            li
-                                a(href='#' data-toggle='modal' data-target='#executeLogical') Execute
+                        ul.dropdown-menu(aria-labelledby='dropdownLogical2')
                             li
                                 a(href='#' data-toggle='modal' data-target='#') Edit
                             li

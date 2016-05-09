@@ -22,8 +22,6 @@ block feet
   
   script(src='/views/workbench/index.js')
 
-
-
 mixin licensesId(Id)
   div.form-group
     label(for=Id) License
@@ -273,7 +271,7 @@ block body
               label(for='source-file-selector') File
               input(id='sourceFile' name='sourceUpload' type='file' data-allowed-file-extensions="['csv','xml']")
               p.help-block All files are supported.
-                //+licensesId('sourceUploadLicense')   
+              +licensesId('sourceUploadLicense')   
               button.btn.btn-primary(id="submitSourceUpload" type='submit') Upload
 
   div(id='upload-mapping' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='AreTheseUsed' style='display: none;')
@@ -289,7 +287,7 @@ block body
               label(for='mapping-file-selector') File
               input(id='mappingFile' name='mappingUpload' type='file' data-allowed-file-extensions="['rml']")
               p.help-block Only RML files are supported.
-                //+licensesId('mappingUploadLicense')   
+              +licensesId('mappingUploadLicense')   
               button.btn.btn-primary(id="submitMappingUpload" type='submit') Upload
               
    div(id='upload-publishing' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='AreTheseUsed' style='display: none;')
@@ -303,9 +301,9 @@ block body
           form(id='uploadPublishing_Form' action='/workbench/fetch/rdf')                  
               
               label(for='publishing-file-selector') File
-              input(id='publishingFile' name='rdfUpload' type='file' data-allowed-file-extensions="['rdf, ttl']")
-              p.help-block TTL & RDF files are supported.
-                //+licensesId('mappingUploadLicense')   
+              input(id='publishingFile' name='rdfUpload' type='file' data-allowed-file-extensions="['rdf, ttl, rdf.ttl']")
+              p.help-block RDF files in turle format are supported.
+              +licensesId('mappingUploadLicense')   
               button.btn.btn-primary(id="submitPublishingUpload" type='submit') Upload
               
               
@@ -425,16 +423,19 @@ block body
   ul#myTab.nav.nav-tabs.tabs-left.sideways.primary
       li.active(class="menuTab")
         a(href='#access', data-toggle='tab')
-          | Data Access Interface
+          | Data Access 
+      li(class="menuTab")
+        a(href='#logical', data-toggle='tab')
+          | Logical Sources
       li(class="menuTab")
         a(href='#mapping2', data-toggle='tab')
-          | Mapping Interface
+          | Mapping 
       li(class="menuTab")
         a(href='#publishing', data-toggle='tab')
-          | Publish Interface
+          | Publish 
       li(class="menuTab")
         a(href='#schedule', data-toggle='tab')
-          | Schedule Interface
+          | Schedule
 
 
 
@@ -490,6 +491,74 @@ block body
                        <%= convertedData %>
                      script#description-content(type='text/template').
                        <%= convertedData %>
+                       
+  
+                       
+      #logical.tab-pane.fade
+        br
+        div.container-fluid(id='logicalContainer')
+         div.row
+           div.col-md-3(id='logicalButtons')
+             div(class='panel panel-info')
+               div.panel-heading
+                 div.row
+                   div.col-md-9            
+                     h3.panel-title Logical Sources
+                   div.col-md-1   
+                     div.dropdown
+                        button#dropdownLogical.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
+                            | 
+                            span.caret
+                        ul.dropdown-menu(aria-labelledby='dropdownLogical')
+                            li
+                              a(href='#' data-toggle='modal' data-target='#upload-logical') Upload file
+                            li
+                              a(href='#' data-toggle='modal' data-target='#upload-logical') Upload file
+                            li
+                              a(href='#' data-toggle='modal' data-target='#upload-logical') Upload file
+                            li
+                              a(href='#' data-toggle='modal' data-target='#upload-logical') Upload file
+                            li
+                              a(href='#' data-toggle='modal' data-target='#upload-logical') Upload file
+                            li.divider( role="separator")
+                            li
+                              a(href='#' id='clearLogical') Remove selected source
+                            li                           
+                              a(href='#' id='clearAllLogicals') Remove all sources
+               div.panel-body.text-center(id='logicalMain' class='workbenchElement') 
+                
+                 script#logical-list-item(type='text/template').
+                       <h6><%= filename %></h6>
+                         
+                          
+           div.col-md-9
+            div.panel.panel-info
+               div.panel-heading  
+                 div.row    
+                   div.col-md-4            
+                     h3.panel-title Content
+                   div.col-md-1.col-md-offset-7   
+                     div.dropdown
+                        button#dropdownMenu1.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
+                            | 
+                            span.caret
+                        ul.dropdown-menu(aria-labelledby='dropdownMenu1')
+                            li
+                                a(href='#' data-toggle='modal' data-target='#executeLogical') Execute
+                            li
+                                a(href='#' data-toggle='modal' data-target='#') Edit
+                            li
+                                a(href='#') Details
+                            
+               div.panel-body(id='logicalBody')
+                 div.row 
+                   div.col-md-6
+                     h4(id='logicalTitle')          
+                 div.row                           
+                   div.col-md-12(id='logicalContent' class='workbenchElement')
+                     script#logical-content(type='text/template').
+                       <%= convertedData %>
+                       
       #mapping2.tab-pane.fade
         br
         div.container-fluid(id='mappingContainer')

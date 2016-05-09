@@ -21,7 +21,7 @@ var exports = module.exports = {
 
         //in case there are no local source files needed
         if(needed.length == 0) {
-            exports.spawnRmlMapper(uniq,mappingfile.id, mappingfile.filename, mappingfile.triples.length, triplenames, needed, (result) => {
+            exports.spawnRmlMapper(uniq,mappingfile.id, mappingfile.filename, mappingfile.triples.length,triples.length,triplenames, needed, (result) => {
                                 rdf = result;
                                 callback(rdf);
                             });           
@@ -44,7 +44,7 @@ var exports = module.exports = {
                     if(written == needed.length) {                    
                         fs.readFile(needed[j].filename, 'utf8', (err, data) => { //using arrow function, this has no 'this'
                             
-                            exports.spawnRmlMapper(uniq,mappingfile._id, mappingfile.filename, mappingfile.triples.length, triplenames, needed, (result) => {
+                            exports.spawnRmlMapper(uniq,mappingfile._id, mappingfile.filename, mappingfile.triples.length,triples.length, triplenames, needed, (result) => {
                                 rdf = result;
                                 callback(rdf);
                             });
@@ -63,7 +63,7 @@ var exports = module.exports = {
         
     },
 
-    spawnRmlMapper : function(uniq,id, filename, tripleamount, triplenames, needed, callback) {
+    spawnRmlMapper : function(uniq,id, filename, tripleamount, triplesAmountSent, triplenames, needed, callback) {
 
             var result;
             
@@ -75,8 +75,9 @@ var exports = module.exports = {
             
             
             var command = 'java -jar ./workbench/rmlmapper/RML-Mapper.jar -m input.rml -o ./workbench/rmlmapper/output'+ uniq+'.rdf';
-            if(tripleamount != triplenames) {
+            if(tripleamount!=triplesAmountSent) {
                 command = command + ' -tm ' + triplenames;
+		console.log('gotcha!');
             }
             
             //map the file

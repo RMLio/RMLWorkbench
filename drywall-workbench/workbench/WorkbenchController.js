@@ -273,7 +273,7 @@ var exports = module.exports = {
         var sources = req.user.sourcefiles;
         var models = req.app.db.models;
         var user = req.user;
-
+	
         //execute the mapping
         mapper.executeMappingFromFile(mapping_id, models, user, sources, (rdf) => {
             if(rdf!=null) {

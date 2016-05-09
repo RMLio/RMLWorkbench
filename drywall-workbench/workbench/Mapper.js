@@ -25,6 +25,7 @@ var exports = module.exports =  {
 	//excute mapping by id and return the rdf
 	executeMappingFromFile : function(mapping_id, models, user, sources, callback) {
 	    console.log('[WORKBENCH LOG] Generating RDF...');
+	    console.log(sources);
 	    util.retrieveFiles(sources, models.Source, (sources) => {
 	        util.retrieveFile(mapping_id, models.Mapping, (mapping) => {
 	            exports.executeFromFile(mapping, sources, (rdf) => {
@@ -93,10 +94,13 @@ var exports = module.exports =  {
 		for(var i = 0; i < sources.length; i++) {
 			for(var j = 0; j < sourcenames.length; j++) {
 				//compares the filenames and checks if the source isn't already added to the list
-				if(sources[i].filename == sourcenames[j] && addednames.indexOf(sources[i].filename) < 0) {
-					//source is needed!
-					addednames.push(sources[i].filename);
-					needed.push(sources[i]);
+				console.log(sources[i]);
+				if(sources[i]!=null) {
+					if(sources[i].filename == sourcenames[j] && addednames.indexOf(sources[i].filename) < 0) {
+						//source is needed!
+						addednames.push(sources[i].filename);
+						needed.push(sources[i]);
+					}
 				}
 			}
 		}       

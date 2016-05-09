@@ -1,0 +1,1631 @@
+
+> Drywall@0.16.6 start /home/wmaroy/github/FINAL/AMMA/drywall-workbench
+> grunt
+
+[4mRunning "copy:vendor" (copy) task[24m
+Created 6 directories, copied 111 files
+
+[4mRunning "newer:uglify" (newer) task[24m
+
+[4mRunning "newer:uglify:layouts" (newer) task[24m
+No newer files to process.
+
+[4mRunning "newer:uglify:views" (newer) task[24m
+No newer files to process.
+
+[4mRunning "newer:less" (newer) task[24m
+
+[4mRunning "newer:less:layouts" (newer) task[24m
+No newer files to process.
+
+[4mRunning "newer:less:views" (newer) task[24m
+No newer files to process.
+
+[4mRunning "concurrent:dev" (concurrent) task[24m
+    [4mRunning "watch" task[24m
+    [4mRunning "nodemon:dev" (nodemon) task[24m
+    Waiting...
+    [33m[nodemon] 1.9.2[39m
+    [33m[nodemon] to restart at any time, enter `rs`[39m
+    [33m[nodemon] watching: *.*[39m
+    [32m[nodemon] starting `node app.js`[39m
+    Server is running on port 3000
+    [0mGET /workbench/ [36m304 [0m2995.162 ms - -[0m
+    [0mGET /vendor/jquery/jquery.js [36m304 [0m20.642 ms - -[0m
+    [0mGET /vendor/jquery.cookie/jquery.cookie.js [36m304 [0m24.165 ms - -[0m
+    [0mGET /js/jquery.form.js [36m304 [0m30.395 ms - -[0m
+    [0mGET /vendor/underscore/underscore.js [36m304 [0m31.842 ms - -[0m
+    [0mGET /vendor/backbone/backbone.js [36m304 [0m32.879 ms - -[0m
+    [0mGET /js/backbone/publish/publish.js [36m304 [0m35.285 ms - -[0m
+    [0mGET /layouts/core.min.css?br34k-01 [36m304 [0m3.627 ms - -[0m
+    [0mGET /views/workbench/index.min.css?br34k-01 [36m304 [0m0.768 ms - -[0m
+    [0mGET /vendor/bootstrap-select/bootstrap-select.min.css [36m304 [0m1.268 ms - -[0m
+    [0mGET /layouts/rml.css [36m304 [0m2.660 ms - -[0m
+    [0mGET /vendor/bootstrap/js/modal.js [36m304 [0m1.769 ms - -[0m
+    [0mGET /vendor/bootstrap-select/bootstrap-select.min.js [36m304 [0m3.272 ms - -[0m
+    [0mGET /vendor/momentjs/moment.js [36m304 [0m2.209 ms - -[0m
+    [0mGET /vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js [36m304 [0m12.809 ms - -[0m
+    [0mGET /js/file_uploads.js [36m304 [0m7.478 ms - -[0m
+    [0mGET /layouts/core.min.js?br34k-01 [36m304 [0m13.780 ms - -[0m
+    [0mGET /views/workbench/index.js [36m304 [0m6.636 ms - -[0m
+    [0mGET /media/rml.png [36m304 [0m6.439 ms - -[0m
+    [0mGET /vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js [36m304 [0m1.084 ms - -[0m
+    [0mGET /media/ajax-pulse.gif [36m304 [0m0.894 ms - -[0m
+    ["573021de3eb0c65603a89a40"]
+    [WORKBENCH LOG] Retrieving mappings of root...
+    [0mGET /vendor/font-awesome/fonts/fontawesome-webfont.woff2?v=4.6.1 [36m304 [0m37.351 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf (2) of root...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/fetch/mapping [36m304 [0m155.023 ms - -[0m
+    [WORKBENCH LOG] Retrieving schedules..
+    [WORKBENCH LOG] Retrieving data descriptions of root...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [0mGET /workbench/schedules [32m200 [0m189.211 ms - 2[0m
+    [0mGET /workbench/fetch/description [36m304 [0m194.165 ms - -[0m
+    [0mGET /workbench/fetch/rdf [36m304 [0m212.112 ms - -[0m
+    [0mGET /account/ [36m302 [0m57.424 ms - 46[0m
+    [0mGET / [36m302 [0m78.383 ms - 66[0m
+    [0mGET /workbench/ [36m304 [0m1894.978 ms - -[0m
+    [0mGET /vendor/jquery/jquery.js [36m304 [0m10.556 ms - -[0m
+    [0mGET /vendor/jquery.cookie/jquery.cookie.js [36m304 [0m13.484 ms - -[0m
+    [0mGET /js/jquery.form.js [36m304 [0m14.272 ms - -[0m
+    [0mGET /vendor/underscore/underscore.js [36m304 [0m17.327 ms - -[0m
+    [0mGET /vendor/backbone/backbone.js [36m304 [0m20.086 ms - -[0m
+    [0mGET /js/backbone/publish/publish.js [36m304 [0m21.751 ms - -[0m
+    [0mGET /layouts/core.min.css?br34k-01 [36m304 [0m1.011 ms - -[0m
+    [0mGET /views/workbench/index.min.css?br34k-01 [36m304 [0m0.778 ms - -[0m
+    [0mGET /vendor/bootstrap-select/bootstrap-select.min.css [36m304 [0m3.722 ms - -[0m
+    [0mGET /layouts/rml.css [36m304 [0m4.539 ms - -[0m
+    [0mGET /vendor/bootstrap/js/modal.js [36m304 [0m3.165 ms - -[0m
+    [0mGET /vendor/bootstrap-select/bootstrap-select.min.js [36m304 [0m0.912 ms - -[0m
+    [0mGET /vendor/momentjs/moment.js [36m304 [0m1.304 ms - -[0m
+    [0mGET /vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js [36m304 [0m0.792 ms - -[0m
+    [0mGET /js/file_uploads.js [36m304 [0m5.215 ms - -[0m
+    [0mGET /layouts/core.min.js?br34k-01 [36m304 [0m16.010 ms - -[0m
+    [0mGET /views/workbench/index.js [36m304 [0m13.099 ms - -[0m
+    [0mGET /media/rml.png [36m304 [0m0.556 ms - -[0m
+    [0mGET /vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js [36m304 [0m1.369 ms - -[0m
+    [0mGET /media/ajax-pulse.gif [36m304 [0m1.655 ms - -[0m
+    [0mGET /vendor/font-awesome/fonts/fontawesome-webfont.woff2?v=4.6.1 [36m304 [0m1.364 ms - -[0m
+    ["573021de3eb0c65603a89a40"]
+    [WORKBENCH LOG] Retrieving mappings of root...
+    [WORKBENCH LOG] Retrieving rdf (2) of root...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/fetch/mapping [36m304 [0m223.559 ms - -[0m
+    [WORKBENCH LOG] Retrieving schedules..
+    [WORKBENCH LOG] Retrieving data descriptions of root...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [0mGET /workbench/schedules [36m304 [0m209.357 ms - -[0m
+    [0mGET /workbench/fetch/description [36m304 [0m209.928 ms - -[0m
+    [0mGET /workbench/fetch/rdf [36m304 [0m225.813 ms - -[0m
+    ["573021de3eb0c65603a89a40"]
+    [WORKBENCH LOG] Retrieving mappings of root...
+    [WORKBENCH LOG] Retrieving rdf (2) of root...
+    [WORKBENCH LOG] Retrieving schedules..
+    [WORKBENCH LOG] Retrieving data descriptions of root...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/schedules [36m304 [0m116.234 ms - -[0m
+    [0mGET /workbench/fetch/description [36m304 [0m118.219 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/fetch/mapping [36m304 [0m182.380 ms - -[0m
+    [0mGET /workbench/fetch/rdf [36m304 [0m170.419 ms - -[0m
+    [WORKBENCH LOG] root tries to upload source file...
+    [WORKBENCH LOG] Filename source: "example.xml"
+    [WORKBENCH LOG] Creating new source entry in database...
+    [WORKBENCH LOG] Updating user sourcefiles...
+    [WORKBENCH LOG] Updating user source files successful!
+    [WORKBENCH LOG] Upload successful!
+    Mon, 09 May 2016 06:11:10 GMT express deprecated res.send(status): Use res.sendStatus(status) instead at workbench/WorkbenchController.js:246:21
+    [0mPOST /workbench/fetch/input [32m200 [0m199.815 ms - 2[0m
+    ["573021de3eb0c65603a89a40"]
+    [WORKBENCH LOG] Retrieving mappings of root...
+    [WORKBENCH LOG] Retrieving rdf (2) of root...
+    [WORKBENCH LOG] Retrieving schedules..
+    [WORKBENCH LOG] Retrieving data descriptions of root...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/schedules [36m304 [0m160.420 ms - -[0m
+    [0mGET /workbench/fetch/description [36m304 [0m171.863 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/fetch/mapping [36m304 [0m243.446 ms - -[0m
+    [0mGET /workbench/fetch/rdf [36m304 [0m220.696 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf (2) of root...
+    ["573021de3eb0c65603a89a40"]
+    [WORKBENCH LOG] Retrieving mappings of root...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/fetch/rdf [36m304 [0m127.639 ms - -[0m
+    [0mGET /workbench/fetch/mapping [36m304 [0m148.734 ms - -[0m
+    [WORKBENCH LOG] Retrieving data descriptions of root...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [WORKBENCH LOG] Retrieving schedules..
+    [0mGET /workbench/schedules [36m304 [0m191.392 ms - -[0m
+    [0mGET /workbench/fetch/description [36m304 [0m185.540 ms - -[0m
+    ["573021de3eb0c65603a89a40"]
+    [WORKBENCH LOG] Retrieving mappings of root...
+    [WORKBENCH LOG] Retrieving rdf (2) of root...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [0mGET /workbench/fetch/mapping [36m304 [0m121.290 ms - -[0m
+    [WORKBENCH LOG] Retrieving data descriptions of root...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [WORKBENCH LOG] Retrieving schedules..
+    [0mGET /workbench/fetch/rdf [32m200 [0m137.185 ms - -[0m
+    [0mGET /workbench/fetch/description [36m304 [0m241.028 ms - -[0m
+    [0mGET /workbench/schedules [36m304 [0m247.779 ms - -[0m
+    ["573021de3eb0c65603a89a40"]
+    [WORKBENCH LOG] Retrieving mappings of root...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/fetch/mapping [36m304 [0m88.346 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf (2) of root...
+    [WORKBENCH LOG] Retrieving schedules..
+    [WORKBENCH LOG] Retrieving data descriptions of root...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/schedules [36m304 [0m201.660 ms - -[0m
+    [0mGET /workbench/fetch/description [36m304 [0m223.516 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [0mGET /workbench/fetch/rdf [32m200 [0m294.161 ms - -[0m
+    [WORKBENCH LOG] User root tries to upload mapping file...
+    <#FromToMaps>
+    <#DateTime>
+    [WORKBENCH LOG] Mapping name: "example.rml.ttl"
+    [WORKBENCH LOG] Creating new mapping entry in database...
+    [WORKBENCH LOG] Creating new triple entries in database...
+    [WORKBENCH LOG] Updating user mappingfiles...
+    [WORKBENCH LOG] Updating user mappingfiles...
+    [WORKBENCH LOG] Updating user mapping files successful!
+    [WORKBENCH LOG] Upload successful!
+    Mon, 09 May 2016 06:16:38 GMT express deprecated res.send(status): Use res.sendStatus(status) instead at workbench/WorkbenchController.js:230:21
+    [0mPOST /workbench/fetch/mapping [32m200 [0m145.869 ms - 2[0m
+    ["573021de3eb0c65603a89a40","57302b4661dfdd582694c25d"]
+    [WORKBENCH LOG] Retrieving mappings of root...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [WORKBENCH LOG] Retrieving rdf (2) of root...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [WORKBENCH LOG] Retrieving schedules..
+    [0mGET /workbench/fetch/mapping [32m200 [0m156.752 ms - -[0m
+    [0mGET /workbench/fetch/rdf [36m304 [0m204.554 ms - -[0m
+    [0mGET /workbench/schedules [36m304 [0m211.776 ms - -[0m
+    [WORKBENCH LOG] Retrieving data descriptions of root...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/fetch/description [36m304 [0m205.710 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf (2) of root...
+    [WORKBENCH LOG] Retrieving schedules..
+    ["573021de3eb0c65603a89a40","57302b4661dfdd582694c25d"]
+    [WORKBENCH LOG] Retrieving mappings of root...
+    [0mGET /workbench/schedules [36m304 [0m130.725 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/fetch/rdf [36m304 [0m220.954 ms - -[0m
+    [0mGET /workbench/fetch/mapping [36m304 [0m261.650 ms - -[0m
+    [WORKBENCH LOG] Retrieving data descriptions of root...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/fetch/description [36m304 [0m278.035 ms - -[0m
+    ["573021de3eb0c65603a89a40","57302b4661dfdd582694c25d"]
+    [WORKBENCH LOG] Retrieving mappings of root...
+    [WORKBENCH LOG] Retrieving rdf (2) of root...
+    [WORKBENCH LOG] Retrieving schedules..
+    [WORKBENCH LOG] Retrieving data descriptions of root...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/schedules [36m304 [0m232.133 ms - -[0m
+    [0mGET /workbench/fetch/description [36m304 [0m247.038 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/fetch/rdf [36m304 [0m341.583 ms - -[0m
+    [0mGET /workbench/fetch/mapping [32m200 [0m367.997 ms - -[0m
+    [0mGET /layouts/core.min.css?br34k-01 [36m304 [0m3.875 ms - -[0m
+    [0mGET /views/workbench/index.min.css?br34k-01 [36m304 [0m11.261 ms - -[0m
+    [0mGET /vendor/bootstrap-select/bootstrap-select.min.css [36m304 [0m6.657 ms - -[0m
+    [0mGET /vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js [36m304 [0m7.683 ms - -[0m
+    [0mGET /layouts/rml.css [36m304 [0m9.125 ms - -[0m
+    [0mGET /layouts/core.min.js.map [36m304 [0m7.793 ms - -[0m
+    [0mGET /vendor/bootstrap-select/bootstrap-select.js.map [33m404 [0m691.419 ms - -[0m
+    ["573021de3eb0c65603a89a40","57302b4661dfdd582694c25d"]
+    [WORKBENCH LOG] Retrieving mappings of root...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [WORKBENCH LOG] Retrieving rdf (2) of root...
+    [WORKBENCH LOG] Retrieving schedules..
+    [WORKBENCH LOG] Retrieving data descriptions of root...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/schedules [36m304 [0m163.955 ms - -[0m
+    [0mGET /workbench/fetch/description [36m304 [0m168.638 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [0mGET /workbench/fetch/mapping [32m200 [0m155.001 ms - -[0m
+    [0mGET /workbench/fetch/rdf [36m304 [0m184.423 ms - -[0m
+    [32m>> [39mFile "public/views/workbench/index.js" changed.
+    [4mRunning "newer:uglify" (newer) task[24m
+    
+    [4mRunning "newer:uglify:layouts" (newer) task[24m
+    No newer files to process.
+    
+    [4mRunning "newer:uglify:views" (newer) task[24m
+    
+    [4mRunning "uglify:views" (uglify) task[24m
+    [32m>> [39m1 sourcemap created.
+    [32m>> [39m1 file created.
+    
+    [4mRunning "newer-postrun:uglify:views:1:/home/wmaroy/github/FINAL/AMMA/drywall-workbench/node_modules/grunt-newer/.cache" (newer-postrun) task[24m
+    
+    [4mRunning "newer:jshint:client" (newer) task[24m
+    
+    [4mRunning "jshint:client" (jshint) task[24m
+    [31mERROR[0m: Can't find config file: .jshintrc-client
+    [36mCompleted in 3.962s at Mon May 09 2016 08:23:41 GMT+0200 (CEST)[39m - Waiting...
+    [0mGET /workbench/ [36m304 [0m1384.995 ms - -[0m
+    [0mGET /vendor/jquery/jquery.js [36m304 [0m6.093 ms - -[0m
+    [0mGET /vendor/jquery.cookie/jquery.cookie.js [36m304 [0m8.727 ms - -[0m
+    [0mGET /js/jquery.form.js [36m304 [0m9.185 ms - -[0m
+    [0mGET /vendor/underscore/underscore.js [36m304 [0m4.547 ms - -[0m
+    [0mGET /vendor/backbone/backbone.js [36m304 [0m4.197 ms - -[0m
+    [0mGET /js/backbone/publish/publish.js [36m304 [0m8.799 ms - -[0m
+    [0mGET /layouts/core.min.css?br34k-01 [36m304 [0m0.765 ms - -[0m
+    [0mGET /views/workbench/index.min.css?br34k-01 [36m304 [0m0.632 ms - -[0m
+    [0mGET /vendor/bootstrap-select/bootstrap-select.min.css [36m304 [0m0.604 ms - -[0m
+    [0mGET /layouts/rml.css [36m304 [0m1.504 ms - -[0m
+    [0mGET /vendor/bootstrap/js/modal.js [36m304 [0m14.583 ms - -[0m
+    [0mGET /vendor/bootstrap-select/bootstrap-select.min.js [36m304 [0m7.167 ms - -[0m
+    [0mGET /vendor/momentjs/moment.js [36m304 [0m0.747 ms - -[0m
+    [0mGET /vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js [36m304 [0m0.797 ms - -[0m
+    [0mGET /js/file_uploads.js [36m304 [0m2.926 ms - -[0m
+    [0mGET /layouts/core.min.js?br34k-01 [36m304 [0m0.518 ms - -[0m
+    [0mGET /views/workbench/index.js [32m200 [0m5.487 ms - -[0m
+    [0mGET /media/rml.png [36m304 [0m9.882 ms - -[0m
+    [0mGET /vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js [36m304 [0m1.402 ms - -[0m
+    [0mGET /media/ajax-pulse.gif [36m304 [0m0.491 ms - -[0m
+    [0mGET /vendor/font-awesome/fonts/fontawesome-webfont.woff2?v=4.6.1 [36m304 [0m1.208 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf (2) of root...
+    ["573021de3eb0c65603a89a40","57302b4661dfdd582694c25d"]
+    [WORKBENCH LOG] Retrieving mappings of root...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [0mGET /workbench/fetch/rdf [36m304 [0m149.735 ms - -[0m
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [WORKBENCH LOG] Retrieving data descriptions of root...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [WORKBENCH LOG] Retrieving schedules..
+    [0mGET /workbench/fetch/mapping [36m304 [0m217.907 ms - -[0m
+    [0mGET /workbench/fetch/description [36m304 [0m214.869 ms - -[0m
+    [0mGET /workbench/schedules [36m304 [0m233.567 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf (2) of root...
+    ["573021de3eb0c65603a89a40","57302b4661dfdd582694c25d"]
+    [WORKBENCH LOG] Retrieving mappings of root...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [0mGET /workbench/fetch/rdf [36m304 [0m79.082 ms - -[0m
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [WORKBENCH LOG] Retrieving data descriptions of root...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [WORKBENCH LOG] Retrieving schedules..
+    [0mGET /workbench/fetch/mapping [36m304 [0m112.106 ms - -[0m
+    [0mGET /workbench/fetch/description [36m304 [0m108.981 ms - -[0m
+    [0mGET /workbench/schedules [36m304 [0m115.924 ms - -[0m
+    [0mGET /layouts/core.min.css?br34k-01 [36m304 [0m29.845 ms - -[0m
+    [0mGET /views/workbench/index.min.css?br34k-01 [36m304 [0m38.139 ms - -[0m
+    [0mGET /vendor/bootstrap-select/bootstrap-select.min.css [36m304 [0m14.676 ms - -[0m
+    [0mGET /vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js [36m304 [0m8.391 ms - -[0m
+    [0mGET /layouts/rml.css [36m304 [0m5.804 ms - -[0m
+    [0mGET /layouts/core.min.js.map [36m304 [0m3.361 ms - -[0m
+    [0mGET /vendor/bootstrap-select/bootstrap-select.js.map [33m404 [0m206.307 ms - -[0m
+    [32m>> [39mFile "public/views/workbench/index.js" changed.
+    [4mRunning "newer:uglify" (newer) task[24m
+    
+    [4mRunning "newer:uglify:layouts" (newer) task[24m
+    No newer files to process.
+    
+    [4mRunning "newer:uglify:views" (newer) task[24m
+    
+    [4mRunning "uglify:views" (uglify) task[24m
+    [32m>> [39m1 sourcemap created.
+    [32m>> [39m1 file created.
+    
+    [4mRunning "newer-postrun:uglify:views:1:/home/wmaroy/github/FINAL/AMMA/drywall-workbench/node_modules/grunt-newer/.cache" (newer-postrun) task[24m
+    
+    [4mRunning "newer:jshint:client" (newer) task[24m
+    
+    [4mRunning "jshint:client" (jshint) task[24m
+    [31mERROR[0m: Can't find config file: .jshintrc-client
+    [36mCompleted in 3.927s at Mon May 09 2016 08:27:47 GMT+0200 (CEST)[39m - Waiting...
+    [0mGET /workbench/ [36m304 [0m1747.495 ms - -[0m
+    [0mGET /vendor/jquery/jquery.js [36m304 [0m9.897 ms - -[0m
+    [0mGET /vendor/jquery.cookie/jquery.cookie.js [36m304 [0m13.458 ms - -[0m
+    [0mGET /js/jquery.form.js [36m304 [0m13.019 ms - -[0m
+    [0mGET /vendor/underscore/underscore.js [36m304 [0m13.569 ms - -[0m
+    [0mGET /vendor/backbone/backbone.js [36m304 [0m14.536 ms - -[0m
+    [0mGET /js/backbone/publish/publish.js [36m304 [0m15.755 ms - -[0m
+    [0mGET /layouts/core.min.css?br34k-01 [36m304 [0m1.397 ms - -[0m
+    [0mGET /views/workbench/index.min.css?br34k-01 [36m304 [0m0.864 ms - -[0m
+    [0mGET /vendor/bootstrap-select/bootstrap-select.min.css [36m304 [0m0.581 ms - -[0m
+    [0mGET /layouts/rml.css [36m304 [0m0.649 ms - -[0m
+    [0mGET /vendor/bootstrap/js/modal.js [36m304 [0m2.746 ms - -[0m
+    [0mGET /vendor/bootstrap-select/bootstrap-select.min.js [36m304 [0m1.307 ms - -[0m
+    [0mGET /vendor/momentjs/moment.js [36m304 [0m0.626 ms - -[0m
+    [0mGET /vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js [36m304 [0m0.542 ms - -[0m
+    [0mGET /js/file_uploads.js [36m304 [0m0.339 ms - -[0m
+    [0mGET /layouts/core.min.js?br34k-01 [36m304 [0m0.455 ms - -[0m
+    [0mGET /views/workbench/index.js [32m200 [0m2.248 ms - -[0m
+    [0mGET /media/rml.png [36m304 [0m0.567 ms - -[0m
+    [0mGET /media/ajax-pulse.gif [36m304 [0m0.924 ms - -[0m
+    [0mGET /vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js [36m304 [0m1.078 ms - -[0m
+    [0mGET /vendor/bootstrap-select/bootstrap-select.js.map [33m404 [0m99.288 ms - -[0m
+    [0mGET /layouts/core.min.js.map [36m304 [0m1.100 ms - -[0m
+    ["573021de3eb0c65603a89a40","57302b4661dfdd582694c25d"]
+    [WORKBENCH LOG] Retrieving mappings of root...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/fetch/mapping [36m304 [0m83.759 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf (2) of root...
+    [WORKBENCH LOG] Retrieving schedules..
+    [WORKBENCH LOG] Retrieving data descriptions of root...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/schedules [36m304 [0m116.787 ms - -[0m
+    [0mGET /workbench/fetch/description [36m304 [0m125.178 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [0mGET /workbench/fetch/rdf [36m304 [0m175.941 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf (2) of root...
+    [WORKBENCH LOG] Retrieving schedules..
+    ["573021de3eb0c65603a89a40","57302b4661dfdd582694c25d"]
+    [WORKBENCH LOG] Retrieving mappings of root...
+    [0mGET /workbench/schedules [36m304 [0m84.542 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/fetch/rdf [36m304 [0m141.850 ms - -[0m
+    [0mGET /workbench/fetch/mapping [36m304 [0m164.944 ms - -[0m
+    [WORKBENCH LOG] Retrieving data descriptions of root...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/fetch/description [36m304 [0m176.309 ms - -[0m
+    [0mGET /vendor/font-awesome/fonts/fontawesome-webfont.woff2?v=4.6.1 [36m304 [0m1.178 ms - -[0m
+    [WORKBENCH LOG] Generating RDF...
+    SOURCENAMES
+    [ 'src/test/resources/example2/example2.xml' ]
+    /home/wmaroy/github/FINAL/AMMA/drywall-workbench/workbench/Mapper.js:96
+    				if(sources[i].filename == sourcenames[j] && addednames.indexOf(sources[i].filename) < 0) {
+    				             ^
+    
+    TypeError: Cannot read property 'filename' of null
+        at Object.module.exports.executeMappingFromFile.util.retrieveFiles.executeMappingFromTriples.util.retrieveFiles.executeRMLMapper.callback [as executeRMLMapper] (/home/wmaroy/github/FINAL/AMMA/drywall-workbench/workbench/Mapper.js:96:18)
+        at Object.module.exports.executeMappingFromFile.util.retrieveFiles.executeMappingFromTriples.util.retrieveFiles.executeFromTriples (/home/wmaroy/github/FINAL/AMMA/drywall-workbench/workbench/Mapper.js:68:11)
+        at /home/wmaroy/github/FINAL/AMMA/drywall-workbench/workbench/Mapper.js:48:29
+        at Query.<anonymous> (/home/wmaroy/github/FINAL/AMMA/drywall-workbench/workbench/Utility.js:37:17)
+        at /home/wmaroy/github/FINAL/AMMA/drywall-workbench/node_modules/mongoose/node_modules/kareem/index.js:177:19
+        at /home/wmaroy/github/FINAL/AMMA/drywall-workbench/node_modules/mongoose/node_modules/kareem/index.js:109:16
+        at nextTickCallbackWith0Args (node.js:420:9)
+        at process._tickCallback (node.js:349:13)
+    [31m[nodemon] app crashed - waiting for file changes before starting...[39m
+    [32m[nodemon] restarting due to changes...[39m
+    [32m[nodemon] starting `node app.js`[39m
+    Server is running on port 3000
+    [32m[nodemon] restarting due to changes...[39m
+    [32m[nodemon] starting `node app.js`[39m
+    events.js:141
+          throw er; // Unhandled 'error' event
+          ^
+    
+    Error: listen EADDRINUSE :::3000
+        at Object.exports._errnoException (util.js:870:11)
+        at exports._exceptionWithHostPort (util.js:893:20)
+        at Server._listen2 (net.js:1234:14)
+        at listen (net.js:1270:10)
+        at Server.listen (net.js:1366:5)
+        at Object.<anonymous> (/home/wmaroy/github/FINAL/AMMA/drywall-workbench/app.js:129:12)
+        at Module._compile (module.js:409:26)
+        at Object.Module._extensions..js (module.js:416:10)
+        at Module.load (module.js:343:32)
+        at Function.Module._load (module.js:300:12)
+        at Function.Module.runMain (module.js:441:10)
+        at startup (node.js:139:18)
+        at node.js:968:3
+    [31m[nodemon] app crashed - waiting for file changes before starting...[39m
+    [32m[nodemon] restarting due to changes...[39m
+    [32m[nodemon] starting `node app.js`[39m
+    Server is running on port 3000
+    [0mGET /workbench/ [36m304 [0m2603.154 ms - -[0m
+    [0mGET /workbench/ [32m200 [0m1814.020 ms - -[0m
+    [0mGET /vendor/jquery/jquery.js [36m304 [0m12.383 ms - -[0m
+    [0mGET /vendor/jquery.cookie/jquery.cookie.js [36m304 [0m21.687 ms - -[0m
+    [0mGET /js/jquery.form.js [36m304 [0m25.667 ms - -[0m
+    [0mGET /vendor/underscore/underscore.js [36m304 [0m38.484 ms - -[0m
+    [0mGET /vendor/backbone/backbone.js [36m304 [0m19.160 ms - -[0m
+    [0mGET /views/workbench/index.min.css?br34k-01 [36m304 [0m18.492 ms - -[0m
+    [0mGET /vendor/bootstrap-select/bootstrap-select.min.css [36m304 [0m13.919 ms - -[0m
+    [0mGET /layouts/rml.css [36m304 [0m14.029 ms - -[0m
+    [0mGET /layouts/core.min.css?br34k-01 [36m304 [0m15.330 ms - -[0m
+    [0mGET /js/backbone/publish/publish.js [36m304 [0m14.271 ms - -[0m
+    [0mGET /vendor/bootstrap/js/modal.js [36m304 [0m16.608 ms - -[0m
+    [0mGET /vendor/bootstrap-select/bootstrap-select.min.js [36m304 [0m14.010 ms - -[0m
+    [0mGET /vendor/momentjs/moment.js [36m304 [0m23.295 ms - -[0m
+    [0mGET /vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js [36m304 [0m18.296 ms - -[0m
+    [0mGET /js/file_uploads.js [36m304 [0m12.729 ms - -[0m
+    [0mGET /layouts/core.min.js?br34k-01 [36m304 [0m19.091 ms - -[0m
+    [0mGET /views/workbench/index.js [36m304 [0m12.674 ms - -[0m
+    [0mGET /media/rml.png [36m304 [0m3.535 ms - -[0m
+    [0mGET /vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js [36m304 [0m0.908 ms - -[0m
+    [0mGET /media/ajax-pulse.gif [36m304 [0m1.416 ms - -[0m
+    [0mGET /vendor/font-awesome/fonts/fontawesome-webfont.woff2?v=4.6.1 [36m304 [0m5.425 ms - -[0m
+    ["573021de3eb0c65603a89a40","57302fb845a7e49b27055fc5"]
+    [WORKBENCH LOG] Retrieving mappings of root...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/fetch/mapping [36m304 [0m222.230 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf (3) of root...
+    [WORKBENCH LOG] Retrieving schedules..
+    [WORKBENCH LOG] Retrieving data descriptions of root...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/schedules [36m304 [0m296.990 ms - -[0m
+    [0mGET /workbench/fetch/description [36m304 [0m317.877 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [0mGET /workbench/fetch/rdf [32m200 [0m368.718 ms - -[0m
+    [32m[nodemon] restarting due to changes...[39m
+    [32m[nodemon] starting `node app.js`[39m
+    events.js:141
+          throw er; // Unhandled 'error' event
+          ^
+    
+    Error: listen EADDRINUSE :::3000
+        at Object.exports._errnoException (util.js:870:11)
+        at exports._exceptionWithHostPort (util.js:893:20)
+        at Server._listen2 (net.js:1234:14)
+        at listen (net.js:1270:10)
+        at Server.listen (net.js:1366:5)
+        at Object.<anonymous> (/home/wmaroy/github/FINAL/AMMA/drywall-workbench/app.js:129:12)
+        at Module._compile (module.js:409:26)
+        at Object.Module._extensions..js (module.js:416:10)
+        at Module.load (module.js:343:32)
+        at Function.Module._load (module.js:300:12)
+        at Function.Module.runMain (module.js:441:10)
+        at startup (node.js:139:18)
+        at node.js:968:3
+    [31m[nodemon] app crashed - waiting for file changes before starting...[39m
+    [32m[nodemon] restarting due to changes...[39m
+    [32m[nodemon] starting `node app.js`[39m
+    Server is running on port 3000
+    [32m[nodemon] restarting due to changes...[39m
+    [32m[nodemon] starting `node app.js`[39m
+    events.js:141
+          throw er; // Unhandled 'error' event
+          ^
+    
+    Error: listen EADDRINUSE :::3000
+        at Object.exports._errnoException (util.js:870:11)
+        at exports._exceptionWithHostPort (util.js:893:20)
+        at Server._listen2 (net.js:1234:14)
+        at listen (net.js:1270:10)
+        at Server.listen (net.js:1366:5)
+        at Object.<anonymous> (/home/wmaroy/github/FINAL/AMMA/drywall-workbench/app.js:129:12)
+        at Module._compile (module.js:409:26)
+        at Object.Module._extensions..js (module.js:416:10)
+        at Module.load (module.js:343:32)
+        at Function.Module._load (module.js:300:12)
+        at Function.Module.runMain (module.js:441:10)
+        at startup (node.js:139:18)
+        at node.js:968:3
+    [31m[nodemon] app crashed - waiting for file changes before starting...[39m
+    [32m[nodemon] restarting due to changes...[39m
+    [32m[nodemon] starting `node app.js`[39m
+    Server is running on port 3000
+    [32m[nodemon] restarting due to changes...[39m
+    [32m[nodemon] starting `node app.js`[39m
+    events.js:141
+          throw er; // Unhandled 'error' event
+          ^
+    
+    Error: listen EADDRINUSE :::3000
+        at Object.exports._errnoException (util.js:870:11)
+        at exports._exceptionWithHostPort (util.js:893:20)
+        at Server._listen2 (net.js:1234:14)
+        at listen (net.js:1270:10)
+        at Server.listen (net.js:1366:5)
+        at Object.<anonymous> (/home/wmaroy/github/FINAL/AMMA/drywall-workbench/app.js:129:12)
+        at Module._compile (module.js:409:26)
+        at Object.Module._extensions..js (module.js:416:10)
+        at Module.load (module.js:343:32)
+        at Function.Module._load (module.js:300:12)
+        at Function.Module.runMain (module.js:441:10)
+        at startup (node.js:139:18)
+        at node.js:968:3
+    [31m[nodemon] app crashed - waiting for file changes before starting...[39m
+    [32m[nodemon] restarting due to changes...[39m
+    [32m[nodemon] starting `node app.js`[39m
+    Server is running on port 3000
+    [0mGET /workbench/ [36m304 [0m2901.210 ms - -[0m
+    [0mGET /vendor/jquery/jquery.js [36m304 [0m10.586 ms - -[0m
+    [0mGET /vendor/jquery.cookie/jquery.cookie.js [36m304 [0m13.650 ms - -[0m
+    [0mGET /js/jquery.form.js [36m304 [0m14.489 ms - -[0m
+    [0mGET /vendor/underscore/underscore.js [36m304 [0m14.647 ms - -[0m
+    [0mGET /vendor/backbone/backbone.js [36m304 [0m2.096 ms - -[0m
+    [0mGET /js/backbone/publish/publish.js [36m304 [0m2.273 ms - -[0m
+    [0mGET /layouts/core.min.css?br34k-01 [36m304 [0m0.621 ms - -[0m
+    [0mGET /views/workbench/index.min.css?br34k-01 [36m304 [0m1.333 ms - -[0m
+    [0mGET /vendor/bootstrap-select/bootstrap-select.min.css [36m304 [0m1.899 ms - -[0m
+    [0mGET /layouts/rml.css [36m304 [0m10.223 ms - -[0m
+    [0mGET /vendor/bootstrap/js/modal.js [36m304 [0m13.560 ms - -[0m
+    [0mGET /vendor/bootstrap-select/bootstrap-select.min.js [36m304 [0m16.968 ms - -[0m
+    [0mGET /vendor/momentjs/moment.js [36m304 [0m1.867 ms - -[0m
+    [0mGET /vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js [36m304 [0m3.952 ms - -[0m
+    [0mGET /js/file_uploads.js [36m304 [0m4.286 ms - -[0m
+    [0mGET /layouts/core.min.js?br34k-01 [36m304 [0m8.591 ms - -[0m
+    [0mGET /views/workbench/index.js [36m304 [0m30.371 ms - -[0m
+    [0mGET /media/rml.png [36m304 [0m1.359 ms - -[0m
+    [0mGET /vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js [36m304 [0m1.785 ms - -[0m
+    [0mGET /media/ajax-pulse.gif [36m304 [0m1.743 ms - -[0m
+    [0mGET /vendor/font-awesome/fonts/fontawesome-webfont.woff2?v=4.6.1 [36m304 [0m1.114 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf (3) of root...
+    ["573021de3eb0c65603a89a40","57302fb845a7e49b27055fc5"]
+    [WORKBENCH LOG] Retrieving mappings of root...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [WORKBENCH LOG] Retrieving data descriptions of root...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [WORKBENCH LOG] Retrieving schedules..
+    [0mGET /workbench/fetch/mapping [36m304 [0m305.290 ms - -[0m
+    [0mGET /workbench/fetch/description [36m304 [0m300.942 ms - -[0m
+    [0mGET /workbench/schedules [36m304 [0m310.789 ms - -[0m
+    [0mGET /workbench/fetch/rdf [32m200 [0m240.224 ms - -[0m
+    Killed
+    [31m[nodemon] app crashed - waiting for file changes before starting...[39m
+    [32m[nodemon] restarting due to changes...[39m
+    [32m[nodemon] starting `node app.js`[39m
+    Server is running on port 3000
+    [0mGET /workbench/ [36m304 [0m2843.524 ms - -[0m
+    [0mGET /vendor/jquery/jquery.js [36m304 [0m7.322 ms - -[0m
+    [0mGET /vendor/jquery.cookie/jquery.cookie.js [36m304 [0m14.849 ms - -[0m
+    [0mGET /js/jquery.form.js [36m304 [0m19.550 ms - -[0m
+    [0mGET /vendor/underscore/underscore.js [36m304 [0m6.741 ms - -[0m
+    [0mGET /vendor/backbone/backbone.js [36m304 [0m3.670 ms - -[0m
+    [0mGET /js/backbone/publish/publish.js [36m304 [0m7.989 ms - -[0m
+    [0mGET /layouts/core.min.css?br34k-01 [36m304 [0m1.944 ms - -[0m
+    [0mGET /views/workbench/index.min.css?br34k-01 [36m304 [0m3.719 ms - -[0m
+    [0mGET /vendor/bootstrap-select/bootstrap-select.min.css [36m304 [0m2.601 ms - -[0m
+    [0mGET /layouts/rml.css [36m304 [0m2.456 ms - -[0m
+    [0mGET /vendor/bootstrap/js/modal.js [36m304 [0m4.768 ms - -[0m
+    [0mGET /vendor/bootstrap-select/bootstrap-select.min.js [36m304 [0m1.869 ms - -[0m
+    [0mGET /vendor/momentjs/moment.js [36m304 [0m3.748 ms - -[0m
+    [0mGET /vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js [36m304 [0m1.548 ms - -[0m
+    [0mGET /js/file_uploads.js [36m304 [0m2.376 ms - -[0m
+    [0mGET /layouts/core.min.js?br34k-01 [36m304 [0m0.690 ms - -[0m
+    [0mGET /views/workbench/index.js [36m304 [0m8.475 ms - -[0m
+    [0mGET /media/rml.png [36m304 [0m8.849 ms - -[0m
+    [0mGET /media/ajax-pulse.gif [36m304 [0m0.776 ms - -[0m
+    [0mGET /vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js [36m304 [0m0.697 ms - -[0m
+    [0mGET /vendor/font-awesome/fonts/fontawesome-webfont.woff2?v=4.6.1 [36m304 [0m33.326 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf (3) of root...
+    ["573021de3eb0c65603a89a40","57302fb845a7e49b27055fc5"]
+    [WORKBENCH LOG] Retrieving mappings of root...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [WORKBENCH LOG] Retrieving data descriptions of root...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [WORKBENCH LOG] Retrieving schedules..
+    [0mGET /workbench/fetch/description [36m304 [0m363.274 ms - -[0m
+    [0mGET /workbench/schedules [36m304 [0m385.606 ms - -[0m
+    [0mGET /workbench/fetch/rdf [32m200 [0m297.970 ms - -[0m
+    [0mGET /workbench/fetch/mapping [32m200 [0m362.522 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf (3) of root...
+    ["573021de3eb0c65603a89a40","57302fb845a7e49b27055fc5"]
+    [WORKBENCH LOG] Retrieving mappings of root...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [0mGET /workbench/fetch/rdf [36m304 [0m119.518 ms - -[0m
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [WORKBENCH LOG] Retrieving data descriptions of root...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [WORKBENCH LOG] Retrieving schedules..
+    [0mGET /workbench/fetch/mapping [36m304 [0m158.119 ms - -[0m
+    [0mGET /workbench/fetch/description [36m304 [0m144.876 ms - -[0m
+    [0mGET /workbench/schedules [36m304 [0m160.440 ms - -[0m
+    [WORKBENCH LOG] Generating RDF...
+    SOURCENAMES
+    [ 'example2.xml' ]
+    null
+    { filename: 'example.xml',
+      data: '',
+      metadata: { timeCreated: Mon May 09 2016 08:11:09 GMT+0200 (CEST) },
+      __v: 0,
+      _id: 573029fd61dfdd582694c25c }
+    { filename: 'example2.xml',
+      data: '<?xml version="1.0" encoding="UTF-8"?>\r\n<notes>\r\n<note id="M17" day="10" month="01" year="2008"> \r\n        <to>Tove</to>\r\n        <from>Jani</from>\r\n        <heading>Reminder</heading>\r\n        <body>Don\'t forget me this weekend!</body>\r\n</note>\r\n<note id="M18" day="10" month="02" year="2008"> \r\n        <to>Chris</to>\r\n        <from>Rick</from>\r\n        <heading>Update</heading>\r\n        <body>We now leave at six</body>\r\n</note>\r\n</notes>',
+      metadata: { timeCreated: Mon May 09 2016 08:34:05 GMT+0200 (CEST) },
+      __v: 0,
+      _id: 57302f5db269115b274e84ce }
+    [ { filename: 'example2.xml',
+        data: '<?xml version="1.0" encoding="UTF-8"?>\r\n<notes>\r\n<note id="M17" day="10" month="01" year="2008"> \r\n        <to>Tove</to>\r\n        <from>Jani</from>\r\n        <heading>Reminder</heading>\r\n        <body>Don\'t forget me this weekend!</body>\r\n</note>\r\n<note id="M18" day="10" month="02" year="2008"> \r\n        <to>Chris</to>\r\n        <from>Rick</from>\r\n        <heading>Update</heading>\r\n        <body>We now leave at six</body>\r\n</note>\r\n</notes>',
+        metadata: { timeCreated: Mon May 09 2016 08:34:05 GMT+0200 (CEST) },
+        __v: 0,
+        _id: 57302f5db269115b274e84ce } ]
+    [WORKBENCH LOG] Mapping filename: example.rml.ttl
+    [WORKBENCH LOG] Triples: FromToMaps,DateTime
+    [RMLPROCESSOR LOG] NO ERRORS IN MAPPING!
+    [RMLPROCESSOR LOG] LOG WRITTEN TO "mappinglog.txt"!
+    [ { filename: 'example2.xml',
+        data: '<?xml version="1.0" encoding="UTF-8"?>\r\n<notes>\r\n<note id="M17" day="10" month="01" year="2008"> \r\n        <to>Tove</to>\r\n        <from>Jani</from>\r\n        <heading>Reminder</heading>\r\n        <body>Don\'t forget me this weekend!</body>\r\n</note>\r\n<note id="M18" day="10" month="02" year="2008"> \r\n        <to>Chris</to>\r\n        <from>Rick</from>\r\n        <heading>Update</heading>\r\n        <body>We now leave at six</body>\r\n</note>\r\n</notes>',
+        metadata: { timeCreated: Mon May 09 2016 08:34:05 GMT+0200 (CEST) },
+        __v: 0,
+        _id: 57302f5db269115b274e84ce } ]
+    [WORKBENCH LOG] Generating RDF successful!
+    [WORKBENCH LOG] Filename rdf: "example.rml.ttl_result.ttl"
+    [WORKBENCH LOG] Creating new rdf entry in database...
+    [WORKBENCH LOG] Updating user rdf files...
+    [WORKBENCH LOG] Updating user rdf files successful!
+    Mon, 09 May 2016 07:07:31 GMT express deprecated res.send(status): Use res.sendStatus(status) instead at workbench/WorkbenchController.js:300:25
+    [0mPOST /workbench/mapping/execute/57302fb845a7e49b27055fc5/triples [32m200 [0m2442.386 ms - 2[0m
+    ["573021de3eb0c65603a89a40","57302fb845a7e49b27055fc5"]
+    [WORKBENCH LOG] Retrieving mappings of root...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/fetch/mapping [36m304 [0m174.342 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf (4) of root...
+    [WORKBENCH LOG] Retrieving schedules..
+    [WORKBENCH LOG] Retrieving data descriptions of root...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/schedules [36m304 [0m224.854 ms - -[0m
+    [0mGET /workbench/fetch/description [36m304 [0m240.814 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [0mGET /workbench/fetch/rdf [32m200 [0m376.800 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf (4) of root...
+    ["573021de3eb0c65603a89a40","57302fb845a7e49b27055fc5"]
+    [WORKBENCH LOG] Retrieving mappings of root...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [WORKBENCH LOG] Retrieving data descriptions of root...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [WORKBENCH LOG] Retrieving schedules..
+    [0mGET /workbench/fetch/mapping [36m304 [0m260.382 ms - -[0m
+    [0mGET /workbench/fetch/description [36m304 [0m268.270 ms - -[0m
+    [0mGET /workbench/schedules [36m304 [0m280.181 ms - -[0m
+    [0mGET /workbench/fetch/rdf [32m200 [0m242.592 ms - -[0m
+    Killed
+    [31m[nodemon] app crashed - waiting for file changes before starting...[39m
+    [32m>> [39mFile "public/views/workbench/index.js" changed.
+    [4mRunning "newer:uglify" (newer) task[24m
+    
+    [4mRunning "newer:uglify:layouts" (newer) task[24m
+    No newer files to process.
+    
+    [4mRunning "newer:uglify:views" (newer) task[24m
+    
+    [4mRunning "uglify:views" (uglify) task[24m
+    [32m>> [39m1 sourcemap created.
+    [32m>> [39m1 file created.
+    
+    [4mRunning "newer-postrun:uglify:views:1:/home/wmaroy/github/FINAL/AMMA/drywall-workbench/node_modules/grunt-newer/.cache" (newer-postrun) task[24m
+    
+    [4mRunning "newer:jshint:client" (newer) task[24m
+    
+    [4mRunning "jshint:client" (jshint) task[24m
+    [31mERROR[0m: Can't find config file: .jshintrc-client
+    [36mCompleted in 7.245s at Mon May 09 2016 09:17:54 GMT+0200 (CEST)[39m - Waiting...
+    [32m[nodemon] restarting due to changes...[39m
+    [32m[nodemon] starting `node app.js`[39m
+    Server is running on port 3000
+    [0mGET /workbench/ [36m304 [0m3782.708 ms - -[0m
+    [0mGET /vendor/jquery/jquery.js [36m304 [0m15.975 ms - -[0m
+    [0mGET /vendor/jquery.cookie/jquery.cookie.js [36m304 [0m23.240 ms - -[0m
+    [0mGET /layouts/core.min.css?br34k-01 [36m304 [0m27.239 ms - -[0m
+    [0mGET /views/workbench/index.min.css?br34k-01 [36m304 [0m26.746 ms - -[0m
+    [0mGET /vendor/bootstrap-select/bootstrap-select.min.css [36m304 [0m23.796 ms - -[0m
+    [0mGET /layouts/rml.css [36m304 [0m24.198 ms - -[0m
+    [0mGET /js/jquery.form.js [36m304 [0m24.712 ms - -[0m
+    [0mGET /vendor/underscore/underscore.js [36m304 [0m28.668 ms - -[0m
+    [0mGET /vendor/backbone/backbone.js [36m304 [0m2.433 ms - -[0m
+    [0mGET /js/backbone/publish/publish.js [36m304 [0m7.823 ms - -[0m
+    [0mGET /vendor/bootstrap/js/modal.js [36m304 [0m14.697 ms - -[0m
+    [0mGET /vendor/bootstrap-select/bootstrap-select.min.js [36m304 [0m9.850 ms - -[0m
+    [0mGET /vendor/momentjs/moment.js [36m304 [0m9.559 ms - -[0m
+    [0mGET /vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js [36m304 [0m9.686 ms - -[0m
+    [0mGET /js/file_uploads.js [36m304 [0m12.343 ms - -[0m
+    [0mGET /layouts/core.min.js?br34k-01 [36m304 [0m14.298 ms - -[0m
+    [0mGET /views/workbench/index.js [36m304 [0m29.940 ms - -[0m
+    [0mGET /media/rml.png [36m304 [0m6.376 ms - -[0m
+    [0mGET /vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js [36m304 [0m12.366 ms - -[0m
+    [0mGET /media/ajax-pulse.gif [36m304 [0m8.623 ms - -[0m
+    [0mGET /layouts/core.min.js.map [36m304 [0m6.032 ms - -[0m
+    [0mGET /vendor/bootstrap-select/bootstrap-select.js.map [33m404 [0m348.589 ms - -[0m
+    [WORKBENCH LOG] Retrieving data descriptions of root...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    ["573021de3eb0c65603a89a40","57302fb845a7e49b27055fc5"]
+    [WORKBENCH LOG] Retrieving mappings of root...
+    [WORKBENCH LOG] Retrieving rdf (7) of root...
+    [WORKBENCH LOG] Retrieving schedules..
+    [0mGET /workbench/fetch/description [36m304 [0m121.976 ms - -[0m
+    [0mGET /workbench/schedules [36m304 [0m157.024 ms - -[0m
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [0mGET /workbench/fetch/rdf [36m304 [0m267.118 ms - -[0m
+    [0mGET /workbench/fetch/mapping [32m200 [0m241.819 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf (7) of root...
+    ["573021de3eb0c65603a89a40","57302fb845a7e49b27055fc5"]
+    [WORKBENCH LOG] Retrieving mappings of root...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [0mGET /workbench/fetch/rdf [36m304 [0m168.037 ms - -[0m
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [WORKBENCH LOG] Retrieving schedules..
+    [WORKBENCH LOG] Retrieving data descriptions of root...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/schedules [36m304 [0m201.372 ms - -[0m
+    [0mGET /workbench/fetch/description [36m304 [0m214.415 ms - -[0m
+    [0mGET /workbench/fetch/mapping [32m200 [0m198.026 ms - -[0m
+    [WORKBENCH LOG] Generating RDF...
+    [{"filename":"Airport.csv","data":"id, stop, latitude, longitude \n6523, 25, 50.901389, 4.484444\n","metadata":"empty","type":"input","_id":"56f31601d6555d896780ecd2"},"573029fd61dfdd582694c25c","57302f5db269115b274e84ce"]
+    SOURCENAMES
+    [ 'example2.xml' ]
+    null
+    { filename: 'example.xml',
+      data: '',
+      metadata: { timeCreated: Mon May 09 2016 08:11:09 GMT+0200 (CEST) },
+      __v: 0,
+      _id: 573029fd61dfdd582694c25c }
+    { filename: 'example2.xml',
+      data: '<?xml version="1.0" encoding="UTF-8"?>\r\n<notes>\r\n<note id="M17" day="10" month="01" year="2008"> \r\n        <to>Tove</to>\r\n        <from>Jani</from>\r\n        <heading>Reminder</heading>\r\n        <body>Don\'t forget me this weekend!</body>\r\n</note>\r\n<note id="M18" day="10" month="02" year="2008"> \r\n        <to>Chris</to>\r\n        <from>Rick</from>\r\n        <heading>Update</heading>\r\n        <body>We now leave at six</body>\r\n</note>\r\n</notes>',
+      metadata: { timeCreated: Mon May 09 2016 08:34:05 GMT+0200 (CEST) },
+      __v: 0,
+      _id: 57302f5db269115b274e84ce }
+    [ { filename: 'example2.xml',
+        data: '<?xml version="1.0" encoding="UTF-8"?>\r\n<notes>\r\n<note id="M17" day="10" month="01" year="2008"> \r\n        <to>Tove</to>\r\n        <from>Jani</from>\r\n        <heading>Reminder</heading>\r\n        <body>Don\'t forget me this weekend!</body>\r\n</note>\r\n<note id="M18" day="10" month="02" year="2008"> \r\n        <to>Chris</to>\r\n        <from>Rick</from>\r\n        <heading>Update</heading>\r\n        <body>We now leave at six</body>\r\n</note>\r\n</notes>',
+        metadata: { timeCreated: Mon May 09 2016 08:34:05 GMT+0200 (CEST) },
+        __v: 0,
+        _id: 57302f5db269115b274e84ce } ]
+    [WORKBENCH LOG] Mapping filename: example.rml.ttl
+    [WORKBENCH LOG] Triples: FromToMaps,DateTime
+    gotcha!
+    [RMLPROCESSOR LOG] NO ERRORS IN MAPPING!
+    [RMLPROCESSOR LOG] LOG WRITTEN TO "mappinglog.txt"!
+    [ { filename: 'example2.xml',
+        data: '<?xml version="1.0" encoding="UTF-8"?>\r\n<notes>\r\n<note id="M17" day="10" month="01" year="2008"> \r\n        <to>Tove</to>\r\n        <from>Jani</from>\r\n        <heading>Reminder</heading>\r\n        <body>Don\'t forget me this weekend!</body>\r\n</note>\r\n<note id="M18" day="10" month="02" year="2008"> \r\n        <to>Chris</to>\r\n        <from>Rick</from>\r\n        <heading>Update</heading>\r\n        <body>We now leave at six</body>\r\n</note>\r\n</notes>',
+        metadata: { timeCreated: Mon May 09 2016 08:34:05 GMT+0200 (CEST) },
+        __v: 0,
+        _id: 57302f5db269115b274e84ce } ]
+    [WORKBENCH LOG] Generating RDF successful!
+    [WORKBENCH LOG] Filename rdf: "example.rml.ttl_result.ttl"
+    [WORKBENCH LOG] Creating new rdf entry in database...
+    [WORKBENCH LOG] Updating user rdf files...
+    [WORKBENCH LOG] Updating user rdf files successful!
+    Mon, 09 May 2016 07:22:26 GMT express deprecated res.send(status): Use res.sendStatus(status) instead at workbench/WorkbenchController.js:281:25
+    [0mPOST /workbench/mapping/execute/57302fb845a7e49b27055fc5 [32m200 [0m2430.425 ms - 2[0m
+    ["573021de3eb0c65603a89a40","57302fb845a7e49b27055fc5"]
+    [WORKBENCH LOG] Retrieving mappings of root...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/fetch/mapping [36m304 [0m257.185 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf (8) of root...
+    [WORKBENCH LOG] Retrieving schedules..
+    [0mGET /workbench/schedules [36m304 [0m320.428 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [WORKBENCH LOG] Retrieving data descriptions of root...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/fetch/description [36m304 [0m400.557 ms - -[0m
+    [0mGET /workbench/fetch/rdf [32m200 [0m400.571 ms - -[0m
+    Killed
+    [31m[nodemon] app crashed - waiting for file changes before starting...[39m
+    [32m[nodemon] restarting due to changes...[39m
+    [32m[nodemon] starting `node app.js`[39m
+    Server is running on port 3000
+    [0mGET /workbench/ [36m304 [0m3445.222 ms - -[0m
+    [0mGET /vendor/jquery/jquery.js [36m304 [0m15.288 ms - -[0m
+    [0mGET /vendor/jquery.cookie/jquery.cookie.js [36m304 [0m20.754 ms - -[0m
+    [0mGET /layouts/core.min.css?br34k-01 [36m304 [0m25.515 ms - -[0m
+    [0mGET /views/workbench/index.min.css?br34k-01 [36m304 [0m24.885 ms - -[0m
+    [0mGET /vendor/bootstrap-select/bootstrap-select.min.css [36m304 [0m17.434 ms - -[0m
+    [0mGET /js/jquery.form.js [36m304 [0m18.855 ms - -[0m
+    [0mGET /vendor/underscore/underscore.js [36m304 [0m11.568 ms - -[0m
+    [0mGET /layouts/rml.css [36m304 [0m11.402 ms - -[0m
+    [0mGET /vendor/backbone/backbone.js [36m304 [0m1.017 ms - -[0m
+    [0mGET /js/backbone/publish/publish.js [36m304 [0m0.791 ms - -[0m
+    [0mGET /vendor/bootstrap/js/modal.js [36m304 [0m3.723 ms - -[0m
+    [0mGET /vendor/bootstrap-select/bootstrap-select.min.js [36m304 [0m12.569 ms - -[0m
+    [0mGET /vendor/momentjs/moment.js [36m304 [0m0.734 ms - -[0m
+    [0mGET /vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js [36m304 [0m7.120 ms - -[0m
+    [0mGET /js/file_uploads.js [36m304 [0m7.936 ms - -[0m
+    [0mGET /layouts/core.min.js?br34k-01 [36m304 [0m10.765 ms - -[0m
+    [0mGET /views/workbench/index.js [36m304 [0m33.249 ms - -[0m
+    [0mGET /media/rml.png [36m304 [0m3.627 ms - -[0m
+    [0mGET /vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js [36m304 [0m13.371 ms - -[0m
+    [0mGET /media/ajax-pulse.gif [36m304 [0m9.467 ms - -[0m
+    [0mGET /vendor/font-awesome/fonts/fontawesome-webfont.woff2?v=4.6.1 [36m304 [0m267.386 ms - -[0m
+    [0mGET /layouts/core.min.js.map [36m304 [0m10.452 ms - -[0m
+    [0mGET /vendor/bootstrap-select/bootstrap-select.js.map [33m404 [0m361.277 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf (9) of root...
+    [WORKBENCH LOG] Retrieving schedules..
+    ["573021de3eb0c65603a89a40","57302fb845a7e49b27055fc5"]
+    [WORKBENCH LOG] Retrieving mappings of root...
+    [0mGET /workbench/schedules [36m304 [0m120.704 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [WORKBENCH LOG] Retrieving data descriptions of root...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/fetch/mapping [36m304 [0m259.585 ms - -[0m
+    [0mGET /workbench/fetch/description [36m304 [0m232.055 ms - -[0m
+    [0mGET /workbench/fetch/rdf [32m200 [0m214.837 ms - -[0m
+    ["573021de3eb0c65603a89a40","57302fb845a7e49b27055fc5"]
+    [WORKBENCH LOG] Retrieving mappings of root...
+    [WORKBENCH LOG] Retrieving rdf (9) of root...
+    [WORKBENCH LOG] Retrieving schedules..
+    [0mGET /workbench/schedules [36m304 [0m114.668 ms - -[0m
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [WORKBENCH LOG] Retrieving data descriptions of root...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/fetch/mapping [32m200 [0m187.589 ms - -[0m
+    [0mGET /workbench/fetch/description [36m304 [0m219.563 ms - -[0m
+    [0mGET /workbench/fetch/rdf [32m200 [0m212.612 ms - -[0m
+    Killed
+    [31m[nodemon] app crashed - waiting for file changes before starting...[39m
+    [32m[nodemon] restarting due to changes...[39m
+    [32m[nodemon] starting `node app.js`[39m
+    Server is running on port 3000
+    Killed
+    [31m[nodemon] app crashed - waiting for file changes before starting...[39m
+module.js:327
+    throw err;
+    ^
+
+Error: Cannot find module '/home/wmaroy/github/FINAL/AMMA/drywall-workbench/start'
+    at Function.Module._resolveFilename (module.js:325:15)
+    at Function.Module._load (module.js:276:25)
+    at Function.Module.runMain (module.js:441:10)
+    at startup (node.js:139:18)
+    at node.js:968:3
+module.js:327
+    throw err;
+    ^
+
+Error: Cannot find module '/home/wmaroy/github/FINAL/AMMA/drywall-workbench/start'
+    at Function.Module._resolveFilename (module.js:325:15)
+    at Function.Module._load (module.js:276:25)
+    at Function.Module.runMain (module.js:441:10)
+    at startup (node.js:139:18)
+    at node.js:968:3
+
+> Drywall@0.16.6 start /home/wmaroy/github/FINAL/AMMA/drywall-workbench
+> grunt
+
+[4mRunning "copy:vendor" (copy) task[24m
+Created 6 directories, copied 111 files
+
+[4mRunning "newer:uglify" (newer) task[24m
+
+[4mRunning "newer:uglify:layouts" (newer) task[24m
+No newer files to process.
+
+[4mRunning "newer:uglify:views" (newer) task[24m
+No newer files to process.
+
+[4mRunning "newer:less" (newer) task[24m
+
+[4mRunning "newer:less:layouts" (newer) task[24m
+No newer files to process.
+
+[4mRunning "newer:less:views" (newer) task[24m
+No newer files to process.
+
+[4mRunning "concurrent:dev" (concurrent) task[24m
+    [4mRunning "watch" task[24m
+    Waiting...
+    [4mRunning "nodemon:dev" (nodemon) task[24m
+    [33m[nodemon] 1.9.2[39m
+    [33m[nodemon] to restart at any time, enter `rs`[39m
+    [33m[nodemon] watching: *.*[39m
+    [32m[nodemon] starting `node app.js`[39m
+    Server is running on port 3000
+    [0mGET /workbench/ [0m- [0m- ms - -[0m
+    [0mGET /workbench/ [32m200 [0m1270.162 ms - -[0m
+    [0mGET /vendor/jquery/jquery.js [36m304 [0m6.352 ms - -[0m
+    [0mGET /vendor/jquery.cookie/jquery.cookie.js [36m304 [0m14.364 ms - -[0m
+    [0mGET /js/jquery.form.js [36m304 [0m4.718 ms - -[0m
+    [0mGET /layouts/core.min.css?br34k-01 [36m304 [0m11.342 ms - -[0m
+    [0mGET /views/workbench/index.min.css?br34k-01 [36m304 [0m13.158 ms - -[0m
+    [0mGET /vendor/underscore/underscore.js [36m304 [0m6.529 ms - -[0m
+    [0mGET /vendor/bootstrap-select/bootstrap-select.min.css [36m304 [0m21.102 ms - -[0m
+    [0mGET /layouts/rml.css [36m304 [0m22.944 ms - -[0m
+    [0mGET /vendor/backbone/backbone.js [36m304 [0m24.057 ms - -[0m
+    [0mGET /js/backbone/publish/publish.js [36m304 [0m7.198 ms - -[0m
+    [0mGET /vendor/bootstrap/js/modal.js [36m304 [0m9.069 ms - -[0m
+    [0mGET /vendor/bootstrap-select/bootstrap-select.min.js [36m304 [0m0.933 ms - -[0m
+    [0mGET /vendor/momentjs/moment.js [36m304 [0m0.820 ms - -[0m
+    [0mGET /vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js [36m304 [0m0.502 ms - -[0m
+    [0mGET /js/file_uploads.js [36m304 [0m0.466 ms - -[0m
+    [0mGET /layouts/core.min.js?br34k-01 [36m304 [0m0.358 ms - -[0m
+    [0mGET /views/workbench/index.js [36m304 [0m0.535 ms - -[0m
+    [0mGET /media/rml.png [36m304 [0m0.500 ms - -[0m
+    [0mGET /media/ajax-pulse.gif [36m304 [0m0.619 ms - -[0m
+    [0mGET /vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js [36m304 [0m0.693 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf (1) of root...
+    [WORKBENCH LOG] Retrieving schedules..
+    ["573021de3eb0c65603a89a40","57302fb845a7e49b27055fc5"]
+    [WORKBENCH LOG] Retrieving mappings of root...
+    [0mGET /vendor/font-awesome/fonts/fontawesome-webfont.woff2?v=4.6.1 [36m304 [0m114.083 ms - -[0m
+    [0mGET /workbench/schedules [32m200 [0m127.845 ms - 2[0m
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [0mGET /workbench/fetch/rdf [36m304 [0m300.194 ms - -[0m
+    [WORKBENCH LOG] Retrieving data descriptions of root...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/fetch/description [36m304 [0m344.273 ms - -[0m
+    [0mGET /workbench/fetch/mapping [32m200 [0m277.468 ms - -[0m
+    [0mGET /workbench/ [36m304 [0m870.491 ms - -[0m
+    [0mGET /vendor/jquery/jquery.js [36m304 [0m0.774 ms - -[0m
+    [0mGET /vendor/jquery.cookie/jquery.cookie.js [36m304 [0m7.243 ms - -[0m
+    [0mGET /js/jquery.form.js [36m304 [0m5.829 ms - -[0m
+    [0mGET /vendor/underscore/underscore.js [36m304 [0m3.969 ms - -[0m
+    [0mGET /vendor/backbone/backbone.js [36m304 [0m6.758 ms - -[0m
+    [0mGET /js/backbone/publish/publish.js [36m304 [0m5.343 ms - -[0m
+    [0mGET /layouts/core.min.css?br34k-01 [36m304 [0m0.680 ms - -[0m
+    [0mGET /views/workbench/index.min.css?br34k-01 [36m304 [0m0.494 ms - -[0m
+    [0mGET /vendor/bootstrap-select/bootstrap-select.min.css [36m304 [0m0.356 ms - -[0m
+    [0mGET /layouts/rml.css [36m304 [0m0.413 ms - -[0m
+    [0mGET /vendor/bootstrap/js/modal.js [36m304 [0m12.024 ms - -[0m
+    [0mGET /vendor/bootstrap-select/bootstrap-select.min.js [36m304 [0m13.972 ms - -[0m
+    [0mGET /vendor/momentjs/moment.js [36m304 [0m12.835 ms - -[0m
+    [0mGET /vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js [36m304 [0m12.238 ms - -[0m
+    [0mGET /js/file_uploads.js [36m304 [0m13.948 ms - -[0m
+    [0mGET /layouts/core.min.js?br34k-01 [36m304 [0m10.801 ms - -[0m
+    [0mGET /views/workbench/index.js [36m304 [0m0.559 ms - -[0m
+    [0mGET /media/rml.png [36m304 [0m0.589 ms - -[0m
+    [0mGET /media/ajax-pulse.gif [36m304 [0m0.672 ms - -[0m
+    [0mGET /vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js [36m304 [0m0.947 ms - -[0m
+    ["573021de3eb0c65603a89a40","57302fb845a7e49b27055fc5"]
+    [WORKBENCH LOG] Retrieving mappings of root...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /vendor/font-awesome/fonts/fontawesome-webfont.woff2?v=4.6.1 [36m304 [0m76.387 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf (1) of root...
+    [WORKBENCH LOG] Retrieving schedules..
+    [WORKBENCH LOG] Retrieving data descriptions of root...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/schedules [36m304 [0m178.015 ms - -[0m
+    [0mGET /workbench/fetch/description [36m304 [0m186.190 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [0mGET /workbench/fetch/mapping [32m200 [0m112.325 ms - -[0m
+    [0mGET /workbench/fetch/rdf [36m304 [0m215.506 ms - -[0m
+    [0mGET / [32m200 [0m308.222 ms - -[0m
+    [0mGET /views/workbench/index.min.css?br34k-01 [32m200 [0m35.742 ms - -[0m
+    [0mGET /views/index.min.css?br34k-01 [32m200 [0m47.292 ms - 241[0m
+    [0mGET /layouts/core.min.css?br34k-01 [32m200 [0m36.041 ms - -[0m
+    [0mGET /layouts/core.min.js?br34k-01 [32m200 [0m61.478 ms - -[0m
+    [0mGET /media/ajax-pulse.gif [32m200 [0m24.191 ms - 522[0m
+    [0mGET /media/rml.png [32m200 [0m35.581 ms - 4811[0m
+    [0mGET /vendor/font-awesome/fonts/fontawesome-webfont.woff2?v=4.6.1 [32m200 [0m8.393 ms - 70728[0m
+    [0mGET /favicon.ico [32m200 [0m4.752 ms - -[0m
+    [0mGET /favicon.ico [36m304 [0m5.117 ms - -[0m
+    [0mGET /signup [32m200 [0m429.648 ms - -[0m
+    [0mGET /layouts/core.min.css?br34k-01 [36m304 [0m0.913 ms - -[0m
+    [0mGET /views/workbench/index.min.css?br34k-01 [36m304 [0m13.262 ms - -[0m
+    [0mGET /layouts/core.min.js?br34k-01 [36m304 [0m7.153 ms - -[0m
+    [0mGET /views/signup/index.min.css?br34k-01 [32m200 [0m18.928 ms - 103[0m
+    [0mGET /views/signup/index.min.js?br34k-01 [32m200 [0m12.403 ms - -[0m
+    [0mGET /media/rml.png [36m304 [0m1.802 ms - -[0m
+    [0mGET /media/ajax-pulse.gif [36m304 [0m7.295 ms - -[0m
+    [0mGET /favicon.ico [36m304 [0m3.041 ms - -[0m
+    Error Sending Welcome Email: Email failed to send. Error: authorization.failed
+    [0mPOST /signup/ [32m200 [0m2192.531 ms - 71[0m
+    [0mGET /account/ [32m200 [0m329.972 ms - -[0m
+    [0mGET /layouts/core.min.css?br34k-01 [36m304 [0m3.322 ms - -[0m
+    [0mGET /views/workbench/index.min.css?br34k-01 [36m304 [0m18.848 ms - -[0m
+    [0mGET /layouts/core.min.js?br34k-01 [36m304 [0m18.868 ms - -[0m
+    [0mGET /views/account/index.min.css?br34k-01 [32m200 [0m34.788 ms - 242[0m
+    [0mGET /views/account/index.min.js?br34k-01 [32m200 [0m31.319 ms - 339[0m
+    [0mGET /media/rml.png [36m304 [0m3.409 ms - -[0m
+    [0mGET /media/ajax-pulse.gif [36m304 [0m5.279 ms - -[0m
+    [0mGET /favicon.ico [36m304 [0m2.189 ms - -[0m
+    [0mGET /workbench/ [32m200 [0m931.821 ms - -[0m
+    [0mGET /vendor/jquery.cookie/jquery.cookie.js [32m200 [0m13.772 ms - -[0m
+    [0mGET /js/jquery.form.js [32m200 [0m23.317 ms - -[0m
+    [0mGET /vendor/underscore/underscore.js [32m200 [0m12.383 ms - -[0m
+    [0mGET /vendor/backbone/backbone.js [32m200 [0m13.523 ms - -[0m
+    [0mGET /js/backbone/publish/publish.js [32m200 [0m45.428 ms - -[0m
+    [0mGET /vendor/bootstrap/js/modal.js [32m200 [0m47.950 ms - -[0m
+    [0mGET /vendor/bootstrap-select/bootstrap-select.min.js [32m200 [0m47.296 ms - -[0m
+    [0mGET /vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js [32m200 [0m37.608 ms - -[0m
+    [0mGET /layouts/core.min.css?br34k-01 [36m304 [0m9.804 ms - -[0m
+    [0mGET /vendor/jquery/jquery.js [32m200 [0m18.916 ms - -[0m
+    [0mGET /js/file_uploads.js [32m200 [0m37.671 ms - -[0m
+    [0mGET /views/workbench/index.min.css?br34k-01 [36m304 [0m7.714 ms - -[0m
+    [0mGET /vendor/momentjs/moment.js [32m200 [0m43.335 ms - -[0m
+    [0mGET /layouts/core.min.js?br34k-01 [36m304 [0m10.246 ms - -[0m
+    [0mGET /layouts/rml.css [32m200 [0m34.586 ms - 359[0m
+    [0mGET /vendor/bootstrap-select/bootstrap-select.min.css [32m200 [0m39.418 ms - -[0m
+    [0mGET /views/workbench/index.js [32m200 [0m44.909 ms - -[0m
+    [0mGET /vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js [36m304 [0m16.324 ms - -[0m
+    [0mGET /media/rml.png [36m304 [0m5.379 ms - -[0m
+    [0mGET /media/ajax-pulse.gif [36m304 [0m5.086 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf (0) of pheyvaer...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    []
+    [WORKBENCH LOG] Retrieving mappings of pheyvaer...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/fetch/rdf [32m200 [0m147.785 ms - 2[0m
+    [0mGET /workbench/fetch/mapping [32m200 [0m181.578 ms - 2[0m
+    [0mGET /favicon.ico [36m304 [0m34.351 ms - -[0m
+    [WORKBENCH LOG] Retrieving schedules..
+    [WORKBENCH LOG] Retrieving data descriptions of pheyvaer...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/schedules [32m200 [0m291.959 ms - 2[0m
+    [0mGET /workbench/fetch/description [32m200 [0m292.435 ms - 2[0m
+    []
+    [WORKBENCH LOG] Retrieving mappings of pheyvaer...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/fetch/mapping [36m304 [0m93.447 ms - -[0m
+    [WORKBENCH LOG] Retrieving data descriptions of pheyvaer...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [WORKBENCH LOG] Retrieving schedules..
+    [WORKBENCH LOG] Retrieving rdf (0) of pheyvaer...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [0mGET /workbench/fetch/description [36m304 [0m178.494 ms - -[0m
+    [0mGET /workbench/schedules [36m304 [0m192.321 ms - -[0m
+    [0mGET /workbench/fetch/rdf [36m304 [0m210.728 ms - -[0m
+    []
+    [WORKBENCH LOG] Retrieving mappings of pheyvaer...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/fetch/mapping [36m304 [0m101.808 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf (0) of pheyvaer...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [0mGET /workbench/fetch/rdf [36m304 [0m160.737 ms - -[0m
+    [WORKBENCH LOG] Retrieving data descriptions of pheyvaer...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [WORKBENCH LOG] Retrieving schedules..
+    [0mGET /workbench/fetch/description [36m304 [0m108.899 ms - -[0m
+    [0mGET /workbench/schedules [36m304 [0m193.401 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf (0) of pheyvaer...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    []
+    [WORKBENCH LOG] Retrieving mappings of pheyvaer...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/fetch/rdf [36m304 [0m54.716 ms - -[0m
+    [0mGET /workbench/fetch/mapping [36m304 [0m77.588 ms - -[0m
+    [WORKBENCH LOG] Retrieving schedules..
+    [WORKBENCH LOG] Retrieving data descriptions of pheyvaer...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/schedules [36m304 [0m132.992 ms - -[0m
+    [0mGET /workbench/fetch/description [36m304 [0m133.303 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf (0) of pheyvaer...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    []
+    [WORKBENCH LOG] Retrieving mappings of pheyvaer...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/fetch/rdf [36m304 [0m97.774 ms - -[0m
+    [0mGET /workbench/fetch/mapping [36m304 [0m140.122 ms - -[0m
+    [WORKBENCH LOG] Retrieving schedules..
+    [WORKBENCH LOG] Retrieving data descriptions of pheyvaer...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/schedules [36m304 [0m175.616 ms - -[0m
+    [0mGET /workbench/fetch/description [36m304 [0m176.354 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf (0) of pheyvaer...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    []
+    [WORKBENCH LOG] Retrieving mappings of pheyvaer...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/fetch/rdf [36m304 [0m64.228 ms - -[0m
+    [0mGET /workbench/fetch/mapping [36m304 [0m76.079 ms - -[0m
+    [WORKBENCH LOG] Retrieving schedules..
+    [WORKBENCH LOG] Retrieving data descriptions of pheyvaer...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/schedules [36m304 [0m112.455 ms - -[0m
+    [0mGET /workbench/fetch/description [36m304 [0m128.929 ms - -[0m
+    []
+    [WORKBENCH LOG] Retrieving mappings of pheyvaer...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/fetch/mapping [36m304 [0m52.696 ms - -[0m
+    [WORKBENCH LOG] Retrieving schedules..
+    [WORKBENCH LOG] Retrieving rdf (0) of pheyvaer...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [0mGET /workbench/schedules [36m304 [0m145.914 ms - -[0m
+    [0mGET /workbench/fetch/rdf [36m304 [0m156.194 ms - -[0m
+    [WORKBENCH LOG] Retrieving data descriptions of pheyvaer...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/fetch/description [36m304 [0m185.247 ms - -[0m
+    [WORKBENCH LOG] Description name: undefined
+    [WORKBENCH LOG] Creating new description entry in database...
+    [WORKBENCH LOG] Updating user description files...
+    [WORKBENCH LOG] Updating user descriptions successful!
+    [WORKBENCH LOG] DATABASE description added sucessfully!
+    Mon, 09 May 2016 07:55:47 GMT express deprecated res.send(status): Use res.sendStatus(status) instead at workbench/WorkbenchController.js:118:16
+    [0mPOST /workbench/fetch/db [32m200 [0m213.051 ms - 2[0m
+    []
+    [WORKBENCH LOG] Retrieving mappings of pheyvaer...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/fetch/mapping [36m304 [0m116.385 ms - -[0m
+    [WORKBENCH LOG] Retrieving data descriptions of pheyvaer...
+    [WORKBENCH LOG] Retrieving schedules..
+    [WORKBENCH LOG] Retrieving rdf (0) of pheyvaer...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [0mGET /workbench/schedules [36m304 [0m295.071 ms - -[0m
+    [0mGET /workbench/fetch/rdf [36m304 [0m337.906 ms - -[0m
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/fetch/description [32m200 [0m376.412 ms - 376[0m
+    [WORKBENCH LOG] Description name: undefined
+    [WORKBENCH LOG] Creating new description entry in database...
+    [WORKBENCH LOG] Updating user description files...
+    [WORKBENCH LOG] Updating user descriptions successful!
+    [WORKBENCH LOG] DATABASE description added sucessfully!
+    [0mPOST /workbench/fetch/db [32m200 [0m85.858 ms - 2[0m
+    [WORKBENCH LOG] Description name: undefined
+    [WORKBENCH LOG] Creating new description entry in database...
+    [WORKBENCH LOG] Updating user description files...
+    [WORKBENCH LOG] Updating user descriptions successful!
+    [WORKBENCH LOG] DATABASE description added sucessfully!
+    [0mPOST /workbench/fetch/db [32m200 [0m97.259 ms - 2[0m
+    [WORKBENCH LOG] Retrieving data descriptions of pheyvaer...
+    [WORKBENCH LOG] Retrieving schedules..
+    [WORKBENCH LOG] Retrieving rdf (0) of pheyvaer...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    []
+    [WORKBENCH LOG] Retrieving mappings of pheyvaer...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/schedules [36m304 [0m166.285 ms - -[0m
+    [0mGET /workbench/fetch/rdf [36m304 [0m174.546 ms - -[0m
+    [0mGET /workbench/fetch/mapping [36m304 [0m189.413 ms - -[0m
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [WORKBENCH LOG] Description name: undefined
+    [WORKBENCH LOG] Creating new description entry in database...
+    [WORKBENCH LOG] Updating user description files...
+    [0mGET /workbench/fetch/description [32m200 [0m224.860 ms - -[0m
+    [WORKBENCH LOG] Updating user descriptions successful!
+    [WORKBENCH LOG] DATABASE description added sucessfully!
+    []
+    [WORKBENCH LOG] Retrieving mappings of pheyvaer...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mPOST /workbench/fetch/db [32m200 [0m267.022 ms - 2[0m
+    [0mGET /workbench/fetch/mapping [32m200 [0m242.323 ms - 2[0m
+    [WORKBENCH LOG] Retrieving data descriptions of pheyvaer...
+    [WORKBENCH LOG] Retrieving rdf (0) of pheyvaer...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [WORKBENCH LOG] Retrieving schedules..
+    [0mGET /workbench/fetch/rdf [32m200 [0m164.923 ms - 2[0m
+    [0mGET /workbench/schedules [32m200 [0m174.236 ms - 2[0m
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/fetch/description [32m200 [0m230.945 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf (0) of pheyvaer...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [WORKBENCH LOG] Retrieving schedules..
+    []
+    [WORKBENCH LOG] Retrieving mappings of pheyvaer...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/fetch/rdf [36m304 [0m190.583 ms - -[0m
+    [0mGET /workbench/schedules [36m304 [0m113.099 ms - -[0m
+    [0mGET /workbench/fetch/mapping [36m304 [0m208.706 ms - -[0m
+    [WORKBENCH LOG] Retrieving data descriptions of pheyvaer...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/fetch/description [32m200 [0m134.578 ms - -[0m
+    [WORKBENCH LOG] Description name: undefined
+    [WORKBENCH LOG] Creating new description entry in database...
+    [WORKBENCH LOG] Updating user description files...
+    [WORKBENCH LOG] Updating user descriptions successful!
+    [WORKBENCH LOG] DATABASE description added sucessfully!
+    [0mPOST /workbench/fetch/db [32m200 [0m106.032 ms - 2[0m
+    [WORKBENCH LOG] Description name: undefined
+    [WORKBENCH LOG] Creating new description entry in database...
+    [WORKBENCH LOG] Updating user description files...
+    [WORKBENCH LOG] Updating user descriptions successful!
+    [WORKBENCH LOG] DATABASE description added sucessfully!
+    [0mPOST /workbench/fetch/db [32m200 [0m82.914 ms - 2[0m
+    [WORKBENCH LOG] Retrieving data descriptions of pheyvaer...
+    [WORKBENCH LOG] Retrieving schedules..
+    [WORKBENCH LOG] Retrieving rdf (0) of pheyvaer...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    []
+    [WORKBENCH LOG] Retrieving mappings of pheyvaer...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/schedules [36m304 [0m130.528 ms - -[0m
+    [0mGET /workbench/fetch/rdf [36m304 [0m137.807 ms - -[0m
+    [0mGET /workbench/fetch/mapping [36m304 [0m145.677 ms - -[0m
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/fetch/description [32m200 [0m184.477 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf (0) of pheyvaer...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    []
+    [WORKBENCH LOG] Retrieving mappings of pheyvaer...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/fetch/rdf [32m200 [0m92.265 ms - 2[0m
+    [0mGET /workbench/fetch/mapping [32m200 [0m99.279 ms - 2[0m
+    [WORKBENCH LOG] Retrieving schedules..
+    [0mGET /workbench/schedules [32m200 [0m128.023 ms - 2[0m
+    [WORKBENCH LOG] Retrieving data descriptions of pheyvaer...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/fetch/description [32m200 [0m202.750 ms - -[0m
+    [0mGET /favicon.ico [36m304 [0m2.132 ms - -[0m
+    [0mGET /favicon.ico [36m304 [0m0.620 ms - -[0m
+    [0mGET /favicon.ico [36m304 [0m13.227 ms - -[0m
+    [0mGET /favicon.ico [36m304 [0m2.328 ms - -[0m
+    [0mGET /favicon.ico [36m304 [0m1.506 ms - -[0m
+    [0mGET /favicon.ico [36m304 [0m1.247 ms - -[0m
+    [0mGET /favicon.ico [36m304 [0m0.926 ms - -[0m
+    [0mGET /favicon.ico [36m304 [0m1.445 ms - -[0m
+    [0mGET /favicon.ico [36m304 [0m1.108 ms - -[0m
+    [0mGET /favicon.ico [36m304 [0m1.216 ms - -[0m
+    [0mGET /favicon.ico [36m304 [0m1.643 ms - -[0m
+    [0mGET /favicon.ico [36m304 [0m1.276 ms - -[0m
+    [0mGET /favicon.ico [36m304 [0m0.982 ms - -[0m
+    [0mGET /favicon.ico [36m304 [0m3.181 ms - -[0m
+    [0mGET /favicon.ico [36m304 [0m1.142 ms - -[0m
+    [0mGET /favicon.ico [36m304 [0m0.800 ms - -[0m
+    [WORKBENCH LOG] Description name: undefined
+    [WORKBENCH LOG] Creating new description entry in database...
+    [WORKBENCH LOG] Updating user description files...
+    [WORKBENCH LOG] Updating user descriptions successful!
+    [WORKBENCH LOG] DATABASE description added sucessfully!
+    [0mPOST /workbench/fetch/db [32m200 [0m125.966 ms - 2[0m
+    [WORKBENCH LOG] Retrieving rdf (0) of pheyvaer...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    []
+    [WORKBENCH LOG] Retrieving mappings of pheyvaer...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/fetch/rdf [36m304 [0m70.294 ms - -[0m
+    [0mGET /workbench/fetch/mapping [36m304 [0m80.883 ms - -[0m
+    [WORKBENCH LOG] Retrieving schedules..
+    [WORKBENCH LOG] Retrieving data descriptions of pheyvaer...
+    [0mGET /workbench/schedules [36m304 [0m129.156 ms - -[0m
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [WORKBENCH LOG] Description name: undefined
+    [WORKBENCH LOG] Creating new description entry in database...
+    [WORKBENCH LOG] Updating user description files...
+    [0mGET /workbench/fetch/description [32m200 [0m237.196 ms - -[0m
+    [WORKBENCH LOG] Updating user descriptions successful!
+    [WORKBENCH LOG] DATABASE description added sucessfully!
+    [0mPOST /workbench/fetch/db [32m200 [0m291.923 ms - 2[0m
+    [WORKBENCH LOG] Description name: undefined
+    [WORKBENCH LOG] Creating new description entry in database...
+    [WORKBENCH LOG] Updating user description files...
+    [WORKBENCH LOG] Updating user descriptions successful!
+    [WORKBENCH LOG] DATABASE description added sucessfully!
+    [0mPOST /workbench/fetch/db [32m200 [0m223.593 ms - 2[0m
+    [WORKBENCH LOG] Retrieving data descriptions of pheyvaer...
+    [WORKBENCH LOG] Retrieving schedules..
+    [WORKBENCH LOG] Retrieving rdf (0) of pheyvaer...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    []
+    [WORKBENCH LOG] Retrieving mappings of pheyvaer...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/schedules [36m304 [0m120.281 ms - -[0m
+    [0mGET /workbench/fetch/rdf [36m304 [0m140.872 ms - -[0m
+    [0mGET /workbench/fetch/mapping [36m304 [0m152.001 ms - -[0m
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    []
+    [WORKBENCH LOG] Retrieving mappings of pheyvaer...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [WORKBENCH LOG] Retrieving rdf (0) of pheyvaer...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [0mGET /workbench/fetch/description [32m200 [0m201.283 ms - -[0m
+    [0mGET /workbench/fetch/mapping [32m200 [0m191.126 ms - 2[0m
+    [0mGET /workbench/fetch/rdf [32m200 [0m198.356 ms - 2[0m
+    [WORKBENCH LOG] Retrieving schedules..
+    [WORKBENCH LOG] Retrieving data descriptions of pheyvaer...
+    [0mGET /workbench/schedules [32m200 [0m129.262 ms - 2[0m
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/fetch/description [32m200 [0m175.310 ms - -[0m
+    [WORKBENCH LOG] Description name: 
+    [WORKBENCH LOG] Creating new description entry in database...
+    [WORKBENCH LOG] Updating user description files...
+    [WORKBENCH LOG] Updating user descriptions successful!
+    [WORKBENCH LOG] DCat description added sucessfully!
+    Mon, 09 May 2016 07:56:34 GMT express deprecated res.send(status): Use res.sendStatus(status) instead at workbench/WorkbenchController.js:198:21
+    [0mPOST /workbench/fetch/dcat [32m200 [0m62.426 ms - 2[0m
+    [WORKBENCH LOG] Retrieving rdf (0) of pheyvaer...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    []
+    [WORKBENCH LOG] Retrieving mappings of pheyvaer...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/fetch/rdf [36m304 [0m51.088 ms - -[0m
+    [0mGET /workbench/fetch/mapping [36m304 [0m80.419 ms - -[0m
+    [WORKBENCH LOG] Retrieving schedules..
+    [WORKBENCH LOG] Retrieving data descriptions of pheyvaer...
+    [0mGET /workbench/schedules [36m304 [0m174.239 ms - -[0m
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [WORKBENCH LOG] Description name: 
+    [WORKBENCH LOG] Creating new description entry in database...
+    [WORKBENCH LOG] Updating user description files...
+    [WORKBENCH LOG] Description name: 
+    [WORKBENCH LOG] Creating new description entry in database...
+    [WORKBENCH LOG] Updating user description files...
+    [WORKBENCH LOG] Updating user descriptions successful!
+    [WORKBENCH LOG] DCat description added sucessfully!
+    [0mGET /workbench/fetch/description [32m200 [0m312.742 ms - -[0m
+    [0mPOST /workbench/fetch/dcat [32m200 [0m350.569 ms - 2[0m
+    [WORKBENCH LOG] Updating user descriptions successful!
+    [WORKBENCH LOG] DCat description added sucessfully!
+    [0mPOST /workbench/fetch/dcat [32m200 [0m246.690 ms - 2[0m
+    [WORKBENCH LOG] Retrieving rdf (0) of pheyvaer...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    []
+    [WORKBENCH LOG] Retrieving mappings of pheyvaer...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/fetch/rdf [36m304 [0m133.112 ms - -[0m
+    [0mGET /workbench/fetch/mapping [36m304 [0m173.256 ms - -[0m
+    [WORKBENCH LOG] Retrieving data descriptions of pheyvaer...
+    [WORKBENCH LOG] Retrieving schedules..
+    [0mGET /workbench/schedules [36m304 [0m233.965 ms - -[0m
+    []
+    [WORKBENCH LOG] Retrieving mappings of pheyvaer...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [WORKBENCH LOG] Retrieving rdf (0) of pheyvaer...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [0mGET /workbench/fetch/mapping [32m200 [0m302.574 ms - 2[0m
+    [0mGET /workbench/fetch/rdf [32m200 [0m308.605 ms - 2[0m
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [WORKBENCH LOG] Retrieving schedules..
+    [WORKBENCH LOG] Retrieving data descriptions of pheyvaer...
+    [0mGET /workbench/fetch/description [32m200 [0m421.185 ms - -[0m
+    [0mGET /workbench/schedules [32m200 [0m205.929 ms - 2[0m
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/fetch/description [32m200 [0m265.588 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf (0) of pheyvaer...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    []
+    [WORKBENCH LOG] Retrieving mappings of pheyvaer...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/fetch/rdf [36m304 [0m74.871 ms - -[0m
+    [0mGET /workbench/fetch/mapping [36m304 [0m94.185 ms - -[0m
+    [WORKBENCH LOG] Retrieving schedules..
+    [WORKBENCH LOG] Retrieving data descriptions of pheyvaer...
+    [0mGET /workbench/schedules [36m304 [0m146.779 ms - -[0m
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/fetch/description [36m304 [0m220.310 ms - -[0m
+    [WORKBENCH LOG] Retrieving schedules..
+    [WORKBENCH LOG] Retrieving rdf (0) of pheyvaer...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    []
+    [WORKBENCH LOG] Retrieving mappings of pheyvaer...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/schedules [36m304 [0m170.376 ms - -[0m
+    [0mGET /workbench/fetch/rdf [36m304 [0m194.812 ms - -[0m
+    [0mGET /workbench/fetch/mapping [36m304 [0m212.901 ms - -[0m
+    [WORKBENCH LOG] Retrieving data descriptions of pheyvaer...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/fetch/description [32m200 [0m256.284 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf (0) of pheyvaer...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    []
+    [WORKBENCH LOG] Retrieving mappings of pheyvaer...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/fetch/rdf [36m304 [0m69.881 ms - -[0m
+    [0mGET /workbench/fetch/mapping [36m304 [0m85.891 ms - -[0m
+    [WORKBENCH LOG] Retrieving schedules..
+    [WORKBENCH LOG] Retrieving data descriptions of pheyvaer...
+    [0mGET /workbench/schedules [36m304 [0m197.267 ms - -[0m
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/fetch/description [32m200 [0m320.302 ms - -[0m
+    []
+    [WORKBENCH LOG] Retrieving mappings of pheyvaer...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/fetch/mapping [36m304 [0m95.196 ms - -[0m
+    [WORKBENCH LOG] Retrieving data descriptions of pheyvaer...
+    [WORKBENCH LOG] Retrieving schedules..
+    [WORKBENCH LOG] Retrieving rdf (0) of pheyvaer...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [0mGET /workbench/schedules [36m304 [0m219.167 ms - -[0m
+    [0mGET /workbench/fetch/rdf [36m304 [0m226.891 ms - -[0m
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/fetch/description [32m200 [0m262.652 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf (0) of pheyvaer...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    []
+    [WORKBENCH LOG] Retrieving mappings of pheyvaer...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/fetch/rdf [36m304 [0m65.039 ms - -[0m
+    [0mGET /workbench/fetch/mapping [36m304 [0m81.439 ms - -[0m
+    [WORKBENCH LOG] Retrieving schedules..
+    [WORKBENCH LOG] Retrieving data descriptions of pheyvaer...
+    [0mGET /workbench/schedules [36m304 [0m156.830 ms - -[0m
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/fetch/description [32m200 [0m246.555 ms - -[0m
+    [0mGET /fonts/glyphicons-halflings-regular.woff2 [32m200 [0m3.922 ms - 18028[0m
+    [WORKBENCH LOG] Retrieving schedules..
+    [WORKBENCH LOG] Retrieving rdf (0) of pheyvaer...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    []
+    [WORKBENCH LOG] Retrieving mappings of pheyvaer...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/schedules [36m304 [0m71.303 ms - -[0m
+    [0mGET /workbench/fetch/rdf [36m304 [0m110.329 ms - -[0m
+    [0mGET /workbench/fetch/mapping [36m304 [0m133.270 ms - -[0m
+    [WORKBENCH LOG] Retrieving data descriptions of pheyvaer...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/fetch/description [32m200 [0m279.443 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf (0) of pheyvaer...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    []
+    [WORKBENCH LOG] Retrieving mappings of pheyvaer...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/fetch/rdf [36m304 [0m80.670 ms - -[0m
+    [0mGET /workbench/fetch/mapping [36m304 [0m107.776 ms - -[0m
+    [WORKBENCH LOG] Retrieving schedules..
+    [0mGET /workbench/schedules [36m304 [0m167.462 ms - -[0m
+    [WORKBENCH LOG] Retrieving data descriptions of pheyvaer...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/fetch/description [36m304 [0m352.510 ms - -[0m
+    [0mGET /favicon.ico [36m304 [0m1.877 ms - -[0m
+    []
+    [WORKBENCH LOG] Retrieving mappings of pheyvaer...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/fetch/mapping [36m304 [0m50.705 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf (0) of pheyvaer...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [WORKBENCH LOG] Retrieving schedules..
+    [0mGET /workbench/fetch/rdf [36m304 [0m95.574 ms - -[0m
+    [0mGET /workbench/schedules [36m304 [0m104.094 ms - -[0m
+    [WORKBENCH LOG] Retrieving data descriptions of pheyvaer...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/fetch/description [36m304 [0m166.296 ms - -[0m
+    [WORKBENCH LOG] Retrieving schedules..
+    [WORKBENCH LOG] Retrieving rdf (0) of pheyvaer...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    []
+    [WORKBENCH LOG] Retrieving mappings of pheyvaer...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/schedules [36m304 [0m81.326 ms - -[0m
+    [0mGET /workbench/fetch/rdf [36m304 [0m93.694 ms - -[0m
+    [0mGET /workbench/fetch/mapping [36m304 [0m111.374 ms - -[0m
+    [WORKBENCH LOG] Retrieving data descriptions of pheyvaer...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/fetch/description [36m304 [0m213.144 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf (0) of pheyvaer...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    []
+    [WORKBENCH LOG] Retrieving mappings of pheyvaer...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/fetch/rdf [36m304 [0m88.191 ms - -[0m
+    [0mGET /workbench/fetch/mapping [36m304 [0m109.559 ms - -[0m
+    [WORKBENCH LOG] Retrieving schedules..
+    [WORKBENCH LOG] Retrieving data descriptions of pheyvaer...
+    [0mGET /workbench/schedules [36m304 [0m202.858 ms - -[0m
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/fetch/description [32m200 [0m316.171 ms - -[0m
+    [0mGET / [32m200 [0m235.000 ms - -[0m
+    [0mGET /views/workbench/index.min.css?br34k-01 [32m200 [0m43.776 ms - -[0m
+    [0mGET /views/index.min.css?br34k-01 [32m200 [0m31.104 ms - 241[0m
+    [0mGET /media/rml.png [32m200 [0m54.165 ms - 4811[0m
+    [0mGET /layouts/core.min.css?br34k-01 [32m200 [0m4.754 ms - -[0m
+    [0mGET /media/ajax-pulse.gif [32m200 [0m7.593 ms - 522[0m
+    [0mGET /layouts/core.min.js?br34k-01 [32m200 [0m45.858 ms - -[0m
+    [0mGET /vendor/font-awesome/fonts/fontawesome-webfont.woff2?v=4.6.1 [32m200 [0m0.919 ms - 70728[0m
+    [0mGET /favicon.ico [32m200 [0m3.091 ms - -[0m
+    [0mGET /signup [32m200 [0m320.692 ms - -[0m
+    [0mGET /layouts/core.min.css?br34k-01 [36m304 [0m18.030 ms - -[0m
+    [0mGET /views/workbench/index.min.css?br34k-01 [36m304 [0m37.804 ms - -[0m
+    [0mGET /media/rml.png [36m304 [0m44.007 ms - -[0m
+    [0mGET /layouts/core.min.js?br34k-01 [36m304 [0m41.726 ms - -[0m
+    [0mGET /views/signup/index.min.css?br34k-01 [32m200 [0m69.891 ms - 103[0m
+    [0mGET /media/ajax-pulse.gif [36m304 [0m5.352 ms - -[0m
+    [0mGET /views/signup/index.min.js?br34k-01 [32m200 [0m32.877 ms - -[0m
+    [0mGET /vendor/font-awesome/fonts/fontawesome-webfont.woff2?v=4.6.1 [36m304 [0m0.871 ms - -[0m
+    [0mGET /favicon.ico [36m304 [0m1.276 ms - -[0m
+    [0mGET /login/ [32m200 [0m351.309 ms - -[0m
+    [0mGET /layouts/core.min.css?br34k-01 [36m304 [0m1.444 ms - -[0m
+    [0mGET /views/workbench/index.min.css?br34k-01 [36m304 [0m24.911 ms - -[0m
+    [0mGET /media/rml.png [36m304 [0m27.094 ms - -[0m
+    [0mGET /layouts/core.min.js?br34k-01 [36m304 [0m25.942 ms - -[0m
+    [0mGET /media/ajax-pulse.gif [36m304 [0m7.109 ms - -[0m
+    [0mGET /views/login/index.min.js?br34k-01 [32m200 [0m34.027 ms - -[0m
+    [0mGET /vendor/font-awesome/fonts/fontawesome-webfont.woff2?v=4.6.1 [36m304 [0m1.755 ms - -[0m
+    [0mGET /favicon.ico [36m304 [0m2.733 ms - -[0m
+    [0mPOST /login/ [32m200 [0m556.659 ms - 40[0m
+    [0mGET /login/ [36m302 [0m34.078 ms - 58[0m
+    Request written.
+    [0mGET /admin/ [32m200 [0m633.161 ms - -[0m
+    [0mGET /layouts/core.min.css?br34k-01 [36m304 [0m6.110 ms - -[0m
+    [0mGET /media/rml.png [36m304 [0m17.630 ms - -[0m
+    [0mGET /layouts/core.min.js?br34k-01 [36m304 [0m21.116 ms - -[0m
+    [0mGET /views/admin/index.min.css?br34k-01 [32m200 [0m25.088 ms - 637[0m
+    [0mGET /layouts/admin.min.css?br34k-01 [32m200 [0m29.352 ms - 217[0m
+    [0mGET /media/ajax-pulse.gif [36m304 [0m3.385 ms - -[0m
+    [0mGET /layouts/admin.min.js?br34k-01 [32m200 [0m29.423 ms - -[0m
+    [0mGET /vendor/font-awesome/fonts/fontawesome-webfont.woff2?v=4.6.1 [36m304 [0m0.683 ms - -[0m
+    [0mGET /favicon.ico [36m304 [0m0.733 ms - -[0m
+    [0mGET /admin/users/ [32m200 [0m227.059 ms - -[0m
+    [0mGET /layouts/core.min.css?br34k-01 [36m304 [0m7.254 ms - -[0m
+    [0mGET /layouts/admin.min.css?br34k-01 [36m304 [0m19.026 ms - -[0m
+    [0mGET /media/rml.png [36m304 [0m23.680 ms - -[0m
+    [0mGET /layouts/core.min.js?br34k-01 [36m304 [0m25.803 ms - -[0m
+    [0mGET /layouts/admin.min.js?br34k-01 [36m304 [0m28.348 ms - -[0m
+    [0mGET /views/admin/users/index.min.css?br34k-01 [32m200 [0m41.370 ms - 145[0m
+    [0mGET /media/ajax-pulse.gif [36m304 [0m1.877 ms - -[0m
+    [0mGET /views/admin/users/index.min.js?br34k-01 [32m200 [0m25.242 ms - -[0m
+    [0mGET /vendor/font-awesome/fonts/fontawesome-webfont.woff2?v=4.6.1 [36m304 [0m1.020 ms - -[0m
+    [0mGET /favicon.ico [36m304 [0m1.361 ms - -[0m
+    [0mGET /logout/ [36m302 [0m17.269 ms - 46[0m
+    [0mGET / [36m304 [0m105.848 ms - -[0m
+    [0mGET /layouts/core.min.css?br34k-01 [36m304 [0m3.861 ms - -[0m
+    [0mGET /views/workbench/index.min.css?br34k-01 [36m304 [0m10.179 ms - -[0m
+    [0mGET /views/index.min.css?br34k-01 [36m304 [0m18.467 ms - -[0m
+    [0mGET /media/rml.png [36m304 [0m19.262 ms - -[0m
+    [0mGET /layouts/core.min.js?br34k-01 [36m304 [0m19.109 ms - -[0m
+    [0mGET /media/ajax-pulse.gif [36m304 [0m4.544 ms - -[0m
+    [0mGET /vendor/font-awesome/fonts/fontawesome-webfont.woff2?v=4.6.1 [36m304 [0m0.769 ms - -[0m
+    [0mGET /favicon.ico [36m304 [0m0.872 ms - -[0m
+    [0mGET /signup [36m304 [0m161.485 ms - -[0m
+    [0mGET /layouts/core.min.css?br34k-01 [36m304 [0m2.833 ms - -[0m
+    [0mGET /views/signup/index.min.css?br34k-01 [36m304 [0m5.174 ms - -[0m
+    [0mGET /views/workbench/index.min.css?br34k-01 [36m304 [0m6.404 ms - -[0m
+    [0mGET /media/rml.png [36m304 [0m7.825 ms - -[0m
+    [0mGET /layouts/core.min.js?br34k-01 [36m304 [0m10.289 ms - -[0m
+    [0mGET /views/signup/index.min.js?br34k-01 [36m304 [0m12.395 ms - -[0m
+    [0mGET /media/ajax-pulse.gif [36m304 [0m2.038 ms - -[0m
+    [0mGET /vendor/font-awesome/fonts/fontawesome-webfont.woff2?v=4.6.1 [36m304 [0m0.767 ms - -[0m
+    [0mGET /favicon.ico [36m304 [0m1.291 ms - -[0m
+    Error Sending Welcome Email: Email failed to send. Error: authorization.failed
+    [0mPOST /signup/ [32m200 [0m1592.277 ms - 71[0m
+    [0mGET /account/ [32m200 [0m214.886 ms - -[0m
+    [0mGET /layouts/core.min.css?br34k-01 [36m304 [0m7.543 ms - -[0m
+    [0mGET /layouts/core.min.js?br34k-01 [36m304 [0m22.777 ms - -[0m
+    [0mGET /media/rml.png [36m304 [0m26.786 ms - -[0m
+    [0mGET /views/workbench/index.min.css?br34k-01 [36m304 [0m34.638 ms - -[0m
+    [0mGET /media/ajax-pulse.gif [36m304 [0m5.771 ms - -[0m
+    [0mGET /views/account/index.min.css?br34k-01 [32m200 [0m55.210 ms - 242[0m
+    [0mGET /views/account/index.min.js?br34k-01 [32m200 [0m55.860 ms - 339[0m
+    [0mGET /vendor/font-awesome/fonts/fontawesome-webfont.woff2?v=4.6.1 [36m304 [0m1.445 ms - -[0m
+    [0mGET /favicon.ico [36m304 [0m1.448 ms - -[0m
+    [0mGET /workbench/ [32m200 [0m1466.155 ms - -[0m
+    [0mGET /vendor/jquery.cookie/jquery.cookie.js [32m200 [0m14.573 ms - -[0m
+    [0mGET /js/jquery.form.js [32m200 [0m19.060 ms - -[0m
+    [0mGET /js/backbone/publish/publish.js [32m200 [0m22.594 ms - -[0m
+    [0mGET /vendor/underscore/underscore.js [32m200 [0m21.626 ms - -[0m
+    [0mGET /vendor/backbone/backbone.js [32m200 [0m14.543 ms - -[0m
+    [0mGET /layouts/core.min.css?br34k-01 [36m304 [0m11.348 ms - -[0m
+    [0mGET /views/workbench/index.min.css?br34k-01 [36m304 [0m8.727 ms - -[0m
+    [0mGET /layouts/rml.css [32m200 [0m14.136 ms - 359[0m
+    [0mGET /vendor/bootstrap-select/bootstrap-select.min.css [32m200 [0m12.920 ms - -[0m
+    [0mGET /vendor/bootstrap/js/modal.js [32m200 [0m16.098 ms - -[0m
+    [0mGET /vendor/jquery/jquery.js [32m200 [0m10.424 ms - -[0m
+    [0mGET /vendor/bootstrap-select/bootstrap-select.min.js [32m200 [0m20.211 ms - -[0m
+    [0mGET /layouts/core.min.js?br34k-01 [36m304 [0m3.775 ms - -[0m
+    [0mGET /vendor/momentjs/moment.js [32m200 [0m20.908 ms - -[0m
+    [0mGET /js/file_uploads.js [32m200 [0m16.381 ms - -[0m
+    [0mGET /vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js [32m200 [0m16.526 ms - -[0m
+    [0mGET /media/rml.png [36m304 [0m10.153 ms - -[0m
+    [0mGET /views/workbench/index.js [32m200 [0m26.143 ms - -[0m
+    [0mGET /media/ajax-pulse.gif [36m304 [0m5.914 ms - -[0m
+    [0mGET /vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js [36m304 [0m1.100 ms - -[0m
+    [0mGET /vendor/font-awesome/fonts/fontawesome-webfont.woff2?v=4.6.1 [36m304 [0m0.546 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf (0) of andimou...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    []
+    [WORKBENCH LOG] Retrieving mappings of andimou...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/fetch/rdf [32m200 [0m71.117 ms - 2[0m
+    [0mGET /workbench/fetch/mapping [32m200 [0m89.907 ms - 2[0m
+    [WORKBENCH LOG] Retrieving schedules..
+    [WORKBENCH LOG] Retrieving data descriptions of andimou...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/schedules [32m200 [0m138.185 ms - 2[0m
+    [0mGET /workbench/fetch/description [32m200 [0m153.860 ms - 2[0m
+    [0mGET /favicon.ico [36m304 [0m5.761 ms - -[0m
+    []
+    [WORKBENCH LOG] Retrieving mappings of andimou...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/fetch/mapping [36m304 [0m26.838 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf (0) of andimou...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [0mGET /workbench/fetch/rdf [36m304 [0m70.862 ms - -[0m
+    [WORKBENCH LOG] Retrieving data descriptions of andimou...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [WORKBENCH LOG] Retrieving schedules..
+    [0mGET /workbench/fetch/description [36m304 [0m81.803 ms - -[0m
+    [0mGET /workbench/schedules [36m304 [0m109.891 ms - -[0m
+    [WORKBENCH LOG] Retrieving schedules..
+    [WORKBENCH LOG] Retrieving rdf (0) of andimou...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    []
+    [WORKBENCH LOG] Retrieving mappings of andimou...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/schedules [36m304 [0m91.307 ms - -[0m
+    [0mGET /workbench/fetch/rdf [36m304 [0m110.452 ms - -[0m
+    [0mGET /workbench/fetch/mapping [36m304 [0m148.834 ms - -[0m
+    [WORKBENCH LOG] Retrieving data descriptions of andimou...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/fetch/description [36m304 [0m196.028 ms - -[0m
+    []
+    [WORKBENCH LOG] Retrieving mappings of andimou...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/fetch/mapping [36m304 [0m60.235 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf (0) of andimou...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [0mGET /workbench/fetch/rdf [36m304 [0m119.028 ms - -[0m
+    [WORKBENCH LOG] Retrieving schedules..
+    [0mGET /workbench/schedules [36m304 [0m168.087 ms - -[0m
+    [WORKBENCH LOG] Retrieving data descriptions of andimou...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [0mGET /workbench/fetch/description [36m304 [0m201.468 ms - -[0m
+    []
+    [WORKBENCH LOG] Retrieving mappings of andimou...
+    [WORKBENCH LOG] Retrieving mappings successful!
+    [0mGET /workbench/fetch/mapping [36m304 [0m38.669 ms - -[0m
+    [WORKBENCH LOG] Retrieving rdf (0) of andimou...
+    [WORKBENCH LOG] Retrieving rdf successful!
+    [0mGET /workbench/fetch/rdf [36m304 [0m80.629 ms - -[0m
+    [WORKBENCH LOG] Retrieving data descriptions of andimou...
+    [WORKBENCH LOG] Retrieving data descriptions successful!
+    [WORKBENCH LOG] Retrieving schedules..
+    [0mGET /workbench/fetch/description [36m304 [0m80.642 ms - -[0m
+    [0mGET /workbench/schedules [36m304 [0m85.344 ms - -[0m

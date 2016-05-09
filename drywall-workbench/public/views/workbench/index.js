@@ -138,20 +138,34 @@
           
           var selections = $('#triplelistdiv').children().children();
           var triplesToBeExecuted = [];
+	  var selectedAll = true;
           for(var i = 0; i < selections.length; i++) {
               if(selections.eq(i).find('input').prop('checked')) {
                   triplesToBeExecuted.push(this.model.attributes.triples[i]._id);
-              }
+              
+	      } else {
+		selectedAll = false;
+		}
+		
           }           
           
           var triples = {
               triples: triplesToBeExecuted
           }
-            
+          if(!selectedAll) {
           $.post('/workbench/mapping/execute/'+this.model.attributes._id+'/triples', triples , function() { 
               $("#mappingContainer").prepend('<div style="margin-top:15px" class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Mapping successful!</strong></div>');              
               app.render();
           });  
+			} else {
+	
+        $.post('/workbench/mapping/execute/'+this.model.attributes._id, function() {
+              $("#mappingContainer").prepend('<div style="margin-top:15px" class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Mapping successful!</strong></div>');
+              app.render();
+          });
+
+
+		}
         },          
         
         
@@ -255,7 +269,7 @@
               
                
                 app.mappingsContentView.model = this.model; 
-                app.executeMappingView.model = this.model;
+                //app.executeMappingView.model = this.model;
                 app.executeButtonView.model = this.model;
                 app.currentModel = this.model;
                 

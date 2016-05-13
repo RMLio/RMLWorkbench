@@ -68,16 +68,18 @@ var exports = module.exports = {
   addCSVW: function(req, res) {
       var user = req.user;
       var models = req.app.db.models;
+      var name = req.body.inputcsvwName;
+
       console.log('[WORKBENCH LOG] User ' + user.username + ' Adding CSVW');
 
       var license = req.body.inputcsvwLicense;
       var prefix = 'csvw';
-      var data = '<#CSVW_source> a csvw:Table;\n' +
+      var data = '<#' + name + '> a csvw:Table;\n' +
           '    csvw:url "' + req.body.inputcsvwURL + '" ;\n' +
           '    csvw:dialect [ a csvw:Dialect;\n' +
           '    csvw:delimiter "' + req.body.inputcsvwDelimiter + '";\n' +
           '    csvw:encoding "' + req.body.inputcsvwEncoding + '";\n' +
-          '    csvw:header ' + req.body.inputcsvwHeader + ' \n' 
+          '    csvw:header ' + req.body.inputcsvwHeader + ' \n';
         
     var description = { type: 'csvw',
                         data: data,
@@ -101,7 +103,7 @@ var exports = module.exports = {
       var prefix = 'd2rq';
 
       var data = '@prefix d2rq : <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .\n' +
-          '<#DB_source> a d2rq:Database;\n' +
+          '<#' + name + '> a d2rq:Database;\n' +
           '    d2rq:jdbcDSN "' + req.body.inputDBURL + '";\n' +
           '    d2rq:jdbcDriver "' + req.body.inputDBDriver + '";\n' +
           '    d2rq:username "' + req.body.inputDBUser + '";\n' +
@@ -125,7 +127,7 @@ var exports = module.exports = {
       var name = req.body.inputAPIName;
       var license = req.body.inputAPIicense;
       var prefix = 'hydra';
-      var data = '<#API_template_source>\n' +
+      var data = '<#' + name + '>\n' +
           'a hydra:IriTemplate\n' +
           'hydra:template "' + req.body.inputAPIURL + '";\n';
       var templateStuff = 'hydra:mapping \n' +
@@ -156,7 +158,7 @@ var exports = module.exports = {
       var license = req.body.inputSparqlicense;
       var prefix = 'sd';
       var data = '@prefix sd : <http://www.w3.org/ns/sparql-service-description#> .\n' +
-          '<#SPARQL_' + req.body.inputSparqlType + '_source> a sd:Service ;\n' +
+          '<#' + name + '> a sd:Service ;\n' +
           '    sd:endpoint <' + req.body.inputSparqlURL + '> ;\n' +
           '    sd:supportedLanguage sd:SPARQL11Query ;\n' +
           '    sd:resultFormat <http://www.w3.org/ns/formats/SPARQL_Results_' + req.body.inputSparqlType + '> .'     
@@ -179,7 +181,7 @@ var exports = module.exports = {
       var license = req.body.inputDCATLicense;
       var prefix = 'dcat';
       var models = req.app.db.models;
-      var data = '<#DCAT_source>\n' +
+      var data = '<#' + name + '>\n' +
           '   a dcat:Dataset ;\n' +
           '   dcat:distribution [\n' +
           'a dcat:Distribution;\n' +
@@ -200,6 +202,128 @@ var exports = module.exports = {
   },
      
   getDataDescriptions: function(req, res) {
+        var sourceschema = req.app.db.models.Description;
+        var idsources = req.user.descriptions;
+        console.log('[WORKBENCH LOG] Retrieving data descriptions of ' + req.user.username + '...');
+        util.retrieveDescriptions(idsources, sourceschema, (sources) => {
+            console.log('[WORKBENCH LOG] Retrieving data descriptions successful!');
+            res.send(sources);
+        });
+  },  
+  
+  
+    /*
+    * Logical Sources
+    */
+    
+   
+  addlogical_DB: function(req, res) {
+      var user = req.user;
+      var models = req.app.db.models;
+      var name = req.body.logicalDBName;
+      var license = req.body.logicalDBLicense;
+      var source = req.body.logicalDBSource;
+      var query = req.body.logicalDBQuery;
+
+      var data = '<#' + name + '> rml:logicalSource [\n' +
+          '   rml:source <#' + source + '> ;\n' +
+          '   rr:sqlVersion rr:SQL2008;\n' +
+          '   rml:query "' + query +'" ] .' ;
+        var logical = 
+        { type: 'DB',
+            name: name,
+            data: data,
+            _id : mongoose.Types.ObjectId(),
+            metadata: { license: license }
+          };  
+        saver.saveLogical( logical, models, user, () =>{
+                console.log('[WORKBENCH LOG] DCAT logical added sucessfully!');
+                res.send(200);
+        });  
+    },
+    
+  addlogical_API: function(req, res) {
+      var user = req.user;
+      var models = req.app.db.models;
+      var name = req.body.logicalAPIName;
+      var license = req.body.logicalAPILicense;
+      var type = req.body.logicalAPIType;
+      var iterator = req.body.logicalAPIIterator;
+      var source = req.body.logicalAPISource;
+
+      var data = '<#' + name + '> rml:logicalSource [\n' +
+          '   rml:source <#' + source + '> ;\n' +
+          '   rml:referenceFormulation ql:' +type + ';\n' +
+          '   rml:iterator  "' + iterator + '" ] .';         
+
+        var logical = 
+        { type: 'API',
+            name: name,
+            data: data,
+            _id : mongoose.Types.ObjectId(),
+            metadata: { license: license }
+          };  
+        saver.saveLogical( logical, models, user, () =>{
+                console.log('[WORKBENCH LOG] DCAT logical added sucessfully!');
+                res.send(200);
+        });                   
+    },
+    
+  addlogical_SPARQL: function(req, res) {
+      var user = req.user;
+      var models = req.app.db.models;
+      var name = req.body.logicalSparqlName;
+      var license = req.body.logicalSparqlLicense;
+      var type = req.body.logicalSparqlType;
+      var iterator = req.body.logicalSparqlIterator;
+      var source = req.body.logicalSparqlSource;
+      var query = req.body.logicalSparqlQuery;
+
+      var data = '<#' + name + '> rml:logicalSource [\n' +
+          '   rml:source <#' + source + '> ;\n' +
+          '   rml:referenceFormulation ql:' +type + ';\n' +
+          '   rml:iterator  "' + iterator + '"\n' +          
+          '   rml:query "' +query+'" ] .' ;
+        var logical = 
+        { type: 'SPARQL',
+            name: name,
+            data: data,
+            _id : mongoose.Types.ObjectId(),
+            metadata: { license: license }
+          };  
+        saver.saveLogical( logical, models, user, () =>{
+                console.log('[WORKBENCH LOG] DCAT logical added sucessfully!');
+                res.send(200);
+        });                   
+},
+    
+  addlogical_DCAT: function(req, res) {
+      var user = req.user;
+      var models = req.app.db.models;
+      var name = req.body.logicalDCATName;
+      var license = req.body.logicalDCATLicense;
+      var type = req.body.logicalDCATType;
+      var iterator = req.body.logicalDCATIterator;
+      var source = req.body.logicalDCATSource;
+     
+      var data = '<#' + name + '> rml:logicalSource [\n' +
+          '   rml:source <#' + source + '> ;\n' +
+          '   rml:referenceFormulation ql:' +type + ';\n' +
+          '   rml:iterator  "' + iterator + '" ] .' ;
+        var logical = 
+        { type: 'DCAT',
+            name: name,
+            data: data,
+            _id : mongoose.Types.ObjectId(),
+            metadata: { license: license }
+          };  
+        saver.saveLogical( logical, models, user, () =>{
+                console.log('[WORKBENCH LOG] DCAT logical added sucessfully!');
+                res.send(200);
+        });
+  },
+     
+  getLogicalDescriptions: function(req, res) {
         var sourceschema = req.app.db.models.Description;
         var idsources = req.user.descriptions;
         console.log('[WORKBENCH LOG] Retrieving data descriptions of ' + req.user.username + '...');

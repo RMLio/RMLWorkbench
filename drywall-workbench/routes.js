@@ -54,6 +54,11 @@ exports = module.exports = function(app, passport, upload, ldfserver) {
   app.post('/workbench/fetch/sparql', workbenchCtrl.addSPARQL);  
   app.post('/workbench/fetch/dcat', workbenchCtrl.addDCAT);    
   app.get('/workbench/fetch/description', workbenchCtrl.getDataDescriptions);
+  app.post('/workbench/fetch/logical_db', workbenchCtrl.addlogical_DB);
+  app.post('/workbench/fetch/logical_api', workbenchCtrl.addlogical_API);
+  app.post('/workbench/fetch/logical_sparql', workbenchCtrl.addlogical_SPARQL);  
+  app.post('/workbench/fetch/logical_dcat', workbenchCtrl.addlogical_DCAT);    
+  app.get('/workbench/fetch/logical_description', workbenchCtrl.getLogicalDescriptions);
 
   //mapping on workbench
   app.post('/workbench/mapping/execute/:mapping_id', workbenchCtrl.executeMappingFromFile);

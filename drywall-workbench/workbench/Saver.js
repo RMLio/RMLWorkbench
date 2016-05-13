@@ -30,7 +30,27 @@ exports = module.exports =  {
 	            callback();
 	        }); 
         });    
-    },    
+    },   
+    
+    saveLogical : function(logical, models, user, callback) {
+        console.log('[WORKBENCH LOG] Logical name: ' + logical.name);
+        console.log('[WORKBENCH LOG] Creating new logical entry in database...');
+        models.Logical.create(logical, (err, logicalSchema) => {
+           if(err) throw err;
+           console.log('[WORKBENCH LOG] Updating user logical files...');
+           models.User.update({
+	            _id: user._id
+	        }, {
+	            $addToSet: {
+	                logicals: logicalSchema._id
+	            }
+	        }, () => {
+	            if (err) throw err
+                console.log('[WORKBENCH LOG] Updating user logicals successful!');
+	            callback();
+	        }); 
+        });    
+    },  
 
 	//save the mapping
 	saveMapping : function(mapping, models, user, callback) {

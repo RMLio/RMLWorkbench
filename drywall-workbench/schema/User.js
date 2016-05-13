@@ -14,6 +14,7 @@ exports = module.exports = function(app, mongoose) {
     rdffiles: [],
     endpoints: [],
     descriptions: [],
+    logicals: [],
     isActive: String,
     timeCreated: { type: Date, default: Date.now },
     resetPasswordToken: String,

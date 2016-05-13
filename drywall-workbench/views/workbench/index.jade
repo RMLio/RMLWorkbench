@@ -79,11 +79,22 @@ block body
             span(aria-hidden='true') ×
           h4.modal-title Add a Data Catalog.
         div.modal-body
-          form(role='form' id='dcat_logical_Form' action='/workbench/fetch/dcat')
+          form(role='form' id='dcat_logical_Form' action='/workbench/fetch/logical_dcat')
             logical(type='hidden', name='_csrf', value=_csrf)
             div.form-group
               label(for='logicalDCATName') Name
               input.form-control.required(id='logicalDCATName' type='text' placeholder='Descriptive name')
+            div.form-group
+              label(for='logicalDCATSource') Type
+              select.selectpicker.form-control(id='logicalDCATSource' title='Source')
+                option POPULATE FROM THE PREVIOUS STEP
+            div.form-group
+              label(for='logicalDCATType') Reference Formulation
+              select.selectpicker.form-control(id='logicalDCATType' title='referenceFormulation')
+                option JSON
+                option CSS3
+                option XML
+                option CSV  
             div.form-group
               label(for='logicalDCATIterator') Iterator
               input.form-control.required(id='logicalDCATIterator' type='text' placeholder=':')
@@ -142,13 +153,13 @@ block body
             span(aria-hidden='true') ×
           h4.modal-title Add a Database description
         div.modal-body
-          form(role='form' id='db_logical_Form' action='/workbench/fetch/db')
+          form(role='form' id='db_logical_Form' action='/workbench/fetch/logical_db')
             logical(type='hidden', name='_csrf', value=_csrf)
             div.form-group
               label(for='logicalDBName') Name
               input.form-control(id='logicalDBName' type='text' placeholder='Descriptive name')
             div.form-group
-              label(for='logicalDBSource') Type
+              label(for='logicalDBSource') Source
               select.selectpicker.form-control(id='logicalDBSource' title='Source')
                 option POPULATE FROM THE PREVIOUS STEP  
             div.form-group
@@ -184,19 +195,20 @@ block body
             span(aria-hidden='true') ×
           h4.modal-title Add an Web API
         div.modal-body
-          form(role='form' id='api_logical_Form' action='/workbench/fetch/api')
+          form(role='form' id='api_logical_Form' action='/workbench/fetch/logical_api')
             logical(type='hidden', name='_csrf', value=_csrf)
             div.form-group
               label(for='logicalAPIName') Name
               input.form-control(id='logicalAPIName' type='text' placeholder='Descriptive name')
             div.form-group
-              label(for='logicalAPISource') Type
+              label(for='logicalAPISource') Source
               select.selectpicker.form-control(id='logicalAPISource' title='Source')
                 option POPULATE FROM THE PREVIOUS STEP   
             div.form-group
-              label(for='inputAPIType') Type
-              select.selectpicker.form-control(id='inputAPIType' title='Type')
+              label(for='logicalAPIType') Reference Formulation
+              select.selectpicker.form-control(id='logicalAPIType' title='referenceFormulation')
                 option JSON
+                option CSS3
                 option XML
                 option CSV 
             div.form-group
@@ -238,7 +250,7 @@ block body
             span(aria-hidden='true') ×
           h4.modal-title Add an SPARQL logical source
         div.modal-body
-          form(role='form' id='sparql_logical_Form' action='/workbench/fetch/sparql_logical')
+          form(role='form' id='sparql_logical_Form' action='/workbench/fetch/logical_sparql')
             logical(type='hidden', name='_csrf', value=_csrf)
             div.form-group
               label(for='LogicalSparqlName') Name
@@ -246,7 +258,14 @@ block body
             div.form-group
               label(for='logicalSparqlSource') Type
               select.selectpicker.form-control(id='logicalSparqlSource' title='Source')
-                option POPULATE FROM THE PREVIOUS STEP          
+                option POPULATE FROM THE PREVIOUS STEP  
+            div.form-group
+              label(for='logicalSparqlRef') Reference Formulation
+              select.selectpicker.form-control(id='logicalSparqlRef' title='referenceFormulation')
+                option JSON
+                option CSS3
+                option XML
+                option CSV         
             div.form-group
               label(for='logicalSparqlIterator') Iterator
               input.form-control(id='logicalSparqlIterator' type='text' placeholder='/')
@@ -550,7 +569,7 @@ block body
                             span.caret
                         ul.dropdown-menu(aria-labelledby='dropdownInput')
                             li
-                              a(href='#' data-toggle='modal' data-target='#db-logical') Database
+                              a(href='#' data-toggle='modal' data-target='#db-input') Database
                             li
                               a(href='#' data-toggle='modal' data-target='#dcat-input') DCAT
                             li
@@ -566,34 +585,34 @@ block body
                               a(href='#' id='clearAllInput') Remove all sources
                div.panel-body.text-center(id='inputMain' class='workbenchElement') 
                 
-                 script#logical-list-item(type='text/template').
+                 script#input-list-item(type='text/template').
                        <h6><%= name %></h6>                        
                           
-         div.col-md-9
-            div.panel.panel-info
-               div.panel-heading  
-                 div.row    
-                   div.col-md-4            
-                     h3.panel-title Content
-                   div.col-md-1.col-md-offset-7   
-                     div.dropdown
-                        button#dropdownInput2.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
-                            | 
-                            span.caret
-                        ul.dropdown-menu(aria-labelledby='dropdownInput2')
-                            li
-                                a(href='#' data-toggle='modal' data-target='#') Edit
-                            li
-                                a(href='#') Details
-                            
-               div.panel-body(id='inputBody')
-                 div.row 
-                   div.col-md-6
-                     h4(id='inputTitle')          
-                 div.row                           
-                   div.col-md-12(id='inputContent' class='workbenchElement')
-                     script#input-content(type='text/template').
-                       <%= convertedData %>
+        div.col-md-9
+          div.panel.panel-info
+            div.panel-heading  
+                div.row    
+                  div.col-md-4            
+                    h3.panel-title Content
+                  div.col-md-1.col-md-offset-7   
+                    div.dropdown
+                    button#dropdownInput2.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
+                        | 
+                        span.caret
+                    ul.dropdown-menu(aria-labelledby='dropdownInput2')
+                        li
+                            a(href='#' data-toggle='modal' data-target='#') Edit
+                        li
+                            a(href='#') Details
+                        
+            div.panel-body(id='inputBody')
+                div.row 
+                  div.col-md-6
+                    h4(id='inputTitle')          
+                div.row                           
+                  div.col-md-12(id='inputContent' class='workbenchElement')
+                    script#input-content(type='text/template').
+                      <%= convertedData %>
                        
                        
           //div.col-md-9

@@ -961,33 +961,11 @@ AddButtonNoFile("#db_input_Form");
 AddButtonNoFile("#sparql_input_Form");
 AddButtonNoFile("#dcat_input_Form");
 AddButtonNoFile("#csvw_input_Form");
- /*$('#csvw_input_Form').on("submit", function(event){
-        event.preventDefault(); 
-        var form_url = $("form[id='csvw_input_Form']").attr("action");
-        var CSRF_TOKEN = $('input[name="_csrf"]').val();                    
-        var inputs = $('#csvw_input_Form .form-control');
-        var values = {};
-        inputs.each(function() {
-            values[ $(this).attr("id")] = $(this).val();
-            console.log( $(this).attr("id") + " " + $(this).val());
-        });
-
-        $.ajax({
-            url:  form_url,
-            type: 'POST',
-            headers: {
-                'X-CSRF-Token': $.cookie("_csrfToken")
-            },
-            data: values,
-            
-            dataType: 'JSON',
-            statusCode: {
-                200: function() {
-                    app.render();
-                }   
-            }            
-        });       
-   });  */      
+AddButtonNoFile("#db_logical_Form");
+AddButtonNoFile("#api_logical_Form");
+AddButtonNoFile("#sparql_logical_Form");
+AddButtonNoFile("#dcat_logical_Form");
+ 
 
 
    /**

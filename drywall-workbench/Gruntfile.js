@@ -45,6 +45,14 @@ module.exports = function(grunt) {
           {
             expand: true, cwd: 'node_modules/underscore/',
             src: ['underscore.js'], dest: 'public/vendor/underscore/'
+          },
+          {
+            expand: true, cwd: 'node_modules/eonasdan-bootstrap-datetimepicker/',
+            src: ['build/js/**', 'build/css/**'], dest: 'public/vendor/eonasdan-bootstrap-datetimepicker/'
+          },
+          {
+            expand: true, cwd: 'node_modules/bootstrap-select/',
+            src: ['dist/js/**', 'dist/css/**'], dest: 'public/vendor/bootstrap-select/'
           }
         ]
       }

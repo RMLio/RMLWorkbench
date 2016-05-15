@@ -88,13 +88,10 @@ var exports = module.exports =  {
 		
         //removing duplicates
         sourcenames = uniq_fast(sourcenames);
-        console.log('SOURCENAMES');
-        console.log(sourcenames);
         
 		for(var i = 0; i < sources.length; i++) {
 			for(var j = 0; j < sourcenames.length; j++) {
 				//compares the filenames and checks if the source isn't already added to the list
-				console.log(sources[i]);
 				if(sources[i]!=null) {
 					if(sources[i].filename == sourcenames[j] && addednames.indexOf(sources[i].filename) < 0) {
 						//source is needed!

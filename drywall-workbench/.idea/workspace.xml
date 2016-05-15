@@ -24,8 +24,8 @@
       <file leaf-file-name="TripleParser.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/workbench/TripleParser.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="608">
-              <caret line="362" column="107" selection-start-line="362" selection-start-column="107" selection-end-line="362" selection-end-column="107" />
+            <state relative-caret-position="713">
+              <caret line="376" column="24" selection-start-line="376" selection-start-column="24" selection-end-line="376" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -98,8 +98,18 @@
       <file leaf-file-name="WorkbenchController.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/workbench/WorkbenchController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1758">
-              <caret line="451" column="6" selection-start-line="451" selection-start-column="6" selection-end-line="451" selection-end-column="6" />
+            <state relative-caret-position="603">
+              <caret line="407" column="28" selection-start-line="407" selection-start-column="28" selection-end-line="407" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Mapper.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/workbench/Mapper.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-231">
+              <caret line="93" column="97" selection-start-line="93" selection-start-column="97" selection-end-line="93" selection-end-column="97" />
               <folding />
             </state>
           </provider>
@@ -125,16 +135,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mapping.rml.ttl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mapping.rml.ttl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-802">
-              <caret line="14" column="11" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="IdeDocumentHistory">
@@ -145,11 +145,12 @@
         <option value="$PROJECT_DIR$/Gruntfile.js" />
         <option value="$PROJECT_DIR$/mapping.rml.ttl" />
         <option value="$PROJECT_DIR$/schema/Mapping.js" />
-        <option value="$PROJECT_DIR$/workbench/WorkbenchController.js" />
         <option value="$PROJECT_DIR$/views/workbench/index.jade" />
         <option value="$PROJECT_DIR$/workbench/Saver.js" />
         <option value="$PROJECT_DIR$/public/views/workbench/index.js" />
         <option value="$PROJECT_DIR$/workbench/Reader.js" />
+        <option value="$PROJECT_DIR$/workbench/WorkbenchController.js" />
+        <option value="$PROJECT_DIR$/workbench/Mapper.js" />
         <option value="$PROJECT_DIR$/workbench/TripleParser.js" />
       </list>
     </option>
@@ -386,12 +387,12 @@
       <option name="presentableId" value="Default" />
       <updated>1463224250270</updated>
       <workItem from="1463224256343" duration="2481000" />
-      <workItem from="1463236955868" duration="35922000" />
+      <workItem from="1463236955868" duration="37588000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38403000" />
+    <option name="totallyTimeSpent" value="40069000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
@@ -538,14 +539,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/workbench/WorkbenchController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1758">
-          <caret line="451" column="6" selection-start-line="451" selection-start-column="6" selection-end-line="451" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/views/workbench/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="309">
@@ -592,10 +585,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/workbench/WorkbenchController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="603">
+          <caret line="407" column="28" selection-start-line="407" selection-start-column="28" selection-end-line="407" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workbench/Mapper.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-231">
+          <caret line="93" column="97" selection-start-line="93" selection-start-column="97" selection-end-line="93" selection-end-column="97" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/workbench/TripleParser.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="608">
-          <caret line="362" column="107" selection-start-line="362" selection-start-column="107" selection-end-line="362" selection-end-column="107" />
+        <state relative-caret-position="713">
+          <caret line="376" column="24" selection-start-line="376" selection-start-column="24" selection-end-line="376" selection-end-column="24" />
           <folding />
         </state>
       </provider>

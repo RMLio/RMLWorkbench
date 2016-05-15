@@ -405,7 +405,7 @@ var exports = module.exports = {
                     res.send(200);
                 });
             } else {
-                res.send(200);
+                res.send(409);
             }
 
         });

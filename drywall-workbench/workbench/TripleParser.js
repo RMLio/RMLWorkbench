@@ -38,7 +38,7 @@ var exports = module.exports = {
 
         exports.parse(mapping, function(triples, prefixes) {
 
-            mappingObject.triples = triples;
+            mappingObject.triples = fix(triples);
             mappingObject.prefixes = prefixes;
 
             lookUpNames(mappingObject);
@@ -60,6 +60,15 @@ var exports = module.exports = {
  * Private methods
  *
  */
+
+var fix = function (triples) {
+    for(var i = 0; i < triples.length; i++) {
+        if(triples[i].predicate == 'http://semweb.mmlab.be/ns/rml#query') {
+            triples[i].object = '""' + triples[i].object + '""';
+        }
+    }
+    return triples;
+}
 
 /**
  * Look for names of different triple types
@@ -200,7 +209,7 @@ var convertParsedMappingObject = function(triples, prefixes, unique) {
  */
 var addPrefixes = function(input,prefixes) {
     for(var prefix in prefixes){
-        input+= '@prefix ' + prefix + ':\t\t\t<' + prefixes[prefix] + '>\n';
+        input+= '@prefix ' + prefix + ':\t\t\t<' + prefixes[prefix] + '> .\n';
     }
     return input;
 }
@@ -350,7 +359,7 @@ var convertUniqToString = function(uniq) {
 //replace method
 String.prototype.replaceAt=function(index, character) {
     return this.substr(0, index) + character + this.substr(index+character.length);
-}
+};
 
 
 var getFormattedMapping = function(mapping) {
@@ -361,17 +370,15 @@ var getFormattedMapping = function(mapping) {
         }
     }
     return convertParsedMappingObject(mapping.triples, mapping.prefixes, uniq).replace(/(\<)(\w*:\w*)(\>)/g,"$2");
-}
+};
 
 
 //testing
-fs.readFile('mapping.rml.ttl', 'utf8', function(err, document) {
+fs.readFile('bigtest.rml', 'utf8', function(err, document) {
 
 
     exports.parseRMLMapping(document, function(mapping) {
-
         console.log(getFormattedMapping(mapping));
-
     });
 
 

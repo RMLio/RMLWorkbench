@@ -128,6 +128,16 @@ exports = module.exports =  {
 
 	},
 
+	updateMappingObject: function(models, mappingObject, mappingID, callback) {
+		models.Mapping.update({
+				_id: mappingID
+			}, {
+				parsedObject : mappingObject
+			}, function(err) {
+				callback(err);
+			});
+	},
+
 	//save source
 	saveSource : function(source, models, user, callback) {
 

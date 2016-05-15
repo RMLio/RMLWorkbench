@@ -48,7 +48,47 @@ var exports = module.exports = {
 
         });
 
+    },
+
+    updateLogicalSource: function(mappingObject) {
+
+        var triples = mappingObject.triples;
+        var prefixes = mappingObject.prefixes;
+
+        for(var i = 0; i < mappingObject.logicalSources.length; i++) {
+            for(var j = 0; j < mappingObject.logicalSources[i].triples.length; j++) {
+                for(var k = 0 ; k < triples.length ;k++) {
+                    if(triples[k].subject == mappingObject.logicalSources[i].triples[j].subject
+                        && triples[k].predicate == mappingObject.logicalSources[i].triples[j].predicate) {
+                        triples[k] = mappingObject.logicalSources[i].triples[j];
+                    }
+                }
+            }
+        }
+
+        var newMappingObject = {
+
+            mappingDefinitions: [],
+            logicalSources: [],
+            inputSources: [],
+            mappingDefinitionsTermMappings:[],
+            prefixes: undefined,
+            toString: ''
+        };
+
+
+        newMappingObject.triples = fix(triples);
+        newMappingObject.prefixes = prefixes;
+
+        lookUpNames(newMappingObject);
+        addDetails(newMappingObject);
+        newMappingObject.toString = getFormattedMapping(newMappingObject);
+
+
+        return newMappingObject;
     }
+
+
 
  };
 
@@ -136,25 +176,36 @@ var addDetails = function(mappingObject) {
     //mapping definitions
     for(var i = 0; i < mappingObject.mappingDefinitions.length; i++) {
         addTriples(mappingObject.mappingDefinitions[i], mappingObject);
+        addString(mappingObject.mappingDefinitions[i],mappingObject.prefixes);
     }
 
     //mapping definitions
     for(var i = 0; i < mappingObject.mappingDefinitionsTermMappings.length; i++) {
         addTriples(mappingObject.mappingDefinitionsTermMappings[i], mappingObject);
+        addString(mappingObject.mappingDefinitionsTermMappings[i],mappingObject.prefixes);
     }
 
     //logical sources
     for(var i = 0; i < mappingObject.inputSources.length; i++) {
         addTriples(mappingObject.inputSources[i], mappingObject);
+        addString(mappingObject.inputSources[i],mappingObject.prefixes);
     }
 
     //input sources
     for(var i = 0; i < mappingObject.logicalSources.length; i++) {
         addTriples(mappingObject.logicalSources[i], mappingObject);
+        addString(mappingObject.logicalSources[i],mappingObject.prefixes);
     }
 
 
 };
+
+/**
+ *
+ */
+var addString = function(wrapper, prefixes) {
+    wrapper.toString = getFormattedTriples(wrapper.triples, prefixes);
+}
 
 /**
  * Add triples to all wrappers
@@ -361,6 +412,15 @@ String.prototype.replaceAt=function(index, character) {
     return this.substr(0, index) + character + this.substr(index+character.length);
 };
 
+var getFormattedTriples= function(triples, prefixes) {
+    var uniq = [];
+    for(var i = 0; i < triples.length; i++) {
+        if(!n3util.isBlank(triples[i].subject) && notInUniq(triples[i].subject,uniq) ) {
+            uniq.push({head:triples[i].subject,tail:[]});
+        }
+    }
+    return convertParsedMappingObject(triples, prefixes, uniq).replace(/(\<)(\w*:\w*)(\>)/g,"$2");
+}
 
 var getFormattedMapping = function(mapping) {
     var uniq = [];
@@ -378,7 +438,8 @@ fs.readFile('bigtest.rml', 'utf8', function(err, document) {
 
 
     exports.parseRMLMapping(document, function(mapping) {
-        console.log(getFormattedMapping(mapping));
+        mapping.logicalSources[0].triples[0].object='TESTTTTTT';
+        console.log(mapping.triples);
     });
 
 

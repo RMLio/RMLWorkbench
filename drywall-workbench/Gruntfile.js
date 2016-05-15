@@ -7,6 +7,10 @@ module.exports = function(grunt) {
       vendor: {
         files: [
           {
+            expand: true, cwd: 'node_modules/noty/js/noty/packaged/',
+            src: ['jquery.noty.packaged.min.js'], dest: 'public/vendor/noty/js/'
+          },
+          {
             expand: true, cwd: 'node_modules/bootstrap/',
             src: ['js/**', 'less/**'], dest: 'public/vendor/bootstrap/'
           },

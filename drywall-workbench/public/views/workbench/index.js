@@ -10,8 +10,12 @@
     app.currentModel;
     
     app.currentTriples = [];
-    
-    
+
+
+    $.fn.modal.Constructor.prototype.enforceFocus = function () {};
+
+
+
     /***
      * 
      * MODELS PUBLISH
@@ -207,6 +211,7 @@
        },                
        
        render: function() {
+           $(this.el).attr('id', 'bigpre');
             $(this.el).html(this.template(this.model.toJSON()));
             return this;  
        }
@@ -532,7 +537,9 @@
         template: _.template($('#schedule-list-item').html()),
 
         initialize: function() {
-            
+
+
+
         },
         
         events: {
@@ -710,8 +717,8 @@
                     $('#mappingContent').css('max-height',$(window).height()*0.75 + 'px');                                     
                     $('#mappingBody').css('min-height',$(window).height()*0.82 + 'px');
                     $('#mappingBody').css('max-height',$(window).height()*0.82 + 'px');
-                    $('pre').css('min-height',$(window).height()*0.75 + 'px');
-                    $('pre').css('max-height',$(window).height()*0.75 + 'px');
+                    $('#bigpre').css('min-height',$(window).height()*0.75 + 'px');
+                    $('#bigpre').css('max-height',$(window).height()*0.75 + 'px');
                     
                     
                     //Setting mapping list scheduling
@@ -734,8 +741,8 @@
                     $('#mappingContent').css('max-height',$(window).height()*0.75 + 'px');                                     
                     $('#mappingBody').css('min-height',$(window).height()*0.82 + 'px');
                     $('#mappingBody').css('max-height',$(window).height()*0.82 + 'px');
-                    $('pre').css('min-height',$(window).height()*0.75 + 'px');
-                    $('pre').css('max-height',$(window).height()*0.75 + 'px');
+                    $('#bigpre').css('min-height',$(window).height()*0.75 + 'px');
+                    $('#bigpre').css('max-height',$(window).height()*0.75 + 'px');
                 }
                 
             }}); 
@@ -779,8 +786,8 @@
                     $('#publishContent').css('max-height',$(window).height()*0.75 + 'px');    
                     $('#publishBody').css('min-height',$(window).height()*0.82 + 'px');
                     $('#publishBody').css('max-height',$(window).height()*0.82 + 'px');    
-                    $('pre').css('min-height',$(window).height()*0.75 + 'px');
-                    $('pre').css('max-height',$(window).height()*0.75 + 'px');                  
+                    $('bigpre').css('min-height',$(window).height()*0.75 + 'px');
+                    $('bigpre').css('max-height',$(window).height()*0.75 + 'px');
                 
                     
                         
@@ -795,8 +802,8 @@
                     $('#publishContent').css('max-height',$(window).height()*0.75 + 'px');    
                     $('#publishBody').css('min-height',$(window).height()*0.82 + 'px');
                     $('#publishBody').css('max-height',$(window).height()*0.82 + 'px');    
-                    $('pre').css('min-height',$(window).height()*0.75 + 'px');
-                    $('pre').css('max-height',$(window).height()*0.75 + 'px');  
+                    $('bigpre').css('min-height',$(window).height()*0.75 + 'px');
+                    $('bigpre').css('max-height',$(window).height()*0.75 + 'px');
                 }
             }}); 
             
@@ -1041,18 +1048,22 @@ AddButtonNoFile("#dcat_logical_Form");
     
     //setting button actions
     $('#clearMapping').click(function() {
+
         $.post('/workbench/clear/mapping/',{mappings: [app.currentModel.attributes._id]},function() {
             $("#mappingContainer").prepend('<div style="margin-top:15px" class="alert alert-info alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Mapping file cleared.</strong></div>');
+
             app.render();
         });
     });
     
     $('#clearAllMappings').click(function() {
         $.post('/workbench/clear/all/mapping',function() {
-            $("#mappingContainer").prepend('<div style="margin-top:15px" class="alert alert-info alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>All mapping files are cleared.</strong></div>');
+            notify('Mappings deleted!','information');
             app.render();
         });
     })
+
+
     
     //setting button actions
     $('#clearPublishing').click(function() {
@@ -1128,15 +1139,17 @@ AddButtonNoFile("#dcat_logical_Form");
             dataType: 'JSON',
             statusCode: {
                 200: function() {
-                    $("#uploadMapping_Form").append('<div style="margin-top:15px" class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Upload successful!</strong></div>')
-        
+                    notify('Upload successful!', 'success');
                     app.render();
-                }   
+                },
+                409: function() {
+                    notify('Upload failed...', 'error');
+                }
             }            
         });
             
         } else {
-            $("#uploadMapping_Form").append('<div style="margin-top:15px" class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Wrong file type!</strong></div>')
+            notify('Wrong file type!', 'warning');
         }
                       
     });
@@ -1170,8 +1183,7 @@ AddButtonNoFile("#dcat_logical_Form");
                 dataType: 'JSON',
                 statusCode: {
                     200: function() {
-                         $("#uploadPublishing_Form").append('<div style="margin-top:15px" class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Upload successful!</strong></div>')
-       
+                        notify('Upload successful!', 'success');
                         app.render();
                     }   
                 }            
@@ -1214,6 +1226,7 @@ AddButtonNoFile("#dcat_logical_Form");
             dataType: 'JSON',
             statusCode: {
                 200: function() {
+                    notify('Upload successful!', 'success');
                     app.render();
                 }   
             }            
@@ -1255,13 +1268,29 @@ AddButtonNoFile("#dcat_logical_Form");
             dataType: 'json',
             data: JSON.stringify(data),
             success    : function(){
-
+                notify('Publishing successful!', 'success');
         }
         });   
-     }); 
- 
-       
-    
+     });
+
+
+
+    var notify = function(text,type) {
+        var n = noty({text: text,layout: 'bottomCenter',
+            theme: 'relax', // or 'relax',
+            maxVisible: 5,
+            type: type,
+            timeout: true,
+            dismissQueue: true, // If you want to use queue feature set this true
+            template: '<div class="noty_message"><span class="noty_text"></span><div class="noty_close"></div></div>',
+            animation: {
+                open: 'animated fadeIn', // or Animate.css class names like: 'animated bounceInLeft'
+                close: 'animated fadeOut', // or Animate.css class names like: 'animated bounceOutLeft'
+                easing: 'swing',
+                speed: 500 // opening & closing animation speed
+            }});
+        n.setTimeout(2000);
+    }
     
     
     

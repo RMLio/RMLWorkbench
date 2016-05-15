@@ -5,6 +5,7 @@ var mapper = require('./Mapper');
 var reader = require('./Reader');
 var clearer = require('./Clearer');
 var saver = require('./Saver');
+var tripleParser = require('./TripleParser');
 var sparql = require('./Sparql');
 var fs = require('fs');
 
@@ -594,6 +595,25 @@ var exports = module.exports = {
             }
         }
         res.send(200);
+    },
+
+
+    /**
+     * 
+     * Logical Sources
+     * 
+     */
+    
+    updateLogicalSource: function(req, res) {
+        var mappingObject = tripleParser.updateLogicalSource(req.body.mappingObject);
+        saver.updateMappingObject(req.app.db.models, mappingObject, req.body.mappingID, function(err) {
+            if(err) {
+                res.send(409);
+            } else {
+                res.send(mappingObject);
+            }
+        });
+
     },
 
     /**

@@ -14,9 +14,13 @@ block head
   script(type='text/javascript' src='/vendor/momentjs/moment.js')
   script(type='text/javascript' src='/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js')
   link(rel='stylesheet' href='/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css')
+  script( type="text/javascript" src="/vendor/noty/js/jquery.noty.packaged.min.js")
   script(type='text/javascript' src='/js/file_uploads.js')
 block neck
+  script(type='text/javascript' src='/views/workbench/logicalSourcesDetailsModal.js')
   link(rel='stylesheet', href='/layouts/rml.css')
+  link(rel='stylesheet', href='/layouts/animate.css')
+
 
 block feet
   
@@ -556,6 +560,39 @@ block body
                 | Schedule
 
 
+  div(id='logicalSourcesDetailsModal'  class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' style='display: none;')
+    div.modal-dialog(role='document')
+      div.modal-content
+        div.modal-header
+          h4.modal-title Logical Sources
+        div.modal-body
+          label Select a locial source:
+          select(id='logicalSourcesSelect' class='form-control')
+          br
+          pre(id='logicalSourcePre')
+        div.modal-footer
+          button(id='editLogicalSourceBtn' data-toggle="modal" data-target="#editLogicalSourceModal" class='btn btn-default')
+            | Edit
+          button(type='submit' class='btn btn-default' data-dismiss="modal")
+            | Back
+
+  div(id='editLogicalSourceModal' data-backdrop='false' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' style='display: none;')
+    div.modal-dialog(role='document')
+      div.modal-content
+        div.modal-header
+          h4.modal-title Edit logical source
+        div.modal-body(id="editLogicalSourceBody")
+
+        div.modal-footer
+          button(id='saveLogicalSourceBtn' data-dismiss="modal"  class='btn btn-default')
+            | Save
+          button(class='btn btn-default' data-dismiss="modal")
+            | Back
+
+
+
+
+
   ul#myTab.nav.nav-tabs.tabs-left.sideways.primary
       li.active(class="menuTab")
         a(href='#access', data-toggle='tab')
@@ -768,6 +805,8 @@ block body
                                 a(href='#' data-toggle='modal' data-target='#executeMapping') Execute
                             li
                                 a(href='#' data-toggle='modal' data-target='#') Edit
+                            li
+                                a(href='#' data-toggle='modal' data-target='#logicalSourcesDetailsModal' id="logicalSourcesDetailsBtn") Logical sources
                             li
                                 a(href='#') Details
                             

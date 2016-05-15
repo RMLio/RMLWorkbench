@@ -33,6 +33,7 @@
     "multer": "^1.1.0",
     "n3": "^0.4.5",
     "node-schedule": "^1.1.0",
+    "noty": "^2.3.8",
     "passport": "^0.2.x",
     "passport-facebook": "^2.x.x",
     "passport-github": "^0.1.x",

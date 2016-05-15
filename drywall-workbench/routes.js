@@ -60,6 +60,10 @@ exports = module.exports = function(app, passport, upload, ldfserver) {
   app.post('/workbench/fetch/logical_dcat', workbenchCtrl.addlogical_DCAT);    
   app.get('/workbench/fetch/logical_description', workbenchCtrl.getLogicalDescriptions);
 
+  //logical sources
+  app.post('/workbench/mapping/logical/update', workbenchCtrl.updateLogicalSource);
+
+
   //mapping on workbench
   app.post('/workbench/mapping/execute/:mapping_id', workbenchCtrl.executeMappingFromFile);
   app.post('/workbench/mapping/execute/:mapping_id/triples', workbenchCtrl.executeMappingFromTriples);

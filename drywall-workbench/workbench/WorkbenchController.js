@@ -450,6 +450,7 @@ var exports = module.exports = {
            }           
         });
     },
+
     
     //create a new description for the user
     createDescription: function(req, res) {
@@ -590,7 +591,6 @@ var exports = module.exports = {
             if(req.body.schedule_id == schedules[i]._id) {
                 schedules[i].cancel();
                 schedules.splice(i, 1);
-                console.log('!!!!');
             }
         }
         res.send(200);

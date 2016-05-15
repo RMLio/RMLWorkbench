@@ -109,7 +109,21 @@ exports = module.exports =  {
 
 
 	            });
-	        } }
+	        } } else {
+
+
+				models.User.update({
+					_id: user._id
+				}, {
+					$addToSet: {
+						mappingfiles: mappingSchema._id
+					}
+				}, () => {
+					if (err) throw err
+					console.log('[WORKBENCH LOG] Updating user mapping files successful!');
+				callback();
+			}); }
+
 	    });
 
 	},

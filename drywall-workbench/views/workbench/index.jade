@@ -33,6 +33,9 @@ mixin licensesId(Id)
 
 block body
 
+
+
+
   div(id='upload-logical' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' style='display: none;')
     div.modal-dialog(role='document')
       div.modal-content
@@ -52,6 +55,10 @@ block body
             +licensesId('logicalFileLicense')
             button.btn.btn-primary(id="btn_file_logical") Upload
 
+
+
+
+
   div(id='dcat-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='DCATInputLabel' style='display: none;')
     div.modal-dialog(role='document')
       div.modal-content
@@ -70,6 +77,10 @@ block body
               input.form-control.required(id='inputDCATURL' type='text' placeholder='url')
             +licensesId('inputDCATLicense') 
             button.btn.btn-primary(id="btn_dcat_input" form="dcat_input_Form" type='submit') Add
+
+
+
+
 
   div(id='dcat-logical' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='DCATInputLabel' style='display: none;')
     div.modal-dialog(role='document')
@@ -100,6 +111,10 @@ block body
               input.form-control.required(id='logicalDCATIterator' type='text' placeholder=':')
             +licensesId('logicalDCATLicense') 
             button.btn.btn-primary(id="btn_dcat_logical" form="dcat_logical_Form" type='submit') Add
+
+
+
+
 
 
   div(id='db-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='databaseInputLabel' style='display: none;')
@@ -145,6 +160,11 @@ block body
             +licensesId('inputDBLicense') 
             button.btn.btn-primary(form="db_input_Form" type="submit") Add
 
+
+
+
+
+
   div(id='db-logical' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='databaseInputLabel' style='display: none;')
     div.modal-dialog(role='document')
       div.modal-content
@@ -167,6 +187,10 @@ block body
               textarea.form-control(id='logicalDBQuery' rows="2")   
             +licensesId('logicalDBLicense') 
             button.btn.btn-primary(form="db_logical_Form" type="submit") Add
+
+
+
+
 
   div(id='api-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='apiInputLabel' style='display: none;')
     div.modal-dialog(role='document')
@@ -398,7 +422,7 @@ block body
           form(id='uploadMapping_Form' action='/workbench/fetch/mapping')                  
               
               label(for='mapping-file-selector') File
-              input(id='mappingFile' name='mappingUpload' type='file' data-allowed-file-extensions="['rml']")
+              input(id='mappingFile' name='mappingUpload' type='file' data-allowed-file-extensions="['rml','rml.ttl']")
               p.help-block Only RML files are supported.
               +licensesId('mappingUploadLicense')   
               button.btn.btn-primary(id="submitMappingUpload" type='submit') Upload

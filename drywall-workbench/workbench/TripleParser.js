@@ -32,8 +32,8 @@ var exports = module.exports = {
             logicalSources: [],
             inputSources: [],
             mappingDefinitionsTermMappings:[],
-            prefixes: undefined
-
+            prefixes: undefined,
+            toString: ''
         };
 
         exports.parse(mapping, function(triples, prefixes) {
@@ -43,19 +43,11 @@ var exports = module.exports = {
 
             lookUpNames(mappingObject);
             addDetails(mappingObject);
-
+            mappingObject.toString = getFormattedMapping(mappingObject);
             callback(mappingObject);
 
         });
 
-    },
-
-    triplesToString: function(triples, prefixes, callback) {
-        var writer = N3.Writer({prefixes: prefixes});
-        for(var i = 0; i < triples.length; i++) {
-            writer.addTriple(triples[i].subject, triples[i].predicate, triples[i].subject);
-        }
-        writer.end(function(err, data) { callback(data) });
     }
 
  };
@@ -172,6 +164,136 @@ var addTriples = function(wrapper, mappingObject) {
 };
 
 /**
+ * Convert a parsed document
+ * @param triples
+ * @param prefix
+ * @returns {string}
+ */
+var convertParsedMappingObject = function(triples, prefixes, unique) {
+
+    var pre = '';
+    var output ='';
+    pre = addPrefixes(output,prefixes);
+
+    for(var i = 0 ; i < triples.length;i++) {
+
+        if(!n3util.isBlank(triples[i].subject)) {
+           output += convertBlockToString(triples[i], triples, 0, unique);
+        }
+
+    }
+
+    output = convertUniqToString(unique)
+
+    output = replaceWithPrefix(output, prefixes);
+
+    output = pre + '\n\n\n\n\n' + output;
+
+    return output;
+
+};
+
+/**
+ * Adds prefixes to document
+ * @param input
+ * @param prefixes
+ */
+var addPrefixes = function(input,prefixes) {
+    for(var prefix in prefixes){
+        input+= '@prefix ' + prefix + ':\t\t\t<' + prefixes[prefix] + '>\n';
+    }
+    return input;
+}
+
+/**
+ * Replaces prefixes
+ * @param output
+ * @param prefixes
+ */
+var replaceWithPrefix = function(input, prefixes) {
+    var output=input;
+    for(var prefix in prefixes) {
+        var toBeReplaced = prefixes[prefix].replace(/[<>]+/g, '');
+        output = output.replace(new RegExp(toBeReplaced, 'g'), prefix+':');
+    }
+    return output;
+}
+
+/**
+ * WAAW
+ * @param triple
+ * @param triples
+ */
+var convertBlockToString = function(triple, triples, indent, uniq) {
+
+    var string = '';
+    if(!n3util.isBlank(triple.subject) && !n3util.isBlank(triple.object)) {
+
+        string += addIndent(indent)  + converter(triple.predicate) + '   ' + converter(triple.object) + ' .';
+        addToUniq(string,triple.subject,uniq);
+    } else if(n3util.isBlank(triple.subject) && n3util.isBlank(triple.object)) {
+        string += addIndent(indent) + converter(triple.predicate) + ' [ \n';
+        var childs = [];
+        for(var i = 0; i < triples.length; i++) {
+            if(triple.object == triples[i].subject) {
+                childs.push(triples[i]);
+            }
+        }
+        for(var i = 0; i < childs.length; i++) {
+            string += addIndent(indent + 1) + convertBlockToString(childs[i], triples, indent + 2);
+            if(i == childs.length-1) {
+                string += ' ] \n';
+            } else {
+                string += ' ; \n';
+            }
+        }
+        return string;
+    } else if(n3util.isBlank(triple.object)) {
+        string += addIndent(indent) +  converter(triple.predicate) + ' [ \n';
+        var childs = [];
+        for(var i = 0; i < triples.length; i++) {
+            if(triple.object == triples[i].subject) {
+                childs.push(triples[i]);
+            }
+        }
+        for(var i = 0; i < childs.length; i++) {
+            string += addIndent(indent + 1) + convertBlockToString(childs[i], triples, indent + 2);
+            if(i == childs.length-1) {
+                string += ' ] \n';
+            } else {
+                string += ' ; \n';
+            }
+        }
+        string += '.';
+        addToUniq(string,triple.subject,uniq);
+    } else if(n3util.isBlank(triple.subject)) {
+        string += addIndent(indent) + converter(triple.predicate) + '   ' + converter(triple.object);
+        return string;
+    }
+
+}
+
+/**
+ * Check for literal
+ * @param literal
+ * @returns {*}
+ */
+var converter = function(literal) {
+    if(literal.charAt(0) !== '"' && literal.charAt(0) !== "'" ) {
+        return '<' + literal + '>';
+    } else {
+        return literal;
+    }
+};
+
+var addIndent =function(amount) {
+    var string = '';
+    for(var i = 0; i < amount ;i++) {
+        string += '   ';
+    }
+    return string;
+};
+/**
  * Add references (blank nodes) recursiveley to the wrapper
  * @param triple
  * @param wrapper
@@ -193,15 +315,62 @@ var addReferencesRecursively = function(triple, wrapper, mappingObject) {
     }
 };
 
+var notInUniq = function(subject, uniq) {
+    for(var i = 0; i < uniq.length; i++) {
+        if(uniq[i].head == subject) {
+            return false;
+        }
+    }
+    return true;
+};
+
+var addToUniq = function(string, subject, uniq) {
+    for(var i = 0; i < uniq.length; i++) {
+        if(uniq[i].head == subject) {
+            uniq[i].tail.push(string);
+        }
+    }
+};
+
+var convertUniqToString = function(uniq) {
+    var output = '';
+    for(var i = 0; i < uniq.length; i++) {
+        output += '<' + uniq[i].head + '>\n';
+        for(var j = 0; j < uniq[i].tail.length; j++) {
+            if(j != uniq[i].tail.length-1) {
+                output += '   ' + uniq[i].tail[j].replaceAt(uniq[i].tail[j].lastIndexOf('.'), ';\n');
+            } else {
+                output += '   ' + uniq[i].tail[j] + '\n\n\n';
+            }
+        }
+    }
+    return output;
+}
+
+//replace method
+String.prototype.replaceAt=function(index, character) {
+    return this.substr(0, index) + character + this.substr(index+character.length);
+}
+
+
+var getFormattedMapping = function(mapping) {
+    var uniq = [];
+    for(var i = 0; i < mapping.triples.length; i++) {
+        if(!n3util.isBlank(mapping.triples[i].subject) && notInUniq(mapping.triples[i].subject,uniq) ) {
+            uniq.push({head:mapping.triples[i].subject,tail:[]});
+        }
+    }
+    return convertParsedMappingObject(mapping.triples, mapping.prefixes, uniq).replace(/(\<)(\w*:\w*)(\>)/g,"$2");
+}
+
+
 //testing
 fs.readFile('mapping.rml.ttl', 'utf8', function(err, document) {
 
 
     exports.parseRMLMapping(document, function(mapping) {
 
-
-        console.log(mapping.mappingDefinitionsTermMappings[0].triples);
-
+        console.log(getFormattedMapping(mapping));
 
     });
 

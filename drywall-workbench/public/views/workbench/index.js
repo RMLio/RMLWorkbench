@@ -435,7 +435,8 @@
 
 
     });
-    
+
+    /*
     app.ClearDescriptionView = Backbone.View.extend({
         
         template: _.template($('#cleardescription').html()),
@@ -484,6 +485,8 @@
            return this;            
         }    
     });
+
+    */
        
     /***
      * 
@@ -654,7 +657,7 @@
                     //replace <> with lt& en gt&    
                     for(var i = 0; i < app.mappings.models.length; i++) {
                         var attributes = app.mappings.models[i].attributes;
-                        attributes.convertedData = attributes.data.replace(/</g,'&lt;').replace(/>/g, '&gt;');                                      
+                        attributes.convertedData = attributes.parsedObject.toString.replace(/</g,'&lt;').replace(/>/g, '&gt;');
                     }       
                     
                     //creating views
@@ -965,7 +968,7 @@ AddButtonNoFile("#db_logical_Form");
 AddButtonNoFile("#api_logical_Form");
 AddButtonNoFile("#sparql_logical_Form");
 AddButtonNoFile("#dcat_logical_Form");
- 
+
 
 
    /**

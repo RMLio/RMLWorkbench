@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var fs = require('fs');
 var util = require('./Utility');
+var parser = require('./TripleParser');
 
 
 var exports = module.exports = {
@@ -48,12 +49,16 @@ var exports = module.exports = {
     						data : data,
                 triples : []
     						};
-        mapping.triples = util.parseTriples(mapping);
+        //mapping.triples = util.parseTriples(mapping);
     		fs.unlink(file.path, function (err) {
       	if (err) throw err;
-      	}); 
-    		callback(mapping);
-    	});  	
+      	});
+      parser.parseRMLMapping(data, function(data) {
+          mapping.parsedObject = data;
+          callback(mapping);
+      });
+
+  });
     	
   },
   

@@ -353,7 +353,7 @@
          * RENDERING DATA DESCRIPTIONS
          *
          */
-        
+
         $('#descriptionMain').empty();
 
         $('#descriptionTitle').text('Select a description');
@@ -385,6 +385,7 @@
             }
 
             $('.localFileItem').click(function() {
+                console.log(files[$('.localFileItem').index(this)].data);
                 $('#localpre').text(files[$('.localFileItem').index(this)].data);
                 app.currentModel = {};
                 app.currentModel.attributes = files[$('.localFileItem').index(this)];

@@ -707,7 +707,7 @@ var exports = module.exports = {
                 if (err) {
                     res.send(err.message,409);
                 } else {
-                    res.send(mappingObject);
+                    res.send(mappingObject,200);
                 }
             });
         } catch(err) {
@@ -730,7 +730,7 @@ var exports = module.exports = {
                 if (err) {
                     res.send(409);
                 } else {
-                    res.send(mappingObject);
+                    res.send(mappingObject,200);
                 }
             });
         } catch(err) {

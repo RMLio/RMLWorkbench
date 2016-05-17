@@ -23,9 +23,7 @@ $(document).ready(function() {
 
         //initial value
         $('#dataSourcePre').empty();
-        if(convertForPre(dataSources[$('#dataSourcesSelect').val()]!=undefined)) {
-            $('#dataSourcePre').append(convertForPre(dataSources[$('#dataSourcesSelect').val()].toString));
-        }
+        $('#dataSourcePre').append(convertForPre(dataSources[$('#dataSourcesSelect').val()].toString));
         selectedDataSource = dataSources[0];
 
     });
@@ -47,9 +45,7 @@ $(document).ready(function() {
     var refreshDetails = function() {
         dataSources=app.currentModel.attributes.parsedObject.inputSources;
         $('#dataSourcePre').empty();
-        if(convertForPre(dataSources[$('#dataSourcesSelect').val()]!=undefined)) {
-            $('#dataSourcePre').append(convertForPre(dataSources[$('#dataSourcesSelect').val()].toString));
-        }
+        $('#dataSourcePre').append(convertForPre(dataSources[$('#dataSourcesSelect').val()].toString));
     }
 
 

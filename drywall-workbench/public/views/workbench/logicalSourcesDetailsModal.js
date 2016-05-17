@@ -23,9 +23,8 @@ $(document).ready(function() {
 
         //initial value
         $('#logicalSourcePre').empty();
-        if(convertForPre(logicalSources[$('#logicalSourcesSelect').val()] != undefined)) {
-            $('#logicalSourcePre').append(convertForPre(logicalSources[$('#logicalSourcesSelect').val()].toString));
-        }
+
+        $('#logicalSourcePre').append(convertForPre(logicalSources[$('#logicalSourcesSelect').val()].toString));
         selectedLogicalSource = logicalSources[0];
 
     });
@@ -36,6 +35,7 @@ $(document).ready(function() {
     $('#logicalSourcesSelect').change(function() {
 
         $('#logicalSourcePre').empty();
+        console.log(logicalSources[$('#logicalSourcesSelect').val()].toString);
         $('#logicalSourcePre').append(convertForPre(logicalSources[$('#logicalSourcesSelect').val()].toString));
 
 
@@ -47,9 +47,7 @@ $(document).ready(function() {
     var refreshDetails = function() {
         logicalSources=app.currentModel.attributes.parsedObject.logicalSources;
         $('#logicalSourcePre').empty();
-        if(convertForPre(logicalSources[$('#logicalSourcesSelect').val()] != undefined)) {
-            $('#logicalSourcePre').append(convertForPre(logicalSources[$('#logicalSourcesSelect').val()].toString));
-        }
+        $('#logicalSourcePre').append(convertForPre(logicalSources[$('#logicalSourcesSelect').val()].toString));
     }
 
 
@@ -121,12 +119,13 @@ $(document).ready(function() {
             //replace <> with lt& en gt&
             for(var i = 0; i < app.mappings.models.length; i++) {
                 var attributes = app.mappings.models[i].attributes;
+                console.log(data.toString);
                 attributes.convertedData = convertForPre(data.toString);
             }
             app.mappingsContentView.model = app.currentModel;
             $('#mappingContent').empty();
             $('#mappingContent').html(app.mappingsContentView.render().el);
-            refreshDetails();
+            refreshDetails(attributes.convertedData);
             notify('Logical source edited.', 'information');
         });
     });

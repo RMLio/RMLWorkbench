@@ -17,13 +17,18 @@ block head
   script( type="text/javascript" src="/vendor/noty/js/jquery.noty.packaged.min.js")
   script(type='text/javascript' src='/js/file_uploads.js')
 block neck
+  script(type='text/javascript' src='/views/workbench/dataSourcesDetailsModal.js')
   script(type='text/javascript' src='/views/workbench/logicalSourcesDetailsModal.js')
+  script(type='text/javascript' src='/views/workbench/mappingDefinitionsDetailsModal.js')
+  script(type='text/javascript' src='/views/workbench/executionModal.js')
   link(rel='stylesheet', href='/layouts/rml.css')
   link(rel='stylesheet', href='/layouts/animate.css')
+  script(type='text/javascript' src='/vendor/nprogress/nprogress.js')
+  link(rel='stylesheet', href='/vendor/nprogress/nprogress.css')
 
 
 block feet
-  
+
   script(src='/views/workbench/index.js')
 
 mixin licensesId(Id)
@@ -54,7 +59,7 @@ block body
               input.form-control(id='logicalFileName' type='text' placeholder='Descriptive name')
             div.form-group
               label(for='my-file-selector') File
-              logical(id='my-file-selector' type='file' data-allowed-file-extensions="['csv', 'xml', 'txt', 'json']")
+              input(id='my-file-selector' type='file' data-allowed-file-extensions="['csv', 'xml', 'txt', 'json']")
               p.help-block Only CSV, XML and JSON are supported.
             +licensesId('logicalFileLicense')
             button.btn.btn-primary(id="btn_file_logical") Upload
@@ -79,7 +84,7 @@ block body
             div.form-group
               label(for='inputDCATURL') URL
               input.form-control.required(id='inputDCATURL' type='text' placeholder='url')
-            +licensesId('inputDCATLicense') 
+            +licensesId('inputDCATLicense')
             button.btn.btn-primary(id="btn_dcat_input" form="dcat_input_Form" type='submit') Add
 
 
@@ -109,11 +114,11 @@ block body
                 option JSON
                 option CSS3
                 option XML
-                option CSV  
+                option CSV
             div.form-group
               label(for='logicalDCATIterator') Iterator
               input.form-control.required(id='logicalDCATIterator' type='text' placeholder=':')
-            +licensesId('logicalDCATLicense') 
+            +licensesId('logicalDCATLicense')
             button.btn.btn-primary(id="btn_dcat_logical" form="dcat_logical_Form" type='submit') Add
 
 
@@ -161,7 +166,7 @@ block body
             div.form-group
               label(for='inputDBPass') Password
               input.form-control(id='inputDBPass' type='password' placeholder='password')
-            +licensesId('inputDBLicense') 
+            +licensesId('inputDBLicense')
             button.btn.btn-primary(form="db_input_Form" type="submit") Add
 
 
@@ -185,11 +190,11 @@ block body
             div.form-group
               label(for='logicalDBSource') Source
               select.selectpicker.form-control(id='logicalDBSource' title='Source')
-                option POPULATE FROM THE PREVIOUS STEP  
+                option POPULATE FROM THE PREVIOUS STEP
             div.form-group
               label(for='logicalDBQuery') Data Query
-              textarea.form-control(id='logicalDBQuery' rows="2")   
-            +licensesId('logicalDBLicense') 
+              textarea.form-control(id='logicalDBQuery' rows="2")
+            +licensesId('logicalDBLicense')
             button.btn.btn-primary(form="db_logical_Form" type="submit") Add
 
 
@@ -212,9 +217,9 @@ block body
             div.form-group
               label(for='inputAPIURL') Template URL
               input.form-control(id='inputAPIURL' type='text' placeholder='url')
-            +licensesId('inputAPILicense') 
+            +licensesId('inputAPILicense')
             button.btn.btn-primary(id="btn_api_input" form="api_input_Form" type='submit' data-dismiss="modal") Add
-            
+
   div(id='api-logical' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='apiInputLabel' style='display: none;')
     div.modal-dialog(role='document')
       div.modal-content
@@ -231,18 +236,18 @@ block body
             div.form-group
               label(for='logicalAPISource') Source
               select.selectpicker.form-control(id='logicalAPISource' title='Source')
-                option POPULATE FROM THE PREVIOUS STEP   
+                option POPULATE FROM THE PREVIOUS STEP
             div.form-group
               label(for='logicalAPIType') Reference Formulation
               select.selectpicker.form-control(id='logicalAPIType' title='referenceFormulation')
                 option JSON
                 option CSS3
                 option XML
-                option CSV 
+                option CSV
             div.form-group
               label(for='logicalAPIIterator') Iterator
               input.form-control(id='logicalAPIIterator' type='text' placeholder='$')
-            +licensesId('logicalAPILicense') 
+            +licensesId('logicalAPILicense')
             button.btn.btn-primary(id="btn_api_logical" form="api_logical_Form" type='submit' data-dismiss="modal") Add
 
   div(id='sparql-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='sparqlInputLabel' style='display: none;')
@@ -266,10 +271,10 @@ block body
               select.selectpicker.form-control(id='inputSparqlType' title='Type')
                 option JSON
                 option XML
-                option CSV 
-            +licensesId('inputSparqlLicense')                           
+                option CSV
+            +licensesId('inputSparqlLicense')
             button.btn.btn-primary(id="btn_sparql_input" form="sparql_input_Form" type='submit') Add
- 
+
    div(id='sparql-logical' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='sparqlLogicalLabel' style='display: none;')
     div.modal-dialog(role='document')
       div.modal-content
@@ -286,23 +291,23 @@ block body
             div.form-group
               label(for='logicalSparqlSource') Type
               select.selectpicker.form-control(id='logicalSparqlSource' title='Source')
-                option POPULATE FROM THE PREVIOUS STEP  
+                option POPULATE FROM THE PREVIOUS STEP
             div.form-group
               label(for='logicalSparqlRef') Reference Formulation
               select.selectpicker.form-control(id='logicalSparqlRef' title='referenceFormulation')
                 option JSON
                 option CSS3
                 option XML
-                option CSV         
+                option CSV
             div.form-group
               label(for='logicalSparqlIterator') Iterator
               input.form-control(id='logicalSparqlIterator' type='text' placeholder='/')
             div.form-group
               label(for='logicalSparqlQuery') DataQuery
-              textarea.form-control(id='logicalSparqQuery' rows="2")      
-            +licensesId('logicalSparqlLicense')                           
-            button.btn.btn-primary(id="btn_sparql_logical" form="sparql_logical_Form" type='submit') Add           
-            
+              textarea.form-control(id='logicalSparqQuery' rows="2")
+            +licensesId('logicalSparqlLicense')
+            button.btn.btn-primary(id="btn_sparql_logical" form="sparql_logical_Form" type='submit') Add
+
   div(id='csvw-input' class='modal' tabindex='-1' role='dialog' aria-labelledby='csvwInputLabel' style='display: none;')
     div.modal-dialog(role='document')
       div.modal-content
@@ -366,10 +371,10 @@ block body
                 option euc-kr
                 option utf-16be
                 option utf-16le
-            +licensesId('inputcsvwLicense')                           
+            +licensesId('inputcsvwLicense')
             button.btn.btn-primary(form='csvw_input_Form' type="submit") Add
-  
-      
+
+
   div(id='executeMapping' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='executeMapping' style='display: none;')
     div.modal-dialog(role='document')
       div.modal-content
@@ -380,24 +385,25 @@ block body
         div.modal-body
           form(role='form')
             div.form-group
-              label Select triples  
+              label Select triples
               div(class="well triplewell")
-                div 
-                    label  
-                        input(id='selectAllCheckbox' type="checkbox") 
+                div
+                    label
+                        input(id='selectAllCheckbox' type="checkbox")
                         | Select all
-                div(id='triplelistdiv' class='workbenchElement')  
+                div(id='triplelistdiv' class='workbenchElement')
                 script#triplelist(type='text/template').
                     <div>
-                        <label> 
-                            <input class='radioTriple' id='radioAllTriples' type="checkbox">     
+                        <label>
+                            <input class='radioTriple' id='radioAllTriples' type="checkbox">
                             <%= triplename %>
                         </label>
-                    </div>                       
-            div(id='executeMappingButtonDiv' class='workbenchElement')      
-              script#executeMappingButton(type='text/template').
-                <button class='btn btn-primary' data-dismiss="modal" >Execute</button>
-           
+                    </div>
+        div.modal-footer
+          button(class='btn btn-primary' data-dismiss="modal" id='executeMappingBtn')
+
+
+
 
   div(id='upload-source' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='AreTheseUsed' style='display: none;')
     div.modal-dialog(role='document')
@@ -407,12 +413,12 @@ block body
             span(aria-hidden='true') ×
           h4.modal-title Upload a source file
         div.modal-body
-          form(id='uploadSource_Form' action='/workbench/fetch/input')                  
-              
+          form(id='uploadSource_Form' action='/workbench/fetch/input')
+
               label(for='source-file-selector') File
               input(id='sourceFile' name='sourceUpload' type='file' data-allowed-file-extensions="['csv','xml']")
               p.help-block All files are supported.
-              +licensesId('sourceUploadLicense')   
+              +licensesId('sourceUploadLicense')
               button.btn.btn-primary(id="submitSourceUpload" type='submit') Upload
 
   div(id='upload-mapping' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='AreTheseUsed' style='display: none;')
@@ -423,14 +429,14 @@ block body
             span(aria-hidden='true') ×
           h4.modal-title Upload an RML file
         div.modal-body
-          form(id='uploadMapping_Form' action='/workbench/fetch/mapping')                  
-              
+          form(id='uploadMapping_Form' action='/workbench/fetch/mapping')
+
               label(for='mapping-file-selector') File
               input(id='mappingFile' name='mappingUpload' type='file' data-allowed-file-extensions="['rml','rml.ttl']")
               p.help-block Only RML files are supported.
-              +licensesId('mappingUploadLicense')   
+              +licensesId('mappingUploadLicense')
               button.btn.btn-primary(id="submitMappingUpload" type='submit') Upload
-              
+
    div(id='upload-publishing' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='AreTheseUsed' style='display: none;')
     div.modal-dialog(role='document')
       div.modal-content
@@ -443,10 +449,10 @@ block body
               label(for='publishing-file-selector') File
               input(id='publishingFile' name='rdfUpload' type='file' data-allowed-file-extensions="['rdf, ttl, rdf.ttl']")
               p.help-block RDF files in turle format are supported.
-              +licensesId('mappingUploadLicense')   
+              +licensesId('mappingUploadLicense')
               button.btn.btn-primary(id="submitPublishingUpload" type='submit') Upload
-              
-              
+
+
    div(id='jobmodal' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='AreTheseUsed' style='display: none;')
     div.modal-dialog(role='document')
       div.modal-content
@@ -455,9 +461,9 @@ block body
             span(aria-hidden='true') ×
           h4.modal-title Job details
         div.modal-body
-          button.btn.btn-primary(id="cancel_job") Cancel job    
-              
-              
+          button.btn.btn-primary(id="cancel_job") Cancel job
+
+
 
 
    div(id='publish' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' style='display: none;')
@@ -522,14 +528,14 @@ block body
                 span(class="input-group-btn")
                     button(class="btn btn-default" id="addScheduleMappingButton" type="button") +
               div(class="well")
-                ul(id='scheduleMappingWellList')      
+                ul(id='scheduleMappingWellList')
             div(class='form-group')
               label(for='time')
                 | Schedule
-              //  
-                div.input-group 
+              //
+                div.input-group
                     | Every
-                    input(class='form-control' type='number' id='time' value='2') 
+                    input(class='form-control' type='number' id='time' value='2')
                     select(name='mapping' id='mapping' class='form-control')
                     option(value='Hour')
                         | Hours
@@ -544,12 +550,12 @@ block body
                 input.form-control(type="text" id='scheduleDate')
                 span.input-group-addon
                   span.glyphicon.glyphicon-calendar
-            script. 
+            script.
               (function($) {
                 "use strict";
               $(function() {
                 $('#datetimepicker1').datetimepicker({
-                  locale: 'en'                  
+                  locale: 'en'
                 });
               });})(jQuery)
             div(class='form-group')
@@ -564,15 +570,20 @@ block body
     div.modal-dialog(role='document')
       div.modal-content
         div.modal-header
-          h4.modal-title Logical Sources
+          h4.modal-title Logical sources
         div.modal-body
-          label Select a locial source:
+          label Select a logical source:
           select(id='logicalSourcesSelect' class='form-control')
           br
           pre(id='logicalSourcePre')
         div.modal-footer
+
+          button(id='removeLogicalSourceBtn' type='submit' class='btn btn-default' data-dismiss="modal")
+            | Remove
           button(id='editLogicalSourceBtn' data-toggle="modal" data-target="#editLogicalSourceModal" class='btn btn-default')
             | Edit
+          button(id='addLogicalSourceBtn' data-toggle="modal" data-target="#editLogicalSourceModal" class='btn btn-default')
+            | Add
           button(type='submit' class='btn btn-default' data-dismiss="modal")
             | Back
 
@@ -590,30 +601,147 @@ block body
             | Back
 
 
+  div(id='mappingDefinitionsDetailsModal'  class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' style='display: none;')
+    div.modal-dialog(role='document')
+      div.modal-content
+        div.modal-header
+          h4.modal-title Mapping definitions
+        div.modal-body
+          label Select a mapping definition:
+          select(id='mappingDefinitionsSelect' class='form-control')
+          br
+          pre(id='mappingDefinitionsPre')
+        div.modal-footer
+          button(id='editMappingDefinitionBtn' data-toggle="modal" data-target="#editMappingDefinitionModal" class='btn btn-default')
+            | Edit
+          button(type='submit' class='btn btn-default' data-dismiss="modal")
+            | Back
+
+  div(id='editMappingDefinitionModal' data-backdrop='false' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' style='display: none;')
+    div.modal-dialog(role='document')
+      div.modal-content
+        div.modal-header
+          h4.modal-title Edit mapping definition
+        div.modal-body(id="editMappingDefinitionBody")
+
+        div.modal-footer
+          button(id='saveMappingDefinitionBtn' data-dismiss="modal"  class='btn btn-default')
+            | Save
+          button(class='btn btn-default' data-dismiss="modal")
+            | Back
+
+
+  div(id='dataSourcesDetailsModal'  class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' style='display: none;')
+    div.modal-dialog(role='document')
+      div.modal-content
+        div.modal-header
+          h4.modal-title data sources
+        div.modal-body
+          label Select a data source:
+          select(id='dataSourcesSelect' class='form-control')
+          br
+          pre(id='dataSourcePre')
+        div.modal-footer
+          button(id='removeDataSourceBtn' class='btn btn-default')
+            | Remove
+          button(id='editDataSourceBtn' data-toggle="modal" data-target="#editDataSourceModal" class='btn btn-default')
+            | Edit
+          button( data-toggle="modal" data-target="#editDataSourceModal" class='btn btn-default')
+            | Add
+          button(type='submit' class='btn btn-default' data-dismiss="modal")
+            | Back
+
+  div(id='editDataSourceModal' data-backdrop='false' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' style='display: none;')
+    div.modal-dialog(role='document')
+      div.modal-content
+        div.modal-header
+          h4.modal-title Edit data source
+        div.modal-body(id="editDataSourceBody")
+
+        div.modal-footer
+          button(id='saveDataSourceBtn' data-dismiss="modal"  class='btn btn-default')
+            | Save
+          button(class='btn btn-default' data-dismiss="modal")
+            | Back
 
 
 
   ul#myTab.nav.nav-tabs.tabs-left.sideways.primary
       li.active(class="menuTab")
+        a(href='#local', data-toggle='tab')
+          | Local files
+      li(class="menuTab")
         a(href='#access', data-toggle='tab')
-          | Data Access 
+          | Data Access
       li(class="menuTab")
         a(href='#logical', data-toggle='tab')
           | Logical Sources
       li(class="menuTab")
         a(href='#mapping2', data-toggle='tab')
-          | Mapping 
+          | Mapping
       li(class="menuTab")
         a(href='#publishing', data-toggle='tab')
-          | Publish 
+          | Publish
       li(class="menuTab")
         a(href='#schedule', data-toggle='tab')
           | Schedule
 
 
 
+
+
+
+
+
     #myTabContent.tab-content
-      #access.tab-pane.fade.in.active
+      #local.tab-pane.fade.in.active
+        br
+        div.container-fluid(id='sourceFileContainer')
+          div.row
+            div.col-md-3(id='sourceFileButtons')
+              div(class='panel panel-info')
+                div.panel-heading
+                  div.row
+                    div.col-md-9
+                      h3.panel-title Local files
+                    div.col-md-1
+                      div.dropdown
+                        button#dropdownInput.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
+                          span.caret
+                        ul.dropdown-menu(aria-labelledby='dropdownInput')
+                          li
+                            a(href='#' data-toggle='modal' data-target='#upload-source') Upload file
+                          li
+                            a(href='#' id='clearLocalFile') Remove selected file
+                          li
+                            a(href='#' id='clearAllLocalFiles') Remove all local files
+                div.panel-body.text-center(id='localMain' class='workbenchElement')
+
+
+
+            div.col-md-9
+              div.panel.panel-info
+                div.panel-heading
+                  div.row
+                    div.col-md-4
+                      h3.panel-title Content
+                    div.col-md-1.col-md-offset-7
+                      div.dropdown
+                      button#dropdownInput2.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
+                        span.caret
+                      ul.dropdown-menu(aria-labelledby='dropdownInput2')
+                        li
+                          a(href='#') Details
+
+                div.panel-body(id='localFileBody')
+                  div.row
+                    div.col-md-6
+                      h4(id='localTitle')
+                  div.row
+                    div.col-md-12(id='localFileContent' class='workbenchElement')
+                      pre#localpre
+
+      #access.tab-pane.fade
         br
         div.container-fluid(id='inputContainer')
          div.row
@@ -621,12 +749,11 @@ block body
              div(class='panel panel-info')
                div.panel-heading
                  div.row
-                   div.col-md-9            
+                   div.col-md-9
                      h3.panel-title Data sources
-                   div.col-md-1   
+                   div.col-md-1
                      div.dropdown
                         button#dropdownInput.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
-                            | 
                             span.caret
                         ul.dropdown-menu(aria-labelledby='dropdownInput')
                             li
@@ -642,63 +769,39 @@ block body
                             li.divider( role="separator")
                             li
                               a(href='#' id='clearInput') Remove selected source
-                            li                           
+                            li
                               a(href='#' id='clearAllInput') Remove all sources
-               div.panel-body.text-center(id='inputMain' class='workbenchElement') 
-                
-                 script#description-list-item(type='text/template').
-                       <h6><%= name %></h6>                        
-                          
-        div.col-md-9
-          div.panel.panel-info
-            div.panel-heading  
-                div.row    
-                  div.col-md-4            
-                    h3.panel-title Content
-                  div.col-md-1.col-md-offset-7   
-                    div.dropdown
-                    button#dropdownInput2.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
-                        | 
-                        span.caret
-                    ul.dropdown-menu(aria-labelledby='dropdownInput2')
-                        li
-                            a(href='#' data-toggle='modal' data-target='#') Edit
-                        li
-                            a(href='#') Details
-                        
-            div.panel-body(id='inputBody')
-                div.row 
-                  div.col-md-6
-                    h4(id='inputTitle')          
-                div.row                           
-                  div.col-md-12(id='descriptionContent' class='workbenchElement')
-                    script#description-content(type='text/template').
-                      <%= convertedData %>
-                       
-                       
-          //div.col-md-9
-            div.panel.panel-info
+               div.panel-body.text-center(id='descriptionMain' class='workbenchElement')
+
+
+           div.col-md-9
+             div.panel.panel-info
                div.panel-heading
-                 h3.panel-title Overview Data Access
-               div.panel-body
-                 div.row
-                   div.col-md-3
-                     h4 Local files
-                       div(id='descriptionMainLocal' class='workbenchElement')
-                         script#description-list-item-local(type='text/template').
-                           <h6><%= filename %></h6>
-                     h4 External descriptions
-                       div(id='descriptionMain' class='workbenchElement')
-                         script#description-list-item(type='text/template').
-                           <h6><%= name %></h6>
-                   div.col-md-9(id='descriptionContent' class='workbenchElement')
-                     script#description-content-local(type='text/template').
-                       <%= convertedData %>
-                     script#description-content(type='text/template').
-                       <%= convertedData %>
-                       
-  
-                       
+                   div.row
+                     div.col-md-4
+                       h3.panel-title Content
+                     div.col-md-1.col-md-offset-7
+                       div.dropdown
+                       button#dropdownInput2.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
+                           span.caret
+                       ul.dropdown-menu(aria-labelledby='dropdownInput2')
+                           li
+                               a(href='#' data-toggle='modal' data-target='#') Edit
+                           li
+                               a(href='#') Details
+
+               div.panel-body(id='inputBody')
+                   div.row
+                     div.col-md-6
+                       h4(id='inputTitle')
+                   div.row
+                     div.col-md-12(id='descriptionContent' class='workbenchElement')
+                       pre#descriptionpre
+
+
+
+
+
       #logical.tab-pane.fade
         br
         div.container-fluid(id='logicalContainer')
@@ -707,16 +810,13 @@ block body
              div(class='panel panel-info')
                div.panel-heading
                  div.row
-                   div.col-md-9            
+                   div.col-md-9
                      h3.panel-title Logical Sources
-                   div.col-md-1   
+                   div.col-md-1
                      div.dropdown
                         button#dropdownLogical.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
-                            | 
                             span.caret
                         ul.dropdown-menu(aria-labelledby='dropdownLogical')
-                            li
-                              a(href='#' data-toggle='modal' data-target='#upload-logical') Upload file
                             li
                               a(href='#' data-toggle='modal' data-target='#dcat-logical') DCAT
                             li
@@ -728,39 +828,38 @@ block body
                             li.divider( role="separator")
                             li
                               a(href='#' id='clearLogical') Remove selected source
-                            li                           
+                            li
                               a(href='#' id='clearAllLogicals') Remove all sources
-               div.panel-body.text-center(id='logicalMain' class='workbenchElement') 
-                
+               div.panel-body.text-center(id='logicalMain' class='workbenchElement')
+
                  script#logical-list-item(type='text/template').
-                       <h6><%= name %></h6>                        
-                          
+                       <h6><%= name %></h6>
+
            div.col-md-9
             div.panel.panel-info
-               div.panel-heading  
-                 div.row    
-                   div.col-md-4            
+               div.panel-heading
+                 div.row
+                   div.col-md-4
                      h3.panel-title Content
-                   div.col-md-1.col-md-offset-7   
+                   div.col-md-1.col-md-offset-7
                      div.dropdown
                         button#dropdownLogical2.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
-                            | 
                             span.caret
                         ul.dropdown-menu(aria-labelledby='dropdownLogical2')
                             li
                                 a(href='#' data-toggle='modal' data-target='#') Edit
                             li
                                 a(href='#') Details
-                            
+
                div.panel-body(id='logicalBody')
-                 div.row 
+                 div.row
                    div.col-md-6
-                     h4(id='logicalTitle')          
-                 div.row                           
+                     h4(id='logicalTitle')
+                 div.row
                    div.col-md-12(id='logicalContent' class='workbenchElement')
                      script#logical-content(type='text/template').
                        <%= convertedData %>
-                       
+
       #mapping2.tab-pane.fade
         br
         div.container-fluid(id='mappingContainer')
@@ -769,12 +868,11 @@ block body
              div(class='panel panel-info')
                div.panel-heading
                  div.row
-                   div.col-md-9            
+                   div.col-md-9
                      h3.panel-title Mapping files
-                   div.col-md-1   
+                   div.col-md-1
                      div.dropdown
                         button#dropdownMenu1.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
-                            | 
                             span.caret
                         ul.dropdown-menu(aria-labelledby='dropdownMenu1')
                             li
@@ -782,31 +880,34 @@ block body
                             li
                               a(href='#' id='clearMapping') Clear selected file
                             li
-                              a(href='#' id='clearAllMappings') Clear all files 
-               div.panel-body.text-center(id='mappingMain' class='workbenchElement') 
-                
+                              a(href='#' id='clearAllMappings') Clear all files
+               div.panel-body.text-center(id='mappingMain' class='workbenchElement')
+
                  script#mapping-list-item(type='text/template').
                        <h6><%= filename %></h6>
-                         
-                          
+
+
            div.col-md-9
             div.panel.panel-info
-               div.panel-heading  
-                 div.row    
-                   div.col-md-4            
+               div.panel-heading
+                 div.row
+                   div.col-md-4
                      h3.panel-title Content
-                   div.col-md-1.col-md-offset-7   
+                   div.col-md-1.col-md-offset-7
                      div.dropdown
                         button#dropdownMenu1.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
-                            | 
                             span.caret
                         ul.dropdown-menu(aria-labelledby='dropdownMenu1')
                             li
-                                a(href='#' data-toggle='modal' data-target='#executeMapping') Execute
+                                a(href='#' data-toggle='modal' data-target='#executeMapping' id='executeModalBtn') Execute
                             li
                                 a(href='#' data-toggle='modal' data-target='#') Edit
                             li
+                                a(href='#' data-toggle='modal' data-target='#dataSourcesDetailsModal' id="dataSourcesDetailsBtn") Data sources
+                            li
                                 a(href='#' data-toggle='modal' data-target='#logicalSourcesDetailsModal' id="logicalSourcesDetailsBtn") Logical sources
+                            li
+                                a(href='#' data-toggle='modal' data-target='#mappingDefinitionsDetailsModal' id="mappingDefinitionsDetailsBtn") Mapping definitions
                             li
                                 a(href='#') Details
                             
@@ -832,7 +933,6 @@ block body
                    div.col-md-1   
                      div.dropdown
                         button#dropdownMenu1.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
-                            | 
                             span.caret
                         ul.dropdown-menu(aria-labelledby='dropdownMenu1')
                             li
@@ -854,7 +954,6 @@ block body
                    div.col-md-1.col-md-offset-7   
                      div.dropdown
                         button#dropdownMenu1.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
-                            | 
                             span.caret
                         ul.dropdown-menu(aria-labelledby='dropdownMenu1')
                             li
@@ -888,7 +987,6 @@ block body
                    div.col-md-1   
                      div.dropdown
                         button#dropdownMenu1.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
-                            | 
                             span.caret
                         ul.dropdown-menu(aria-labelledby='dropdownMenu1')
                             li

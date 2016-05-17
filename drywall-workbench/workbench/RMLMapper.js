@@ -3,6 +3,64 @@ var fs = require('fs');
 
 var exports = module.exports = {
 
+
+    launchProcessor: function(data, triples, files, callback) {
+
+        //creating unique key
+        var unique_key = mongoose.Types.ObjectId();
+        var mappingFilename = 'input'+unique_key+'.rml';
+        //writing mapping file
+        fs.writeFile(mappingFilename, data, 'utf8', function(err) {
+            if(err) {
+                callback(err);
+            } else {
+
+                if(files.length == 0) {
+                    console.log('[WORKBENC LOG] Starting processor...');
+                    spawnRMLProcessor(mappingFilename, function (err, rdf) {
+                        if (err) {
+                            callback(err, rdf);
+                        } else {
+                            callback(err, rdf);
+                        }
+                    });
+
+                } else {
+
+                    //write source files, when last source file has been written, spawn mapper
+                    var written = 0;
+
+                    for (var i = 0; i < files.length; i++) {
+
+                        var j = i; //async
+
+                        fs.writeFile(files[i].filename, files[i].data, 'utf8', function (err) {
+
+                            if (err) {
+
+                                callback(err);
+
+                            } else {
+
+                                written++;
+
+                                if (written == files.length) {
+
+                                    spawnRMLProcessor(mappingFilename, triples, function (err, rdf) {
+                                        callback(err,rdf);
+                                    });
+
+                                }
+
+                            }
+
+                        });
+                    }
+                }
+            }
+        });
+    },
+
     //execute a mapping using the RML processor
     execute : function(mappingfile, triples, needed, callback) {
         
@@ -21,10 +79,9 @@ var exports = module.exports = {
 
         //in case there are no local source files needed
         if(needed.length == 0) {
-            exports.spawnRmlMapper(uniq,mappingfile.id, mappingfile.filename, mappingfile.triples.length,triples.length,triplenames, needed, (result) => {
-                                rdf = result;
-                                callback(rdf);
-                            });           
+            exports.spawnRmlMapper(uniq,mappingfile.id, mappingfile.filename, mappingfile.triples.length,triples.length,triplenames, needed, (err,result) => {
+                                callback(err,rdf);
+            });
         }
 
     	//write file main directory 
@@ -44,9 +101,8 @@ var exports = module.exports = {
                     if(written == needed.length) {                    
                         fs.readFile(needed[j].filename, 'utf8', (err, data) => { //using arrow function, this has no 'this'
                             
-                            exports.spawnRmlMapper(uniq,mappingfile._id, mappingfile.filename, mappingfile.triples.length,triples.length, triplenames, needed, (result) => {
-                                rdf = result;
-                                callback(rdf);
+                            exports.spawnRmlMapper(uniq,mappingfile._id, mappingfile.filename, mappingfile.triples.length,triples.length, triplenames, needed, (err,result) => {
+                                callback(err,result);
                             });
                         });
                         
@@ -105,42 +161,38 @@ var exports = module.exports = {
                         console.log('[RMLPROCESSOR LOG] LOG WRITTEN TO "errormappinglog.txt"!');         
                     });
                     callback(null);
-                } else {
-                    console.log('[RMLPROCESSOR LOG] NO ERRORS IN MAPPING!');
-                    fs.writeFile('mappinglog.txt', rmlprocessoroutput, 'utf8', (err) => {
-                        console.log('[RMLPROCESSOR LOG] LOG WRITTEN TO "mappinglog.txt"!');         
-                    });   
-                    fs.readFile('./workbench/rmlmapper/output'+uniq+'.rdf', 'utf8', (err, data) => { //using arrow function, this has no 'this'
-                    if (err) throw err;
-                        result = {
-                            mapping_id: id,     
-                            filename: filename + '_result.ttl',
-                            data : data,
-                            metadata : 'empty',
-                            type : 'rdf',
-                            _id : mongoose.Types.ObjectId()
-                        };
-                    
-                
-                    fs.unlink('./workbench/rmlmapper/output'+uniq+'.rdf', function (err) {  //deleting temp files
-                        if (err) throw err;
-                    });
+                }
 
-                    fs.unlink('./input'+uniq+'.rml', function (err) {     // deleting temp files
+                fs.readFile('./workbench/rmlmapper/output'+uniq+'.rdf', 'utf8', (err, data) => { //using arrow function, this has no 'this'
+                if (err) throw err;
+                    result = {
+                        filename: filename + '_result.ttl',
+                        data : data,
+                        metadata : 'empty',
+                        type : 'rdf',
+                        _id : mongoose.Types.ObjectId()
+                    };
+
+
+                fs.unlink('./workbench/rmlmapper/output'+uniq+'.rdf', function (err) {  //deleting temp files
+                    if (err) throw err;
+                });
+
+                fs.unlink('./input'+uniq+'.rml', function (err) {     // deleting temp files
+                    if (err) throw err;
+                });
+                console.log(needed);
+                for(var i = 0; i < needed.length; i++) {
+                    fs.unlink(needed[i].filename, function (err) {   // deleting temp files
                         if (err) throw err;
                     });
-                    console.log(needed);
-                    for(var i = 0; i < needed.length; i++) {
-                        fs.unlink(needed[i].filename, function (err) {   // deleting temp files
-                            if (err) throw err;
-                        });
-                    }
-                    
-                    
-                    callback(result);
+                }
+
+
+                callback(result);
 
                 });
-                }
+
                 
                 
                 
@@ -149,3 +201,73 @@ var exports = module.exports = {
     }
 
 }
+
+var spawnRMLProcessor = function(mappingFilename, triples, callback) {
+
+    var triplecmd = '';
+
+    if(triples) {
+        triplecmd = '-tm ';
+        for(var i = 0; i < triples.length; i++) {
+            if(i != triples.length) {
+                triplecmd += triples[i].uri.replace(/(.*)\#/, '') + ',';
+            } else {
+                triplecmd += triples[i].uri.replace(/(.*)\#/, '');
+            }
+        }
+    }
+
+    var unique_key = mongoose.Types.ObjectId();
+    var command = 'java -jar ./workbench/rmlmapper/RML-Mapper.jar -m '+mappingFilename+' -o ./workbench/rmlmapper/output'+ unique_key +'.rdf ' + triplecmd;
+
+    console.log(command);
+
+    //map the file
+    const spawner = require('child_process');
+    const spawn = spawner.exec(command);
+
+    var rmlprocessoroutput = '';
+    //logging
+    spawn.stdout.on('data', function(data) {
+        console.log(`stdout: ${data}`);
+        rmlprocessoroutput += data;
+    });
+    spawn.stderr.on('data', function(data) {
+        console.log(`stdout: ${data}`);
+    });
+
+    spawn.on('close', function() {
+
+
+        fs.writeFile('mappinglog.txt', rmlprocessoroutput, 'utf8', function (err) {
+            if(err) throw(err);
+            console.log('[RMLPROCESSOR LOG] LOG WRITTEN TO "mappinglog.txt"!');
+        });
+        
+        fs.readFile('./workbench/rmlmapper/output' + unique_key + '.rdf', 'utf8', function (err, data) { //using arrow function, this has no 'this'
+            if (err) {
+                callback(err);
+            } else {
+                result = {
+                    filename: mappingFilename + '_result.rdf',
+                    data: data,
+                    metadata: 'empty',
+                    type: 'rdf',
+                    _id: mongoose.Types.ObjectId()
+                };
+                console.log(result);
+                if (rmlprocessoroutput.indexOf('ERROR') > -1) {
+                    console.log('[RMLPROCESSOR LOG] ERROR IN MAPPING!');
+                    fs.writeFile('errormappinglog.txt', rmlprocessoroutput, 'utf8', function (err) {
+                        console.log('[RMLPROCESSOR LOG] LOG WRITTEN TO "errormappinglog.txt"!');
+                    });
+                    callback(new Error('An error occurred in the processor'), result);
+                } else {
+                    callback(null, result);
+                }
+            }
+        });
+
+    });
+
+};

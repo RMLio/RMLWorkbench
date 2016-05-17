@@ -23,7 +23,9 @@ $(document).ready(function() {
 
         //initial value
         $('#logicalSourcePre').empty();
-        $('#logicalSourcePre').append(convertForPre(logicalSources[0].toString));
+        if(convertForPre(logicalSources[$('#logicalSourcesSelect').val()] != undefined)) {
+            $('#logicalSourcePre').append(convertForPre(logicalSources[$('#logicalSourcesSelect').val()].toString));
+        }
         selectedLogicalSource = logicalSources[0];
 
     });
@@ -45,7 +47,9 @@ $(document).ready(function() {
     var refreshDetails = function() {
         logicalSources=app.currentModel.attributes.parsedObject.logicalSources;
         $('#logicalSourcePre').empty();
-        $('#logicalSourcePre').append(convertForPre(logicalSources[$('#logicalSourcesSelect').val()].toString));
+        if(convertForPre(logicalSources[$('#logicalSourcesSelect').val()] != undefined)) {
+            $('#logicalSourcePre').append(convertForPre(logicalSources[$('#logicalSourcesSelect').val()].toString));
+        }
     }
 
 
@@ -61,27 +65,59 @@ $(document).ready(function() {
 
     $('#editLogicalSourceBtn').click(function() {
 
+        var attributes = [];
+
         $('#editLogicalSourceBody').empty();
 
         for(var i = 0; i < selectedLogicalSource.triples.length; i++) {
-            $('#editLogicalSourceBody').append('<label>'+stripUri(selectedLogicalSource.triples[i].predicate)+'</label>');
-            $('#editLogicalSourceBody').append("<input type='text' id='object" + i + "' class='form-control' placeholder='"+selectedLogicalSource.triples[i].object+"'></input><br/>");
+            if(selectedLogicalSource.triples[i].predicate.replace(/\#(.*)/g,'') == 'http://semweb.mmlab.be/ns/rml') {
+                $('#editLogicalSourceBody').append('<label>' + stripUri(selectedLogicalSource.triples[i].predicate) + '</label>');
+                $('#editLogicalSourceBody').append("<input type='text' id='logicalSourceEditor" + i + "' class='form-control' placeholder='" + selectedLogicalSource.triples[i].object + "'></input><br/>");
+            }
         }
 
 
+    });
+
+    $('#removeLogicalSourceBtn').click(function() {
+        var triples = app.currentModel.attributes.parsedObject.triples;
+        for(var i = 0; i < triples.length; i++) {
+            for(var j = 0; j < selectedLogicalSource.triples.length; j++) {
+                if(selectedLogicalSource.triples[j].subject === triples[i].subject &&
+                    selectedLogicalSource.triples[j].predicate === triples[i].predicate &&
+                    selectedLogicalSource.triples[j].object === triples[i].object) {
+                        triples.splice(i,1);
+                }
+            }
+
+        }
+        $.post('/workbench/mapping/logical/update', {mappingObject:app.currentModel.attributes.parsedObject,mappingID:app.currentModel.attributes._id} , function(data) {
+            app.currentModel.attributes.parsedObject = data;
+            //replace <> with lt& en gt&
+            for(var i = 0; i < app.mappings.models.length; i++) {
+                var attributes = app.mappings.models[i].attributes;
+                attributes.convertedData = convertForPre(data.toString);
+            }
+            app.mappingsContentView.model = app.currentModel;
+            $('#mappingContent').empty();
+            $('#mappingContent').html(app.mappingsContentView.render().el);
+            notify('Logical source removed.', 'information');
+            refreshDetails();
+        }).fail(function(err) {
+            notify(err.responseText, 'error');
+        });
     });
 
 
 
     $('#saveLogicalSourceBtn').click(function() {
         for(var i = 0; i < selectedLogicalSource.triples.length; i++) {
-            if($('#object'+i).val() != '') {
-                selectedLogicalSource.triples[i].object = $('#object'+i).val();
+            if($('#logicalSourceEditor'+i).val() != '' && $('#logicalSourceEditor'+i).val() != undefined) {
+                selectedLogicalSource.triples[i].object = $('#logicalSourceEditor'+i).val();
             }
         }
         $.post('/workbench/mapping/logical/update', {mappingObject:app.currentModel.attributes.parsedObject,mappingID:app.currentModel.attributes._id} , function(data) {
             app.currentModel.attributes.parsedObject = data;
-            console.log(app.currentModel.attributes.parsedObject);
             //replace <> with lt& en gt&
             for(var i = 0; i < app.mappings.models.length; i++) {
                 var attributes = app.mappings.models[i].attributes;
@@ -91,6 +127,7 @@ $(document).ready(function() {
             $('#mappingContent').empty();
             $('#mappingContent').html(app.mappingsContentView.render().el);
             refreshDetails();
+            notify('Logical source edited.', 'information');
         });
     });
 
@@ -100,6 +137,23 @@ $(document).ready(function() {
         var output = string.replace(/.*\#/,'');
         output = output.charAt(0).toUpperCase() + output.substr(1);
         return output;
+    }
+
+    var notify = function(text,type) {
+        var n = noty({text: text,layout: 'bottomCenter',
+            theme: 'relax', // or 'relax',
+            maxVisible: 5,
+            type: type,
+            timeout: true,
+            dismissQueue: true, // If you want to use queue feature set this true
+            template: '<div class="noty_message"><span class="noty_text"></span><div class="noty_close"></div></div>',
+            animation: {
+                open: 'animated fadeIn', // or Animate.css class names like: 'animated bounceInLeft'
+                close: 'animated fadeOut', // or Animate.css class names like: 'animated bounceOutLeft'
+                easing: 'swing',
+                speed: 500 // opening & closing animation speed
+            }});
+        n.setTimeout(2000);
     }
 
 

@@ -1,0 +1,130 @@
+
+<http://ex.com/conference/ICDM2010> <http://example.com/ns#city> <http://ex.com/city/Sydney> .
+
+<http://ex.com/city/Sydney> <http://www.w3.org/2000/01/rdf-schema#label> "Sydney" .
+
+<http://ex.com/city/Tozeur> <http://www.w3.org/2000/01/rdf-schema#label> "Tozeur" .
+
+<http://ex.com/city/BALI> <http://www.w3.org/2000/01/rdf-schema#label> "BALI" .
+
+<http://ex.com/city/Clearwater> <http://www.w3.org/2000/01/rdf-schema#label> "Clearwater" .
+
+<http://ex.com/city/Queenstown> <http://www.w3.org/2000/01/rdf-schema#label> "Queenstown" .
+
+<http://ex.com/city/Melbourne> <http://www.w3.org/2000/01/rdf-schema#label> "Melbourne" .
+
+<http://ex.com/city/Sousse> <http://www.w3.org/2000/01/rdf-schema#label> "Sousse" .
+
+<http://ex.com/city/Bradford> <http://www.w3.org/2000/01/rdf-schema#label> "Bradford" .
+
+<http://ex.com/city/Ghaziabad> <http://www.w3.org/2000/01/rdf-schema#label> "Ghaziabad" .
+
+<http://ex.com/city/SINGAPORE> <http://www.w3.org/2000/01/rdf-schema#label> "SINGAPORE" .
+
+<http://ex.com/city/Busan> <http://www.w3.org/2000/01/rdf-schema#label> "Busan" .
+
+<http://ex.com/city/Arlington> <http://www.w3.org/2000/01/rdf-schema#label> "Arlington" .
+
+<http://ex.com/city/Nashville> <http://www.w3.org/2000/01/rdf-schema#label> "Nashville" .
+
+<http://ex.com/city/Chania> <http://www.w3.org/2000/01/rdf-schema#label> "Chania" .
+
+<http://ex.com/city/Urbana> <http://www.w3.org/2000/01/rdf-schema#label> "Urbana" .
+
+<http://ex.com/city/Monterrey> <http://www.w3.org/2000/01/rdf-schema#label> "Monterrey" .
+
+<http://ex.com/city/Kaohsiung> <http://www.w3.org/2000/01/rdf-schema#label> "Kaohsiung" .
+
+<http://ex.com/city/Lisbon> <http://www.w3.org/2000/01/rdf-schema#label> "Lisbon" .
+
+<http://ex.com/city/London> <http://www.w3.org/2000/01/rdf-schema#label> "London" .
+
+<http://ex.com/city/Harbin> <http://www.w3.org/2000/01/rdf-schema#label> "Harbin" .
+
+<http://ex.com/city/Amsterdam> <http://www.w3.org/2000/01/rdf-schema#label> "Amsterdam" .
+
+<http://ex.com/city/Seattle> <http://www.w3.org/2000/01/rdf-schema#label> "Seattle" .
+
+<http://ex.com/city/Princeton> <http://www.w3.org/2000/01/rdf-schema#label> "Princeton" .
+
+<http://ex.com/city/Tokyo> <http://www.w3.org/2000/01/rdf-schema#label> "Tokyo" .
+
+<http://ex.com/city/Yerevan> <http://www.w3.org/2000/01/rdf-schema#label> "Yerevan" .
+
+<http://ex.com/city/Vienna> <http://www.w3.org/2000/01/rdf-schema#label> "Vienna" .
+
+<http://ex.com/city/Dubrovnik> <http://www.w3.org/2000/01/rdf-schema#label> "Dubrovnik" .
+
+<http://ex.com/city/Seoul> <http://www.w3.org/2000/01/rdf-schema#label> "Seoul" .
+
+<http://ex.com/city/Lyon> <http://www.w3.org/2000/01/rdf-schema#label> "Lyon" .
+
+<http://ex.com/city/Taipei> <http://www.w3.org/2000/01/rdf-schema#label> "Taipei" .
+
+<http://ex.com/city/Kuala%20Lumpur> <http://www.w3.org/2000/01/rdf-schema#label> "Kuala Lumpur" .
+
+<http://ex.com/city/Toulouse> <http://www.w3.org/2000/01/rdf-schema#label> "Toulouse" .
+
+<http://ex.com/city/Kyoto> <http://www.w3.org/2000/01/rdf-schema#label> "Kyoto" .
+
+<http://ex.com/city/ORLANDO> <http://www.w3.org/2000/01/rdf-schema#label> "ORLANDO" .
+
+<http://ex.com/city/Bangalore> <http://www.w3.org/2000/01/rdf-schema#label> "Bangalore" .
+
+<http://ex.com/city/Nanjing> <http://www.w3.org/2000/01/rdf-schema#label> "Nanjing" .
+
+<http://ex.com/city/Napa> <http://www.w3.org/2000/01/rdf-schema#label> "Napa" .
+
+<http://ex.com/city/Rio%20de%20Janeiro> <http://www.w3.org/2000/01/rdf-schema#label> "Rio de Janeiro" .
+
+<http://ex.com/city/ATLANTA> <http://www.w3.org/2000/01/rdf-schema#label> "ATLANTA" .
+
+<http://ex.com/city/Pittsburgh> <http://www.w3.org/2000/01/rdf-schema#label> "Pittsburgh" .
+
+<http://ex.com/city/Daegu> <http://www.w3.org/2000/01/rdf-schema#label> "Daegu" .
+
+<http://ex.com/city/Vancouver> <http://www.w3.org/2000/01/rdf-schema#label> "Vancouver" .
+
+<http://ex.com/city/Athens> <http://www.w3.org/2000/01/rdf-schema#label> "Athens" .
+
+<http://ex.com/city/Porto> <http://www.w3.org/2000/01/rdf-schema#label> "Porto" .
+
+<http://ex.com/city/Denver> <http://www.w3.org/2000/01/rdf-schema#label> "Denver" .
+
+<http://ex.com/city/Indianapolis> <http://www.w3.org/2000/01/rdf-schema#label> "Indianapolis" .
+
+<http://ex.com/city/Sendai> <http://www.w3.org/2000/01/rdf-schema#label> "Sendai" .
+
+<http://ex.com/city/Hong%20Kong> <http://www.w3.org/2000/01/rdf-schema#label> "Hong Kong" .
+
+<http://ex.com/city/Stockholm> <http://www.w3.org/2000/01/rdf-schema#label> "Stockholm" .
+
+<http://ex.com/city/Islamabad> <http://www.w3.org/2000/01/rdf-schema#label> "Islamabad" .
+
+<http://ex.com/city/Austin> <http://www.w3.org/2000/01/rdf-schema#label> "Austin" .
+
+<http://ex.com/city/Chantilly> <http://www.w3.org/2000/01/rdf-schema#label> "Chantilly" .
+
+<http://ex.com/city/Fairfax> <http://www.w3.org/2000/01/rdf-schema#label> "Fairfax" .
+
+<http://ex.com/city/Karlsruhe> <http://www.w3.org/2000/01/rdf-schema#label> "Karlsruhe" .
+
+<http://ex.com/city/Linz> <http://www.w3.org/2000/01/rdf-schema#label> "Linz" .
+
+<http://ex.com/city/Graz> <http://www.w3.org/2000/01/rdf-schema#label> "Graz" .
+
+<http://ex.com/city/Oslo> <http://www.w3.org/2000/01/rdf-schema#label> "Oslo" .
+
+<http://ex.com/city/Takayama> <http://www.w3.org/2000/01/rdf-schema#label> "Takayama" .
+
+<http://ex.com/city/Brunswick> <http://www.w3.org/2000/01/rdf-schema#label> "Brunswick" .
+
+<http://ex.com/city/San%20Francisco> <http://www.w3.org/2000/01/rdf-schema#label> "San Francisco" .
+
+<http://ex.com/city/Bordeaux> <http://www.w3.org/2000/01/rdf-schema#label> "Bordeaux" .
+
+<http://ex.com/city/Lausanne> <http://www.w3.org/2000/01/rdf-schema#label> "Lausanne" .
+
+<http://ex.com/city/Braunschweig> <http://www.w3.org/2000/01/rdf-schema#label> "Braunschweig" .
+
+<http://ex.com/city/Shanghai> <http://www.w3.org/2000/01/rdf-schema#label> "Shanghai" .

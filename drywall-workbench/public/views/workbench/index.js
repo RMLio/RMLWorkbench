@@ -8,10 +8,8 @@
     app = app || {};
     
     app.currentModel;
-    
-    app.currentTriples = [];
 
-
+    //hacky fix
     $.fn.modal.Constructor.prototype.enforceFocus = function () {};
 
 
@@ -54,38 +52,6 @@
         model: app.Mapping,
         url: '/workbench/fetch/mapping'
     });
-    
-    /***
-     * 
-     * MODELS TRIPLES
-     * 
-     ***/
-    
-    app.Triple = Backbone.Model.extend({
-        idAttribute: '_id',
-        defaults: {}
-    });
-    
-    app.Triples = Backbone.Collection.extend({
-        model: app.Triple 
-    });
-    
-    
-    /***
-     * 
-     * MODELS SOURCES
-     * 
-     ***/
-    
-    app.Triple = Backbone.Model.extend({
-        idAttribute: '_id',
-        defaults: {}
-    });
-    
-    app.Triples = Backbone.Collection.extend({
-        model: app.Triple 
-    });
-    
      /***
      * 
      * MODELS Descrptions
@@ -130,59 +96,7 @@
     
     
     
-    app.ExecuteButtonView = Backbone.View.extend({
-        
-        template: _.template($('#executeMappingButton').html()),        
-        
-        events: {
-           'click button' : 'execute'
-        }, 
-        
-        execute: function() {
-          
-          var selections = $('#triplelistdiv').children().children();
-          var triplesToBeExecuted = [];
-	  var selectedAll = true;
-          for(var i = 0; i < selections.length; i++) {
-              if(selections.eq(i).find('input').prop('checked')) {
-                  triplesToBeExecuted.push(this.model.attributes.triples[i]._id);
-              
-	      } else {
-		selectedAll = false;
-		}
-		
-          }           
-          
-          var triples = {
-              triples: triplesToBeExecuted
-          }
-          if(!selectedAll) {
-          $.post('/workbench/mapping/execute/'+this.model.attributes._id+'/triples', triples , function() { 
-              $("#mappingContainer").prepend('<div style="margin-top:15px" class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Mapping successful!</strong></div>');              
-              app.render();
-          });  
-			} else {
-	
-        $.post('/workbench/mapping/execute/'+this.model.attributes._id, function() {
-              $("#mappingContainer").prepend('<div style="margin-top:15px" class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Mapping successful!</strong></div>');
-              app.render();
-          });
-
-
-		}
-        },          
-        
-        
-        initialize: function() {
-               
-        },
-        
-        render: function() {
-           $(this.el).html(this.template(this.model.toJSON()));      
-           return this;            
-        }    
-    });    
-    
+   
     
     
 
@@ -216,45 +130,9 @@
             return this;  
        }
     });
-    
-    app.TripleListView = Backbone.View.extend({
-        
-        events: {
-          'click .executeMappingButton' : 'execute'  
-        },
-        
-        execute: function() {
-  
-        },
 
-        initialize: function() {
-                
-        },     
-        render: function() {
-            $(this.el).empty();
-            _.each(this.model.models, function(triple) {
-                $(this.el).append(new app.TripleItemView({ model: triple }).render().el);
-            }, this);
-             
-            return this;
-        }       
-    });
     
-    app.TripleItemView = Backbone.View.extend({
-        template: _.template($('#triplelist').html()),
-        initialize: function() {
-            
-        },
-        
-        events: {
-        },
 
-        render: function() {            
-            $(this.el).html(this.template(this.model.toJSON()));
-            
-            return this;
-        } 
-    });
 
     app.MappingItemView = Backbone.View.extend({
         tagName: 'a',
@@ -275,18 +153,7 @@
                
                 app.mappingsContentView.model = this.model; 
                 //app.executeMappingView.model = this.model;
-                app.executeButtonView.model = this.model;
                 app.currentModel = this.model;
-                
-                var triples = [];
-                for(var i = 0; i < this.model.attributes.triples.length; i++) {
-                    triples.push(new app.Triple(this.model.attributes.triples[i]));
-                }              
-                
-                app.tripleListView.model = {models : triples};
-                
-                app.tripleListView.render();
-                app.executeButtonView.render();               
                 app.mappingsContentView.render();
                 $('#mappingTitle').text('File name: ' + app.currentModel.attributes.filename); 
                 //$('#mappingContent').html(app.mappingsContentView.render().el)  
@@ -372,13 +239,13 @@
     
     
     
-    
+    /**
     /***
      * 
      * VIEWS DATA ACCESS
      * 
      ***/
-    
+    /***
     app.DescriptionsView = Backbone.View.extend({
         tagName: 'div',
         className: 'list-group descriptionView',
@@ -416,202 +283,32 @@
 
         template: _.template($('#description-list-item').html()),
 
-        initialize: function() {
-            
+        initialize: function () {
+
         },
-        
+
         events: {
-	        'click h6' : 'viewDescription'
+            'click h6': 'viewDescription'
         },
 
-        viewDescription: function(ev){
-                app.currentModel = this.model;
-                app.descriptionContentView.model = this.model; 
-                app.descriptionContentView.render(); 
-                //$('#mappingContent').html(app.mappingsContentView.render().el)  
+        viewDescription: function (ev) {
+            app.currentModel = this.model;
+            app.descriptionContentView.model = this.model;
+            app.descriptionContentView.render();
+            //$('#mappingContent').html(app.mappingsContentView.render().el)
         },
 
-        render: function(eventName) {
-            $(this.el).attr('href','#');
+        render: function (eventName) {
+            $(this.el).attr('href', '#');
             $(this.el).attr('data-index', this.model.collection.indexOf(this.model));
             $(this.el).html(this.template(this.model.toJSON()));
-            return this;
-        },
-
-
-    });
-
-    /*
-    app.ClearDescriptionView = Backbone.View.extend({
-        
-        template: _.template($('#cleardescription').html()),
-        
-        events: {
-          'click .cleardescription' : 'cleardescription'  
-        },
-        
-        cleardescription: function() {
-          $.post('/workbench/clear/description',{description: [app.currentModel.attributes._id]},function() {
-              app.render();
-              });  
-        },
-        
-        initialize: function() {
-            this.model = app.descriptions.models[0];    
-        },
-        
-        render: function() {
-           $(this.el).html(this.template(this.model.toJSON()));      
-           return this;            
-        }    
-    });
-    
-    app.ClearAllDescriptionsView = Backbone.View.extend({
-        
-        template: _.template($('#clearalldescriptions').html()),
-        
-        events: {
-          'click .clearalldescriptions' : 'clearalldescriptions'  
-        },
-        
-        clearalldescriptions: function() {
- 
-          $.post('/workbench/clear/all/description',function() {
-              app.render();
-              });  
-        },
-        
-        initialize: function() {
-            this.model = app.descriptions.models[0];    
-        },
-        
-        render: function() {
-           $(this.el).html(this.template(this.model.toJSON()));      
-           return this;            
-        }    
-    });
-
-    */
-       
-    /***
-     * 
-     * VIEWS SCHEDULING
-     * 
-     ***/
-    /*
-    app.scheduleesView = Backbone.View.extend({
-        tagName: 'div',
-        className: 'list-group scheduleView',
-        
-        initialize: function() {
-                    
-        },
-
-        render: function(eventName) {
-            _.each(this.model.models, function(schedule) {
-                $(this.el).append(new app.scheduleItemView({ model: schedule }).render().el);
-            }, this);
             return this;
         }
     });
-    
-    app.scheduleContentView = Backbone.View.extend({
-       tagName: 'pre', 
-       template: _.template($('#schedule-content').html()),
-       
-       initialize: function(){
-		    this.model.on('change', this.render, this);
-       },     
-                    
-       
-       render: function() {
-            $(this.el).html(this.template(this.model.toJSON()));
-            return this;  
-       }
-    });
-
-    app.ScheduleItemView = Backbone.View.extend({
-        tagName: 'a',
-        className: 'list-group-item viewschedule',
-
-        template: _.template($('#schedule-list-item').html()),
-
-        initialize: function() {
 
 
+     **/
 
-        },
-        
-        events: {
-	        'click h6' : 'viewschedule'
-        },
-
-        viewschedule: function(ev){
-                app.currentModel = this.model;
-                app.scheduleContentView.model = this.model; 
-                app.scheduleContentView.render(); 
-        },
-
-        render: function(eventName) {
-            $(this.el).attr('href','#');
-            $(this.el).attr('data-index', this.model.collection.indexOf(this.model));
-            $(this.el).html(this.template(this.model.toJSON()));
-            return this;
-        },
-
-
-    });
-    */
-    app.ClearScheduleingView = Backbone.View.extend({
-        /*
-        template: _.template($('#clearscheduleing').html()),
-        
-        events: {
-          'click .clearscheduleing' : 'clearscheduleing'  
-        },
-        
-        clearscheduleing: function() {
-          $.post('/workbench/clear/schedule',{rdf: [app.currentModel.attributes._id]},function() {
-              app.render();
-              });  
-        },
-        
-        initialize: function() {
-            this.model = app.schedules.models[0];    
-        },
-        
-        render: function() {
-           $(this.el).html(this.template(this.model.toJSON()));      
-           return this;            
-        }   */ 
-    });
-    
-    app.ClearAllscheduleingsView = Backbone.View.extend({
-        /*
-        template: _.template($('#clearallscheduleings').html()),
-        
-        events: {
-          'click .clearallscheduleings' : 'clearallscheduleings'  
-        },
-        
-        clearallscheduleings: function() {
- 
-          $.post('/workbench/clear/all/rdf',function() {
-              app.render();
-              });  
-        },
-        
-        initialize: function() {
-            this.model = app.schedulees.models[0];    
-        },
-        
-        render: function() {
-           $(this.el).html(this.template(this.model.toJSON()));      
-           return this;            
-        }    */
-    });
-    
-     
      /***
      * 
      * APP CONFIG
@@ -648,9 +345,70 @@
         app.descriptions = new app.Descriptions();
         
         app.currentScheduleMappings = [];
+
+
+        /***
+         *
+         *
+         * RENDERING DATA DESCRIPTIONS
+         *
+         */
         
-        //app.schedules = new app.Schedules();
-        
+        $('#descriptionMain').empty();
+
+        $('#descriptionTitle').text('Select a description');
+        $.get('/workbench/fetch/description', function(data) {
+            for(var i = 0; i < data.length; i++) {
+                $('#descriptionMain').append('<a href="#"  class="descriptionItem list-group-item">'+data[i].type+'</a>');
+            }
+            $('.descriptionItem').click(function() {
+                $('#descriptionpre').text(data[$('.descriptionItem').index(this)].data);
+                app.currentModel = {};
+                app.currentModel.attributes = data[$('.descriptionItem').index(this)];
+                $('#localTitle').text('File name: ' + data[$('.descriptionItem').index(this)].data);
+            })
+        });
+
+
+        /***
+         *
+         * RENDERING LOCAL
+         *
+         */
+
+        $('#localMain').empty();
+
+        $('#localTitle').text('Select a file');
+        $.get('/workbench/fetch/input',function(files) {
+            for(var i = 0; i < files.length; i++) {
+                $('#localMain').append('<a href="#"  class="localFileItem list-group-item">'+files[i].filename+'</a>');
+            }
+
+            $('.localFileItem').click(function() {
+                $('#localpre').text(files[$('.localFileItem').index(this)].data);
+                app.currentModel = {};
+                app.currentModel.attributes = files[$('.localFileItem').index(this)];
+                $('#localTitle').text('File name: ' + files[$('.localFileItem').index(this)].filename);
+            })
+
+
+        });
+
+
+
+        //setting css
+        $('#localMain').css('min-height',$(window).height()*0.82 + 'px');
+        $('#localMain').css('max-height',$(window).height()*0.82 + 'px');
+        $('#localContent').css('min-height',$(window).height()*0.75 + 'px');
+        $('#localContent').css('max-height',$(window).height()*0.75 + 'px');
+        $('#localBody').css('min-height',$(window).height()*0.82 + 'px');
+        $('#localBody').css('max-height',$(window).height()*0.82 + 'px');
+        $('#localpre').css('min-height',$(window).height()*0.75 + 'px');
+        $('#localpre').css('max-height',$(window).height()*0.75 + 'px');
+
+
+
+
         /***
         *
         * RENDERING MAPPINGS
@@ -674,41 +432,19 @@
                     app.mappingsView = new app.MappingsView({model:app.mappings});
                     app.mappingsContentView = new app.MappingsContentView({model: app.currentModel});
                     //app.executeMappingView = new app.ExecuteMappingView({model: app.currentModel});
-                    app.executeButtonView = new app.ExecuteButtonView({model: app.currentModel});                    
-                    
-                    var triples = [];
-                    for(var i = 0; i < app.currentModel.attributes.triples.length; i++) {
-                        triples.push(new app.Triple(app.currentModel.attributes.triples[i]));
-                    }
-                    
-                    app.tripleListView = new app.TripleListView({model: { models:triples}});                    
+
+
                     
                     //rendering with jquery
                     $('#mappingMain').html(app.mappingsView.render().el);    
                     $('#mappingContent').html(app.mappingsContentView.render().el);
-                    //$('#mappingmenu').html(app.executeMappingView.render().el);
-                    $('#triplelistdiv').html(app.tripleListView.render().el);
-                    $('#executeMappingButtonDiv').html(app.executeButtonView.render().el);
-                    
+
                     //settint text
                     $('#mappingTitle').text('File name: ' + app.currentModel.attributes.filename);
                     
                     
                     
-                    $('#selectAllCheckbox').change(function() {
-                        var selections = $('#triplelistdiv').children().children();
-                        if($('#selectAllCheckbox').prop( "checked" )) {                    
-                                for(var i = 0; i < selections.length; i++) {
-                                    var selection = selections.eq(i).find('input');
-                                    selections.eq(i).find('input').prop('checked', true);
-                                    
-                                }    
-                        } else {
-                                for(var i = 0; i < selections.length; i++) {
-                                    selections.eq(i).find('input').prop('checked', false);
-                                }   
-                        }
-                    });
+
                     
                     //setting css   
                     $('#mappingMain').css('min-height',$(window).height()*0.82 + 'px');
@@ -853,7 +589,7 @@
             * RENDERING Descriptions
             *
             ***/ 
-             
+             /**
                        
             app.descriptions.fetch({success: function() {
                 
@@ -880,7 +616,7 @@
                     $('.descriptionElement').empty();   
                 }
             }});
-            
+            */
             /***
             *
             * RENDERING Schedule
@@ -935,46 +671,46 @@
      * 
      ***/
 
-function AddButtonNoFile(formId) {
-    console.log(formId);
-   $(formId).on("submit", function(event){
-        event.preventDefault(); 
+    function AddButtonNoFile(formId) {
         console.log(formId);
-        var form_url = $(formId).attr("action");
-        var inputs = $(formId + ' .form-control');    
-        var values = {};
-        inputs.each(function() {
-            values[ $(this).attr("id")] = $(this).val();
-            console.log( $(this).attr("id") + " " + $(this).val());
+       $(formId).on("submit", function(event){
+            event.preventDefault();
+            console.log(formId);
+            var form_url = $(formId).attr("action");
+            var inputs = $(formId + ' .form-control');
+            var values = {};
+            inputs.each(function() {
+                values[ $(this).attr("id")] = $(this).val();
+                console.log( $(this).attr("id") + " " + $(this).val());
+            });
+
+            $.ajax({
+                url:  form_url,
+                type: 'POST',
+                headers: {
+                    'X-CSRF-Token': $.cookie("_csrfToken")
+                },
+                data: values,
+                dataType: 'JSON',
+                statusCode: {
+                    200: function() {
+                        app.render();
+                    }
+                }
+            });
+
         });
+    }
 
-        $.ajax({
-            url:  form_url,
-            type: 'POST',
-            headers: {
-                'X-CSRF-Token': $.cookie("_csrfToken")
-            },
-            data: values,            
-            dataType: 'JSON',
-            statusCode: {
-                200: function() {
-                    app.render();
-                }   
-            }            
-        });       
-                           
-    });   
-}
-
-AddButtonNoFile("#api_input_Form");
-AddButtonNoFile("#db_input_Form");
-AddButtonNoFile("#sparql_input_Form");
-AddButtonNoFile("#dcat_input_Form");
-AddButtonNoFile("#csvw_input_Form");
-AddButtonNoFile("#db_logical_Form");
-AddButtonNoFile("#api_logical_Form");
-AddButtonNoFile("#sparql_logical_Form");
-AddButtonNoFile("#dcat_logical_Form");
+    AddButtonNoFile("#api_input_Form");
+    AddButtonNoFile("#db_input_Form");
+    AddButtonNoFile("#sparql_input_Form");
+    AddButtonNoFile("#dcat_input_Form");
+    AddButtonNoFile("#csvw_input_Form");
+    AddButtonNoFile("#db_logical_Form");
+    AddButtonNoFile("#api_logical_Form");
+    AddButtonNoFile("#sparql_logical_Form");
+    AddButtonNoFile("#dcat_logical_Form");
 
 
 
@@ -1045,22 +781,50 @@ AddButtonNoFile("#dcat_logical_Form");
      * 
      * 
      */
+
+    //setting button actions
+    $('#clearLocalFile').click(function() {
+
+        $.post('/workbench/clear/source/',{sources: [app.currentModel.attributes._id]},function() {
+            notify('Local file deleted!','information');
+            app.render();
+        }).fail(function(err) {
+            notify(err.message,'error');
+        })
+        ;
+    });
+
+    $('#clearAllLocalFiles').click(function() {
+        $.post('/workbench/clear/all/source',function() {
+            notify('Local files deleted!','information');
+            app.render();
+        }).fail(function(err) {
+            notify(err.message,'error');
+        })
+        ;;
+    })
+
     
     //setting button actions
     $('#clearMapping').click(function() {
 
         $.post('/workbench/clear/mapping/',{mappings: [app.currentModel.attributes._id]},function() {
-            $("#mappingContainer").prepend('<div style="margin-top:15px" class="alert alert-info alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Mapping file cleared.</strong></div>');
-
+            notify('Mapping deleted!','information');
             app.render();
-        });
+        }).fail(function(err) {
+            notify(err.message,'error');
+        })
+        ;
     });
     
     $('#clearAllMappings').click(function() {
         $.post('/workbench/clear/all/mapping',function() {
             notify('Mappings deleted!','information');
             app.render();
-        });
+        }).fail(function(err) {
+            notify(err.message,'error');
+        })
+        ;;
     })
 
 
@@ -1068,18 +832,22 @@ AddButtonNoFile("#dcat_logical_Form");
     //setting button actions
     $('#clearPublishing').click(function() {
         $.post('/workbench/clear/rdf/',{rdf: [app.currentModel.attributes._id]},function() {
-            $("#publishContainer").prepend('<div style="margin-top:15px" class="alert alert-info alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Publish file cleared.</strong></div>');
-            
+            notify('File deleted!','information');
             app.render();
-        });
+        }).fail(function(err) {
+            notify(err.message,'error');
+        })
+        ;;
     });
     
     $('#clearAllPublishings').click(function() {
         $.post('/workbench/clear/all/rdf',function() {
-            $("#publishContainer").prepend('<div style="margin-top:15px" class="alert alert-info alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>All publish files are cleared.</strong></div>');
-            
+            notify('Files deleted!','information');
             app.render();
-        });
+        }).fail(function(err) {
+            notify(err.message,'error');
+        })
+        ;;
     })
 
             
@@ -1116,7 +884,7 @@ AddButtonNoFile("#dcat_logical_Form");
     $("#uploadMapping_Form").on("submit", function(event){
         event.preventDefault();
         var ext = $('input[id=mappingFile]')[0].files[0].name.replace(/^[^\.]*\./, '');
-        if(ext == 'rml' || ext == 'rml.ttl' ) {
+        //if(ext == 'rml' || ext == 'rml.ttl' ) {
             
             var form_url = $("form[id='uploadMapping_Form']").attr("action");
         var CSRF_TOKEN = $('input[name="_csrf"]').val();                    
@@ -1143,14 +911,14 @@ AddButtonNoFile("#dcat_logical_Form");
                     app.render();
                 },
                 409: function() {
-                    notify('Upload failed...', 'error');
+                    notify('Wrong file type!', 'warning');
                 }
-            }            
+            }
         });
             
-        } else {
-            notify('Wrong file type!', 'warning');
-        }
+        //} else {
+            //notify('Wrong file type!', 'warning');
+        //}
                       
     });
     
@@ -1166,8 +934,7 @@ AddButtonNoFile("#dcat_logical_Form");
             var CSRF_TOKEN = $('input[name="_csrf"]').val();                    
 
             var form = new FormData();
-            form.append('rdfUpload', $('input[id=publishingFile]')[0].files[0]);        
-
+            form.append('rdfUpload', $('input[id=publishingFile]')[0].files[0]);       
 
             $.ajax({
                 url:  form_url,
@@ -1185,7 +952,10 @@ AddButtonNoFile("#dcat_logical_Form");
                     200: function() {
                         notify('Upload successful!', 'success');
                         app.render();
-                    }   
+                    },
+                    409: function() {
+                        notify('Wrong file type!', 'warning');
+                    }
                 }            
             }); 
         } else {
@@ -1289,7 +1059,7 @@ AddButtonNoFile("#dcat_logical_Form");
                 easing: 'swing',
                 speed: 500 // opening & closing animation speed
             }});
-        n.setTimeout(2000);
+        n.setTimeout(4500);
     }
     
     

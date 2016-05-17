@@ -19,8 +19,125 @@ var uniq_fast = function(a) {
 };
 
 var exports = module.exports =  {
-
 	
+	executeMapping : function(mapping, sources, callback) {
+
+		var logicalSources = mapping.parsedObject.logicalSources;
+		var dataSources = mapping.parsedObject.inputSources;
+		var neededSourcesFilenames = [];
+
+
+		//checks if there are local files need and if the data sources are available
+		for(var i = 0; i < logicalSources.length; i++) {
+			console.log(logicalSources[i].dataSource);
+			if(logicalSources[i].dataSource.charAt(0) == '#') {
+
+				//needs data source
+				var found = false;
+				for(var j = 0; j < dataSources.length; j++) {
+					if(dataSources[j].uri === logicalSources[i].dataSource) {
+						var found = true;
+						break;
+					}
+				}
+				if(!found) {
+					callback(new Error('Data sources not found in mapping file...'), undefined);
+					return;
+				}
+			} else {
+				//needs local file
+				for(var j = 0; j < sources.length; j++) {
+					var found = false;
+					console.log(logicalSources[i].dataSource.replace(/\"/g,'') + ' && ' + sources[j].filename);
+					if(logicalSources[i].dataSource.replace(/\"/g,'') === sources[j].filename) {
+						neededSourcesFilenames.push(sources[j]);
+						found = true;
+						break;
+					}
+				}
+
+				if(!found) {
+					callback(new Error('Local sources not found...'), undefined);
+					return;
+				}
+			}
+		}
+		
+		//if everything's ok, we'll continue with executing!
+		rmlMapper.launchProcessor(mapping.data, undefined, neededSourcesFilenames, function(err, output) {
+			if(err) {
+				//smthng bad happened :(
+				callback(err,output);
+			} else {
+				//succes! :)
+				callback(err,output);
+			}
+		});
+
+
+	},
+
+	executeTriples : function(mapping, triples, sources, callback) {
+
+		var logicalSources = mapping.parsedObject.logicalSources;
+		var dataSources = mapping.parsedObject.inputSources;
+
+		var neededSourcesFilenames = [];
+		var neededLogicalSources = [];
+
+		for(var i = 0; i < triples.length; i++) {
+			for(var j = 0; j < logicalSources.length; j++) {
+				if(triples[i].logicalSource == logicalSources[j].uri) {
+					if(logicalSources[j].dataSource.charAt(0) == '#') {
+						//needs data source
+						var found = false;
+						for(var k = 0; k < dataSources.length; k++) {
+							if(dataSources[k].uri === logicalSources[j].dataSource) {
+								var found = true;
+								break;
+							}
+						}
+						if(!found) {
+							callback(new Error('Data sources not found in mapping file...'), undefined);
+							return;
+						}
+					} else {
+						//local source is needed
+						for(var k = 0; k < sources.length; k++) {
+							var found = false;
+							console.log(logicalSources[i].dataSource.replace(/\"/g,'') + ' && ' + sources[j].filename);
+							if(logicalSources[i].dataSource.replace(/\"/g,'') === sources[k].filename) {
+								neededSourcesFilenames.push(sources[k]);
+								found = true;
+								break;
+							}
+						}
+						if(!found) {
+							callback(new Error('Local sources not found...'), undefined);
+							return;
+						}
+					}
+				}
+			}
+
+		}
+
+		//if everything's ok, we'll continue with executing!
+		rmlMapper.launchProcessor(mapping.parsedObject.toString, triples, neededSourcesFilenames, function(err, output) {
+			if(err) {
+				//smthng bad happened :(
+				callback(err,output);
+			} else {
+				//succes! :)
+				callback(err,output);
+			}
+		});
+
+
+	},
+
+
+
 
 	//excute mapping by id and return the rdf
 	executeMappingFromFile : function(mapping_id, models, user, sources, callback) {

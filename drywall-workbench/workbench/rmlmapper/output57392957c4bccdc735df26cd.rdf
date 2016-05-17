@@ -1,0 +1,347 @@
+
+<http://www.example.com/6719> a <http://schema.org/Event> ;
+	<http://purl.org/NET/c4dm/event.owl#place> <http://www.example.com/spot/6795> ;
+	<http://purl.org/dc/terms/title> "Spannende speurtocht in Gent" ;
+	<http://dbpedia.org/ontology/subtitle> "Moord met een geurtje" .
+
+<http://www.example.com/spot/6795> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Belfort" .
+
+<http://www.example.com/8470> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Lichtfestival Gent" ;
+	<http://dbpedia.org/ontology/subtitle> "Een lichtparcours doorheen de stad" .
+
+<http://www.example.com/8480> a <http://schema.org/Event> ;
+	<http://purl.org/NET/c4dm/event.owl#place> <http://www.example.com/spot/6691> ;
+	<http://purl.org/dc/terms/title> "Vuurwerk" .
+
+<http://www.example.com/spot/6691> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Gruut" .
+
+<http://www.example.com/8537> a <http://schema.org/Event> ;
+	<http://purl.org/NET/c4dm/event.owl#place> <http://www.example.com/spot/6601> ;
+	<http://purl.org/dc/terms/title> "Festival de la lumiere" .
+
+<http://www.example.com/spot/6601> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Sportcentrum Stadium Coupure" .
+
+<http://www.example.com/8547> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Feux d'artifice" .
+
+<http://www.example.com/8594> a <http://schema.org/Event> ;
+	<http://purl.org/NET/c4dm/event.owl#place> <http://www.example.com/spot/6700> ;
+	<http://purl.org/dc/terms/title> "Light Festival Ghent" .
+
+<http://www.example.com/spot/6700> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Le Pain Quotidien" .
+
+<http://www.example.com/8604> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Fireworks" .
+
+<http://www.example.com/8651> a <http://schema.org/Event> ;
+	<http://purl.org/NET/c4dm/event.owl#place> <http://www.example.com/spot/6667> ;
+	<http://purl.org/dc/terms/title> "Lichtfestival Gent" .
+
+<http://www.example.com/spot/6667> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Rederij De Gentenaer" .
+
+<http://www.example.com/8661> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Feuerwerk" .
+
+<http://www.example.com/8708> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Festival de la Luz de Gante" .
+
+<http://www.example.com/8718> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Fuegos artificiales" .
+
+<http://www.example.com/9692> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Omloop Het Nieuwsblad" .
+
+<http://www.example.com/9697> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Gent Jazz Festival" .
+
+<http://www.example.com/9701> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Open Monumentendag" .
+
+<http://www.example.com/9702> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Gent Festival van Vlaanderen" .
+
+<http://www.example.com/9704> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Film Fest Gent" .
+
+<http://www.example.com/9705> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Patersholfeesten" .
+
+<http://www.example.com/9709> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Zesdaagse" .
+
+<http://www.example.com/9714> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Film Fest Gent" .
+
+<http://www.example.com/9715> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Film Fest Gent" .
+
+<http://www.example.com/9716> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Film Fest Gent" .
+
+<http://www.example.com/9717> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Film Fest Gent" .
+
+<http://www.example.com/9718> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Gent Jazz Festival" .
+
+<http://www.example.com/9719> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Gent Jazz Festival" .
+
+<http://www.example.com/9720> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Gent Jazz Festival" .
+
+<http://www.example.com/9721> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Gent Jazz Festival" .
+
+<http://www.example.com/9722> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Journée du patrimoine" ;
+	<http://dbpedia.org/ontology/subtitle> "Open Monumentendag" .
+
+<http://www.example.com/9723> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Flemish Heritage Day" ;
+	<http://dbpedia.org/ontology/subtitle> "Open Monumentendag" .
+
+<http://www.example.com/9724> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Tag des offenen Denkmals" ;
+	<http://dbpedia.org/ontology/subtitle> "Open Monumentendag" .
+
+<http://www.example.com/9725> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Día de monumentos Abiertos" ;
+	<http://dbpedia.org/ontology/subtitle> "Open Monumentendag" .
+
+<http://www.example.com/9734> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Fêtes du quartier Patershol" ;
+	<http://dbpedia.org/ontology/subtitle> "Patersholfeesten" .
+
+<http://www.example.com/9735> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "The Patershol festivities" ;
+	<http://dbpedia.org/ontology/subtitle> "Patersholfeesten" .
+
+<http://www.example.com/9736> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Die Patersholfeste" ;
+	<http://dbpedia.org/ontology/subtitle> "Patersholfeesten" .
+
+<http://www.example.com/9741> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Fiesta del barrio Patershol" ;
+	<http://dbpedia.org/ontology/subtitle> "Patersholfeesten" .
+
+<http://www.example.com/9743> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Les Six Jours" ;
+	<http://dbpedia.org/ontology/subtitle> "Zesdaagse" .
+
+<http://www.example.com/9744> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "The six-days bicycle race" ;
+	<http://dbpedia.org/ontology/subtitle> "Zesdaagse" .
+
+<http://www.example.com/9745> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Sechstagerennen" ;
+	<http://dbpedia.org/ontology/subtitle> "Zesdaagse" .
+
+<http://www.example.com/9746> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Los Seis Días" ;
+	<http://dbpedia.org/ontology/subtitle> "Zesdaagse" .
+
+<http://www.example.com/9747> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Gand Festival de Flandre" .
+
+<http://www.example.com/9748> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Ghent Festival of Flanders" .
+
+<http://www.example.com/9749> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Gent Flandern Festival" .
+
+<http://www.example.com/9750> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Festival de Flandes en Gante" .
+
+<http://www.example.com/9751> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Omloop Het Nieuwsblad" .
+
+<http://www.example.com/9752> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Omloop Het Nieuwsblad" .
+
+<http://www.example.com/9753> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Omloop Het Nieuwsblad" .
+
+<http://www.example.com/9754> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Omloop Het Nieuwsblad" .
+
+<http://www.example.com/9953> a <http://schema.org/Event> ;
+	<http://purl.org/NET/c4dm/event.owl#place> <http://www.example.com/spot/6801> ;
+	<http://purl.org/dc/terms/title> "Floralien" .
+
+<http://www.example.com/spot/6801> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Citadelpark" .
+
+<http://www.example.com/9954> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Floralies" .
+
+<http://www.example.com/9955> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Floralies" .
+
+<http://www.example.com/9956> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Floralien" .
+
+<http://www.example.com/9957> a <http://schema.org/Event> ;
+	<http://purl.org/dc/terms/title> "Floralias de Gante" .
+
+<http://www.example.com/spot/6598> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Play Beach" .
+
+<http://www.example.com/spot/6599> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Paintball Gent" .
+
+<http://www.example.com/spot/6600> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Rafting & Outdoor Events" .
+
+<http://www.example.com/spot/6602> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Sport- en recreatiepark Blaarmeersen" .
+
+<http://www.example.com/spot/6629> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Beroepenhuis" .
+
+<http://www.example.com/spot/6665> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "De bootjes van Gent" .
+
+<http://www.example.com/spot/6670> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Leiecruise" .
+
+<http://www.example.com/spot/6671> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Minerva Boat Company" .
+
+<http://www.example.com/spot/6672> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Yachtcharter Gent" .
+
+<http://www.example.com/spot/6673> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Leie Yachting" .
+
+<http://www.example.com/spot/6675> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Per koets" .
+
+<http://www.example.com/spot/6676> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Appelbrugparkje" .
+
+<http://www.example.com/spot/6677> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Graffitistraatje" .
+
+<http://www.example.com/spot/6678> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Binnentuin Sint-Pietersabdij" .
+
+<http://www.example.com/spot/6679> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Openbaar vervoer" .
+
+<http://www.example.com/spot/6684> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Tierenteyn" .
+
+<http://www.example.com/spot/6685> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Gandaham" .
+
+<http://www.example.com/spot/6687> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Snoepgoed" .
+
+<http://www.example.com/spot/6693> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Roomer" .
+
+<http://www.example.com/spot/6694> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Bistro J'ai trouve" .
+
+<http://www.example.com/spot/6696> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Brood-huys" .
+
+<http://www.example.com/spot/6697> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Huize Colette" .
+
+<http://www.example.com/spot/6698> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Julies house" .
+
+<http://www.example.com/spot/6699> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Le Pain Perdu" .
+
+<http://www.example.com/spot/6701> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Oud Huis Himschoot" .
+
+<http://www.example.com/spot/6702> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Simon Says" .
+
+<http://www.example.com/spot/6742> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Zwembad Neptunus" .
+
+<http://www.example.com/spot/6743> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Zwembad Rooigem" .
+
+<http://www.example.com/spot/6744> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "SR Rozebroeken" .
+
+<http://www.example.com/spot/6745> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Zwembad Strop" .
+
+<http://www.example.com/spot/6788> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "'t Toreken" .
+
+<http://www.example.com/spot/6789> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Aanbidding van het Lam Gods" .
+
+<http://www.example.com/spot/6790> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Achtersikkel" .
+
+<http://www.example.com/spot/6791> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Alison, het geheim van de gevallen engelen" .
+
+<http://www.example.com/spot/6792> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Arcatheater" .
+
+<http://www.example.com/spot/6793> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Aula van de Universiteit Gent" .
+
+<http://www.example.com/spot/6794> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Baudelopark" .
+
+<http://www.example.com/spot/6797> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Boekentoren" .
+
+<http://www.example.com/spot/6798> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Campo Santo" .
+
+<http://www.example.com/spot/6799> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Capitole" .
+
+<http://www.example.com/spot/6800> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Sphinx cinema" .
+
+<http://www.example.com/spot/6802> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Dampoort" .
+
+<http://www.example.com/spot/6803> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "De wereld van Kina: de Tuin" .
+
+<http://www.example.com/spot/6804> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "De wereld van Kina: het Huis" .
+
+<http://www.example.com/spot/6805> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Design museum Gent" .
+
+<http://www.example.com/spot/6806> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Geeraard de Duivelsteen" .
+
+<http://www.example.com/spot/6807> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Glazen straatje" .
+
+<http://www.example.com/spot/6808> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Gras- en Korenlei" .
+
+<http://www.example.com/spot/6809> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Gravensteen" .
+
+<http://www.example.com/spot/6810> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Groot Begijnhof Sint-Elisabeth" .
+
+<http://www.example.com/spot/6811> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Groot Kanon" .
+
+<http://www.example.com/spot/6812> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Groot Vleeshuis" .

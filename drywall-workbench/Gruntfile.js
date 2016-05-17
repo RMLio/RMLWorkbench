@@ -7,6 +7,10 @@ module.exports = function(grunt) {
       vendor: {
         files: [
           {
+            expand: true, cwd: 'node_modules/nprogress/',
+            src: ['nprogress.css','nprogress.js'], dest: 'public/vendor/nprogress/'
+          },
+          {
             expand: true, cwd: 'node_modules/noty/js/noty/packaged/',
             src: ['jquery.noty.packaged.min.js'], dest: 'public/vendor/noty/js/'
           },

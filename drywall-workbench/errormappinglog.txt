@@ -1,128 +1,1717 @@
 0 [main] INFO package be.ugent.mmlab.rml.main  - =================================================
-16 [main] INFO package be.ugent.mmlab.rml.main  - RML Processor
-17 [main] INFO package be.ugent.mmlab.rml.main  - =================================================
-18 [main] INFO package be.ugent.mmlab.rml.main  - 
-78 [main] INFO package be.ugent.mmlab.rml.main  - ========================================
-84 [main] INFO package be.ugent.mmlab.rml.main  - Retrieving the RML Mapping Document...
-84 [main] INFO package be.ugent.mmlab.rml.main  - ========================================
-228 [main] DEBUG org.openrdf.sail.memory.MemoryStore  - Initializing MemoryStore...
-320 [main] DEBUG org.openrdf.sail.memory.MemoryStore  - MemoryStore initialized
-603 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.binary.BinaryRDFParserFactory
-607 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.jsonld.JSONLDParserFactory
-610 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.ntriples.NTriplesParserFactory
-614 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.nquads.NQuadsParserFactory
-616 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.n3.N3ParserFactory
-621 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.rdfjson.RDFJSONParserFactory
-625 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.rdfxml.RDFXMLParserFactory
-629 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.trix.TriXParserFactory
-636 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.turtle.TurtleParserFactory
-638 [main] DEBUG org.openrdf.rio.RDFParserRegistry  - Registered service class org.openrdf.rio.trig.TriGParserFactory
-789 [main] DEBUG org.openrdf.rio.DatatypeHandlerRegistry  - Registered service class org.openrdf.rio.datatypes.XMLSchemaDatatypeHandler
-792 [main] DEBUG org.openrdf.rio.DatatypeHandlerRegistry  - Registered service class org.openrdf.rio.datatypes.RDFDatatypeHandler
-797 [main] DEBUG org.openrdf.rio.DatatypeHandlerRegistry  - Registered service class org.openrdf.rio.datatypes.DBPediaDatatypeHandler
-799 [main] DEBUG org.openrdf.rio.DatatypeHandlerRegistry  - Registered service class org.openrdf.rio.datatypes.VirtuosoGeometryDatatypeHandler
-801 [main] DEBUG org.openrdf.rio.DatatypeHandlerRegistry  - Registered service class org.openrdf.rio.datatypes.GeoSPARQLDatatypeHandler
-813 [main] DEBUG org.openrdf.rio.LanguageHandlerRegistry  - Registered service class org.openrdf.rio.languages.RFC3066LanguageHandler
-1025 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.retrieval.RMLDocRetrieval  - Number of RML triples in the repository input.rml : 16 from local file
-1026 [main] INFO package be.ugent.mmlab.rml.main  - ========================================
-1028 [main] INFO package be.ugent.mmlab.rml.main  - Extracting the RML Mapping Definitions..
-1029 [main] INFO package be.ugent.mmlab.rml.main  - ========================================
-1032 [main] INFO be.ugent.mmlab.rml.mapdochandler.extraction.RMLMappingFactory  - Replacing Mapping Document shortcuts..
-1064 [main] INFO be.ugent.mmlab.rml.mapdochandler.extraction.RMLMappingFactory  - Extracting Triples Maps..
-1066 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.std.StdRMLMappingExtractor  - Triples Map statements were retrieved: true
-1067 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.RMLMappingFactory  - Number of RML triples with type TriplesMap in file: 1
-1073 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Extract TriplesMap subject : file:/home/wmaroy/github/FINAL/AMMA/drywall-workbench/input.rml#AirportMapping
-1081 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Reference Formulation CSV
-1081 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Iterator null
-1083 [main] INFO be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Resource-valued Input Source
-1085 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.ConcreteSourceFactory  - Resource-valued Input Source
-1090 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.ConcreteSourceFactory  - source type http://www.w3.org/ns/dcat#Distribution
-1090 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.ConcreteSourceFactory  - Source described with DCAT vocabulary.
-1097 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Source extracted : [be.ugent.mmlab.rml.model.source.std.StdApiSource@41785b00]
-1104 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Query null
-1110 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Triples Map extracted
-1110 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Logical source extracted : [StdLogicalSource : iterator = null; source be.ugent.mmlab.rml.model.source.std.StdApiSource@41785b00; referenceFormulation = CSV]
-1115 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.SubjectMapExtractor  - Extracting Subject Map...
-1125 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermExtractor  - Extracted template : http://airport.example.com/{id}
-1138 [main] DEBUG AbstractConditionExtractor  - Extracting Conditions...
-1140 [main] DEBUG BindingConditionExtractor  - Extracting Binding Conditions..
-1146 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.StdConditionExtractor  - Extracting Boolean Conditions..
-1147 [main] DEBUG AbstractConditionExtractor  - booleanConditions []
-1147 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.StdConditionExtractor  - Extracting Negation Conditions..
-1150 [main] DEBUG AbstractConditionExtractor  - Extracting conditions completed.
-1150 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermExtractor  - class : http://vocab.org/transit/terms/Stop
-1150 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.SubjectMapExtractor  - Simple Subject Map extracted
-1158 [main] DEBUG be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap  - No term type specified : use IRI by default.
-1162 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - More Predicate Map statements: true
-1167 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateMapExtractor  - Extracting Predicate Map..
-1169 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermExtractor  - Extracted constant : http://vocab.org/transit/terms/service
-1174 [main] DEBUG AbstractConditionExtractor  - Extracting Conditions...
-1178 [main] DEBUG BindingConditionExtractor  - Extracting Binding Conditions..
-1178 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.StdConditionExtractor  - Extracting Boolean Conditions..
-1180 [main] DEBUG AbstractConditionExtractor  - booleanConditions []
-1181 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.StdConditionExtractor  - Extracting Negation Conditions..
-1181 [main] DEBUG AbstractConditionExtractor  - Extracting conditions completed.
-1181 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateMapExtractor  - Simple Predicate Map extracted
-1182 [main] DEBUG be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap  - No term type specified : use IRI by default.
-1184 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Object Map statements found: org.openrdf.repository.RepositoryResult@30e4cb81
-1184 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Extracting Referencing Object Maps..
-1209 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extracting Referencing Object Map..
-1211 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Parent Triples Maps were found null
-1211 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Referencing Object Map statements found: []
-1212 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ObjectMapExtractor  - Extracting Object Map..
-1214 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermExtractor  - Extracted reference : bus
-1216 [main] DEBUG AbstractConditionExtractor  - Extracting Conditions...
-1218 [main] DEBUG BindingConditionExtractor  - Extracting Binding Conditions..
-1218 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.StdConditionExtractor  - Extracting Boolean Conditions..
-1219 [main] DEBUG AbstractConditionExtractor  - booleanConditions []
-1219 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.StdConditionExtractor  - Extracting Negation Conditions..
-1219 [main] DEBUG AbstractConditionExtractor  - Extracting conditions completed.
-1221 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ObjectMapExtractor  - Simple Object Map extracted.
-1222 [main] DEBUG be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap  - No term type specified : use Literal by default.
-1227 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.GraphMapExtractor  - Gtraph Maps returned []
-1233 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Extract predicate-object map done.
-1234 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - More Predicate Map statements: true
-1237 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateMapExtractor  - Extracting Predicate Map..
-1237 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermExtractor  - Extracted constant : http://www.w3.org/2003/01/geo/wgs84_pos#location
-1240 [main] DEBUG AbstractConditionExtractor  - Extracting Conditions...
-1252 [main] DEBUG BindingConditionExtractor  - Extracting Binding Conditions..
-1253 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.StdConditionExtractor  - Extracting Boolean Conditions..
-1253 [main] DEBUG AbstractConditionExtractor  - booleanConditions []
-1254 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.StdConditionExtractor  - Extracting Negation Conditions..
-1255 [main] DEBUG AbstractConditionExtractor  - Extracting conditions completed.
-1255 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateMapExtractor  - Simple Predicate Map extracted
-1255 [main] DEBUG be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap  - No term type specified : use IRI by default.
-1255 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Object Map statements found: org.openrdf.repository.RepositoryResult@a41f08
-1256 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Extracting Referencing Object Maps..
-1256 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Extracting Referencing Object Map..
-1257 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ReferencingObjectMapExtractor  - Parent Triples Maps were found null
-1258 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Referencing Object Map statements found: []
-1258 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ObjectMapExtractor  - Extracting Object Map..
-1260 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TermExtractor  - Extracted reference : city
-1265 [main] DEBUG AbstractConditionExtractor  - Extracting Conditions...
-1268 [main] DEBUG BindingConditionExtractor  - Extracting Binding Conditions..
-1268 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.StdConditionExtractor  - Extracting Boolean Conditions..
-1269 [main] DEBUG AbstractConditionExtractor  - booleanConditions []
-1269 [main] DEBUG be.ugent.mmlab.rml.condition.extractor.StdConditionExtractor  - Extracting Negation Conditions..
-1269 [main] DEBUG AbstractConditionExtractor  - Extracting conditions completed.
-1270 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.ObjectMapExtractor  - Simple Object Map extracted.
-1270 [main] DEBUG be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap  - No term type specified : use Literal by default.
-1270 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.GraphMapExtractor  - Gtraph Maps returned []
-1276 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.PredicateObjectMapExtractor  - Extract predicate-object map done.
-1276 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Number of extracted predicate-object maps : 2
-1276 [main] DEBUG be.ugent.mmlab.rml.mapdochandler.extraction.concrete.TriplesMapExtractor  - Extract of TriplesMap subject : file:/home/wmaroy/github/FINAL/AMMA/drywall-workbench/input.rml#AirportMapping done.
-1277 [main] DEBUG package be.ugent.mmlab.rml.main  - Generation Execution plan...
-1277 [main] INFO package be.ugent.mmlab.rml.main  - ========================================
-1277 [main] INFO package be.ugent.mmlab.rml.main  - Running the RML Mapping..
-1277 [main] INFO package be.ugent.mmlab.rml.main  - ========================================
-1306 [main] DEBUG org.openrdf.sail.memory.MemoryStore  - Initializing MemoryStore...
-1314 [main] DEBUG org.openrdf.sail.memory.MemoryStore  - Reading data from ./workbench/rmlmapper/repositories/SYSTEM/memorystore.data...
-1363 [main] WARN org.openrdf.sail.memory.MemoryStore  - Failed to lock directory: ./workbench/rmlmapper/repositories/SYSTEM
-1367 [main] DEBUG org.openrdf.sail.memory.MemoryStore  - Data file read successfully
-1378 [main] DEBUG org.openrdf.sail.memory.MemoryStore  - MemoryStore initialized
-1391 [main] DEBUG org.openrdf.repository.manager.SystemRepository  - Initializing empty SYSTEM repository
-1391 [main] ERROR StdRMLEngine  - Repository Exception org.openrdf.repository.RepositoryException: org.openrdf.sail.SailReadOnlyException: Unable to start transaction: data file is locked or read-only
-1392 [main] DEBUG StdRMLEngine  - Running without metadata...
-1395 [main] DEBUG StdRMLEngine  - Using direct file ./workbench/rmlmapper/output57303de005ef72532ed7edcd.rdf
-1401 [main] DEBUG org.openrdf.sail.memory.MemoryStore  - Initializing MemoryStore...
-1401 [main] DEBUG org.openrdf.sail.memory.MemoryStore  - MemoryStore initialized
+3 [main] INFO package be.ugent.mmlab.rml.main  - RML Processor
+4 [main] INFO package be.ugent.mmlab.rml.main  - =================================================
+4 [main] INFO package be.ugent.mmlab.rml.main  - 
+18 [main] INFO package be.ugent.mmlab.rml.main  - ========================================
+19 [main] INFO package be.ugent.mmlab.rml.main  - Retrieving the RML Mapping Document...
+19 [main] INFO package be.ugent.mmlab.rml.main  - ========================================
+45 [main] DEBUG org.openrdf.sail.memory.MemoryStore  - Initializing MemoryStore...
+65 [main] DEBUG org.openrdf.sail.memory.MemoryStore  - MemoryStore initialized
+264 [main] DEBUG RMLDocRetrieval  - Number of RML triples in the repository input573a3371f4917515256faf2b.rml : 82 from local file
+265 [main] INFO package be.ugent.mmlab.rml.main  - ========================================
+266 [main] INFO package be.ugent.mmlab.rml.main  - Extracting the RML Mapping Definitions..
+266 [main] INFO package be.ugent.mmlab.rml.main  - ========================================
+266 [main] INFO RMLMappingFactory  - Replacing Mapping Document shortcuts..
+280 [main] INFO RMLMappingFactory  - Extracting Triples Maps..
+282 [main] DEBUG StdRMLMappingExtractor  - Triples Map statements were retrieved: true
+296 [main] DEBUG RMLMappingFactory  - Number of RML triples with type TriplesMap in file: 2
+300 [main] DEBUG TriplesMapExtractor  - Extract TriplesMap subject : http://ex.com/triplesMap/TriplesMap_0
+313 [main] DEBUG TriplesMapExtractor  - Reference Formulation CSV
+314 [main] DEBUG TriplesMapExtractor  - Iterator null
+315 [main] DEBUG TriplesMapExtractor  - Table null
+316 [main] INFO TriplesMapExtractor  - Literal-valued Input Source
+327 [main] DEBUG TriplesMapExtractor  - Query null
+329 [main] DEBUG TriplesMapExtractor  - Triples Map extracted
+329 [main] DEBUG TriplesMapExtractor  - Logical source extracted : [StdLogicalSource : iterator = null; source be.ugent.mmlab.rml.model.source.std.StdLocalFileSource@5056dfcb; referenceFormulation = CSV]
+332 [main] DEBUG SubjectMapExtractor  - Extracting Subject Map...
+335 [main] DEBUG TermExtractor  - Extracted template : http://www.example.com/{id}
+344 [main] DEBUG AbstractConditionExtractor  - Extracting Conditions...
+346 [main] DEBUG BindingConditionExtractor  - Extracting Binding Conditions..
+348 [main] DEBUG StdConditionExtractor  - Extracting Equality Conditions..
+348 [main] DEBUG AbstractConditionExtractor  - Extracting conditions completed.
+349 [main] DEBUG SubjectMapExtractor  - Simple Subject Map extracted
+354 [main] DEBUG AbstractTermMap  - No term type specified : use IRI by default.
+357 [main] DEBUG TriplesMapExtractor  - Simple Predicate Object Map Extractor
+360 [main] DEBUG PredicateObjectMapExtractor  - More Predicate Map statements: true
+362 [main] DEBUG PredicateMapExtractor  - Extracting Predicate Map..
+363 [main] DEBUG TermExtractor  - Extracted constant : http://dbpedia.org/ontology/subtitle
+365 [main] DEBUG AbstractConditionExtractor  - Extracting Conditions...
+365 [main] DEBUG BindingConditionExtractor  - Extracting Binding Conditions..
+366 [main] DEBUG StdConditionExtractor  - Extracting Equality Conditions..
+366 [main] DEBUG AbstractConditionExtractor  - Extracting conditions completed.
+366 [main] DEBUG PredicateMapExtractor  - Simple Predicate Map extracted
+367 [main] DEBUG AbstractTermMap  - No term type specified : use IRI by default.
+368 [main] DEBUG PredicateObjectMapExtractor  - Object Map statements found: org.openrdf.repository.RepositoryResult@617faa95
+370 [main] DEBUG PredicateObjectMapExtractor  - Extracting Referencing Object Maps..
+374 [main] DEBUG ReferencingObjectMapExtractor  - Extracting Referencing Object Map..
+375 [main] DEBUG ReferencingObjectMapExtractor  - Parent Triples Maps were found null
+376 [main] DEBUG PredicateObjectMapExtractor  - Referencing Object Map statements found: []
+378 [main] DEBUG ObjectMapExtractor  - Extracting Object Map..
+380 [main] DEBUG TermExtractor  - Extracted reference : subtitle
+381 [main] DEBUG AbstractConditionExtractor  - Extracting Conditions...
+381 [main] DEBUG BindingConditionExtractor  - Extracting Binding Conditions..
+382 [main] DEBUG StdConditionExtractor  - Extracting Equality Conditions..
+382 [main] DEBUG AbstractConditionExtractor  - Extracting conditions completed.
+383 [main] DEBUG ObjectMapExtractor  - Simple Object Map extracted.
+384 [main] DEBUG AbstractTermMap  - No term type specified : use Literal by default.
+386 [main] DEBUG GraphMapExtractor  - Gtraph Maps returned []
+386 [main] DEBUG PredicateObjectMapExtractor  - Extract predicate-object map done.
+387 [main] DEBUG TriplesMapExtractor  - Simple Predicate Object Map Extractor
+388 [main] DEBUG PredicateObjectMapExtractor  - More Predicate Map statements: true
+388 [main] DEBUG PredicateMapExtractor  - Extracting Predicate Map..
+390 [main] DEBUG TermExtractor  - Extracted constant : http://purl.org/dc/terms/title
+394 [main] DEBUG AbstractConditionExtractor  - Extracting Conditions...
+395 [main] DEBUG BindingConditionExtractor  - Extracting Binding Conditions..
+396 [main] DEBUG StdConditionExtractor  - Extracting Equality Conditions..
+396 [main] DEBUG AbstractConditionExtractor  - Extracting conditions completed.
+397 [main] DEBUG PredicateMapExtractor  - Simple Predicate Map extracted
+397 [main] DEBUG AbstractTermMap  - No term type specified : use IRI by default.
+398 [main] DEBUG PredicateObjectMapExtractor  - Object Map statements found: org.openrdf.repository.RepositoryResult@76f2b07d
+398 [main] DEBUG PredicateObjectMapExtractor  - Extracting Referencing Object Maps..
+398 [main] DEBUG ReferencingObjectMapExtractor  - Extracting Referencing Object Map..
+399 [main] DEBUG ReferencingObjectMapExtractor  - Parent Triples Maps were found null
+399 [main] DEBUG PredicateObjectMapExtractor  - Referencing Object Map statements found: []
+399 [main] DEBUG ObjectMapExtractor  - Extracting Object Map..
+400 [main] DEBUG TermExtractor  - Extracted reference : title
+402 [main] DEBUG AbstractConditionExtractor  - Extracting Conditions...
+402 [main] DEBUG BindingConditionExtractor  - Extracting Binding Conditions..
+403 [main] DEBUG StdConditionExtractor  - Extracting Equality Conditions..
+403 [main] DEBUG AbstractConditionExtractor  - Extracting conditions completed.
+404 [main] DEBUG ObjectMapExtractor  - Simple Object Map extracted.
+404 [main] DEBUG AbstractTermMap  - No term type specified : use Literal by default.
+405 [main] DEBUG GraphMapExtractor  - Gtraph Maps returned []
+405 [main] DEBUG PredicateObjectMapExtractor  - Extract predicate-object map done.
+406 [main] DEBUG TriplesMapExtractor  - Simple Predicate Object Map Extractor
+408 [main] DEBUG PredicateObjectMapExtractor  - More Predicate Map statements: true
+410 [main] DEBUG PredicateMapExtractor  - Extracting Predicate Map..
+413 [main] DEBUG TermExtractor  - Extracted constant : http://purl.org/NET/c4dm/event.owl#place
+416 [main] DEBUG AbstractConditionExtractor  - Extracting Conditions...
+416 [main] DEBUG BindingConditionExtractor  - Extracting Binding Conditions..
+416 [main] DEBUG StdConditionExtractor  - Extracting Equality Conditions..
+417 [main] DEBUG AbstractConditionExtractor  - Extracting conditions completed.
+417 [main] DEBUG PredicateMapExtractor  - Simple Predicate Map extracted
+417 [main] DEBUG AbstractTermMap  - No term type specified : use IRI by default.
+417 [main] DEBUG PredicateObjectMapExtractor  - Object Map statements found: org.openrdf.repository.RepositoryResult@1fc2b765
+418 [main] DEBUG TriplesMapExtractor  - Simple Predicate Object Map Extractor
+418 [main] DEBUG PredicateObjectMapExtractor  - More Predicate Map statements: true
+419 [main] DEBUG PredicateMapExtractor  - Extracting Predicate Map..
+419 [main] DEBUG TermExtractor  - Extracted constant : http://www.w3.org/1999/02/22-rdf-syntax-ns#type
+421 [main] DEBUG AbstractConditionExtractor  - Extracting Conditions...
+421 [main] DEBUG BindingConditionExtractor  - Extracting Binding Conditions..
+421 [main] DEBUG StdConditionExtractor  - Extracting Equality Conditions..
+422 [main] DEBUG AbstractConditionExtractor  - Extracting conditions completed.
+422 [main] DEBUG PredicateMapExtractor  - Simple Predicate Map extracted
+422 [main] DEBUG AbstractTermMap  - No term type specified : use IRI by default.
+422 [main] DEBUG PredicateObjectMapExtractor  - Object Map statements found: org.openrdf.repository.RepositoryResult@6dde5c8c
+424 [main] DEBUG TriplesMapExtractor  - Simple Predicate Object Map Extractor
+425 [main] DEBUG PredicateObjectMapExtractor  - More Predicate Map statements: true
+426 [main] DEBUG PredicateMapExtractor  - Extracting Predicate Map..
+428 [main] DEBUG TermExtractor  - Extracted constant : http://dbpedia.org/ontology/subtitle
+431 [main] DEBUG AbstractConditionExtractor  - Extracting Conditions...
+432 [main] DEBUG BindingConditionExtractor  - Extracting Binding Conditions..
+432 [main] DEBUG StdConditionExtractor  - Extracting Equality Conditions..
+432 [main] DEBUG AbstractConditionExtractor  - Extracting conditions completed.
+433 [main] DEBUG PredicateMapExtractor  - Simple Predicate Map extracted
+433 [main] DEBUG AbstractTermMap  - No term type specified : use IRI by default.
+433 [main] DEBUG PredicateObjectMapExtractor  - Object Map statements found: org.openrdf.repository.RepositoryResult@2a40cd94
+434 [main] DEBUG TriplesMapExtractor  - Simple Predicate Object Map Extractor
+435 [main] DEBUG PredicateObjectMapExtractor  - More Predicate Map statements: true
+435 [main] DEBUG PredicateMapExtractor  - Extracting Predicate Map..
+435 [main] DEBUG TermExtractor  - Extracted constant : http://purl.org/dc/terms/title
+437 [main] DEBUG AbstractConditionExtractor  - Extracting Conditions...
+438 [main] DEBUG BindingConditionExtractor  - Extracting Binding Conditions..
+441 [main] DEBUG StdConditionExtractor  - Extracting Equality Conditions..
+442 [main] DEBUG AbstractConditionExtractor  - Extracting conditions completed.
+442 [main] DEBUG PredicateMapExtractor  - Simple Predicate Map extracted
+442 [main] DEBUG AbstractTermMap  - No term type specified : use IRI by default.
+443 [main] DEBUG PredicateObjectMapExtractor  - Object Map statements found: org.openrdf.repository.RepositoryResult@6b67034
+444 [main] DEBUG TriplesMapExtractor  - Simple Predicate Object Map Extractor
+445 [main] DEBUG PredicateObjectMapExtractor  - More Predicate Map statements: true
+446 [main] DEBUG PredicateMapExtractor  - Extracting Predicate Map..
+447 [main] DEBUG TermExtractor  - Extracted constant : http://purl.org/NET/c4dm/event.owl#place
+449 [main] DEBUG AbstractConditionExtractor  - Extracting Conditions...
+449 [main] DEBUG BindingConditionExtractor  - Extracting Binding Conditions..
+451 [main] DEBUG StdConditionExtractor  - Extracting Equality Conditions..
+453 [main] DEBUG AbstractConditionExtractor  - Extracting conditions completed.
+455 [main] DEBUG PredicateMapExtractor  - Simple Predicate Map extracted
+456 [main] DEBUG AbstractTermMap  - No term type specified : use IRI by default.
+457 [main] DEBUG PredicateObjectMapExtractor  - Object Map statements found: org.openrdf.repository.RepositoryResult@51931956
+457 [main] DEBUG PredicateObjectMapExtractor  - Extracting Referencing Object Maps..
+458 [main] DEBUG ReferencingObjectMapExtractor  - Extracting Referencing Object Map..
+458 [main] DEBUG TermExtractor  - Extracted parentTriplesMap : http://ex.com/triplesMap/TriplesMap_6
+459 [main] DEBUG ReferencingObjectMapExtractor  - Parent Triples Maps were found http://ex.com/triplesMap/TriplesMap_6
+460 [main] DEBUG ReferencingObjectMapExtractor  - Extract join conditions..
+462 [main] DEBUG TermExtractor  - Extracted child : Spots_0_id
+462 [main] DEBUG TermExtractor  - Extracted parent : ID
+463 [main] DEBUG ReferencingObjectMapExtractor  - Metric null was extracted.
+464 [main] DEBUG ReferencingObjectMapExtractor  - Extract join conditions done.
+465 [main] DEBUG AbstractConditionExtractor  - Extracting Conditions...
+465 [main] DEBUG BindingConditionExtractor  - Extracting Binding Conditions..
+465 [main] DEBUG StdConditionExtractor  - Extracting Equality Conditions..
+466 [main] DEBUG AbstractConditionExtractor  - Extracting conditions completed.
+466 [main] DEBUG ReferencingObjectMapExtractor  - Current Triples Map resource http://ex.com/triplesMap/TriplesMap_0
+466 [main] DEBUG ReferencingObjectMapExtractor  - Current Triples Map resource http://ex.com/triplesMap/TriplesMap_6
+466 [main] DEBUG ReferencingObjectMapExtractor  - Parent triples map found : http://ex.com/triplesMap/TriplesMap_6
+467 [main] DEBUG ReferencingObjectMapExtractor  - Referencing Object Map without Conditions is being extracted..
+470 [main] DEBUG PredicateObjectMapExtractor  - Referencing Object Map statements found: [be.ugent.mmlab.rml.model.std.StdReferencingObjectMap@589b3632]
+474 [main] DEBUG GraphMapExtractor  - Gtraph Maps returned []
+476 [main] DEBUG PredicateObjectMapExtractor  - Extract predicate-object map done.
+482 [main] DEBUG TriplesMapExtractor  - Simple Predicate Object Map Extractor
+483 [main] DEBUG PredicateObjectMapExtractor  - More Predicate Map statements: true
+483 [main] DEBUG PredicateMapExtractor  - Extracting Predicate Map..
+484 [main] DEBUG TermExtractor  - Extracted constant : http://www.w3.org/1999/02/22-rdf-syntax-ns#type
+486 [main] DEBUG AbstractConditionExtractor  - Extracting Conditions...
+488 [main] DEBUG BindingConditionExtractor  - Extracting Binding Conditions..
+490 [main] DEBUG StdConditionExtractor  - Extracting Equality Conditions..
+491 [main] DEBUG AbstractConditionExtractor  - Extracting conditions completed.
+491 [main] DEBUG PredicateMapExtractor  - Simple Predicate Map extracted
+491 [main] DEBUG AbstractTermMap  - No term type specified : use IRI by default.
+492 [main] DEBUG PredicateObjectMapExtractor  - Object Map statements found: org.openrdf.repository.RepositoryResult@3e3047e6
+492 [main] DEBUG PredicateObjectMapExtractor  - Extracting Referencing Object Maps..
+492 [main] DEBUG ReferencingObjectMapExtractor  - Extracting Referencing Object Map..
+493 [main] DEBUG ReferencingObjectMapExtractor  - Parent Triples Maps were found null
+493 [main] DEBUG PredicateObjectMapExtractor  - Referencing Object Map statements found: []
+493 [main] DEBUG ObjectMapExtractor  - Extracting Object Map..
+493 [main] DEBUG TermExtractor  - Extracted constant : http://schema.org/Event
+495 [main] DEBUG AbstractConditionExtractor  - Extracting Conditions...
+495 [main] DEBUG BindingConditionExtractor  - Extracting Binding Conditions..
+496 [main] DEBUG StdConditionExtractor  - Extracting Equality Conditions..
+497 [main] DEBUG AbstractConditionExtractor  - Extracting conditions completed.
+498 [main] DEBUG ObjectMapExtractor  - Simple Object Map extracted.
+498 [main] DEBUG AbstractTermMap  - No term type specified : use IRI by default.
+499 [main] DEBUG GraphMapExtractor  - Gtraph Maps returned []
+499 [main] DEBUG PredicateObjectMapExtractor  - Extract predicate-object map done.
+499 [main] DEBUG TriplesMapExtractor  - Number of extracted predicate-object maps : 4
+500 [main] DEBUG TriplesMapExtractor  - Extract of TriplesMap subject : http://ex.com/triplesMap/TriplesMap_0 done.
+500 [main] DEBUG TriplesMapExtractor  - Extract TriplesMap subject : http://ex.com/triplesMap/TriplesMap_6
+500 [main] DEBUG TriplesMapExtractor  - Reference Formulation CSV
+501 [main] DEBUG TriplesMapExtractor  - Iterator null
+502 [main] DEBUG TriplesMapExtractor  - Table null
+504 [main] INFO TriplesMapExtractor  - Literal-valued Input Source
+505 [main] DEBUG TriplesMapExtractor  - Query null
+506 [main] DEBUG TriplesMapExtractor  - Triples Map extracted
+507 [main] DEBUG TriplesMapExtractor  - Logical source extracted : [StdLogicalSource : iterator = null; source be.ugent.mmlab.rml.model.source.std.StdLocalFileSource@6973bf95; referenceFormulation = CSV]
+507 [main] DEBUG SubjectMapExtractor  - Extracting Subject Map...
+508 [main] DEBUG TermExtractor  - Extracted template : http://www.example.com/spot/{ID}
+509 [main] DEBUG AbstractConditionExtractor  - Extracting Conditions...
+510 [main] DEBUG BindingConditionExtractor  - Extracting Binding Conditions..
+511 [main] DEBUG StdConditionExtractor  - Extracting Equality Conditions..
+511 [main] DEBUG AbstractConditionExtractor  - Extracting conditions completed.
+511 [main] DEBUG SubjectMapExtractor  - Simple Subject Map extracted
+512 [main] DEBUG AbstractTermMap  - No term type specified : use IRI by default.
+512 [main] DEBUG TriplesMapExtractor  - Simple Predicate Object Map Extractor
+513 [main] DEBUG PredicateObjectMapExtractor  - More Predicate Map statements: true
+513 [main] DEBUG PredicateMapExtractor  - Extracting Predicate Map..
+513 [main] DEBUG TermExtractor  - Extracted constant : http://purl.org/dc/terms/title
+514 [main] DEBUG AbstractConditionExtractor  - Extracting Conditions...
+515 [main] DEBUG BindingConditionExtractor  - Extracting Binding Conditions..
+515 [main] DEBUG StdConditionExtractor  - Extracting Equality Conditions..
+515 [main] DEBUG AbstractConditionExtractor  - Extracting conditions completed.
+515 [main] DEBUG PredicateMapExtractor  - Simple Predicate Map extracted
+515 [main] DEBUG AbstractTermMap  - No term type specified : use IRI by default.
+516 [main] DEBUG PredicateObjectMapExtractor  - Object Map statements found: org.openrdf.repository.RepositoryResult@6a400542
+516 [main] DEBUG PredicateObjectMapExtractor  - Extracting Referencing Object Maps..
+516 [main] DEBUG ReferencingObjectMapExtractor  - Extracting Referencing Object Map..
+517 [main] DEBUG ReferencingObjectMapExtractor  - Parent Triples Maps were found null
+517 [main] DEBUG PredicateObjectMapExtractor  - Referencing Object Map statements found: []
+517 [main] DEBUG ObjectMapExtractor  - Extracting Object Map..
+518 [main] DEBUG TermExtractor  - Extracted reference : title
+521 [main] DEBUG AbstractConditionExtractor  - Extracting Conditions...
+522 [main] DEBUG BindingConditionExtractor  - Extracting Binding Conditions..
+524 [main] DEBUG StdConditionExtractor  - Extracting Equality Conditions..
+524 [main] DEBUG AbstractConditionExtractor  - Extracting conditions completed.
+524 [main] DEBUG ObjectMapExtractor  - Simple Object Map extracted.
+525 [main] DEBUG AbstractTermMap  - No term type specified : use Literal by default.
+526 [main] DEBUG GraphMapExtractor  - Gtraph Maps returned []
+526 [main] DEBUG PredicateObjectMapExtractor  - Extract predicate-object map done.
+527 [main] DEBUG TriplesMapExtractor  - Simple Predicate Object Map Extractor
+528 [main] DEBUG PredicateObjectMapExtractor  - More Predicate Map statements: true
+528 [main] DEBUG PredicateMapExtractor  - Extracting Predicate Map..
+528 [main] DEBUG TermExtractor  - Extracted constant : http://www.w3.org/1999/02/22-rdf-syntax-ns#type
+529 [main] DEBUG AbstractConditionExtractor  - Extracting Conditions...
+530 [main] DEBUG BindingConditionExtractor  - Extracting Binding Conditions..
+530 [main] DEBUG StdConditionExtractor  - Extracting Equality Conditions..
+530 [main] DEBUG AbstractConditionExtractor  - Extracting conditions completed.
+531 [main] DEBUG PredicateMapExtractor  - Simple Predicate Map extracted
+531 [main] DEBUG AbstractTermMap  - No term type specified : use IRI by default.
+531 [main] DEBUG PredicateObjectMapExtractor  - Object Map statements found: org.openrdf.repository.RepositoryResult@dd8ba08
+531 [main] DEBUG TriplesMapExtractor  - Simple Predicate Object Map Extractor
+532 [main] DEBUG PredicateObjectMapExtractor  - More Predicate Map statements: true
+532 [main] DEBUG PredicateMapExtractor  - Extracting Predicate Map..
+532 [main] DEBUG TermExtractor  - Extracted constant : http://purl.org/dc/terms/title
+533 [main] DEBUG AbstractConditionExtractor  - Extracting Conditions...
+534 [main] DEBUG BindingConditionExtractor  - Extracting Binding Conditions..
+534 [main] DEBUG StdConditionExtractor  - Extracting Equality Conditions..
+534 [main] DEBUG AbstractConditionExtractor  - Extracting conditions completed.
+535 [main] DEBUG PredicateMapExtractor  - Simple Predicate Map extracted
+535 [main] DEBUG AbstractTermMap  - No term type specified : use IRI by default.
+535 [main] DEBUG PredicateObjectMapExtractor  - Object Map statements found: org.openrdf.repository.RepositoryResult@35d019a3
+536 [main] DEBUG TriplesMapExtractor  - Simple Predicate Object Map Extractor
+536 [main] DEBUG PredicateObjectMapExtractor  - More Predicate Map statements: true
+537 [main] DEBUG PredicateMapExtractor  - Extracting Predicate Map..
+538 [main] DEBUG TermExtractor  - Extracted constant : http://www.w3.org/1999/02/22-rdf-syntax-ns#type
+541 [main] DEBUG AbstractConditionExtractor  - Extracting Conditions...
+542 [main] DEBUG BindingConditionExtractor  - Extracting Binding Conditions..
+544 [main] DEBUG StdConditionExtractor  - Extracting Equality Conditions..
+544 [main] DEBUG AbstractConditionExtractor  - Extracting conditions completed.
+545 [main] DEBUG PredicateMapExtractor  - Simple Predicate Map extracted
+545 [main] DEBUG AbstractTermMap  - No term type specified : use IRI by default.
+545 [main] DEBUG PredicateObjectMapExtractor  - Object Map statements found: org.openrdf.repository.RepositoryResult@7c7a06ec
+545 [main] DEBUG PredicateObjectMapExtractor  - Extracting Referencing Object Maps..
+546 [main] DEBUG ReferencingObjectMapExtractor  - Extracting Referencing Object Map..
+546 [main] DEBUG ReferencingObjectMapExtractor  - Parent Triples Maps were found null
+546 [main] DEBUG PredicateObjectMapExtractor  - Referencing Object Map statements found: []
+547 [main] DEBUG ObjectMapExtractor  - Extracting Object Map..
+547 [main] DEBUG TermExtractor  - Extracted constant : http://purl.org/dc/terms/Location
+548 [main] DEBUG AbstractConditionExtractor  - Extracting Conditions...
+548 [main] DEBUG BindingConditionExtractor  - Extracting Binding Conditions..
+549 [main] DEBUG StdConditionExtractor  - Extracting Equality Conditions..
+549 [main] DEBUG AbstractConditionExtractor  - Extracting conditions completed.
+549 [main] DEBUG ObjectMapExtractor  - Simple Object Map extracted.
+550 [main] DEBUG AbstractTermMap  - No term type specified : use IRI by default.
+550 [main] DEBUG GraphMapExtractor  - Gtraph Maps returned []
+550 [main] DEBUG PredicateObjectMapExtractor  - Extract predicate-object map done.
+550 [main] DEBUG TriplesMapExtractor  - Number of extracted predicate-object maps : 2
+551 [main] DEBUG TriplesMapExtractor  - Extract of TriplesMap subject : http://ex.com/triplesMap/TriplesMap_6 done.
+551 [main] INFO package be.ugent.mmlab.rml.main  - ========================================
+552 [main] INFO package be.ugent.mmlab.rml.main  - Executing the RML Mapping..
+563 [main] INFO package be.ugent.mmlab.rml.main  - ========================================
+564 [main] DEBUG package be.ugent.mmlab.rml.main  - Generation Execution plan...
+564 [main] DEBUG package be.ugent.mmlab.rml.main  - Mapping without metadata...
+582 [main] DEBUG org.openrdf.sail.memory.MemoryStore  - Initializing MemoryStore...
+585 [main] DEBUG org.openrdf.sail.memory.MemoryStore  - Reading data from /home/wmaroy/github/AMMA/drywall-workbench/./workbench/rmlmapper/repositories/SYSTEM/memorystore.data...
+607 [main] DEBUG org.openrdf.sail.memory.MemoryStore  - Data file read successfully
+609 [main] DEBUG org.openrdf.sail.memory.MemoryStore  - MemoryStore initialized
+614 [main] DEBUG org.openrdf.repository.manager.SystemRepository  - Initializing empty SYSTEM repository
+629 [main] DEBUG StdRMLEngine  - Running without metadata...
+630 [main] DEBUG StdRMLEngine  - Using direct file ./workbench/rmlmapper/output573a3371f4917515256faf2c.rdf
+633 [main] DEBUG org.openrdf.sail.memory.MemoryStore  - Initializing MemoryStore...
+633 [main] DEBUG org.openrdf.sail.memory.MemoryStore  - MemoryStore initialized
+909 [main] DEBUG StdRMLEngine  - Dataset is generated
+910 [main] DEBUG StdRMLEngine  - Running RML mapping... 
+910 [main] DEBUG StdRMLEngine  - Dataset repository generated
+910 [main] DEBUG StdRMLEngine  - Generating triples..
+910 [main] DEBUG StdRMLEngine  - Generate RDF triples... 
+911 [main] DEBUG StdRMLEngine  - Generating execution list... 
+Generating RDF triples for http://ex.com/triplesMap/TriplesMap_0
+911 [main] INFO StdRMLEngine  - Generating RML Processor..
+916 [main] INFO StdRMLEngine  - Generating Data Retrieval Processor..
+918 [main] DEBUG ConcreteLogicalSourceProcessorFactory  - Resource-valued Input Source
+918 [main] DEBUG ConcreteLogicalSourceProcessorFactory  - source type StdLocalFileSource
+931 [main] DEBUG ConcreteLogicalSourceProcessorFactory  - Processor for Local File Source.
+932 [main] DEBUG StdRMLEngine  - Generating Input Stream..
+933 [main] DEBUG StdRMLEngine  - Generating Performer..
+933 [main] DEBUG StdRMLEngine  - Executing Mapping Processor..
+945 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+947 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+950 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+950 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+950 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+950 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+950 [main] DEBUG AbstractInputProcessor  - Local File as Source
+951 [main] DEBUG StdObjectMapProcessor  - available input 1405
+951 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+951 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+951 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+954 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+961 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+968 [main] DEBUG FileDataset  - Add triple (http://www.example.com/6719, http://purl.org/NET/c4dm/event.owl#place, http://www.example.com/spot/6795).
+1109 [main] DEBUG be.ugent.mmlab.rml.performer.ConditionalJoinRMLPerformer  - Subject http://www.example.com/6719 Predicate http://purl.org/NET/c4dm/event.owl#place Object http://www.example.com/spot/6795
+1110 [main] DEBUG be.ugent.mmlab.rml.performer.ConditionalJoinRMLPerformer  - Nested performer is called
+1111 [main] DEBUG be.ugent.mmlab.rml.performer.NestedRMLPerformer  - Executing entirely the Referencing Object Map.
+1112 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+1114 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6795, http://purl.org/dc/terms/title, Belfort).
+1208 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+1213 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6795, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+1333 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+1333 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+1334 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+1334 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+1335 [main] DEBUG FileDataset  - Add triple (http://www.example.com/6719, http://purl.org/dc/terms/title, Spannende speurtocht in Gent).
+1464 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+1466 [main] DEBUG FileDataset  - Add triple (http://www.example.com/6719, http://dbpedia.org/ontology/subtitle, Moord met een geurtje).
+1597 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+1598 [main] DEBUG FileDataset  - Add triple (http://www.example.com/6719, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+1731 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+1731 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+1732 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+1732 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+1732 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+1732 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+1732 [main] DEBUG AbstractInputProcessor  - Local File as Source
+1732 [main] DEBUG StdObjectMapProcessor  - available input 1405
+1733 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+1733 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+1733 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+1733 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+1738 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+1741 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+1742 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+1743 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+1744 [main] DEBUG FileDataset  - Add triple (http://www.example.com/8470, http://purl.org/dc/terms/title, Lichtfestival Gent).
+1875 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+1876 [main] DEBUG FileDataset  - Add triple (http://www.example.com/8470, http://dbpedia.org/ontology/subtitle, Een lichtparcours doorheen de stad).
+2007 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+2008 [main] DEBUG FileDataset  - Add triple (http://www.example.com/8470, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+2140 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+2142 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+2143 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+2143 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+2143 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+2143 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+2143 [main] DEBUG AbstractInputProcessor  - Local File as Source
+2144 [main] DEBUG StdObjectMapProcessor  - available input 1405
+2144 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+2144 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+2144 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+2145 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+2147 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+2148 [main] DEBUG FileDataset  - Add triple (http://www.example.com/8480, http://purl.org/NET/c4dm/event.owl#place, http://www.example.com/spot/6691).
+2284 [main] DEBUG be.ugent.mmlab.rml.performer.ConditionalJoinRMLPerformer  - Subject http://www.example.com/8480 Predicate http://purl.org/NET/c4dm/event.owl#place Object http://www.example.com/spot/6691
+2284 [main] DEBUG be.ugent.mmlab.rml.performer.ConditionalJoinRMLPerformer  - Nested performer is called
+2285 [main] DEBUG be.ugent.mmlab.rml.performer.NestedRMLPerformer  - Executing entirely the Referencing Object Map.
+2285 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+2286 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6691, http://purl.org/dc/terms/title, Gruut).
+2417 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+2417 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6691, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+2553 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+2555 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+2556 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+2557 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+2558 [main] DEBUG FileDataset  - Add triple (http://www.example.com/8480, http://purl.org/dc/terms/title, Vuurwerk).
+2683 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+2683 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+2684 [main] DEBUG FileDataset  - Add triple (http://www.example.com/8480, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+2794 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+2794 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+2795 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+2795 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+2795 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+2795 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+2795 [main] DEBUG AbstractInputProcessor  - Local File as Source
+2795 [main] DEBUG StdObjectMapProcessor  - available input 1405
+2795 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+2795 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+2796 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+2796 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+2796 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+2797 [main] DEBUG FileDataset  - Add triple (http://www.example.com/8537, http://purl.org/NET/c4dm/event.owl#place, http://www.example.com/spot/6601).
+3213 [main] DEBUG be.ugent.mmlab.rml.performer.ConditionalJoinRMLPerformer  - Subject http://www.example.com/8537 Predicate http://purl.org/NET/c4dm/event.owl#place Object http://www.example.com/spot/6601
+3213 [main] DEBUG be.ugent.mmlab.rml.performer.ConditionalJoinRMLPerformer  - Nested performer is called
+3214 [main] DEBUG be.ugent.mmlab.rml.performer.NestedRMLPerformer  - Executing entirely the Referencing Object Map.
+3214 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+3216 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6601, http://purl.org/dc/terms/title, Sportcentrum Stadium Coupure).
+3347 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+3347 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6601, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+3481 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+3481 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+3481 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+3482 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+3482 [main] DEBUG FileDataset  - Add triple (http://www.example.com/8537, http://purl.org/dc/terms/title, Festival de la lumiere).
+3613 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+3613 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+3614 [main] DEBUG FileDataset  - Add triple (http://www.example.com/8537, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+3746 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+3747 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+3748 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+3748 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+3748 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+3748 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+3748 [main] DEBUG AbstractInputProcessor  - Local File as Source
+3748 [main] DEBUG StdObjectMapProcessor  - available input 1405
+3748 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+3749 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+3749 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+3749 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+3751 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+3752 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+3753 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+3754 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+3757 [main] DEBUG FileDataset  - Add triple (http://www.example.com/8547, http://purl.org/dc/terms/title, Feux d'artifice).
+3890 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+3891 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+3894 [main] DEBUG FileDataset  - Add triple (http://www.example.com/8547, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+4023 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+4026 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+4027 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+4027 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+4028 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+4028 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+4029 [main] DEBUG AbstractInputProcessor  - Local File as Source
+4030 [main] DEBUG StdObjectMapProcessor  - available input 1405
+4030 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+4030 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+4030 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+4030 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+4032 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+4034 [main] DEBUG FileDataset  - Add triple (http://www.example.com/8594, http://purl.org/NET/c4dm/event.owl#place, http://www.example.com/spot/6700).
+4166 [main] DEBUG be.ugent.mmlab.rml.performer.ConditionalJoinRMLPerformer  - Subject http://www.example.com/8594 Predicate http://purl.org/NET/c4dm/event.owl#place Object http://www.example.com/spot/6700
+4167 [main] DEBUG be.ugent.mmlab.rml.performer.ConditionalJoinRMLPerformer  - Nested performer is called
+4167 [main] DEBUG be.ugent.mmlab.rml.performer.NestedRMLPerformer  - Executing entirely the Referencing Object Map.
+4167 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+4168 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6700, http://purl.org/dc/terms/title, Le Pain Quotidien).
+4310 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+4311 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6700, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+4433 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+4433 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+4434 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+4434 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+4434 [main] DEBUG FileDataset  - Add triple (http://www.example.com/8594, http://purl.org/dc/terms/title, Light Festival Ghent).
+4532 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+4532 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+4533 [main] DEBUG FileDataset  - Add triple (http://www.example.com/8594, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+4632 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+4633 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+4633 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+4633 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+4633 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+4633 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+4633 [main] DEBUG AbstractInputProcessor  - Local File as Source
+4633 [main] DEBUG StdObjectMapProcessor  - available input 1405
+4633 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+4633 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+4634 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+4634 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+4636 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+4637 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+4637 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+4638 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+4640 [main] DEBUG FileDataset  - Add triple (http://www.example.com/8604, http://purl.org/dc/terms/title, Fireworks).
+4743 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+4743 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+4744 [main] DEBUG FileDataset  - Add triple (http://www.example.com/8604, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+4876 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+4877 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+4877 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+4877 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+4877 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+4878 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+4878 [main] DEBUG AbstractInputProcessor  - Local File as Source
+4878 [main] DEBUG StdObjectMapProcessor  - available input 1405
+4878 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+4878 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+4878 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+4878 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+4879 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+4880 [main] DEBUG FileDataset  - Add triple (http://www.example.com/8651, http://purl.org/NET/c4dm/event.owl#place, http://www.example.com/spot/6667).
+5032 [main] DEBUG be.ugent.mmlab.rml.performer.ConditionalJoinRMLPerformer  - Subject http://www.example.com/8651 Predicate http://purl.org/NET/c4dm/event.owl#place Object http://www.example.com/spot/6667
+5033 [main] DEBUG be.ugent.mmlab.rml.performer.ConditionalJoinRMLPerformer  - Nested performer is called
+5033 [main] DEBUG be.ugent.mmlab.rml.performer.NestedRMLPerformer  - Executing entirely the Referencing Object Map.
+5034 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+5040 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6667, http://purl.org/dc/terms/title, Rederij De Gentenaer).
+5232 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+5233 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6667, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+5365 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+5366 [main] DEBUG be.ugent.mmlab.rml.performer.ConditionalJoinRMLPerformer  - Nested performer is called
+5366 [main] DEBUG be.ugent.mmlab.rml.performer.NestedRMLPerformer  - Executing entirely the Referencing Object Map.
+5366 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+5367 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+5368 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+5369 [main] DEBUG be.ugent.mmlab.rml.performer.ConditionalJoinRMLPerformer  - Nested performer is called
+5369 [main] DEBUG be.ugent.mmlab.rml.performer.NestedRMLPerformer  - Executing entirely the Referencing Object Map.
+5369 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+5370 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+5374 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+5377 [main] DEBUG be.ugent.mmlab.rml.performer.ConditionalJoinRMLPerformer  - Nested performer is called
+5377 [main] DEBUG be.ugent.mmlab.rml.performer.NestedRMLPerformer  - Executing entirely the Referencing Object Map.
+5378 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+5378 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+5380 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+5381 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+5381 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+5381 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+5381 [main] DEBUG FileDataset  - Add triple (http://www.example.com/8651, http://purl.org/dc/terms/title, Lichtfestival Gent).
+5509 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+5510 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+5510 [main] DEBUG FileDataset  - Add triple (http://www.example.com/8651, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+5642 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+5643 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+5644 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+5644 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+5644 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+5644 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+5644 [main] DEBUG AbstractInputProcessor  - Local File as Source
+5644 [main] DEBUG StdObjectMapProcessor  - available input 1405
+5644 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+5644 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+5644 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+5645 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+5645 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+5646 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+5646 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+5646 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+5646 [main] DEBUG FileDataset  - Add triple (http://www.example.com/8661, http://purl.org/dc/terms/title, Feuerwerk).
+5775 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+5776 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+5777 [main] DEBUG FileDataset  - Add triple (http://www.example.com/8661, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+5897 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+5897 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+5897 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+5897 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+5897 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+5897 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+5898 [main] DEBUG AbstractInputProcessor  - Local File as Source
+5898 [main] DEBUG StdObjectMapProcessor  - available input 1405
+5898 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+5898 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+5898 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+5898 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+5899 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+5899 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+5899 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+5900 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+5900 [main] DEBUG FileDataset  - Add triple (http://www.example.com/8708, http://purl.org/dc/terms/title, Festival de la Luz de Gante).
+5996 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+5997 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+5997 [main] DEBUG FileDataset  - Add triple (http://www.example.com/8708, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+6097 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+6098 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+6098 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+6098 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+6099 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+6099 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+6099 [main] DEBUG AbstractInputProcessor  - Local File as Source
+6099 [main] DEBUG StdObjectMapProcessor  - available input 1405
+6099 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+6099 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+6099 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+6099 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+6100 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+6100 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+6100 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+6101 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+6102 [main] DEBUG FileDataset  - Add triple (http://www.example.com/8718, http://purl.org/dc/terms/title, Fuegos artificiales).
+6218 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+6219 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+6219 [main] DEBUG FileDataset  - Add triple (http://www.example.com/8718, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+6351 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+6352 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+6353 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+6353 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+6354 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+6354 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+6354 [main] DEBUG AbstractInputProcessor  - Local File as Source
+6355 [main] DEBUG StdObjectMapProcessor  - available input 1405
+6355 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+6355 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+6356 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+6356 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+6357 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+6358 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+6358 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+6358 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+6359 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9692, http://purl.org/dc/terms/title, Omloop Het Nieuwsblad).
+6495 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+6495 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+6496 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9692, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+6640 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+6642 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+6643 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+6643 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+6643 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+6643 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+6643 [main] DEBUG AbstractInputProcessor  - Local File as Source
+6643 [main] DEBUG StdObjectMapProcessor  - available input 1405
+6644 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+6644 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+6644 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+6644 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+6645 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+6645 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+6645 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+6646 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+6646 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9697, http://purl.org/dc/terms/title, Gent Jazz Festival).
+6773 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+6774 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+6775 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9697, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+6906 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+6907 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+6907 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+6907 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+6907 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+6908 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+6908 [main] DEBUG AbstractInputProcessor  - Local File as Source
+6909 [main] DEBUG StdObjectMapProcessor  - available input 1405
+6909 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+6909 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+6909 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+6909 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+6911 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+6911 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+6911 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+6911 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+6914 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9701, http://purl.org/dc/terms/title, Open Monumentendag).
+7050 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+7051 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+7051 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9701, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+7183 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+7184 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+7184 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+7184 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+7184 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+7184 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+7184 [main] DEBUG AbstractInputProcessor  - Local File as Source
+7185 [main] DEBUG StdObjectMapProcessor  - available input 1405
+7185 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+7185 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+7185 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+7185 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+7187 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+7188 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+7188 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+7189 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+7191 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9702, http://purl.org/dc/terms/title, Gent Festival van Vlaanderen).
+7349 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+7350 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+7350 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9702, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+7450 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+7450 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+7451 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+7451 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+7451 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+7451 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+7451 [main] DEBUG AbstractInputProcessor  - Local File as Source
+7451 [main] DEBUG StdObjectMapProcessor  - available input 1405
+7452 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+7453 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+7454 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+7454 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+7455 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+7456 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+7457 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+7457 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+7458 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9704, http://purl.org/dc/terms/title, Film Fest Gent).
+7561 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+7561 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+7561 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9704, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+7694 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+7694 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+7694 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+7694 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+7694 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+7694 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+7694 [main] DEBUG AbstractInputProcessor  - Local File as Source
+7694 [main] DEBUG StdObjectMapProcessor  - available input 1405
+7695 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+7695 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+7695 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+7695 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+7695 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+7696 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+7696 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+7696 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+7696 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9705, http://purl.org/dc/terms/title, Patersholfeesten).
+7826 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+7827 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+7827 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9705, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+8026 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+8027 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+8027 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+8027 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+8027 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+8027 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+8027 [main] DEBUG AbstractInputProcessor  - Local File as Source
+8027 [main] DEBUG StdObjectMapProcessor  - available input 1405
+8027 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+8027 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+8028 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+8028 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+8028 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+8028 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+8028 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+8029 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+8029 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9709, http://purl.org/dc/terms/title, Zesdaagse).
+8159 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+8160 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+8160 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9709, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+8305 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+8306 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+8306 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+8307 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+8307 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+8307 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+8307 [main] DEBUG AbstractInputProcessor  - Local File as Source
+8307 [main] DEBUG StdObjectMapProcessor  - available input 1405
+8307 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+8307 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+8308 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+8308 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+8308 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+8308 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+8309 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+8309 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+8309 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9714, http://purl.org/dc/terms/title, Film Fest Gent).
+8437 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+8438 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+8439 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9714, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+8571 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+8572 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+8573 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+8573 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+8573 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+8573 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+8573 [main] DEBUG AbstractInputProcessor  - Local File as Source
+8574 [main] DEBUG StdObjectMapProcessor  - available input 1405
+8574 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+8574 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+8574 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+8574 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+8575 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+8575 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+8576 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+8576 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+8577 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9715, http://purl.org/dc/terms/title, Film Fest Gent).
+8703 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+8704 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+8706 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9715, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+8803 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+8807 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+8808 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+8808 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+8810 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+8811 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+8811 [main] DEBUG AbstractInputProcessor  - Local File as Source
+8811 [main] DEBUG StdObjectMapProcessor  - available input 1405
+8811 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+8812 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+8812 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+8812 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+8815 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+8815 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+8815 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+8815 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+8817 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9716, http://purl.org/dc/terms/title, Film Fest Gent).
+8913 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+8914 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+8914 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9716, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+9013 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+9014 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+9014 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+9014 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+9014 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+9014 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+9014 [main] DEBUG AbstractInputProcessor  - Local File as Source
+9014 [main] DEBUG StdObjectMapProcessor  - available input 1405
+9014 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+9014 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+9015 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+9015 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+9015 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+9015 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+9016 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+9016 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+9016 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9717, http://purl.org/dc/terms/title, Film Fest Gent).
+9135 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+9137 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+9138 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9717, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+9269 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+9278 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+9279 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+9283 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+9284 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+9284 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+9284 [main] DEBUG AbstractInputProcessor  - Local File as Source
+9284 [main] DEBUG StdObjectMapProcessor  - available input 1405
+9284 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+9285 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+9285 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+9285 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+9294 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+9294 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+9295 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+9295 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+9296 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9718, http://purl.org/dc/terms/title, Gent Jazz Festival).
+9434 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+9434 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+9435 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9718, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+9567 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+9567 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+9568 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+9568 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+9568 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+9568 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+9569 [main] DEBUG AbstractInputProcessor  - Local File as Source
+9569 [main] DEBUG StdObjectMapProcessor  - available input 1405
+9569 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+9570 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+9570 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+9570 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+9571 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+9571 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+9572 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+9572 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+9573 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9719, http://purl.org/dc/terms/title, Gent Jazz Festival).
+9700 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+9700 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+9700 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9719, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+9833 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+9833 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+9833 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+9833 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+9833 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+9833 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+9834 [main] DEBUG AbstractInputProcessor  - Local File as Source
+9834 [main] DEBUG StdObjectMapProcessor  - available input 1405
+9834 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+9834 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+9834 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+9834 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+9835 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+9836 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+9836 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+9837 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+9838 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9720, http://purl.org/dc/terms/title, Gent Jazz Festival).
+9979 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+9979 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+9979 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9720, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+10090 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+10090 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+10091 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+10091 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+10092 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+10092 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+10092 [main] DEBUG AbstractInputProcessor  - Local File as Source
+10092 [main] DEBUG StdObjectMapProcessor  - available input 1405
+10093 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+10093 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+10093 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+10093 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+10094 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+10094 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+10094 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+10094 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+10095 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9721, http://purl.org/dc/terms/title, Gent Jazz Festival).
+10190 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+10190 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+10191 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9721, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+10290 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+10290 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+10291 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+10291 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+10291 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+10291 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+10291 [main] DEBUG AbstractInputProcessor  - Local File as Source
+10291 [main] DEBUG StdObjectMapProcessor  - available input 1405
+10291 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+10291 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+10291 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+10291 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+10292 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+10292 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+10292 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+10292 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+10293 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9722, http://purl.org/dc/terms/title, Journée du patrimoine).
+10423 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+10424 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9722, http://dbpedia.org/ontology/subtitle, Open Monumentendag).
+10556 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+10557 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9722, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+10689 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+10690 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+10691 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+10691 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+10692 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+10692 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+10692 [main] DEBUG AbstractInputProcessor  - Local File as Source
+10692 [main] DEBUG StdObjectMapProcessor  - available input 1405
+10693 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+10693 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+10693 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+10693 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+10694 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+10694 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+10694 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+10694 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+10695 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9723, http://purl.org/dc/terms/title, Flemish Heritage Day).
+10822 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+10823 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9723, http://dbpedia.org/ontology/subtitle, Open Monumentendag).
+10956 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+10957 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9723, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+11089 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+11090 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+11090 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+11090 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+11090 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+11090 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+11090 [main] DEBUG AbstractInputProcessor  - Local File as Source
+11090 [main] DEBUG StdObjectMapProcessor  - available input 1405
+11091 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+11091 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+11092 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+11092 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+11094 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+11094 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+11094 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+11094 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+11095 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9724, http://purl.org/dc/terms/title, Tag des offenen Denkmals).
+11223 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+11226 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9724, http://dbpedia.org/ontology/subtitle, Open Monumentendag).
+11323 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+11326 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9724, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+11423 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+11424 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+11424 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+11424 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+11424 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+11424 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+11424 [main] DEBUG AbstractInputProcessor  - Local File as Source
+11425 [main] DEBUG StdObjectMapProcessor  - available input 1405
+11425 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+11425 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+11425 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+11426 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+11428 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+11428 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+11428 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+11428 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+11429 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9725, http://purl.org/dc/terms/title, Día de monumentos Abiertos).
+11545 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+11546 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9725, http://dbpedia.org/ontology/subtitle, Open Monumentendag).
+11678 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+11679 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9725, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+11912 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+11912 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+11912 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+11913 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+11913 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+11913 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+11913 [main] DEBUG AbstractInputProcessor  - Local File as Source
+11913 [main] DEBUG StdObjectMapProcessor  - available input 1405
+11913 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+11913 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+11913 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+11913 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+11914 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+11914 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+11914 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+11914 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+11914 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9734, http://purl.org/dc/terms/title, Fêtes du quartier Patershol).
+12056 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+12057 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9734, http://dbpedia.org/ontology/subtitle, Patersholfeesten).
+12189 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+12190 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9734, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+12322 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+12323 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+12323 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+12323 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+12323 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+12323 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+12323 [main] DEBUG AbstractInputProcessor  - Local File as Source
+12324 [main] DEBUG StdObjectMapProcessor  - available input 1405
+12324 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+12324 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+12324 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+12324 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+12325 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+12325 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+12325 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+12326 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+12327 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9735, http://purl.org/dc/terms/title, The Patershol festivities).
+12466 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+12467 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9735, http://dbpedia.org/ontology/subtitle, Patersholfeesten).
+12579 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+12579 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9735, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+12701 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+12702 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+12703 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+12703 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+12704 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+12704 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+12704 [main] DEBUG AbstractInputProcessor  - Local File as Source
+12705 [main] DEBUG StdObjectMapProcessor  - available input 1405
+12705 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+12705 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+12705 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+12705 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+12707 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+12707 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+12707 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+12707 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+12708 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9736, http://purl.org/dc/terms/title, Die Patersholfeste).
+12834 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+12835 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9736, http://dbpedia.org/ontology/subtitle, Patersholfeesten).
+13022 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+13023 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9736, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+13156 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+13156 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+13157 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+13157 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+13157 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+13157 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+13157 [main] DEBUG AbstractInputProcessor  - Local File as Source
+13158 [main] DEBUG StdObjectMapProcessor  - available input 1405
+13158 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+13158 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+13158 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+13158 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+13159 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+13159 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+13159 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+13160 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+13160 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9741, http://purl.org/dc/terms/title, Fiesta del barrio Patershol).
+13289 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+13290 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9741, http://dbpedia.org/ontology/subtitle, Patersholfeesten).
+13422 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+13423 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9741, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+13555 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+13556 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+13556 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+13557 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+13557 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+13557 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+13557 [main] DEBUG AbstractInputProcessor  - Local File as Source
+13558 [main] DEBUG StdObjectMapProcessor  - available input 1405
+13558 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+13558 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+13559 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+13559 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+13560 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+13560 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+13560 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+13560 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+13561 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9743, http://purl.org/dc/terms/title, Les Six Jours).
+13688 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+13689 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9743, http://dbpedia.org/ontology/subtitle, Zesdaagse).
+13788 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+13789 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9743, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+13912 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+13912 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+13912 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+13912 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+13912 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+13913 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+13913 [main] DEBUG AbstractInputProcessor  - Local File as Source
+13913 [main] DEBUG StdObjectMapProcessor  - available input 1405
+13913 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+13913 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+13913 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+13913 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+13914 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+13915 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+13915 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+13915 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+13915 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9744, http://purl.org/dc/terms/title, The six-days bicycle race).
+14044 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+14045 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9744, http://dbpedia.org/ontology/subtitle, Zesdaagse).
+14177 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+14178 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9744, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+14311 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+14311 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+14311 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+14311 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+14312 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+14312 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+14312 [main] DEBUG AbstractInputProcessor  - Local File as Source
+14312 [main] DEBUG StdObjectMapProcessor  - available input 1405
+14312 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+14312 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+14313 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+14313 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+14314 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+14314 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+14314 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+14314 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+14314 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9745, http://purl.org/dc/terms/title, Sechstagerennen).
+14444 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+14445 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9745, http://dbpedia.org/ontology/subtitle, Zesdaagse).
+14577 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+14578 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9745, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+14710 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+14711 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+14711 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+14711 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+14711 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+14711 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+14711 [main] DEBUG AbstractInputProcessor  - Local File as Source
+14712 [main] DEBUG StdObjectMapProcessor  - available input 1405
+14712 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+14712 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+14712 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+14713 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+14714 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+14715 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+14715 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+14715 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+14716 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9746, http://purl.org/dc/terms/title, Los Seis Días).
+14854 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+14856 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9746, http://dbpedia.org/ontology/subtitle, Zesdaagse).
+14989 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+14989 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9746, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+15089 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+15090 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+15090 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+15091 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+15091 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+15091 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+15091 [main] DEBUG AbstractInputProcessor  - Local File as Source
+15099 [main] DEBUG StdObjectMapProcessor  - available input 1405
+15099 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+15100 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+15100 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+15100 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+15100 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+15101 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+15101 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+15101 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+15102 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9747, http://purl.org/dc/terms/title, Gand Festival de Flandre).
+15245 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+15245 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+15246 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9747, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+15378 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+15379 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+15379 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+15379 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+15379 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+15379 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+15379 [main] DEBUG AbstractInputProcessor  - Local File as Source
+15379 [main] DEBUG StdObjectMapProcessor  - available input 1405
+15379 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+15380 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+15380 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+15380 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+15381 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+15381 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+15381 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+15381 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+15382 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9748, http://purl.org/dc/terms/title, Ghent Festival of Flanders).
+15511 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+15512 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+15512 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9748, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+15644 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+15645 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+15645 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+15645 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+15645 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+15645 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+15645 [main] DEBUG AbstractInputProcessor  - Local File as Source
+15646 [main] DEBUG StdObjectMapProcessor  - available input 1405
+15646 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+15646 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+15646 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+15646 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+15647 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+15647 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+15647 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+15647 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+15648 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9749, http://purl.org/dc/terms/title, Gent Flandern Festival).
+15790 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+15790 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+15792 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9749, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+16098 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+16098 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+16098 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+16099 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+16099 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+16099 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+16099 [main] DEBUG AbstractInputProcessor  - Local File as Source
+16099 [main] DEBUG StdObjectMapProcessor  - available input 1405
+16099 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+16099 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+16099 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+16099 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+16105 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+16105 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+16106 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+16106 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+16108 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9750, http://purl.org/dc/terms/title, Festival de Flandes en Gante).
+16220 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+16221 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+16222 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9750, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+16321 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+16322 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+16322 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+16323 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+16323 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+16323 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+16323 [main] DEBUG AbstractInputProcessor  - Local File as Source
+16324 [main] DEBUG StdObjectMapProcessor  - available input 1405
+16324 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+16324 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+16324 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+16324 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+16324 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+16324 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+16325 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+16325 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+16325 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9751, http://purl.org/dc/terms/title, Omloop Het Nieuwsblad).
+16442 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+16442 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+16443 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9751, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+16565 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+16565 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+16565 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+16566 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+16566 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+16566 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+16566 [main] DEBUG AbstractInputProcessor  - Local File as Source
+16566 [main] DEBUG StdObjectMapProcessor  - available input 1405
+16566 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+16566 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+16566 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+16566 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+16567 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+16567 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+16567 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+16567 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+16567 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9752, http://purl.org/dc/terms/title, Omloop Het Nieuwsblad).
+16731 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+16732 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+16732 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9752, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+16865 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+16865 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+16866 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+16866 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+16866 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+16866 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+16866 [main] DEBUG AbstractInputProcessor  - Local File as Source
+16867 [main] DEBUG StdObjectMapProcessor  - available input 1405
+16867 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+16867 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+16867 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+16867 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+16868 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+16868 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+16868 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+16868 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+16870 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9753, http://purl.org/dc/terms/title, Omloop Het Nieuwsblad).
+17009 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+17009 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+17009 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9753, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+17142 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+17143 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+17143 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+17143 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+17143 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+17143 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+17143 [main] DEBUG AbstractInputProcessor  - Local File as Source
+17144 [main] DEBUG StdObjectMapProcessor  - available input 1405
+17144 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+17144 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+17144 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+17144 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+17144 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+17145 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+17145 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+17145 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+17145 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9754, http://purl.org/dc/terms/title, Omloop Het Nieuwsblad).
+17275 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+17275 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+17276 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9754, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+17397 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+17397 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+17398 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+17398 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+17398 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+17398 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+17398 [main] DEBUG AbstractInputProcessor  - Local File as Source
+17398 [main] DEBUG StdObjectMapProcessor  - available input 1405
+17398 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+17398 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+17398 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+17399 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+17399 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+17400 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9953, http://purl.org/NET/c4dm/event.owl#place, http://www.example.com/spot/6801).
+17497 [main] DEBUG be.ugent.mmlab.rml.performer.ConditionalJoinRMLPerformer  - Subject http://www.example.com/9953 Predicate http://purl.org/NET/c4dm/event.owl#place Object http://www.example.com/spot/6801
+17497 [main] DEBUG be.ugent.mmlab.rml.performer.ConditionalJoinRMLPerformer  - Nested performer is called
+17497 [main] DEBUG be.ugent.mmlab.rml.performer.NestedRMLPerformer  - Executing entirely the Referencing Object Map.
+17497 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+17498 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6801, http://purl.org/dc/terms/title, Citadelpark).
+17597 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+17598 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6801, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+17709 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+17709 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+17709 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+17709 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+17710 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9953, http://purl.org/dc/terms/title, Floralien).
+17842 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+17842 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+17843 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9953, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+18263 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+18264 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+18264 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+18264 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+18264 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+18264 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+18264 [main] DEBUG AbstractInputProcessor  - Local File as Source
+18265 [main] DEBUG StdObjectMapProcessor  - available input 1405
+18265 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+18265 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+18265 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+18265 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+18266 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+18266 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+18266 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+18266 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+18267 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9954, http://purl.org/dc/terms/title, Floralies).
+18396 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+18396 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+18396 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9954, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+18529 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+18529 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+18529 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+18530 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+18530 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+18530 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+18530 [main] DEBUG AbstractInputProcessor  - Local File as Source
+18530 [main] DEBUG StdObjectMapProcessor  - available input 1405
+18530 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+18530 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+18530 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+18530 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+18530 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+18530 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+18531 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+18531 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+18531 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9955, http://purl.org/dc/terms/title, Floralies).
+18662 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+18662 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+18663 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9955, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+18773 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+18775 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+18776 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+18776 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+18777 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+18777 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+18777 [main] DEBUG AbstractInputProcessor  - Local File as Source
+18777 [main] DEBUG StdObjectMapProcessor  - available input 1405
+18777 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+18777 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+18777 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+18777 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+18794 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+18794 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+18794 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+18794 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+18795 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9956, http://purl.org/dc/terms/title, Floralien).
+18895 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+18896 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+18896 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9956, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+18996 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable id from string template http://www.example.com/{id}
+18996 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+18997 [main] DEBUG StdObjectMapProcessor  - Processing Referencing Object Map...
+18999 [main] DEBUG StdObjectMapProcessor  - Simple Referencing Object Map
+19000 [main] DEBUG StdObjectMapProcessor  - Executing Referencing Object Map....
+19001 [main] DEBUG AbstractInputProcessor  - type of source StdLocalFileSource
+19001 [main] DEBUG AbstractInputProcessor  - Local File as Source
+19001 [main] DEBUG StdObjectMapProcessor  - available input 1405
+19001 [main] DEBUG StdObjectMapProcessor  - Referencing Object Map with Logical Source with conditions.
+19002 [main] DEBUG StdObjectMapProcessor  - Processing 1 Referencing Object Map with Join Conditions...
+19002 [main] DEBUG StdObjectMapProcessor  - Join Condition class StdJoinCondition
+19002 [main] DEBUG StdObjectMapProcessor  - Join Condition without Metric...
+19002 [main] DEBUG StdObjectMapProcessor  - The current iteration status is false
+19003 [main] DEBUG StdObjectMapProcessor  - Check for falllback object maps
+19003 [main] DEBUG StdObjectMapProcessor  - Found [] fallback Referencing Object Maps
+19003 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+19003 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9957, http://purl.org/dc/terms/title, Floralias de Gante).
+19128 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+19129 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+19129 [main] DEBUG FileDataset  - Add triple (http://www.example.com/9957, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://schema.org/Event).
+19262 [main] ERROR StdRMLEngine  - Exception java.lang.ArrayIndexOutOfBoundsException: 1
+19262 [main] ERROR StdRMLEngine  - The execution of the mapping failed.
+Generating RDF triples for http://ex.com/triplesMap/TriplesMap_6
+19263 [main] INFO StdRMLEngine  - Generating RML Processor..
+19263 [main] INFO StdRMLEngine  - Generating Data Retrieval Processor..
+19263 [main] DEBUG ConcreteLogicalSourceProcessorFactory  - Resource-valued Input Source
+19263 [main] DEBUG ConcreteLogicalSourceProcessorFactory  - source type StdLocalFileSource
+19263 [main] DEBUG ConcreteLogicalSourceProcessorFactory  - Processor for Local File Source.
+19263 [main] DEBUG StdRMLEngine  - Generating Input Stream..
+19263 [main] DEBUG StdRMLEngine  - Generating Performer..
+19263 [main] DEBUG StdRMLEngine  - Executing Mapping Processor..
+19264 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+19264 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+19265 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6598, http://purl.org/dc/terms/title, Play Beach).
+19395 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+19395 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6598, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+19528 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+19528 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+19529 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6599, http://purl.org/dc/terms/title, Paintball Gent).
+19673 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+19674 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6599, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+19806 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+19807 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+19808 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6600, http://purl.org/dc/terms/title, Rafting & Outdoor Events).
+19928 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+19929 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6600, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+20029 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+20029 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+20030 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+20030 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+20030 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+20031 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6602, http://purl.org/dc/terms/title, Sport- en recreatiepark Blaarmeersen).
+20128 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+20129 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6602, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+20240 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+20241 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+20242 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6629, http://purl.org/dc/terms/title, Beroepenhuis).
+20373 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+20374 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6629, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+20507 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+20508 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+20509 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6665, http://purl.org/dc/terms/title, De bootjes van Gent).
+20639 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+20641 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6665, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+20773 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+20774 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+20775 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+20776 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+20777 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+20777 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+20778 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+20778 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+20778 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+20779 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+20779 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+20779 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+20780 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+20780 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+20780 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6670, http://purl.org/dc/terms/title, Leiecruise).
+20916 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+20917 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6670, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+21062 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+21063 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+21064 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+21064 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+21065 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+21065 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+21066 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+21066 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+21067 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+21067 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+21068 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+21068 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6671, http://purl.org/dc/terms/title, Minerva Boat Company).
+21173 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+21174 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6671, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+21274 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+21275 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+21276 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6672, http://purl.org/dc/terms/title, Yachtcharter Gent).
+21384 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+21385 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6672, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+21517 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+21517 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+21518 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6673, http://purl.org/dc/terms/title, Leie Yachting).
+21650 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+21651 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6673, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+21783 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+21784 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+21784 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6675, http://purl.org/dc/terms/title, Per koets).
+21916 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+21917 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6675, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+22050 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+22050 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+22050 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6676, http://purl.org/dc/terms/title, Appelbrugparkje).
+22183 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+22183 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6676, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+22307 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+22308 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+22309 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6677, http://purl.org/dc/terms/title, Graffitistraatje).
+22406 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+22408 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6677, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+22507 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+22508 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+22509 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6678, http://purl.org/dc/terms/title, Binnentuin Sint-Pietersabdij).
+22628 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+22629 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6678, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+22761 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+22762 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+22762 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6679, http://purl.org/dc/terms/title, Openbaar vervoer).
+23159 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+23160 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6679, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+23293 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+23294 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+23295 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6684, http://purl.org/dc/terms/title, Tierenteyn).
+23425 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+23427 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6684, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+23558 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+23559 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+23568 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6685, http://purl.org/dc/terms/title, Gandaham).
+23702 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+23703 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6685, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+23836 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+23837 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+23839 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6687, http://purl.org/dc/terms/title, Snoepgoed).
+23948 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+23948 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6687, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+24070 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+24072 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+24074 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+24074 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+24075 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+24076 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6693, http://purl.org/dc/terms/title, Roomer).
+24203 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+24208 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6693, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+24337 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+24338 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+24340 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6694, http://purl.org/dc/terms/title, Bistro J'ai trouve).
+24469 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+24471 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6694, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+24603 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+24604 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+24606 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6696, http://purl.org/dc/terms/title, Brood-huys).
+24736 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+24737 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6696, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+24869 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+24870 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+24872 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6697, http://purl.org/dc/terms/title, Huize Colette).
+25002 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+25004 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6697, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+25113 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+25113 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+25114 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6698, http://purl.org/dc/terms/title, Julies house).
+25236 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+25238 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6698, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+25370 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+25372 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+25374 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6699, http://purl.org/dc/terms/title, Le Pain Perdu).
+25502 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+25504 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6699, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+25636 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+25637 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+25639 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+25640 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+25641 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+25643 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6701, http://purl.org/dc/terms/title, Oud Huis Himschoot).
+25846 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+25846 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6701, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+26003 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+26004 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+26006 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6702, http://purl.org/dc/terms/title, Simon Says).
+26135 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+26135 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6702, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+26258 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+26259 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+26260 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6742, http://purl.org/dc/terms/title, Zwembad Neptunus).
+26357 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+26359 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6742, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+26458 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+26459 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+26459 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6743, http://purl.org/dc/terms/title, Zwembad Rooigem).
+26592 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+26593 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6743, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+26725 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+26726 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+26726 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6744, http://purl.org/dc/terms/title, SR Rozebroeken).
+26858 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+26859 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6744, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+26992 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+26992 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+26993 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6745, http://purl.org/dc/terms/title, Zwembad Strop).
+27124 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+27126 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6745, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+27258 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+27258 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+27259 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6788, http://purl.org/dc/terms/title, 't Toreken).
+27390 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+27392 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6788, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+27491 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+27492 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+27493 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6789, http://purl.org/dc/terms/title, Aanbidding van het Lam Gods).
+27591 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+27592 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6789, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+27702 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+27703 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+27706 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6790, http://purl.org/dc/terms/title, Achtersikkel).
+27847 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+27848 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6790, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+27980 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+27981 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+27981 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6791, http://purl.org/dc/terms/title, Alison, het geheim van de gevallen engelen).
+28113 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+28114 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6791, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+28247 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+28247 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+28247 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6792, http://purl.org/dc/terms/title, Arcatheater).
+28379 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+28380 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6792, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+28513 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+28513 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+28514 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6793, http://purl.org/dc/terms/title, Aula van de Universiteit Gent).
+28613 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+28613 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6793, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+28713 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+28713 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+28714 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6794, http://purl.org/dc/terms/title, Baudelopark).
+28813 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+28813 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6794, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+28946 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+28946 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+28947 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+28947 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+28947 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+28948 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6797, http://purl.org/dc/terms/title, Boekentoren).
+29079 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+29079 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6797, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+29225 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+29226 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+29226 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6798, http://purl.org/dc/terms/title, Campo Santo).
+29413 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+29413 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6798, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+29623 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+29624 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+29625 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6799, http://purl.org/dc/terms/title, Capitole).
+29833 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+29833 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6799, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+30043 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+30044 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+30044 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6800, http://purl.org/dc/terms/title, Sphinx cinema).
+30220 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+30222 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6800, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+30420 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+30421 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+30424 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+30426 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+30427 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+30428 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6802, http://purl.org/dc/terms/title, Dampoort).
+30629 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+30630 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6802, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+30862 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+30862 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+30863 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6803, http://purl.org/dc/terms/title, De wereld van Kina: de Tuin).
+31028 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+31028 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6803, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+31238 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+31239 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+31241 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6804, http://purl.org/dc/terms/title, De wereld van Kina: het Huis).
+31449 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+31450 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6804, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+31660 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+31660 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+31660 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6805, http://purl.org/dc/terms/title, Design museum Gent).
+31914 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+31914 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6805, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+32135 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+32137 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+32139 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6806, http://purl.org/dc/terms/title, Geeraard de Duivelsteen).
+32334 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+32335 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6806, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+32566 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+32566 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+32567 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6807, http://purl.org/dc/terms/title, Glazen straatje).
+32743 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+32744 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6807, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+33274 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+33275 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+33276 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6808, http://purl.org/dc/terms/title, Gras- en Korenlei).
+33528 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+33528 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6808, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+33796 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+33796 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+33796 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6809, http://purl.org/dc/terms/title, Gravensteen).
+33995 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+33995 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6809, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+34095 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+34095 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+34096 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6810, http://purl.org/dc/terms/title, Groot Begijnhof Sint-Elisabeth).
+34206 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+34207 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6810, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+34350 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+34351 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+34352 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6811, http://purl.org/dc/terms/title, Groot Kanon).
+34483 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+34484 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6811, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+34617 [main] DEBUG StdTemplateMap  - extractVariablesFromStringTemplate: Extracted variable ID from string template http://www.example.com/spot/{ID}
+34617 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+34618 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6812, http://purl.org/dc/terms/title, Groot Vleeshuis).
+34749 [main] DEBUG AbstractRMLProcessor  - Proceed with the POM
+34750 [main] DEBUG FileDataset  - Add triple (http://www.example.com/spot/6812, http://www.w3.org/1999/02/22-rdf-syntax-ns#type, http://purl.org/dc/terms/Location).
+34918 [main] ERROR StdRMLEngine  - Exception java.lang.ArrayIndexOutOfBoundsException: 1
+34919 [main] ERROR StdRMLEngine  - The execution of the mapping failed.
+34933 [main] INFO StdRMLEngine  - RML mapping done! Generated 238 in 34.00949646s . 

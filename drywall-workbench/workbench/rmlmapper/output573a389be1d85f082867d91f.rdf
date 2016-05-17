@@ -1,0 +1,800 @@
+
+<http://www.example.com/1> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Miller" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Donna" .
+
+<http://www.example.com/2> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Chavez" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Donna" .
+
+<http://www.example.com/3> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "White" ;
+	<http://xmlns.com/foaf/0.1/firstName> "George" .
+
+<http://www.example.com/4> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Rice" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Ernest" .
+
+<http://www.example.com/5> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Collins" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Henry" .
+
+<http://www.example.com/6> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Marshall" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Bruce" .
+
+<http://www.example.com/7> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Hart" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Amy" .
+
+<http://www.example.com/8> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Greene" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Janice" .
+
+<http://www.example.com/9> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Ellis" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Carlos" .
+
+<http://www.example.com/10> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Miller" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Christopher" .
+
+<http://www.example.com/11> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Hansen" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Shirley" .
+
+<http://www.example.com/12> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Gibson" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Eric" .
+
+<http://www.example.com/13> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Graham" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Scott" .
+
+<http://www.example.com/14> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Wood" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Jimmy" .
+
+<http://www.example.com/15> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Wright" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Bobby" .
+
+<http://www.example.com/16> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Evans" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Ruby" .
+
+<http://www.example.com/17> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Kennedy" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Brandon" .
+
+<http://www.example.com/18> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Willis" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Jean" .
+
+<http://www.example.com/19> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Davis" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Jerry" .
+
+<http://www.example.com/20> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Howard" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Irene" .
+
+<http://www.example.com/21> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Marshall" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Paul" .
+
+<http://www.example.com/22> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Powell" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Kathryn" .
+
+<http://www.example.com/23> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Carroll" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Wayne" .
+
+<http://www.example.com/24> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Alexander" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Edward" .
+
+<http://www.example.com/25> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Stephens" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Wanda" .
+
+<http://www.example.com/26> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Marshall" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Earl" .
+
+<http://www.example.com/27> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Austin" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Lori" .
+
+<http://www.example.com/28> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Russell" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Edward" .
+
+<http://www.example.com/29> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Simmons" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Kevin" .
+
+<http://www.example.com/30> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Marshall" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Anthony" .
+
+<http://www.example.com/31> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Kennedy" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Mildred" .
+
+<http://www.example.com/32> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Parker" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Anne" .
+
+<http://www.example.com/33> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Garrett" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Kevin" .
+
+<http://www.example.com/34> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Hall" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Nicole" .
+
+<http://www.example.com/35> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Alexander" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Justin" .
+
+<http://www.example.com/36> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Thompson" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Sara" .
+
+<http://www.example.com/37> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Medina" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Mary" .
+
+<http://www.example.com/38> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Hamilton" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Brian" .
+
+<http://www.example.com/39> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Washington" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Debra" .
+
+<http://www.example.com/40> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Reynolds" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Steve" .
+
+<http://www.example.com/41> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Lewis" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Marilyn" .
+
+<http://www.example.com/42> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Gomez" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Marie" .
+
+<http://www.example.com/43> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Fowler" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Eugene" .
+
+<http://www.example.com/44> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Wood" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Jennifer" .
+
+<http://www.example.com/45> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Henry" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Sarah" .
+
+<http://www.example.com/46> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Medina" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Ann" .
+
+<http://www.example.com/47> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Fernandez" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Michael" .
+
+<http://www.example.com/48> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Miller" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Mildred" .
+
+<http://www.example.com/49> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Wheeler" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Rose" .
+
+<http://www.example.com/50> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Hanson" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Brian" .
+
+<http://www.example.com/51> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Bell" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Douglas" .
+
+<http://www.example.com/52> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Carter" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Amanda" .
+
+<http://www.example.com/53> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Elliott" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Randy" .
+
+<http://www.example.com/54> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Martinez" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Clarence" .
+
+<http://www.example.com/55> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Russell" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Earl" .
+
+<http://www.example.com/56> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Dean" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Christine" .
+
+<http://www.example.com/57> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Torres" ;
+	<http://xmlns.com/foaf/0.1/firstName> "John" .
+
+<http://www.example.com/58> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Mcdonald" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Christina" .
+
+<http://www.example.com/59> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Little" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Shirley" .
+
+<http://www.example.com/60> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Walker" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Joyce" .
+
+<http://www.example.com/61> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Wells" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Frank" .
+
+<http://www.example.com/62> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Jackson" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Paul" .
+
+<http://www.example.com/63> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Gutierrez" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Daniel" .
+
+<http://www.example.com/64> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Hall" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Ruth" .
+
+<http://www.example.com/65> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Olson" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Judy" .
+
+<http://www.example.com/66> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Shaw" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Thomas" .
+
+<http://www.example.com/67> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Perez" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Sandra" .
+
+<http://www.example.com/68> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Wright" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Jerry" .
+
+<http://www.example.com/69> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Hall" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Catherine" .
+
+<http://www.example.com/70> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Moreno" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Earl" .
+
+<http://www.example.com/71> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Evans" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Janice" .
+
+<http://www.example.com/72> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "King" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Julie" .
+
+<http://www.example.com/73> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Brooks" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Wayne" .
+
+<http://www.example.com/74> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Medina" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Sharon" .
+
+<http://www.example.com/75> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Robinson" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Heather" .
+
+<http://www.example.com/76> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Stevens" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Brenda" .
+
+<http://www.example.com/77> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Martinez" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Karen" .
+
+<http://www.example.com/78> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Mccoy" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Annie" .
+
+<http://www.example.com/79> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Sullivan" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Pamela" .
+
+<http://www.example.com/80> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Howard" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Roy" .
+
+<http://www.example.com/81> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Riley" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Peter" .
+
+<http://www.example.com/82> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Carpenter" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Peter" .
+
+<http://www.example.com/83> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Arnold" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Gerald" .
+
+<http://www.example.com/84> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Collins" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Gloria" .
+
+<http://www.example.com/85> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Davis" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Anthony" .
+
+<http://www.example.com/86> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Oliver" ;
+	<http://xmlns.com/foaf/0.1/firstName> "George" .
+
+<http://www.example.com/87> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Stanley" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Amy" .
+
+<http://www.example.com/88> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Ramirez" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Willie" .
+
+<http://www.example.com/89> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Gilbert" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Jimmy" .
+
+<http://www.example.com/90> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Garrett" ;
+	<http://xmlns.com/foaf/0.1/firstName> "James" .
+
+<http://www.example.com/91> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Rivera" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Richard" .
+
+<http://www.example.com/92> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Woods" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Lois" .
+
+<http://www.example.com/93> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Alexander" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Christine" .
+
+<http://www.example.com/94> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Carr" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Sara" .
+
+<http://www.example.com/95> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Price" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Scott" .
+
+<http://www.example.com/96> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Martin" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Doris" .
+
+<http://www.example.com/97> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Willis" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Paul" .
+
+<http://www.example.com/98> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Campbell" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Maria" .
+
+<http://www.example.com/99> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Rice" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Barbara" .
+
+<http://www.example.com/100> a <http://xmlns.com/foaf/0.1/Person> ;
+	<http://xmlns.com/foaf/0.1/familyName> "Wilson" ;
+	<http://xmlns.com/foaf/0.1/firstName> "Harold" .
+
+<http://www.example.com/comp/1> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Greece" ;
+	<http://schema.org/name> "Rhybox" .
+
+<http://www.example.com/comp/2> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Ukraine" ;
+	<http://schema.org/name> "Reallinks" .
+
+<http://www.example.com/comp/3> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Indonesia" ;
+	<http://schema.org/name> "Yadel" .
+
+<http://www.example.com/comp/4> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Russia" ;
+	<http://schema.org/name> "Brainbox" .
+
+<http://www.example.com/comp/5> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Egypt" ;
+	<http://schema.org/name> "Realbridge" .
+
+<http://www.example.com/comp/6> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "China" ;
+	<http://schema.org/name> "Flipbug" .
+
+<http://www.example.com/comp/7> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Portugal" ;
+	<http://schema.org/name> "Linkbridge" .
+
+<http://www.example.com/comp/8> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "France" ;
+	<http://schema.org/name> "Eamia" .
+
+<http://www.example.com/comp/9> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Italy" ;
+	<http://schema.org/name> "Tagcat" .
+
+<http://www.example.com/comp/10> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "New Zealand" ;
+	<http://schema.org/name> "Zoozzy" .
+
+<http://www.example.com/comp/11> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Poland" ;
+	<http://schema.org/name> "Podcat" .
+
+<http://www.example.com/comp/12> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Azerbaijan" ;
+	<http://schema.org/name> "Livetube" .
+
+<http://www.example.com/comp/13> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "China" ;
+	<http://schema.org/name> "Jabbersphere" .
+
+<http://www.example.com/comp/14> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "France" ;
+	<http://schema.org/name> "Yodo" .
+
+<http://www.example.com/comp/15> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Tanzania" ;
+	<http://schema.org/name> "Zoozzy" .
+
+<http://www.example.com/comp/16> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Brazil" ;
+	<http://schema.org/name> "Innotype" .
+
+<http://www.example.com/comp/17> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Poland" ;
+	<http://schema.org/name> "Agimba" .
+
+<http://www.example.com/comp/18> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Japan" ;
+	<http://schema.org/name> "Babbleset" .
+
+<http://www.example.com/comp/19> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "China" ;
+	<http://schema.org/name> "Yadel" .
+
+<http://www.example.com/comp/20> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "China" ;
+	<http://schema.org/name> "Tagfeed" .
+
+<http://www.example.com/comp/21> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Indonesia" ;
+	<http://schema.org/name> "Jaxnation" .
+
+<http://www.example.com/comp/22> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Brazil" ;
+	<http://schema.org/name> "Rhynyx" .
+
+<http://www.example.com/comp/23> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Ecuador" ;
+	<http://schema.org/name> "Linklinks" .
+
+<http://www.example.com/comp/24> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "China" ;
+	<http://schema.org/name> "Yamia" .
+
+<http://www.example.com/comp/25> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Philippines" ;
+	<http://schema.org/name> "Skinder" .
+
+<http://www.example.com/comp/26> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "China" ;
+	<http://schema.org/name> "Meejo" .
+
+<http://www.example.com/comp/27> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "France" ;
+	<http://schema.org/name> "Bluejam" .
+
+<http://www.example.com/comp/28> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Czech Republic" ;
+	<http://schema.org/name> "Pixonyx" .
+
+<http://www.example.com/comp/29> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "United States" ;
+	<http://schema.org/name> "Jamia" .
+
+<http://www.example.com/comp/30> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Switzerland" ;
+	<http://schema.org/name> "Thoughtmix" .
+
+<http://www.example.com/comp/31> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Kazakhstan" ;
+	<http://schema.org/name> "Blogtags" .
+
+<http://www.example.com/comp/32> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "China" ;
+	<http://schema.org/name> "Yozio" .
+
+<http://www.example.com/comp/33> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Nicaragua" ;
+	<http://schema.org/name> "Topicware" .
+
+<http://www.example.com/comp/34> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Philippines" ;
+	<http://schema.org/name> "Mycat" .
+
+<http://www.example.com/comp/35> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Indonesia" ;
+	<http://schema.org/name> "Photobean" .
+
+<http://www.example.com/comp/36> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Honduras" ;
+	<http://schema.org/name> "Meedoo" .
+
+<http://www.example.com/comp/37> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Indonesia" ;
+	<http://schema.org/name> "Flashspan" .
+
+<http://www.example.com/comp/38> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Macedonia" ;
+	<http://schema.org/name> "Gabtune" .
+
+<http://www.example.com/comp/39> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Argentina" ;
+	<http://schema.org/name> "Jayo" .
+
+<http://www.example.com/comp/40> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Philippines" ;
+	<http://schema.org/name> "Eadel" .
+
+<http://www.example.com/comp/41> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Russia" ;
+	<http://schema.org/name> "Jaloo" .
+
+<http://www.example.com/comp/42> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "China" ;
+	<http://schema.org/name> "Zoozzy" .
+
+<http://www.example.com/comp/43> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Russia" ;
+	<http://schema.org/name> "Kwideo" .
+
+<http://www.example.com/comp/44> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Sweden" ;
+	<http://schema.org/name> "Wordpedia" .
+
+<http://www.example.com/comp/45> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "China" ;
+	<http://schema.org/name> "Kwilith" .
+
+<http://www.example.com/comp/46> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "China" ;
+	<http://schema.org/name> "Oyondu" .
+
+<http://www.example.com/comp/47> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "China" ;
+	<http://schema.org/name> "Yambee" .
+
+<http://www.example.com/comp/48> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Vietnam" ;
+	<http://schema.org/name> "Fivechat" .
+
+<http://www.example.com/comp/49> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Japan" ;
+	<http://schema.org/name> "Oyondu" .
+
+<http://www.example.com/comp/50> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Indonesia" ;
+	<http://schema.org/name> "Meevee" .
+
+<http://www.example.com/comp/51> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Indonesia" ;
+	<http://schema.org/name> "Yombu" .
+
+<http://www.example.com/comp/52> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Canada" ;
+	<http://schema.org/name> "Quire" .
+
+<http://www.example.com/comp/53> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "China" ;
+	<http://schema.org/name> "Realpoint" .
+
+<http://www.example.com/comp/54> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Greece" ;
+	<http://schema.org/name> "Twimm" .
+
+<http://www.example.com/comp/55> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Russia" ;
+	<http://schema.org/name> "Meeveo" .
+
+<http://www.example.com/comp/56> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Morocco" ;
+	<http://schema.org/name> "Eidel" .
+
+<http://www.example.com/comp/57> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Indonesia" ;
+	<http://schema.org/name> "Gabtune" .
+
+<http://www.example.com/comp/58> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Peru" ;
+	<http://schema.org/name> "Edgeify" .
+
+<http://www.example.com/comp/59> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Indonesia" ;
+	<http://schema.org/name> "Dablist" .
+
+<http://www.example.com/comp/60> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Brazil" ;
+	<http://schema.org/name> "Browseblab" .
+
+<http://www.example.com/comp/61> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Peru" ;
+	<http://schema.org/name> "Photospace" .
+
+<http://www.example.com/comp/62> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "China" ;
+	<http://schema.org/name> "Twitterlist" .
+
+<http://www.example.com/comp/63> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Indonesia" ;
+	<http://schema.org/name> "Trupe" .
+
+<http://www.example.com/comp/64> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Thailand" ;
+	<http://schema.org/name> "Oodoo" .
+
+<http://www.example.com/comp/65> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Iran" ;
+	<http://schema.org/name> "Wordtune" .
+
+<http://www.example.com/comp/66> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Vietnam" ;
+	<http://schema.org/name> "Avaveo" .
+
+<http://www.example.com/comp/67> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Norway" ;
+	<http://schema.org/name> "Photospace" .
+
+<http://www.example.com/comp/68> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Ukraine" ;
+	<http://schema.org/name> "Devify" .
+
+<http://www.example.com/comp/69> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Russia" ;
+	<http://schema.org/name> "Oyope" .
+
+<http://www.example.com/comp/70> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Sweden" ;
+	<http://schema.org/name> "Talane" .
+
+<http://www.example.com/comp/71> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Russia" ;
+	<http://schema.org/name> "Photospace" .
+
+<http://www.example.com/comp/72> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "China" ;
+	<http://schema.org/name> "Linklinks" .
+
+<http://www.example.com/comp/73> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Indonesia" ;
+	<http://schema.org/name> "Fivebridge" .
+
+<http://www.example.com/comp/74> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Burkina Faso" ;
+	<http://schema.org/name> "Voonix" .
+
+<http://www.example.com/comp/75> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "China" ;
+	<http://schema.org/name> "Topicware" .
+
+<http://www.example.com/comp/76> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Indonesia" ;
+	<http://schema.org/name> "Linklinks" .
+
+<http://www.example.com/comp/77> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Bosnia and Herzegovina" ;
+	<http://schema.org/name> "Jaxworks" .
+
+<http://www.example.com/comp/78> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Greece" ;
+	<http://schema.org/name> "Skyba" .
+
+<http://www.example.com/comp/79> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Colombia" ;
+	<http://schema.org/name> "Agivu" .
+
+<http://www.example.com/comp/80> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Russia" ;
+	<http://schema.org/name> "Tavu" .
+
+<http://www.example.com/comp/81> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Indonesia" ;
+	<http://schema.org/name> "Cogidoo" .
+
+<http://www.example.com/comp/82> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Morocco" ;
+	<http://schema.org/name> "Roomm" .
+
+<http://www.example.com/comp/83> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Netherlands" ;
+	<http://schema.org/name> "Oozz" .
+
+<http://www.example.com/comp/84> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Norway" ;
+	<http://schema.org/name> "Skimia" .
+
+<http://www.example.com/comp/85> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Russia" ;
+	<http://schema.org/name> "Quinu" .
+
+<http://www.example.com/comp/86> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Argentina" ;
+	<http://schema.org/name> "Roodel" .
+
+<http://www.example.com/comp/87> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "France" ;
+	<http://schema.org/name> "Roomm" .
+
+<http://www.example.com/comp/88> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Brazil" ;
+	<http://schema.org/name> "Divanoodle" .
+
+<http://www.example.com/comp/89> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Greece" ;
+	<http://schema.org/name> "Feedmix" .
+
+<http://www.example.com/comp/90> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Philippines" ;
+	<http://schema.org/name> "Thoughtblab" .
+
+<http://www.example.com/comp/91> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "China" ;
+	<http://schema.org/name> "Aimbu" .
+
+<http://www.example.com/comp/92> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Colombia" ;
+	<http://schema.org/name> "Skipfire" .
+
+<http://www.example.com/comp/93> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Czech Republic" ;
+	<http://schema.org/name> "Einti" .
+
+<http://www.example.com/comp/94> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Philippines" ;
+	<http://schema.org/name> "Yamia" .
+
+<http://www.example.com/comp/95> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Martinique" ;
+	<http://schema.org/name> "Innojam" .
+
+<http://www.example.com/comp/96> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Brazil" ;
+	<http://schema.org/name> "Oyonder" .
+
+<http://www.example.com/comp/97> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Thailand" ;
+	<http://schema.org/name> "Yacero" .
+
+<http://www.example.com/comp/98> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Nigeria" ;
+	<http://schema.org/name> "Mydeo" .
+
+<http://www.example.com/comp/99> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "China" ;
+	<http://schema.org/name> "Wikibox" .
+
+<http://www.example.com/comp/100> a <http://vivoweb.org/ontology/core#Company> ;
+	<http://dbpedia.org/ontology/country> "Czech Republic" ;
+	<http://schema.org/name> "Meedoo" .

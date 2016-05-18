@@ -8,8 +8,14 @@ var saver = require('./Saver');
 var tripleParser = require('./TripleParser');
 var sparql = require('./Sparql');
 var fs = require('fs');
+var moment = require('moment');
 
 var schedules = [];
+var scheduleStatus= {
+    newJobs: false,
+    newExecution: false
+}
+
 
 var test = [];
 
@@ -340,7 +346,7 @@ var exports = module.exports = {
 
     //upload a mapping
     uploadMapping: function(req, res) {
-
+            var license = req.body.license;
             var file = req.file;
             var user = req.user;
             var models = req.app.db.models;
@@ -353,6 +359,7 @@ var exports = module.exports = {
                         if (err) {
                             throw err;
                         } else {
+                            mapping.license = license;
                             saver.saveMapping(mapping, models, user, function () {
                                 console.log('[WORKBENCH LOG] Upload successful!');
                                 res.send(200);
@@ -372,19 +379,20 @@ var exports = module.exports = {
     //upload source
     uploadSource: function(req, res) {
         try {
+            var license = req.body.license;
             var file = req.file;
             var user = req.user;
             var models = req.app.db.models;
             console.log('[WORKBENCH LOG] ' + user.username + ' tries to upload source file...');
             //create source fields
             reader.readSourceFields(file, function (source) {
+                source.license = licence;
                 saver.saveSource(source, models, user, function () {
                     console.log('[WORKBENCH LOG] Upload successful!');
                     res.send(200);
                 });
             });
         } catch(err) {
-            
             res.send(409);
         }
     },
@@ -392,6 +400,7 @@ var exports = module.exports = {
     //upload rdf
     uploadRDF: function(req, res) {
         try {
+            var license = req.body.license;
             var file = req.file;
             var userschema = req.app.db.models.User;
             var rdfschema = req.app.db.models.RDF;
@@ -400,7 +409,7 @@ var exports = module.exports = {
             console.log('[WORKBENCH LOG] ' + user.username + ' tries to upload RDF file...');
             //create rdf fields
             reader.readRDFFields(file, function (rdf) {
-
+                rdf.license = license;
                 saver.saveRDF(rdf, req.app.db.models, user, function () {
                     console.log('[WORKBENCH LOG] Upload successful!');
                     res.send(200);
@@ -420,10 +429,11 @@ var exports = module.exports = {
         var sources = req.user.sourcefiles;
         var models = req.app.db.models;
         var user = req.user;
+        var outputName = req.body.name;
 
         util.retrieveFiles(sources, models.Source, function(sources) {
             util.retrieveFile(mapping_id, models.Mapping, function (mapping) {
-                    mapper.executeMapping(mapping, sources, function (err, output) {
+                    mapper.executeMapping(mapping, sources, outputName, function (err, output) {
                         if (err) {
                             if(err.message === 'An error occurred in the processor') {
                                 output.mapping_id = mapping_id;
@@ -432,7 +442,7 @@ var exports = module.exports = {
                                         //throw err;
                                         res.send(error.message,409);
                                     } else {
-                                        res.send(err.message,409); //success
+                                        res.send(200); //success
                                     }
                                 });
                             } else {
@@ -464,12 +474,13 @@ var exports = module.exports = {
         var triples = req.body.triples;
         var models = req.app.db.models;
         var sources = req.user.sourcefiles;
+        var outputName = req.body.name;
 
         console.log(triples);
 
         util.retrieveFiles(sources, models.Source, function(sources) {
             util.retrieveFile(mapping_id, models.Mapping, function (mapping) {
-                    mapper.executeTriples(mapping, triples, sources, function (err, output) {
+                    mapper.executeTriples(mapping, triples, sources, outputName, function (err, output) {
                         if (err) {
                             if(err.message === 'An error occurred in the processor') {
                                 output.mapping_id = mapping_id;
@@ -478,7 +489,8 @@ var exports = module.exports = {
                                         //throw err;
                                         res.send(error.message,409);
                                     } else {
-                                        res.send(err.message,409); //success
+                                        // still a bug in processor, it's actually working!
+                                        res.send(200); //success
                                     }
                                 });
                             } else {
@@ -599,6 +611,7 @@ var exports = module.exports = {
      **/
 
     addToSchedule: function(req, res) {
+
         try {
             var year = req.body.date.year;
             var month = req.body.date.month;
@@ -610,8 +623,11 @@ var exports = module.exports = {
             var sources = req.user.sourcefiles;
             var models = req.app.db.models;
             var user = req.user;
-            var mappingsFromTriples = req.body.mappingsFromTriples;
             var mappingsFromFile = req.body.mappingsFromFile;
+            var mappingsFromTriples = req.body.mappingsFromTriples;
+            var triples = req.body.triples;
+            var outputFileName = req.outputFileName;
+
             //array gets undefined if empty for some reason :/
             if (mappingsFromFile == undefined) {
                 mappingsFromFile = [];
@@ -619,42 +635,102 @@ var exports = module.exports = {
             if (mappingsFromTriples == undefined) {
                 mappingsFromTriples = [];
             }
+
+            var util = require('./Utility');
+
+
             console.log("[WORKBENCH LOG] Job added! Scheduled for " + date);
             //schedule the job with date
-            var job = schedule.scheduleJob(date, function(err) {
-                console.log("[WORKBENCH LOG] Executing jobs!");
-                mapper.executeMultipleMappings(mappingsFromFile, mappingsFromTriples, sources, models, user, function(rdflist) {
-                    var done = 0;
-                for (var i = 0; i < rdflist.length; i++) {
-                    saver.saveRDF(rdflist[i], models, user, function() {
-                        done++;
-                    if (done == rdflist.length) {
-                        console.log("[WORKBENCH LOG] Jobs Done!");
-                        job.executed = true;
-                    }
-                })
-                    ;
-                }
-            })
-                ;
-            })
-                ;
+            var job = schedule.scheduleJob(date, function (err) {
 
+                scheduleStatus.newExecution = true;
+                job.running = true;
+
+                // retrieving all necessary files from db
+                util.retrieveFiles(sources, models.Source, function(sources) {
+                    util.retrieveFiles(mappingsFromFile, models.Mapping, function(mappingsFromFile) {
+
+                        console.log("[WORKBENCH LOG] Executing jobs!");
+                        if (mappingsFromFile.length == 1) {
+                            if(triples.length == 0) {
+                                mapper.executeMapping(mappingsFromFile[0], sources, outputFileName, function (err, output) {
+
+                                    if (err) {
+                                        if (err.message === 'An error occurred in the processor') {
+                                            output.mapping_id = mappingsFromFile[0].mapping_id;
+                                            saver.saveRDF(output, models, user, function (error) {
+                                                scheduleStatus.newJobs = true;
+                                                job.running = false
+                                                job.executed = true;
+                                            });
+                                        }
+                                    } else {
+                                        output.mapping_id = mappingsFromFile[0].mapping_id;
+                                        saver.saveRDF(output, models, user, function (err) {
+                                            scheduleStatus.newJobs = true;
+                                            job.executed = true;
+                                        });
+                                    }
+                                });
+                            } else {
+                                mapper.executeTriples(mappingsFromFile[0], triples, sources, outputFileName, function (err, output) {
+                                    if (err) {
+                                        if (err.message === 'An error occurred in the processor') {
+                                            output.mapping_id = mappingsFromFile[0].mapping_id;
+                                            saver.saveRDF(output, models, user, function (error) {
+                                                scheduleStatus.newJobs = true;
+                                                job.running = false
+                                                job.executed = true;
+                                            });
+                                        }
+                                    } else {
+                                        output.mapping_id = mappingsFromFile[0].mapping_id;
+                                        saver.saveRDF(output, models, user, function (err) {
+                                            scheduleStatus.newJobs = true;
+                                            job.executed = true;
+                                        });
+                                    }
+                                });
+                            }
+
+                        } else {
+
+                        }
+                    });
+
+                });
+            });
+
+            util.retrieveFile(mappingsFromFile[0], models.Mapping, function(mapping) {
+                job.mappingFileName = mapping.filename;
+                if(triples.length == 0) {
+                    job.amountTriples = mapping.parsedObject.mappingDefinitions.length;
+                } else {
+                    job.amountTriples = triples.length;
+                }
+                if(mappingsFromFile.length > 1) {
+                    res.send(new Error('Not supported yet').message, 400);
+                } else {
+                    schedules.push(job);
+                    res.send(200);
+                }
+            });
+
+            job.running = false;
             job.title = req.body.name;
-            job.date = date.toDateString();
+            job.date = moment(date).format('MMMM Do YYYY, h:mm:ss a');
             job.description = req.body.description;
             job.user = req.user;
             job._id = mongoose.Types.ObjectId();
             job.amountMapping = mappingsFromFile.length;
-            job.amountPublishing = 0;
-            job.amountTriples = mappingsFromTriples.length;
+            job.publishing = false;
+
             job.executed = false;
-            schedules.push(job);
 
 
-            res.send(200);
+
         } catch(err) {
-            
+            throw err
             res.send(409);
         }
     },
@@ -691,6 +767,19 @@ var exports = module.exports = {
             
             res.send(409);
         }
+    },
+
+    isNewlyExecuted: function(req,res) {
+
+        res.send(scheduleStatus);
+
+        if(scheduleStatus.newExecution) {
+            scheduleStatus.newExecution = false;
+        } else if(scheduleStatus.newJobs) {
+            scheduleStatus.newJobs = false;
+        }
+
+
     },
 
 

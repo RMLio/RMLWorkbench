@@ -5,7 +5,141 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="58b3138a-c345-43f3-a051-401a9bc1b40f" name="Default" comment="" />
+    <list default="true" id="58b3138a-c345-43f3-a051-401a9bc1b40f" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/media/rolling.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/views/workbench/scheduleModal.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input57391020a8157ed019ede422.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input57391087fd59d92a1aebd639.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input5739111301197c751a67d0de.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input57391132bff993a61abac767.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input5739115f930ae8e01a887d22.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input573911ad2d1c555c1b401a8d.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input5739127063b12fd01b125920.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input573912a890c8510c1cd9e9d0.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input57391308597338711cc7ee5c.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input57391484d4ed36061d9c0738.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input57391494d4ed36061d9c073a.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input5739149dd4ed36061d9c073c.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input57391a7da62ad3d520756433.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input57391c65b245643322fbb8b6.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input5739209df1ec8f103070476c.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input573920dfda06464230e9a215.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input5739228fb7c6c94b3110bcc4.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input5739230eb325aee7310b9534.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input57392667ee6d947b33bc3500.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input57392957c4bccdc735df26cc.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input57392a4f3fb9483536f0502a.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input57392aa3ed470a7e36d5b2aa.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input57392afb1b572abe360b3d5b.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input57392c0ac212763137d5c7b1.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input57392c831a5e509d375c1d28.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input57392d774a77ed0038c1969e.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input57392df40125e6543814ba79.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input57392e832f6cc60339f347e9.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input57392ec82f6cc60339f347ec.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input5739300ee05e39e739786988.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input5739fec7e63df6720c95918f.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input5739ff246eef7cc40f0e1a6c.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input5739ffce6eef7cc40f0e1a6f.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input573a00246eef7cc40f0e1a72.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input573a101446061354180d8116.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input573a12a39fd8e19a192186e6.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input573a136884c821241a40d50a.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input573a13a7cb3ba5811a4a2351.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input573a13ec69283dce1a69bcb0.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input573a14d53e18f14b1b56eeb2.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input573a1569991fe8da1b4c1de3.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input573a15bc06b7f5291ce4da48.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input573a162efb19c2ac1c817ec2.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input573a168acc0628791d00355a.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input573a169ccc0628791d00355d.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input573a175cb92223f61d79a303.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input573a17d8b92223f61d79a306.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input573a1861b92223f61d79a309.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input573a18d7ef329ea01eb33eb4.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input573a1935ac3a30001fb47d9f.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input573a1a3eac3a30001fb47da2.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input573a1a82ac3a30001fb47da5.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input573a32ed606317b42050d945.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input573a3371f4917515256faf2b.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input573a33d6f4917515256faf2e.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input573a348f0d74220626baadce.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input573a351c0d74220626baadd1.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input573a35270d74220626baadd4.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input573a35e70d74220626baadd7.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input573a378f0d74220626baade0.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input573a37f14e0b06bb279ec54c.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input573a3891e1d85f082867d91b.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/input573a389be1d85f082867d91e.rml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/RML-Mapper(old).jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output572e81442d35d0812422aed7.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output57391a7da62ad3d520756434.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output57391c65b245643322fbb8b7.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output573920dfda06464230e9a216.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output5739228fb7c6c94b3110bcc5.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output5739230eb325aee7310b9535.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output57392667ee6d947b33bc3501.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output57392957c4bccdc735df26cd.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output57392a4f3fb9483536f0502b.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output57392aa3ed470a7e36d5b2ab.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output57392afb1b572abe360b3d5c.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output57392c0ac212763137d5c7b2.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output57392c831a5e509d375c1d29.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output57392d774a77ed0038c1969f.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output57392df40125e6543814ba7a.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output57392e832f6cc60339f347ea.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output57392ec82f6cc60339f347ed.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output5739fec7e63df6720c959190.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output5739ff246eef7cc40f0e1a6d.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output5739ffce6eef7cc40f0e1a70.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output573a00246eef7cc40f0e1a73.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output573a12a39fd8e19a192186e7.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output573a14d53e18f14b1b56eeb3.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output573a1569991fe8da1b4c1de4.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output573a15bc06b7f5291ce4da49.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output573a162efb19c2ac1c817ec3.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output573a168acc0628791d00355b.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output573a169ccc0628791d00355e.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output573a175cb92223f61d79a304.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output573a17d8b92223f61d79a307.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output573a1861b92223f61d79a30a.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output573a18d7ef329ea01eb33eb5.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output573a1935ac3a30001fb47da0.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output573a1a3eac3a30001fb47da3.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output573a1a82ac3a30001fb47da6.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output573a32ed606317b42050d946.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output573a3371f4917515256faf2c.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output573a33d6f4917515256faf2f.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output573a348f0d74220626baadcf.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output573a351c0d74220626baadd2.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output573a35270d74220626baadd5.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output573a35e70d74220626baadd8.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output573a378f0d74220626baade1.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output573a37f14e0b06bb279ec54d.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output573a3891e1d85f082867d91c.rdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/workbench/rmlmapper/output573a389be1d85f082867d91f.rdf" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/workbench/rmlmapper/RML-Mapper.jar" afterPath="$PROJECT_DIR$/workbench/rmlmapper/RML-Mapper.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/workbench/rmlmapper/repositories/dataset/triples-spoc.alloc" afterPath="$PROJECT_DIR$/workbench/rmlmapper/repositories/dataset/triples-spoc.alloc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/workbench/rmlmapper/repositories/dataset/triples-spoc.dat" afterPath="$PROJECT_DIR$/workbench/rmlmapper/repositories/dataset/triples-spoc.dat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/errormappinglog.txt" afterPath="$PROJECT_DIR$/errormappinglog.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mappinglog.txt" afterPath="$PROJECT_DIR$/mappinglog.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/layouts/rml.css" afterPath="$PROJECT_DIR$/public/layouts/rml.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/workbench/executionModal.js" afterPath="$PROJECT_DIR$/public/views/workbench/executionModal.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/workbench/index.js" afterPath="$PROJECT_DIR$/public/views/workbench/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/req" afterPath="$PROJECT_DIR$/req" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes.js" afterPath="$PROJECT_DIR$/routes.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/schema/Mapping.js" afterPath="$PROJECT_DIR$/schema/Mapping.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/schema/RDF.js" afterPath="$PROJECT_DIR$/schema/RDF.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/schema/Source.js" afterPath="$PROJECT_DIR$/schema/Source.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/workbench/index.jade" afterPath="$PROJECT_DIR$/views/workbench/index.jade" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/workbench/Mapper.js" afterPath="$PROJECT_DIR$/workbench/Mapper.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/workbench/RMLMapper.js" afterPath="$PROJECT_DIR$/workbench/RMLMapper.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/workbench/TripleParser.js" afterPath="$PROJECT_DIR$/workbench/TripleParser.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/workbench/WorkbenchController.js" afterPath="$PROJECT_DIR$/workbench/WorkbenchController.js" />
+    </list>
     <ignored path="drywall-workbench.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,66 +159,51 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/views/workbench/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="590">
-              <caret line="387" column="73" selection-start-line="387" selection-start-column="73" selection-end-line="387" selection-end-column="73" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-                <marker date="1463447126567" expanded="true" signature="26400:26415" placeholder="..." />
-                <marker date="1463447126567" expanded="true" signature="29419:29434" placeholder="..." />
-                <marker date="1463447126567" expanded="true" signature="32454:32469" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1117">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routes.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="321">
-              <caret line="55" column="62" selection-start-line="55" selection-start-column="62" selection-end-line="55" selection-end-column="62" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="rml.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/layouts/rml.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="37" column="18" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RMLMapper.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/workbench/RMLMapper.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="458">
-              <caret line="245" column="8" selection-start-line="245" selection-start-column="8" selection-end-line="245" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="index.jade" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/workbench/index.jade">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="700">
-              <caret line="741" column="24" selection-start-line="741" selection-start-column="24" selection-end-line="741" selection-end-column="24" />
+            <state relative-caret-position="396">
+              <caret line="906" column="54" selection-start-line="906" selection-start-column="54" selection-end-line="906" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WorkbenchController.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/workbench/WorkbenchController.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="667">
+              <caret line="708" column="55" selection-start-line="708" selection-start-column="55" selection-end-line="708" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Mapping.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/schema/Mapping.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="15" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RDF.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/schema/RDF.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" column="28" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Source.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/schema/Source.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" column="28" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -93,30 +212,41 @@
       <file leaf-file-name="TripleParser.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/workbench/TripleParser.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="62" column="32" selection-start-line="62" selection-start-column="32" selection-end-line="62" selection-end-column="32" />
+            <state relative-caret-position="487">
+              <caret line="533" column="37" selection-start-line="533" selection-start-column="37" selection-end-line="533" selection-end-column="37" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="logicalSourcesDetailsModal.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public/views/workbench/logicalSourcesDetailsModal.js">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/views/workbench/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="547">
-              <caret line="121" column="43" selection-start-line="121" selection-start-column="43" selection-end-line="121" selection-end-column="43" />
+            <state relative-caret-position="397">
+              <caret line="539" column="79" selection-start-line="539" selection-start-column="79" selection-end-line="539" selection-end-column="79" />
               <folding>
-                <element signature="e#0#41#0" expanded="false" />
+                <element signature="n#!!doc" expanded="true" />
+                <marker date="1463594036515" expanded="true" signature="24908:24923" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dataSourcesDetailsModal.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/views/workbench/dataSourcesDetailsModal.js">
+      <file leaf-file-name="users.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/workbench/users.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="47" column="8" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="8" />
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="scheduleModal.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/views/workbench/scheduleModal.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="420">
+              <caret line="63" column="0" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="25" />
               <folding>
                 <element signature="e#0#41#0" expanded="false" />
               </folding>
@@ -124,11 +254,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WorkbenchController.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/workbench/WorkbenchController.js">
+      <file leaf-file-name="executionModal.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/views/workbench/executionModal.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3673">
-              <caret line="732" column="48" selection-start-line="732" selection-start-column="48" selection-end-line="732" selection-end-column="48" />
+            <state relative-caret-position="998">
+              <caret line="80" column="4" selection-start-line="80" selection-start-column="4" selection-end-line="94" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -143,29 +273,35 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/models.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/mapping.rml.ttl" />
-        <option value="$PROJECT_DIR$/schema/Mapping.js" />
         <option value="$PROJECT_DIR$/workbench/Saver.js" />
         <option value="$PROJECT_DIR$/public/views/workbench/MappingDefinitionsDetailsModal.js" />
         <option value="$PROJECT_DIR$/workbench/Reader.js" />
         <option value="$PROJECT_DIR$/Gruntfile.js" />
-        <option value="$PROJECT_DIR$/routes.js" />
-        <option value="$PROJECT_DIR$/public/views/workbench/executionModal.js" />
         <option value="$PROJECT_DIR$/public/views/workbench/mappingDefinitionsDetailsModal.js" />
-        <option value="$PROJECT_DIR$/workbench/Mapper.js" />
-        <option value="$PROJECT_DIR$/workbench/RMLMapper.js" />
-        <option value="$PROJECT_DIR$/public/layouts/rml.css" />
-        <option value="$PROJECT_DIR$/workbench/TripleParser.js" />
-        <option value="$PROJECT_DIR$/views/workbench/index.jade" />
-        <option value="$PROJECT_DIR$/public/views/workbench/index.js" />
         <option value="$PROJECT_DIR$/public/views/workbench/dataSourcesDetailsModal.js" />
-        <option value="$PROJECT_DIR$/workbench/WorkbenchController.js" />
         <option value="$PROJECT_DIR$/public/views/workbench/logicalSourcesDetailsModal.js" />
+        <option value="$PROJECT_DIR$/public/views/workbench/executionModal.js" />
+        <option value="$PROJECT_DIR$/workbench/Mapper.js" />
+        <option value="$PROJECT_DIR$/routes.js" />
+        <option value="$PROJECT_DIR$/public/layouts/rml.css" />
+        <option value="$PROJECT_DIR$/schema/Mapping.js" />
+        <option value="$PROJECT_DIR$/schema/RDF.js" />
+        <option value="$PROJECT_DIR$/schema/Source.js" />
+        <option value="$PROJECT_DIR$/workbench/RMLMapper.js" />
+        <option value="$PROJECT_DIR$/public/views/workbench/scheduleModal.js" />
+        <option value="$PROJECT_DIR$/workbench/WorkbenchController.js" />
+        <option value="$PROJECT_DIR$/views/workbench/index.jade" />
+        <option value="$PROJECT_DIR$/workbench/TripleParser.js" />
+        <option value="$PROJECT_DIR$/public/views/workbench/index.js" />
       </list>
     </option>
   </component>
@@ -181,11 +317,11 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="65" />
-    <option name="y" value="-4" />
+    <option name="y" value="24" />
     <option name="width" value="1855" />
-    <option name="height" value="1084" />
+    <option name="height" value="1056" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
@@ -210,7 +346,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -237,38 +372,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="drywall-workbench" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="workbench" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="drywall-workbench" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="drywall-workbench" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="drywall-workbench" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="drywall-workbench" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -344,8 +447,27 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="drywall-workbench" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="drywall-workbench" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="media" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -354,8 +476,13 @@
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="nodejs.mocha.mocha_node_package_dir" value="$PROJECT_DIR$/node_modules/mocha" />
     <property name="js-jscs-nodeInterpreter" value="/usr/bin/node" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/media" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/public/layouts" />
     </key>
@@ -431,21 +558,23 @@
       <workItem from="1463224256343" duration="2481000" />
       <workItem from="1463236955868" duration="88938000" />
       <workItem from="1463417208723" duration="27740000" />
+      <workItem from="1463564571087" duration="144000" />
+      <workItem from="1463564822225" duration="150000" />
+      <workItem from="1463565021736" duration="27972000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="119159000" />
+    <option name="totallyTimeSpent" value="147425000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
+    <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17574124" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24959569" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Grunt " active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960325" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -458,6 +587,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960325" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -479,6 +609,14 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/workbench/WorkbenchController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11712">
+          <caret line="732" column="48" selection-start-line="732" selection-start-column="48" selection-end-line="732" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/views/workbench/index.jade">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -491,7 +629,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="81" selection-start-line="10" selection-start-column="81" selection-end-line="10" selection-end-column="81" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -501,9 +638,7 @@
           <caret line="1297" column="25" selection-start-line="1297" selection-start-column="25" selection-end-line="1297" selection-end-column="25" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <marker date="1463447126567" expanded="true" signature="26400:26415" placeholder="..." />
-            <marker date="1463447126567" expanded="true" signature="29419:29434" placeholder="..." />
-            <marker date="1463447126567" expanded="true" signature="32454:32469" placeholder="..." />
+            <marker date="1463594036515" expanded="true" signature="24908:24923" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -512,7 +647,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -520,7 +654,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="825">
           <caret line="55" column="52" selection-start-line="55" selection-start-column="52" selection-end-line="55" selection-end-column="52" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -528,7 +661,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="960">
           <caret line="64" column="8" selection-start-line="64" selection-start-column="8" selection-end-line="64" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -567,7 +699,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="750">
           <caret line="50" column="43" selection-start-line="50" selection-start-column="43" selection-end-line="50" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -623,25 +754,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/workbench/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/vendor/noty/js/jquery.noty.packaged.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/public/vendor/noty/js/jquery.noty.packaged.min.js" />
     <entry file="file://$PROJECT_DIR$/workbench/Clearer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="975">
           <caret line="65" column="2" selection-start-line="65" selection-start-column="2" selection-end-line="65" selection-end-column="2" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -649,15 +766,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="825">
           <caret line="55" column="52" selection-start-line="55" selection-start-column="52" selection-end-line="55" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/schema/Source.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -665,11 +773,74 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="81" selection-start-line="10" selection-start-column="81" selection-end-line="10" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/workbench/dataSourcesDetailsModal.min.js.map" />
+    <entry file="file://$PROJECT_DIR$/public/views/workbench/mappingDefinitionsDetailsModal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="56" column="66" selection-start-line="56" selection-start-column="66" selection-end-line="56" selection-end-column="96" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/index.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workbench/Saver.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="130" column="4" selection-start-line="130" selection-start-column="4" selection-end-line="130" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/workbench/dataSourcesDetailsModal.min.js.map">
+    <entry file="file://$PROJECT_DIR$/public/views/workbench/logicalSourcesDetailsModal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#41#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workbench/rmlmapper/output573c4011ca4d1ed554416acd.rdf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workbench/rmlmapper/output573c3fa7ca4d1ed554416ac7.rdf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4342">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/workbench/executionModal.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/workbench/executionModal.min.js.map">
       <provider editor-type-id="sourcemapFileViewerProvider">
         <state />
       </provider>
@@ -680,18 +851,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/schema/Mapping.js">
+    <entry file="file://$PROJECT_DIR$/views/workbench/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="16" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/workbench/mappingDefinitionsDetailsModal.js">
+    <entry file="file://$PROJECT_DIR$/public/views/workbench/dataSourcesDetailsModal.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="56" column="66" selection-start-line="56" selection-start-column="66" selection-end-line="56" selection-end-column="96" />
+        <state relative-caret-position="-442">
+          <caret line="47" column="8" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="8" />
           <folding>
             <element signature="e#0#41#0" expanded="false" />
           </folding>
@@ -700,123 +871,117 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/workbench/Mapper.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="436">
-          <caret line="109" column="72" selection-start-line="109" selection-start-column="72" selection-end-line="109" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/index.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/workbench/executionModal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="488">
-          <caret line="70" column="50" selection-start-line="70" selection-start-column="16" selection-end-line="70" selection-end-column="50" />
-          <folding>
-            <element signature="e#42#83#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/workbench/Saver.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="130" column="4" selection-start-line="130" selection-start-column="4" selection-end-line="130" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/layouts/rml.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="37" column="18" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/workbench/TripleParser.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="62" column="32" selection-start-line="62" selection-start-column="32" selection-end-line="62" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/workbench/RMLMapper.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="245" column="8" selection-start-line="245" selection-start-column="8" selection-end-line="245" selection-end-column="8" />
+        <state relative-caret-position="392">
+          <caret line="241" column="88" selection-start-line="237" selection-start-column="8" selection-end-line="241" selection-end-column="88" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="55" column="62" selection-start-line="55" selection-start-column="62" selection-end-line="55" selection-end-column="62" />
+        <state relative-caret-position="690">
+          <caret line="79" column="69" selection-start-line="79" selection-start-column="69" selection-end-line="79" selection-end-column="69" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
+    <entry file="file://$PROJECT_DIR$/public/layouts/rml.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1117">
+        <state relative-caret-position="825">
+          <caret line="55" column="17" selection-start-line="55" selection-start-column="17" selection-end-line="55" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/schema/Mapping.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="15" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/schema/RDF.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="28" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workbench/RMLMapper.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="109" column="65" selection-start-line="109" selection-start-column="65" selection-end-line="109" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/schema/Source.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="28" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/workbench/executionModal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="998">
+          <caret line="80" column="4" selection-start-line="80" selection-start-column="4" selection-end-line="94" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/workbench/scheduleModal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="63" column="0" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#41#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workbench/users.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/workbench/index.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="906" column="54" selection-start-line="906" selection-start-column="54" selection-end-line="906" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workbench/WorkbenchController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="667">
+          <caret line="708" column="55" selection-start-line="708" selection-start-column="55" selection-end-line="708" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workbench/TripleParser.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="487">
+          <caret line="533" column="37" selection-start-line="533" selection-start-column="37" selection-end-line="533" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/views/workbench/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="590">
-          <caret line="387" column="73" selection-start-line="387" selection-start-column="73" selection-end-line="387" selection-end-column="73" />
+        <state relative-caret-position="397">
+          <caret line="539" column="79" selection-start-line="539" selection-start-column="79" selection-end-line="539" selection-end-column="79" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <marker date="1463447126567" expanded="true" signature="26400:26415" placeholder="..." />
-            <marker date="1463447126567" expanded="true" signature="29419:29434" placeholder="..." />
-            <marker date="1463447126567" expanded="true" signature="32454:32469" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/workbench/WorkbenchController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3673">
-          <caret line="732" column="48" selection-start-line="732" selection-start-column="48" selection-end-line="732" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/workbench/dataSourcesDetailsModal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="47" column="8" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/workbench/index.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="700">
-          <caret line="741" column="24" selection-start-line="741" selection-start-column="24" selection-end-line="741" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/workbench/logicalSourcesDetailsModal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
-          <caret line="121" column="43" selection-start-line="121" selection-start-column="43" selection-end-line="121" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
+            <marker date="1463594036515" expanded="true" signature="24908:24923" placeholder="..." />
           </folding>
         </state>
       </provider>

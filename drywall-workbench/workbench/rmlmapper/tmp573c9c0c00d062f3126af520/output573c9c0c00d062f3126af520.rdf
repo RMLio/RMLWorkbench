@@ -1,0 +1,167 @@
+
+<http://www.example.com/6719> <http://purl.org/dc/terms/title> "Spannende speurtocht in Gent" ;
+	a <http://schema.org/Event> ;
+	<http://dbpedia.org/ontology/subtitle> "Moord met een geurtje" .
+
+<http://www.example.com/8470> <http://purl.org/dc/terms/title> "Lichtfestival Gent" ;
+	a <http://schema.org/Event> ;
+	<http://dbpedia.org/ontology/subtitle> "Een lichtparcours doorheen de stad" .
+
+<http://www.example.com/8480> <http://purl.org/dc/terms/title> "Vuurwerk" ;
+	a <http://schema.org/Event> .
+
+<http://www.example.com/8537> <http://purl.org/dc/terms/title> "Festival de la lumiere" ;
+	a <http://schema.org/Event> .
+
+<http://www.example.com/8547> <http://purl.org/dc/terms/title> "Feux d'artifice" ;
+	a <http://schema.org/Event> .
+
+<http://www.example.com/8594> <http://purl.org/dc/terms/title> "Light Festival Ghent" ;
+	a <http://schema.org/Event> .
+
+<http://www.example.com/8604> <http://purl.org/dc/terms/title> "Fireworks" ;
+	a <http://schema.org/Event> .
+
+<http://www.example.com/8651> <http://purl.org/dc/terms/title> "Lichtfestival Gent" ;
+	a <http://schema.org/Event> .
+
+<http://www.example.com/8661> <http://purl.org/dc/terms/title> "Feuerwerk" ;
+	a <http://schema.org/Event> .
+
+<http://www.example.com/8708> <http://purl.org/dc/terms/title> "Festival de la Luz de Gante" ;
+	a <http://schema.org/Event> .
+
+<http://www.example.com/8718> <http://purl.org/dc/terms/title> "Fuegos artificiales" ;
+	a <http://schema.org/Event> .
+
+<http://www.example.com/9692> <http://purl.org/dc/terms/title> "Omloop Het Nieuwsblad" ;
+	a <http://schema.org/Event> .
+
+<http://www.example.com/9697> <http://purl.org/dc/terms/title> "Gent Jazz Festival" ;
+	a <http://schema.org/Event> .
+
+<http://www.example.com/9701> <http://purl.org/dc/terms/title> "Open Monumentendag" ;
+	a <http://schema.org/Event> .
+
+<http://www.example.com/9702> <http://purl.org/dc/terms/title> "Gent Festival van Vlaanderen" ;
+	a <http://schema.org/Event> .
+
+<http://www.example.com/9704> <http://purl.org/dc/terms/title> "Film Fest Gent" ;
+	a <http://schema.org/Event> .
+
+<http://www.example.com/9705> <http://purl.org/dc/terms/title> "Patersholfeesten" ;
+	a <http://schema.org/Event> .
+
+<http://www.example.com/9709> <http://purl.org/dc/terms/title> "Zesdaagse" ;
+	a <http://schema.org/Event> .
+
+<http://www.example.com/9714> <http://purl.org/dc/terms/title> "Film Fest Gent" ;
+	a <http://schema.org/Event> .
+
+<http://www.example.com/9715> <http://purl.org/dc/terms/title> "Film Fest Gent" ;
+	a <http://schema.org/Event> .
+
+<http://www.example.com/9716> <http://purl.org/dc/terms/title> "Film Fest Gent" ;
+	a <http://schema.org/Event> .
+
+<http://www.example.com/9717> <http://purl.org/dc/terms/title> "Film Fest Gent" ;
+	a <http://schema.org/Event> .
+
+<http://www.example.com/9718> <http://purl.org/dc/terms/title> "Gent Jazz Festival" ;
+	a <http://schema.org/Event> .
+
+<http://www.example.com/9719> <http://purl.org/dc/terms/title> "Gent Jazz Festival" ;
+	a <http://schema.org/Event> .
+
+<http://www.example.com/9720> <http://purl.org/dc/terms/title> "Gent Jazz Festival" ;
+	a <http://schema.org/Event> .
+
+<http://www.example.com/9721> <http://purl.org/dc/terms/title> "Gent Jazz Festival" ;
+	a <http://schema.org/Event> .
+
+<http://www.example.com/9722> <http://purl.org/dc/terms/title> "Journée du patrimoine" ;
+	a <http://schema.org/Event> ;
+	<http://dbpedia.org/ontology/subtitle> "Open Monumentendag" .
+
+<http://www.example.com/9723> <http://purl.org/dc/terms/title> "Flemish Heritage Day" ;
+	a <http://schema.org/Event> ;
+	<http://dbpedia.org/ontology/subtitle> "Open Monumentendag" .
+
+<http://www.example.com/9724> <http://purl.org/dc/terms/title> "Tag des offenen Denkmals" ;
+	a <http://schema.org/Event> ;
+	<http://dbpedia.org/ontology/subtitle> "Open Monumentendag" .
+
+<http://www.example.com/9725> <http://purl.org/dc/terms/title> "Día de monumentos Abiertos" ;
+	a <http://schema.org/Event> ;
+	<http://dbpedia.org/ontology/subtitle> "Open Monumentendag" .
+
+<http://www.example.com/9734> <http://purl.org/dc/terms/title> "Fêtes du quartier Patershol" ;
+	a <http://schema.org/Event> ;
+	<http://dbpedia.org/ontology/subtitle> "Patersholfeesten" .
+
+<http://www.example.com/9735> <http://purl.org/dc/terms/title> "The Patershol festivities" ;
+	a <http://schema.org/Event> ;
+	<http://dbpedia.org/ontology/subtitle> "Patersholfeesten" .
+
+<http://www.example.com/9736> <http://purl.org/dc/terms/title> "Die Patersholfeste" ;
+	a <http://schema.org/Event> ;
+	<http://dbpedia.org/ontology/subtitle> "Patersholfeesten" .
+
+<http://www.example.com/9741> <http://purl.org/dc/terms/title> "Fiesta del barrio Patershol" ;
+	a <http://schema.org/Event> ;
+	<http://dbpedia.org/ontology/subtitle> "Patersholfeesten" .
+
+<http://www.example.com/9743> <http://purl.org/dc/terms/title> "Les Six Jours" ;
+	a <http://schema.org/Event> ;
+	<http://dbpedia.org/ontology/subtitle> "Zesdaagse" .
+
+<http://www.example.com/9744> <http://purl.org/dc/terms/title> "The six-days bicycle race" ;
+	a <http://schema.org/Event> ;
+	<http://dbpedia.org/ontology/subtitle> "Zesdaagse" .
+
+<http://www.example.com/9745> <http://purl.org/dc/terms/title> "Sechstagerennen" ;
+	a <http://schema.org/Event> ;
+	<http://dbpedia.org/ontology/subtitle> "Zesdaagse" .
+
+<http://www.example.com/9746> <http://purl.org/dc/terms/title> "Los Seis Días" ;
+	a <http://schema.org/Event> ;
+	<http://dbpedia.org/ontology/subtitle> "Zesdaagse" .
+
+<http://www.example.com/9747> <http://purl.org/dc/terms/title> "Gand Festival de Flandre" ;
+	a <http://schema.org/Event> .
+
+<http://www.example.com/9748> <http://purl.org/dc/terms/title> "Ghent Festival of Flanders" ;
+	a <http://schema.org/Event> .
+
+<http://www.example.com/9749> <http://purl.org/dc/terms/title> "Gent Flandern Festival" ;
+	a <http://schema.org/Event> .
+
+<http://www.example.com/9750> <http://purl.org/dc/terms/title> "Festival de Flandes en Gante" ;
+	a <http://schema.org/Event> .
+
+<http://www.example.com/9751> <http://purl.org/dc/terms/title> "Omloop Het Nieuwsblad" ;
+	a <http://schema.org/Event> .
+
+<http://www.example.com/9752> <http://purl.org/dc/terms/title> "Omloop Het Nieuwsblad" ;
+	a <http://schema.org/Event> .
+
+<http://www.example.com/9753> <http://purl.org/dc/terms/title> "Omloop Het Nieuwsblad" ;
+	a <http://schema.org/Event> .
+
+<http://www.example.com/9754> <http://purl.org/dc/terms/title> "Omloop Het Nieuwsblad" ;
+	a <http://schema.org/Event> .
+
+<http://www.example.com/9953> <http://purl.org/dc/terms/title> "Floralien" ;
+	a <http://schema.org/Event> .
+
+<http://www.example.com/9954> <http://purl.org/dc/terms/title> "Floralies" ;
+	a <http://schema.org/Event> .
+
+<http://www.example.com/9955> <http://purl.org/dc/terms/title> "Floralies" ;
+	a <http://schema.org/Event> .
+
+<http://www.example.com/9956> <http://purl.org/dc/terms/title> "Floralien" ;
+	a <http://schema.org/Event> .
+
+<http://www.example.com/9957> <http://purl.org/dc/terms/title> "Floralias de Gante" ;
+	a <http://schema.org/Event> .

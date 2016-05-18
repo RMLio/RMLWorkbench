@@ -46,8 +46,11 @@ $(document).ready(function() {
             }
         }
 
+        var name = $('#executionOutputName').val();
+
         var triples = {
-            triples: triplesToBeExecuted
+            triples: triplesToBeExecuted,
+            name: name
         }
 
         if(!selectedAll) {
@@ -62,7 +65,7 @@ $(document).ready(function() {
             });
         } else {
             NProgress.start();
-            $.post('/workbench/mapping/execute/' + mapping_id, function () {
+            $.post('/workbench/mapping/execute/' + mapping_id, {name:name}, function () {
                 NProgress.done();
                 app.render();
                 notify('Mapping successful!', 'success');

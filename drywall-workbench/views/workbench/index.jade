@@ -20,6 +20,7 @@ block neck
   script(type='text/javascript' src='/views/workbench/dataSourcesDetailsModal.js')
   script(type='text/javascript' src='/views/workbench/logicalSourcesDetailsModal.js')
   script(type='text/javascript' src='/views/workbench/mappingDefinitionsDetailsModal.js')
+  script(type='text/javascript' src='/views/workbench/scheduleModal.js')
   script(type='text/javascript' src='/views/workbench/executionModal.js')
   link(rel='stylesheet', href='/layouts/rml.css')
   link(rel='stylesheet', href='/layouts/animate.css')
@@ -385,6 +386,8 @@ block body
         div.modal-body
           form(role='form')
             div.form-group
+              label Name
+              input(class="form-control" id="executionOutputName" placeholder="Enter file name for the output")
               label Select triples
               div(class="well triplewell")
                 div
@@ -399,6 +402,7 @@ block body
                             <%= triplename %>
                         </label>
                     </div>
+
         div.modal-footer
           button(class='btn btn-primary' data-dismiss="modal" id='executeMappingBtn')
 
@@ -449,7 +453,7 @@ block body
               label(for='publishing-file-selector') File
               input(id='publishingFile' name='rdfUpload' type='file' data-allowed-file-extensions="['rdf, ttl, rdf.ttl']")
               p.help-block RDF files in turle format are supported.
-              +licensesId('mappingUploadLicense')
+              +licensesId('publishUploadLicense')
               button.btn.btn-primary(id="submitPublishingUpload" type='submit') Upload
 
 
@@ -512,21 +516,17 @@ block body
             span(aria-hidden='true') ×
           h4.modal-title Schedule Publishing
         div.modal-body(id='scheduleModalFooter')
-          form(role='form')
+          form(id="scheduleForm" role='form')
             input(type='hidden', name='_csrf', value=_csrf)
             div(class='form-group')
               label(for='title')
-                | Title
-              input(class='form-control' id='scheduleTitle' placeholder='Enter title')
+                | Name
+              input(class='form-control' id='scheduleTitle' placeholder='Enter file name for output')
             div(class='form-group')
               label(for='mapping')
                 | Mapping
-              div(class="input-group")
-                select(name='mapping' id='scheduleMappingList' class='form-control')
-                    option(value='')
-                    | CHOOSE MAPPING FILE
-                span(class="input-group-btn")
-                    button(class="btn btn-default" id="addScheduleMappingButton" type="button") +
+              select(id='scheduleMappingList' class='form-control')
+              br
               div(class="well")
                 ul(id='scheduleMappingWellList')
             div(class='form-group')
@@ -562,7 +562,7 @@ block body
               label(for='description')
                 | Description
               input(class='form-control' id='scheduleDescription' placeholder='Enter description')
-            button( id='scheduleButton' data-dismiss="modal" class='btn btn-primary')
+            button( id='scheduleButton' type='submit' data-dismiss="modal" class='btn btn-primary')
                 | Schedule
 
 
@@ -666,6 +666,9 @@ block body
 
 
 
+
+
+
   ul#myTab.nav.nav-tabs.tabs-left.sideways.primary
       li.active(class="menuTab")
         a(href='#local', data-toggle='tab')
@@ -707,7 +710,7 @@ block body
                     div.col-md-1
                       div.dropdown
                         button#dropdownInput.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
-                          span.caret
+                          span(class="glyphicon glyphicon-menu-hamburger")
                         ul.dropdown-menu(aria-labelledby='dropdownInput')
                           li
                             a(href='#' data-toggle='modal' data-target='#upload-source') Upload file
@@ -715,7 +718,7 @@ block body
                             a(href='#' id='clearLocalFile') Remove selected file
                           li
                             a(href='#' id='clearAllLocalFiles') Remove all local files
-                div.panel-body.text-center(id='localMain' class='workbenchElement')
+                div.panel-body.text-center(id='localMain')
 
 
 
@@ -728,7 +731,7 @@ block body
                     div.col-md-1.col-md-offset-7
                       div.dropdown
                       button#dropdownInput2.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
-                        span.caret
+                        span(class="glyphicon glyphicon-menu-hamburger")
                       ul.dropdown-menu(aria-labelledby='dropdownInput2')
                         li
                           a(href='#') Details
@@ -738,7 +741,7 @@ block body
                     div.col-md-6
                       h4(id='localTitle')
                   div.row
-                    div.col-md-12(id='localFileContent' class='workbenchElement')
+                    div.col-md-12(id='localFileContent')
                       pre#localpre
 
       #access.tab-pane.fade
@@ -754,7 +757,7 @@ block body
                    div.col-md-1
                      div.dropdown
                         button#dropdownInput.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
-                            span.caret
+                            span(class="glyphicon glyphicon-menu-hamburger")
                         ul.dropdown-menu(aria-labelledby='dropdownInput')
                             li
                               a(href='#' data-toggle='modal' data-target='#db-input') Database
@@ -783,7 +786,7 @@ block body
                      div.col-md-1.col-md-offset-7
                        div.dropdown
                        button#dropdownInput2.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
-                           span.caret
+                           span(class="glyphicon glyphicon-menu-hamburger")
                        ul.dropdown-menu(aria-labelledby='dropdownInput2')
                            li
                                a(href='#' data-toggle='modal' data-target='#') Edit
@@ -815,7 +818,7 @@ block body
                    div.col-md-1
                      div.dropdown
                         button#dropdownLogical.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
-                            span.caret
+                            span(class="glyphicon glyphicon-menu-hamburger")
                         ul.dropdown-menu(aria-labelledby='dropdownLogical')
                             li
                               a(href='#' data-toggle='modal' data-target='#dcat-logical') DCAT
@@ -833,7 +836,7 @@ block body
                div.panel-body.text-center(id='logicalMain' class='workbenchElement')
 
                  script#logical-list-item(type='text/template').
-                       <h6><%= name %></h6>
+                       <h5><%= name %></h5>
 
            div.col-md-9
             div.panel.panel-info
@@ -844,7 +847,7 @@ block body
                    div.col-md-1.col-md-offset-7
                      div.dropdown
                         button#dropdownLogical2.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
-                            span.caret
+                            span(class="glyphicon glyphicon-menu-hamburger")
                         ul.dropdown-menu(aria-labelledby='dropdownLogical2')
                             li
                                 a(href='#' data-toggle='modal' data-target='#') Edit
@@ -873,7 +876,7 @@ block body
                    div.col-md-1
                      div.dropdown
                         button#dropdownMenu1.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
-                            span.caret
+                            span(class="glyphicon glyphicon-menu-hamburger")
                         ul.dropdown-menu(aria-labelledby='dropdownMenu1')
                             li
                               a(href='#' data-toggle='modal' data-target='#upload-mapping') Upload file
@@ -884,7 +887,7 @@ block body
                div.panel-body.text-center(id='mappingMain' class='workbenchElement')
 
                  script#mapping-list-item(type='text/template').
-                       <h6><%= filename %></h6>
+                       <h5><%= filename %></h5>
 
 
            div.col-md-9
@@ -896,12 +899,14 @@ block body
                    div.col-md-1.col-md-offset-7
                      div.dropdown
                         button#dropdownMenu1.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
-                            span.caret
+                            span(class="glyphicon glyphicon-menu-hamburger")
                         ul.dropdown-menu(aria-labelledby='dropdownMenu1')
                             li
                                 a(href='#' data-toggle='modal' data-target='#executeMapping' id='executeModalBtn') Execute
                             li
-                                a(href='#' data-toggle='modal' data-target='#') Edit
+                                a(href='#' id="pretty") Pretty version
+                            li
+                                a(href='#' id="blanknode") Blank nodes version
                             li
                                 a(href='#' data-toggle='modal' data-target='#dataSourcesDetailsModal' id="dataSourcesDetailsBtn") Data sources
                             li
@@ -933,7 +938,7 @@ block body
                    div.col-md-1   
                      div.dropdown
                         button#dropdownMenu1.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
-                            span.caret
+                            span(class="glyphicon glyphicon-menu-hamburger")
                         ul.dropdown-menu(aria-labelledby='dropdownMenu1')
                             li
                               a(href='#' data-toggle='modal' data-target='#upload-publishing') Upload file                            
@@ -944,7 +949,7 @@ block body
                div.panel-body.text-center(id='publishMain' class='publishElement')
                
                  script#publish-list-item(type='text/template').
-                   <h6><%= filename %></h6>      
+                   <h5><%= filename %></h5>
            div.col-md-9
              div.panel.panel-info
                div.panel-heading
@@ -954,7 +959,7 @@ block body
                    div.col-md-1.col-md-offset-7   
                      div.dropdown
                         button#dropdownMenu1.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
-                            span.caret
+                            span(class="glyphicon glyphicon-menu-hamburger")
                         ul.dropdown-menu(aria-labelledby='dropdownMenu1')
                             li
                               a(href='#' data-toggle='modal' data-target='#publish') Publish file
@@ -987,10 +992,10 @@ block body
                    div.col-md-1   
                      div.dropdown
                         button#dropdownMenu1.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
-                            span.caret
+                            span(class="glyphicon glyphicon-menu-hamburger")
                         ul.dropdown-menu(aria-labelledby='dropdownMenu1')
                             li
-                              a(href='#' data-toggle='modal' data-target='#scheduleModal') Create new job  
+                              a(href='#' data-toggle='modal' id="openScheduleModalBtn" data-target='#scheduleModal') Add job
                div.panel-body(id='scheduleBody')                              
                  table.table(id='scheduleTable')
                     tr

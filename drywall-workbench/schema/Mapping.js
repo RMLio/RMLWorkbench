@@ -12,7 +12,8 @@ exports = module.exports = function(app, mongoose) {
     parsedContent: {type: String, default: ''},
     metadata: { 
       timeCreated: { type: Date, default: Date.now }
-    }
+    },
+    license: { type: String}
   });
 
   mappingSchema.plugin(require('./plugins/pagedFind'));

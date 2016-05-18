@@ -52,7 +52,10 @@ var exports = module.exports = {
                 lookUpNames(mappingObject);
                 addDetails(mappingObject);
                 mappingObject.toString = getFormattedMapping(mappingObject);
-                callback(err,mappingObject);
+                getUglyString(triples,prefixes,function(ugly) {
+                    mappingObject.uglyString = ugly;
+                    callback(err,mappingObject);
+                });
             }
 
         });
@@ -524,6 +527,17 @@ var getFormattedMapping = function(mapping) {
     }
     return convertParsedMappingObject(mapping.triples, mapping.prefixes, uniq).replace(/(\<)(\w*:\w*)(\>)/g,"$2");
 };
+
+
+var getUglyString = function(triples,prefixes,callback) {
+    var writer = N3.Writer(prefixes);
+    for(var i = 0; i < triples.length; i++) {
+        writer.addTriple(triples[i].subject,
+            triples[i].predicate,
+            triples[i].object);
+    }
+    writer.end(function (error, result) { callback(result); });
+}
 
 
 

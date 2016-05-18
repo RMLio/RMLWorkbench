@@ -117,7 +117,7 @@
     });
     
     app.MappingsContentView = Backbone.View.extend({
-       tagName: 'pre',
+       tagName: 'pre',className:'mappingpre',
        template: _.template($('#mapping-content').html()),
        
        initialize: function(){
@@ -145,7 +145,7 @@
         },
         
         events: {
-	        'click h6' : 'viewMapping'
+	        'click h5' : 'viewMapping'
         },
 
         viewMapping: function(ev){
@@ -191,7 +191,8 @@
     });
     
     app.PublishContentView = Backbone.View.extend({
-       tagName: 'pre', 
+       tagName: 'pre',
+        className: 'prepublish',
        template: _.template($('#publish-content').html()),
        
        initialize: function(){
@@ -216,7 +217,7 @@
         },
         
         events: {
-	        'click h6' : 'viewPublish'
+	        'click h5' : 'viewPublish'
         },
 
         viewPublish: function(ev){
@@ -234,80 +235,8 @@
             return this;
         },
 
-
-    });
-    
-    
-    
-    /**
-    /***
-     * 
-     * VIEWS DATA ACCESS
-     * 
-     ***/
-    /***
-    app.DescriptionsView = Backbone.View.extend({
-        tagName: 'div',
-        className: 'list-group descriptionView',
-        
-        initialize: function() {
-                    
-        },
-
-        render: function(eventName) {
-            _.each(this.model.models, function(description) {
-                $(this.el).append(new app.DescriptionItemView({ model: description }).render().el);
-            }, this);
-            return this;
-        }
-    });
-    
-    app.DescriptionContentView = Backbone.View.extend({
-       tagName: 'pre', 
-       template: _.template($('#description-content').html()),
-       
-       initialize: function(){
-		    this.model.on('change', this.render, this);
-       },     
-                    
-       
-       render: function() {
-            $(this.el).html(this.template(this.model.toJSON()));
-            return this;  
-       }
     });
 
-    app.DescriptionItemView = Backbone.View.extend({
-        tagName: 'a',
-        className: 'list-group-item viewDescription',
-
-        template: _.template($('#description-list-item').html()),
-
-        initialize: function () {
-
-        },
-
-        events: {
-            'click h6': 'viewDescription'
-        },
-
-        viewDescription: function (ev) {
-            app.currentModel = this.model;
-            app.descriptionContentView.model = this.model;
-            app.descriptionContentView.render();
-            //$('#mappingContent').html(app.mappingsContentView.render().el)
-        },
-
-        render: function (eventName) {
-            $(this.el).attr('href', '#');
-            $(this.el).attr('data-index', this.model.collection.indexOf(this.model));
-            $(this.el).html(this.template(this.model.toJSON()));
-            return this;
-        }
-    });
-
-
-     **/
 
      /***
      * 
@@ -442,11 +371,8 @@
 
                     //settint text
                     $('#mappingTitle').text('File name: ' + app.currentModel.attributes.filename);
-                    
-                    
-                    
 
-                    
+
                     //setting css   
                     $('#mappingMain').css('min-height',$(window).height()*0.82 + 'px');
                     $('#mappingMain').css('max-height',$(window).height()*0.82 + 'px');
@@ -458,13 +384,7 @@
                     $('#bigpre').css('max-height',$(window).height()*0.75 + 'px');
                     
                     
-                    //Setting mapping list scheduling
-                    $('#scheduleMappingList').empty();
-                    $('#scheduleMappingList').append('<option>CHOOSE MAPPING</option>')
-                    for(var i =0; i < app.mappings.models.length; i++) {
-                        var mapping = app.mappings.models[i];
-                        $('#scheduleMappingList').append('<option value="' + mapping.attributes._id +'">' + mapping.attributes.filename + '</option>');
-                    }
+
                     
                     
                 } else {
@@ -523,8 +443,8 @@
                     $('#publishContent').css('max-height',$(window).height()*0.75 + 'px');    
                     $('#publishBody').css('min-height',$(window).height()*0.82 + 'px');
                     $('#publishBody').css('max-height',$(window).height()*0.82 + 'px');    
-                    $('bigpre').css('min-height',$(window).height()*0.75 + 'px');
-                    $('bigpre').css('max-height',$(window).height()*0.75 + 'px');
+                    $('.prepublish').css('min-height',$(window).height()*0.75 + 'px');
+                    $('.prepublish').css('max-height',$(window).height()*0.75 + 'px');
                 
                     
                         
@@ -539,8 +459,8 @@
                     $('#publishContent').css('max-height',$(window).height()*0.75 + 'px');    
                     $('#publishBody').css('min-height',$(window).height()*0.82 + 'px');
                     $('#publishBody').css('max-height',$(window).height()*0.82 + 'px');    
-                    $('bigpre').css('min-height',$(window).height()*0.75 + 'px');
-                    $('bigpre').css('max-height',$(window).height()*0.75 + 'px');
+                    $('.prepublish').css('min-height',$(window).height()*0.75 + 'px');
+                    $('.prepublish').css('max-height',$(window).height()*0.75 + 'px');
                 }
             }}); 
             
@@ -556,18 +476,39 @@
             
             $.get('/workbench/schedules',function(schedules) {
                 $('#scheduleTable').empty();
-                $('#scheduleTable').append('<tr><th>Name</th><th>Date</th><th>#Mappings</th><th>#Triples</th><th>#Publishings</th><th>Description</th><th>Executed</th></tr>');
+                $('#scheduleTable').append('<tr><th>Date</th><th>Mapping file</th><th>Output file</th></th><th>#Triples</th><th>Publish</th><th>Description</th><th>Status</th></tr>');
                 for(var i = 0; i < schedules.length; i++) {
-                    $('#scheduleTable').append(function() {                 
-                        
-                        var executed = 'No';
-                        
-                        if(schedules[i].executed == true) {
-                            executed = 'Yes';
+
+
+                    var toBePublished;
+
+                    if(schedules[i].publishing) {
+                        toBePublished = 'Yes';
+                    } else {
+                        toBePublished = 'No';
+                    }
+
+                    var status = 'Planned';
+
+                    $('#scheduleTable').append(function() {
+
+                        if(schedules[i].running) {
+                            status = 'Running';
                         }
                         
-                        return '<tr data-toggle="modal" data-target="#jobmodal" id='+schedules[i]._id+'><td>'+schedules[i].title+'</td><td>'+schedules[i].date+'</td><td>'+schedules[i].amountMapping+'</td><td>'+schedules[i].amountTriples+'</td><td>'+schedules[i].amountPublishing+'</td><td>'+schedules[i].description+'</td><td>'+executed+'</td></tr>'   
+                        if(schedules[i].executed) {
+                            status = 'Done';
+                        }
+                        
+                        return '<tr data-toggle="modal" data-target="#jobmodal" id='+schedules[i]._id+'><a href="#"><td>'+schedules[i].date+'</td><td>'+schedules[i].mappingFileName+'</td><td>'+schedules[i].title+'</td><td>'+schedules[i].amountTriples+'</td><td>'+toBePublished+'</td><td>'+schedules[i].description+'</td><td><img id="rolling'+i+'" src="/media/rolling.gif" height="15px"/>     '+status+'</td></a></tr>'
                     });
+
+                    if(status=="Running") {
+                        $('#rolling'+i).css('display','inline');
+                    } else {
+                        $('#rolling'+i).css('display','none');
+                    }
+
                     var t = i;
                     $('#'+schedules[t]._id).click(function() {
                         app.currentSchedule = schedules[t];
@@ -583,81 +524,21 @@
                 $('#scheduleBody').css('min-height',$(window).height()*0.82 + 'px');
                 $('#scheduleBody').css('max-height',$(window).height()*0.82 + 'px');                                 
             });
-            
-            
-            /***
-            *
-            * RENDERING Descriptions
-            *
-            ***/ 
-             /**
-                       
-            app.descriptions.fetch({success: function() {
-                
-                if(app.descriptions.models.length != 0) {
-                
-                    //replace <> with lt& en gt&    
-                    for(var i = 0; i < app.descriptions.models.length; i++) {
-                        var attributes = app.descriptions.models[i].attributes;
-                        attributes.convertedData = attributes.data.replace(/</g,'&lt;').replace(/>/g, '&gt;');                                      
-                    }
-                    //creating views
-                    app.descriptionsView = new app.DescriptionsView({model:app.descriptions});
-                    app.descriptionContentView = new app.DescriptionContentView({model: app.descriptions.models[0]});
-                    app.clearDescriptionView = new app.ClearDescriptionView();
-                    app.clearAllDescriptionsView = new app.ClearAllDescriptionsView();
-                    
-                    //rendering with jquery
-                    $('#descriptionMain').html(app.descriptionsView.render().el);    
-                    $('#descriptionContent').html(app.descriptionContentView.render().el);    
-                    $('#clearDescriptionbutton').html(app.clearDescriptionView.render().el);
-                    $('#clearallDescriptionsbutton').html(app.clearAllDescriptionsView.render().el);  
-                                      
-                } else {
-                    $('.descriptionElement').empty();   
-                }
-            }});
-            */
-            /***
-            *
-            * RENDERING Schedule
-            *
-            ***/ 
-             
-            /*           
-            app.schedules.fetch({success: function() {
-                
-                if(app.schedules.models.length != 0) {
-                
-                    //replace <> with lt& en gt&    
-                    for(var i = 0; i < app.schedules.models.length; i++) {
-                        var attributes = app.schedules.models[i].attributes;
-                        attributes.convertedData = attributes.data.replace(/</g,'&lt;').replace(/>/g, '&gt;');                                      
-                    }
-                    //creating views
-                    app.schedulesView = new app.SchedulesView({model:app.schedules});
-                    app.scheduleContentView = new app.ScheduleContentView({model: app.schedules.models[0]});
-                    app.clearscheduleingView = new app.ClearScheduleingView();
-                    app.clearAllScheduleingsView = new app.ClearAllScheduleingsView();
-                    
-                    //rendering with jquery
-                    $('#scheduleMain').html(app.schedulesView.render().el);    
-                    $('#scheduleContent').html(app.scheduleContentView.render().el);    
-                    $('#clearscheduleingbutton').html(app.clearScheduleingView.render().el);
-                    $('#clearallscheduleingsbutton').html(app.clearAllScheduleingsView.render().el);  
-                                      
-                } else {
-                    $('.workbenchElement').empty();   
-                }
 
-            }});
-            */
+
+
 
     };
   
  
-    
-    
+    $("#blanknode").click(function() {
+        $('.mappingpre').empty();
+        $('.mappingpre').text(app.currentModel.attributes.parsedObject.uglyString);
+    });
+    $("#pretty").click(function() {
+        $('.mappingpre').empty();
+        $('.mappingpre').text(app.currentModel.attributes.parsedObject.toString);
+    });
     
     /*
     *   ##########
@@ -715,67 +596,14 @@
 
 
 
-   /**
-    * 
-    * Scheduling button
-    */
-   $('#scheduleButton').click(function() {
-               var fulldate = $('#scheduleDate').val();
-               var description = $('#scheduleDescription').val();
-               var title = $('#scheduleTitle').val();
-               
-               var month = fulldate.substring(0,2);
-               var day = fulldate.substring(3,5);
-               var year = fulldate.substring(6,10);
-               var hour = fulldate.substring(11,13);
-               if(hour.indexOf(':') > -1) {
-                   hour = fulldate.substring(11,12);
-                   var minute = fulldate.substring(13,15);
-                   if(fulldate.charAt(16) == 'P') {
-                       hour = parseInt(hour) + 12;
-                   }
-               } else {                   
-                   var minute = fulldate.substring(14,16);
-                   if(fulldate.charAt(17) == 'P') {
-                       hour = parseInt(hour) + 12;
-                   }
-               }
-               var date = {
-                       year: year,
-                       month: month-1,
-                       day: day,
-                       hour: hour,
-                       minute: minute
-                   }
-               
-               var triples = [];
-               var post = {
-                   name: title,
-                   description: description,
-                   date:date,
-                   mappingsFromFile : app.currentScheduleMappings,
-                   mappingsFromTriples: triples 
-               }
-               
-               var newDate = new Date(year,month,day,hour,minute);
-               var now = new Date();
-               
-               if(newDate > now) {
-                   
-                   
-                        $.post('/workbench/addToSchedule',post,function() {
-                            app.render();               
-                        });
-                                               
-               } else {
-                   $("#scheduleContainer").prepend('<div style="margin-top:15px" class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Date has already passed..</strong></div>');
-            
-               }
-               
-            });
-            
-            
-    /***
+   
+
+
+
+
+
+
+            /***
      * 
      * 
      * Actions
@@ -788,6 +616,8 @@
 
         $.post('/workbench/clear/source/',{sources: [app.currentModel.attributes._id]},function() {
             notify('Local file deleted!','information');
+            $('#localTitle').text('Select a file');
+            $('#localpre').empty();
             app.render();
         }).fail(function(err) {
             notify(err.message,'error');
@@ -797,6 +627,8 @@
 
     $('#clearAllLocalFiles').click(function() {
         $.post('/workbench/clear/all/source',function() {
+            $('#localTitle').text('No files');
+            $('#localpre').empty();
             notify('Local files deleted!','information');
             app.render();
         }).fail(function(err) {
@@ -868,15 +700,7 @@
      * Adding mapping to well (schedule modal)
      * 
      */
-    
-    $('#addScheduleMappingButton').click(function() {
-        if($('#scheduleMappingList').find("option:selected").text() !== 'CHOOSE MAPPING') {
-            $('#scheduleMappingWellList').append('<li>'+$('#scheduleMappingList').find("option:selected").text()+'</li>');
-            app.currentScheduleMappings.push($('#scheduleMappingList').val());
-        } else {
-            $("#scheduleModalFooter").append('<div style="margin-top:15px" class="alert alert-info alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Don'+"'"+'t add that one ;)</strong></div>');
-        }
-    });
+
 
    
     /*
@@ -890,8 +714,11 @@
             var form_url = $("form[id='uploadMapping_Form']").attr("action");
         var CSRF_TOKEN = $('input[name="_csrf"]').val();                    
 
+
         var form = new FormData();
-        form.append('mappingUpload', $('input[id=mappingFile]')[0].files[0]);        
+        form.append('mappingUpload', $('input[id=mappingFile]')[0].files[0]);
+        var license = $('#mappingUploadLicense').val();
+        form.append('license', license);
 
 
         $.ajax({
@@ -935,7 +762,9 @@
             var CSRF_TOKEN = $('input[name="_csrf"]').val();                    
 
             var form = new FormData();
-            form.append('rdfUpload', $('input[id=publishingFile]')[0].files[0]);       
+            form.append('rdfUpload', $('input[id=publishingFile]')[0].files[0]);
+            var license = $('#publishUploadLicense').val();
+            form.append('license', license);
 
             $.ajax({
                 url:  form_url,
@@ -980,9 +809,11 @@
         var CSRF_TOKEN = $('input[name="_csrf"]').val();                    
 
         var form = new FormData();
-        form.append('sourceUpload', $('input[id=sourceFile]')[0].files[0]);        
+        form.append('sourceUpload', $('input[id=sourceFile]')[0].files[0]);
 
 
+        var license = $('#sourceUploadLicense').val();
+        form.append('license', license);
         $.ajax({
             url:  form_url,
             type: 'POST',
@@ -1062,6 +893,26 @@
             }});
         n.setTimeout(4500);
     }
+
+
+    var requestLoop = setInterval(function(){
+        $.get('/workbench/schedules/new', function(status) {
+
+            if (status.newJobs) {
+                notify('A job has finished!','success');
+                app.render();
+            }
+
+            if (status.newExecution) {
+                notify('A job has started!','information');
+                app.render();
+            }
+        });
+
+    }, 3000);
+
+
+    $(".ajax-spinner").empty();
     
     
     

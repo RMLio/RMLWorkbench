@@ -20,7 +20,7 @@ var uniq_fast = function(a) {
 
 var exports = module.exports =  {
 	
-	executeMapping : function(mapping, sources, callback) {
+	executeMapping : function(mapping, sources, outputName, callback) {
 
 		var logicalSources = mapping.parsedObject.logicalSources;
 		var dataSources = mapping.parsedObject.inputSources;
@@ -64,7 +64,7 @@ var exports = module.exports =  {
 		}
 		
 		//if everything's ok, we'll continue with executing!
-		rmlMapper.launchProcessor(mapping.data, undefined, neededSourcesFilenames, function(err, output) {
+		rmlMapper.launchProcessor(mapping.data, undefined, neededSourcesFilenames, outputName, function(err, output) {
 			if(err) {
 				//smthng bad happened :(
 				callback(err,output);
@@ -77,7 +77,7 @@ var exports = module.exports =  {
 
 	},
 
-	executeTriples : function(mapping, triples, sources, callback) {
+	executeTriples : function(mapping, triples, sources, outputName, callback) {
 
 		var logicalSources = mapping.parsedObject.logicalSources;
 		var dataSources = mapping.parsedObject.inputSources;
@@ -123,7 +123,7 @@ var exports = module.exports =  {
 		}
 
 		//if everything's ok, we'll continue with executing!
-		rmlMapper.launchProcessor(mapping.parsedObject.toString, triples, neededSourcesFilenames, function(err, output) {
+		rmlMapper.launchProcessor(mapping.parsedObject.toString, triples, neededSourcesFilenames, outputName, function(err, output) {
 			if(err) {
 				//smthng bad happened :(
 				callback(err,output);

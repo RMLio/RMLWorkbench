@@ -23,7 +23,7 @@ $(document).ready(function() {
 
         //initial value
         $('#dataSourcePre').empty();
-        $('#dataSourcePre').append(convertForPre(dataSources[$('#dataSourcesSelect').val()].toString));
+        $('#dataSourcePre').append(convertForPre(dataSources[$('#dataSourcesSelect').val()].ugly));
         selectedDataSource = dataSources[0];
 
     });
@@ -34,7 +34,7 @@ $(document).ready(function() {
     $('#dataSourcesSelect').change(function() {
 
         $('#dataSourcePre').empty();
-        $('#dataSourcePre').append(convertForPre(dataSources[$('#dataSourcesSelect').val()].toString));
+        $('#dataSourcePre').append(convertForPre(dataSources[$('#dataSourcesSelect').val()].ugly));
 
 
         selectedDataSource = dataSources[$('#dataSourcesSelect').val()];
@@ -45,7 +45,7 @@ $(document).ready(function() {
     var refreshDetails = function() {
         dataSources=app.currentModel.attributes.parsedObject.inputSources;
         $('#dataSourcePre').empty();
-        $('#dataSourcePre').append(convertForPre(dataSources[$('#dataSourcesSelect').val()].toString));
+        $('#dataSourcePre').append(convertForPre(dataSources[$('#dataSourcesSelect').val()].ugly));
     }
 
 

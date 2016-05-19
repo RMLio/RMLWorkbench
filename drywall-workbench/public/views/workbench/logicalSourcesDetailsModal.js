@@ -24,7 +24,7 @@ $(document).ready(function() {
         //initial value
         $('#logicalSourcePre').empty();
 
-        $('#logicalSourcePre').append(convertForPre(logicalSources[$('#logicalSourcesSelect').val()].toString));
+        $('#logicalSourcePre').append(convertForPre(logicalSources[$('#logicalSourcesSelect').val()].ugly));
         selectedLogicalSource = logicalSources[0];
 
     });
@@ -35,8 +35,8 @@ $(document).ready(function() {
     $('#logicalSourcesSelect').change(function() {
 
         $('#logicalSourcePre').empty();
-        console.log(logicalSources[$('#logicalSourcesSelect').val()].toString);
-        $('#logicalSourcePre').append(convertForPre(logicalSources[$('#logicalSourcesSelect').val()].toString));
+        console.log(logicalSources[$('#logicalSourcesSelect').val()].ugly);
+        $('#logicalSourcePre').append(convertForPre(logicalSources[$('#logicalSourcesSelect').val()].ugly));
 
 
         selectedLogicalSource = logicalSources[$('#logicalSourcesSelect').val()];
@@ -47,7 +47,7 @@ $(document).ready(function() {
     var refreshDetails = function() {
         logicalSources=app.currentModel.attributes.parsedObject.logicalSources;
         $('#logicalSourcePre').empty();
-        $('#logicalSourcePre').append(convertForPre(logicalSources[$('#logicalSourcesSelect').val()].toString));
+        $('#logicalSourcePre').append(convertForPre(logicalSources[$('#logicalSourcesSelect').val()].ugly));
     }
 
 
@@ -109,12 +109,14 @@ $(document).ready(function() {
 
 
     $('#saveLogicalSourceBtn').click(function() {
+        var triples = [];
         for(var i = 0; i < selectedLogicalSource.triples.length; i++) {
             if($('#logicalSourceEditor'+i).val() != '' && $('#logicalSourceEditor'+i).val() != undefined) {
                 selectedLogicalSource.triples[i].object = $('#logicalSourceEditor'+i).val();
+                triples.push(selectedLogicalSource.triples[i]);
             }
         }
-        $.post('/workbench/mapping/logical/update', {mappingObject:app.currentModel.attributes.parsedObject,mappingID:app.currentModel.attributes._id} , function(data) {
+        $.post('/workbench/mapping/update', {triples:triples,mapping_id:app.currentModel.attributes._id} , function(data) {
             app.currentModel.attributes.parsedObject = data;
             //replace <> with lt& en gt&
             for(var i = 0; i < app.mappings.models.length; i++) {

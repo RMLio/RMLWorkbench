@@ -782,6 +782,22 @@ var exports = module.exports = {
 
     },
 
+    updateMapping: function(req, res) {
+        var triples = req.body.triples;
+        util.retrieveFile(req.body.mapping_id, req.app.db.models.Mapping, function(mapping) {
+            tripleParser.updateMappingObject(mapping.parsedObject, triples,function(mappingObject) {
+                saver.updateMappingObject(req.app.db.models, mappingObject, req.body.mappingID, function (err) {
+                    if (err) {
+                        res.send(err.message,409);
+                    } else {
+                        res.send(mappingObject,200);
+                    }
+                });
+            });
+        })
+
+    },
+
 
     /**
      *
@@ -791,14 +807,16 @@ var exports = module.exports = {
 
     updateLogicalSource: function(req, res) {
         try {
-            var mappingObject = tripleParser.updateLogicalSource(req.body.mappingObject);
-            saver.updateMappingObject(req.app.db.models, mappingObject, req.body.mappingID, function (err) {
-                if (err) {
-                    res.send(err.message,409);
-                } else {
-                    res.send(mappingObject,200);
-                }
+            tripleParser.updateLogicalSource(req.body.mappingObject,function(mappingObject) {
+                saver.updateMappingObject(req.app.db.models, mappingObject, req.body.mappingID, function (err) {
+                    if (err) {
+                        res.send(err.message,409);
+                    } else {
+                        res.send(mappingObject,200);
+                    }
+                });
             });
+
         } catch(err) {
             throw err;
             res.send(err.message,500);
@@ -814,14 +832,16 @@ var exports = module.exports = {
 
     updateDataSource: function(req, res) {
         try {
-            var mappingObject = tripleParser.updateDataSource(req.body.mappingObject);
-            saver.updateMappingObject(req.app.db.models, mappingObject, req.body.mappingID, function (err) {
-                if (err) {
-                    res.send(409);
-                } else {
-                    res.send(mappingObject,200);
-                }
+            var mappingObject = tripleParser.updateDataSource(req.body.mappingObject, function (mappingObject) {
+                saver.updateMappingObject(req.app.db.models, mappingObject, req.body.mappingID, function (err) {
+                    if (err) {
+                        res.send(409);
+                    } else {
+                        res.send(mappingObject,200);
+                    }
+                });
             });
+
         } catch(err) {
             
             res.send(409);
@@ -838,14 +858,16 @@ var exports = module.exports = {
 
     updateMappingDefinition: function(req, res) {
         try {
-            var mappingObject = tripleParser.updateMappingDefinition(req.body.mappingObject);
-            saver.updateMappingObject(req.app.db.models, mappingObject, req.body.mappingID, function (err) {
-                if (err) {
-                    res.send(409);
-                } else {
-                    res.send(mappingObject);
-                }
+            var mappingObject = tripleParser.updateMappingDefinition(req.body.mappingObject,function() {
+                saver.updateMappingObject(req.app.db.models, mappingObject, req.body.mappingID, function (err) {
+                    if (err) {
+                        res.send(409);
+                    } else {
+                        res.send(mappingObject);
+                    }
+                });
             });
+
         } catch(err) {
             
             res.send(409);

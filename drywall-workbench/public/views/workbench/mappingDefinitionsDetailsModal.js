@@ -25,7 +25,7 @@ $(document).ready(function() {
 
         //initial value
         $('#mappingDefinitionsPre').empty();
-        $('#mappingDefinitionsPre').append(convertForPre(mappingDefinitions[0].toString));
+        $('#mappingDefinitionsPre').append(convertForPre(mappingDefinitions[0].ugly));
         selectedMappingDefinition = mappingDefinitions[0];
 
     });
@@ -34,7 +34,7 @@ $(document).ready(function() {
     $('#mappingDefinitionsSelect').change(function() {
 
         $('#mappingDefinitionsPre').empty();
-        $('#mappingDefinitionsPre').append(convertForPre(mappingDefinitions[$('#mappingDefinitionsSelect').val()].toString));
+        $('#mappingDefinitionsPre').append(convertForPre(mappingDefinitions[$('#mappingDefinitionsSelect').val()].ugly));
 
 
         selectedMappingDefinition = mappingDefinitions[$('#mappingDefinitionsSelect').val()];
@@ -111,9 +111,9 @@ $(document).ready(function() {
     //refresh the pre tag
     var refreshDetails = function() {
         mappingDefinitions=app.currentModel.attributes.parsedObject.mappingDefinitions;
-        console.log(convertForPre(mappingDefinitions[$('#mappingDefinitionsSelect').val()].toString));
+        console.log(convertForPre(mappingDefinitions[$('#mappingDefinitionsSelect').val()].ugly));
         $('#mappingDefinitionsPre').empty();
-        $('#mappingDefinitionsPre').append(convertForPre(mappingDefinitions[$('#mappingDefinitionsSelect').val()].toString));
+        $('#mappingDefinitionsPre').append(convertForPre(mappingDefinitions[$('#mappingDefinitionsSelect').val()].ugly));
     }
 
 

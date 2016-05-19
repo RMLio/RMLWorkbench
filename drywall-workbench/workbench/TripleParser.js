@@ -50,11 +50,15 @@ var exports = module.exports = {
                 mappingObject.prefixes = prefixes;
 
                 lookUpNames(mappingObject);
-                addDetails(mappingObject);
-                mappingObject.toString = getFormattedMapping(mappingObject);
-                getUglyString(triples,prefixes,function(ugly) {
-                    mappingObject.uglyString = ugly;
-                    callback(err,mappingObject);
+                console.log('1');
+                addDetails(mappingObject,function() {
+                    console.log('2');
+                    mappingObject.toString = getFormattedMapping(mappingObject);
+                    getUglyString(triples,prefixes,function(ugly) {
+                        console.log('3');
+                        mappingObject.uglyString = ugly;
+                        callback(err,mappingObject);
+                    });
                 });
             }
 
@@ -62,9 +66,22 @@ var exports = module.exports = {
 
     },
 
-    updateLogicalSource: function(mappingObject) {
-        console.log('triples:');
-        console.log(mappingObject.logicalSources.triples);
+    updateMappingObject: function(mappingObject,triples, callback) {
+        var prefixes = mappingObject.prefixes;
+        for(var i = 0; i < triples.length; i++) {
+            for(var j = 0; j < mappingObject.triples.length; j++) {
+                if(triples[i].subject == mappingObject.triples[j].subject
+                && triples[i].predicate == mappingObject.triples[j].predicate) {
+                    mappingObject.triples[j] = triples[i];
+                }
+            }
+        }
+        createMappingObject(mappingObject.triples, prefixes, function(result) {
+            callback(result);
+        })
+    },
+
+    updateLogicalSource: function(mappingObject,callback) {
 
         var triples = mappingObject.triples;
         var prefixes = mappingObject.prefixes;
@@ -73,7 +90,8 @@ var exports = module.exports = {
             for(var j = 0; j < mappingObject.logicalSources[i].triples.length; j++) {
                 for(var k = 0 ; k < triples.length ;k++) {
                     if(triples[k].subject == mappingObject.logicalSources[i].triples[j].subject
-                        && triples[k].predicate == mappingObject.logicalSources[i].triples[j].predicate) {
+                        && triples[k].predicate == mappingObject.logicalSources[i].triples[j].predicate
+                        && triples[k].object == mappingObject.logicalSources[i].triples[j].object) {
                         triples[k] = mappingObject.logicalSources[i].triples[j];
                     }
                 }
@@ -81,11 +99,13 @@ var exports = module.exports = {
         }
 
 
-        return createMappingObject(triples,prefixes);
+        createMappingObject(triples,prefixes,function(result) {
+            callback(result);
+        });
 
     },
 
-    updateMappingDefinition: function(mappingObject) {
+    updateMappingDefinition: function(mappingObject,callback) {
 
         var triples = mappingObject.triples;
         var prefixes = mappingObject.prefixes;
@@ -101,12 +121,14 @@ var exports = module.exports = {
             }
         }
 
-        return createMappingObject(triples,prefixes);
+        createMappingObject(triples,prefixes, function(result) {
+            callback(result);
+        });
 
 
     },
 
-    updateDataSource: function(mappingObject) {
+    updateDataSource: function(mappingObject,callback) {
 
 
         var triples = mappingObject.triples;
@@ -123,7 +145,9 @@ var exports = module.exports = {
             }
         }
 
-        return createMappingObject(triples,prefixes);
+        createMappingObject(triples,prefixes, function(result) {
+            callback(result);
+        });
     }
 
 
@@ -140,7 +164,7 @@ var exports = module.exports = {
  */
 
 
-var createMappingObject = function(triples, prefixes) {
+var createMappingObject = function(triples, prefixes, callback) {
     var newMappingObject = {
 
         mappingDefinitions: [],
@@ -156,11 +180,14 @@ var createMappingObject = function(triples, prefixes) {
     newMappingObject.prefixes = prefixes;
 
     lookUpNames(newMappingObject);
-    addDetails(newMappingObject);
-    newMappingObject.toString = getFormattedMapping(newMappingObject);
+    addDetails(newMappingObject,function() {
+        newMappingObject.toString = getFormattedMapping(newMappingObject);
+        getUglyString(triples,prefixes,function(ugly) {
+            newMappingObject.uglyString = ugly;
+            callback(newMappingObject);
+        });
+    });
 
-
-    return newMappingObject;
 }
 
 var fix = function (triples) {
@@ -234,36 +261,105 @@ var lookUpNames = function(mappingObject) {
  * Add details to all types
  * @param mappingObject
  */
-var addDetails = function(mappingObject) {
+var addDetails = function(mappingObject, callback) {
 
     //mapping definitions
+    var done = 0;
+    var mddone = 0;
+    var mdtmdone = 0;
+    var isdone = 0;
+    var lsdone = 0;
+
+    if(mddone == mappingObject.mappingDefinitions.length) {
+        console.log('done1');
+        done++;
+        if(done == 4) {
+            callback();
+        }
+    }
     removeDuplicateNames(mappingObject.mappingDefinitions);
     for(var i = 0; i < mappingObject.mappingDefinitions.length; i++) {
         addTriples(mappingObject.mappingDefinitions[i], mappingObject);
-        addString(mappingObject.mappingDefinitions[i],mappingObject.prefixes);
+        addUgly(mappingObject.mappingDefinitions[i],mappingObject.prefixes, function() {
+            mddone++;
+            if(mddone == mappingObject.mappingDefinitions.length) {
+                done++;
+                console.log('done1');
+                if(done == 4) {
+                    callback();
+                }
+            }
+        });
     }
-
+    if(mdtmdone == mappingObject.mappingDefinitionsTermMappings.length) {
+        console.log('done2');
+        done++;
+        if (done == 4) {
+            callback();
+        }
+    }
     removeDuplicateNames(mappingObject.mappingDefinitionsTermMappings);
     //mapping definitions
     for(var i = 0; i < mappingObject.mappingDefinitionsTermMappings.length; i++) {
         addTriples(mappingObject.mappingDefinitionsTermMappings[i], mappingObject);
-        addString(mappingObject.mappingDefinitionsTermMappings[i],mappingObject.prefixes);
+        addUgly(mappingObject.mappingDefinitionsTermMappings[i],mappingObject.prefixes, function() {
+            mdtmdone++;
+            if(mdtmdone == mappingObject.mappingDefinitionsTermMappings.length) {
+                done++;
+                console.log('done2');
+                if (done == 4) {
+                    callback();
+                }
+            }
+        });
     }
-
+    if(isdone == mappingObject.inputSources.length) {
+        console.log('done3');
+        done++;
+        if (done == 4) {
+            callback();
+        }
+    }
     removeDuplicateNames(mappingObject.inputSources);
-    console.log(mappingObject.inputSources);
     //logical sources
     for(var i = 0; i < mappingObject.inputSources.length; i++) {
 
         addTriples(mappingObject.inputSources[i], mappingObject);
-        addString(mappingObject.inputSources[i],mappingObject.prefixes);
+        addUgly(mappingObject.inputSources[i],mappingObject.prefixes, function() {
+            isdone++;
+
+            if(isdone == mappingObject.inputSources.length) {
+                console.log('done3');
+                done++;
+                if (done == 4) {
+                    callback();
+                }
+            }
+        });
     }
 
     removeDuplicateNames(mappingObject.logicalSources);
+    if(lsdone == mappingObject.logicalSources.length) {
+        console.log('done4');
+        done++;
+        if (done == 4) {
+            callback();
+        }
+    }
     //input sources
     for(var i = 0; i < mappingObject.logicalSources.length; i++) {
         addTriples(mappingObject.logicalSources[i], mappingObject);
-        addString(mappingObject.logicalSources[i],mappingObject.prefixes);
+        addUgly(mappingObject.logicalSources[i],mappingObject.prefixes, function() {
+
+            lsdone++;
+            if(lsdone == mappingObject.logicalSources.length) {
+                console.log('done4');
+                done++;
+                if (done == 4) {
+                    callback();
+                }
+            }
+        });
     }
 
 
@@ -528,6 +624,14 @@ var getFormattedMapping = function(mapping) {
     return convertParsedMappingObject(mapping.triples, mapping.prefixes, uniq).replace(/(\<)(\w*:\w*)(\>)/g,"$2");
 };
 
+
+var addUgly = function(wrapper, prefixes, callback) {
+    getUglyString(wrapper.triples, prefixes, function(result) {
+        wrapper.ugly = result;
+        callback(wrapper);
+    });
+
+}
 
 var getUglyString = function(triples,prefixes,callback) {
     var writer = N3.Writer(prefixes);

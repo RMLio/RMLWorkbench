@@ -1,5 +1,6 @@
 'use strict';
 
+var express = require('express');
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
@@ -62,6 +63,8 @@ exports = module.exports = function(app, passport, upload, ldfserver) {
 
   //data sources
   app.post('/workbench/mapping/data/update', workbenchCtrl.updateDataSource);
+
+  app.post('/workbench/mapping/update', workbenchCtrl.updateMapping);
 
   //logical sources
   app.post('/workbench/mapping/logical/update', workbenchCtrl.updateLogicalSource);

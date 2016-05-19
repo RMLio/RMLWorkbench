@@ -642,6 +642,10 @@ var exports = module.exports = {
                 mappingsFromTriples = [];
             }
 
+            if(triples == undefined) {
+                triples = [];
+            }
+
             var util = require('./Utility');
 
 
@@ -667,6 +671,7 @@ var exports = module.exports = {
                                             saver.saveRDF(output, models, user, function (error) {
                                                 scheduleStatus.newJobs = true;
                                                 job.running = false
+                                                console.log('not running');
                                                 job.executed = true;
                                             });
                                         }
@@ -686,6 +691,7 @@ var exports = module.exports = {
                                             saver.saveRDF(output, models, user, function (error) {
                                                 scheduleStatus.newJobs = true;
                                                 job.running = false
+                                                console.log('not running');
                                                 job.executed = true;
                                             });
                                         }

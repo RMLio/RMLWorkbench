@@ -86,7 +86,7 @@ exports = module.exports = function(app, passport, upload, ldfserver) {
   app.post('/workbench/clear/all/source', workbenchCtrl.clearAllSources);
   app.post('/workbench/clear/all/mapping', workbenchCtrl.clearAllMappings);
   app.post('/workbench/clear/all/rdf', workbenchCtrl.clearAllRdf);
-  app.post('/workbench/clear/all/description', workbenchCtrl.clearAllDescription);
+  app.post('/workbench/clear/all/description', workbenchCtrl.clearAllDescriptions);
   app.post('/workbench/clear/all', workbenchCtrl.clearAll);
   app.post('/workbench/clear/source', workbenchCtrl.clearSources);
   app.post('/workbench/clear/mapping', workbenchCtrl.clearMappings);
@@ -95,6 +95,8 @@ exports = module.exports = function(app, passport, upload, ldfserver) {
   app.post('/workbench/clear/all', workbenchCtrl.clearAll);
   app.post('/workbench/clear/endpoint', workbenchCtrl.removeSparqlEndpoint);
   app.post('/workbench/clear/all/endpoint', workbenchCtrl.removeAllSparqlEndpoints);
+  app.post('/workbench/clear/all/logical', workbenchCtrl.clearAllLogicals);
+  app.post('/workbench/clear/logical', workbenchCtrl.clearLogical);
   
   //sparql interface
   app.post('/workbench/sparql/endpoint', workbenchCtrl.addSparqlEndpoint);

@@ -9,8 +9,7 @@ var tripleParser = require('./TripleParser');
 var sparql = require('./Sparql');
 var fs = require('fs');
 var moment = require('moment');
-var spawner = require('child_process');
-
+var publisher = require('./Publisher');
 
 var schedules = [];
 var started= [];
@@ -86,10 +85,12 @@ var exports = module.exports = {
           '    csvw:url "' + req.body.inputcsvwURL + '" ;\n' +
           '    csvw:dialect [ a csvw:Dialect;\n' +
           '    csvw:delimiter "' + req.body.inputcsvwDelimiter + '";\n' +
-          '    csvw:encoding "' + req.body.inputcsvwEncoding + '";\n' +
+          '    csvw:encoding "' + req.body.inputcsvwType + '";\n' +
           '    csvw:header ' + req.body.inputcsvwHeader + ' \n';
 
-    var description = { type: 'csvw',
+    var description = {
+                        name: name,
+                        type: 'csvw',
                         data: data,
                         prefix: prefix,
                         fullprefix: '@prefix ' + prefix +': <http://www.w3.org/ns/csvw#> .',
@@ -108,14 +109,13 @@ var exports = module.exports = {
       var name = req.body.inputDBName;
       var license = req.body.inputDBLicense;
       var prefix = 'd2rq';
-
       var data = '@prefix d2rq : <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .\n' +
           '<#' + name + '> a d2rq:Database;\n' +
           '    d2rq:jdbcDSN "' + req.body.inputDBURL + '";\n' +
-          '    d2rq:jdbcDriver "' + req.body.inputDBDriver + '";\n' +
+          '    d2rq:jdbcDriver "' + req.body.inputDBDrive + '";\n' +
           '    d2rq:username "' + req.body.inputDBUser + '";\n' +
           '    d2rq:password "' + req.body.inputDBPass + '" . \n';
-       var description = { type: 'd2rq',
+       var description = {name: name, type: 'd2rq',
            data: data,
            prefix: prefix,
            fullprefix: '@prefix ' + prefix + ': <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .',
@@ -145,7 +145,7 @@ var exports = module.exports = {
           '      hydra:variable "format";\n' +
           '      hydra:required false ] . \n';
     var description =
-    { type: 'hydra',
+    {name: name, type: 'hydra',
             data: data,
             prefix: prefix,
             fullprefix: '@prefix ' + prefix + ': <http://www.w3.org/ns/hydra/core#> .',
@@ -169,7 +169,7 @@ var exports = module.exports = {
           '    sd:endpoint <' + req.body.inputSparqlURL + '> ;\n' +
           '    sd:supportedLanguage sd:SPARQL11Query ;\n' +
           '    sd:resultFormat <http://www.w3.org/ns/formats/SPARQL_Results_' + req.body.inputSparqlType + '> .';
-    var   description = { type: 'sd',
+    var   description = {name: name, type: 'sd',
                                     data: data,
                                     prefix: prefix,
                                     fullprefix: '@prefix ' + prefix +': <http://www.w3.org/ns/sparql-service-description#> .',
@@ -184,7 +184,7 @@ var exports = module.exports = {
   addDCAT: function(req, res) {
       var user = req.user;
       var models = req.app.db.models;
-      var name = req.body.inputDDCATName;
+      var name = req.body.inputDCATName;
       var license = req.body.inputDCATLicense;
       var prefix = 'dcat';
       var models = req.app.db.models;
@@ -194,7 +194,7 @@ var exports = module.exports = {
           'a dcat:Distribution;\n' +
           'dcat:downloadURL "' + req.body.inputDCATURL + '" ].\n';
         var description =
-        { type: 'dcat',
+        {name: name, type: 'dcat',
             name: name,
             data: data,
             prefix: prefix,
@@ -237,7 +237,7 @@ var exports = module.exports = {
           '   rr:sqlVersion rr:SQL2008;\n' +
           '   rml:query "' + query +'" ] .' ;
         var logical =
-        { type: 'DB',
+        {name: name, type: 'DB',
             name: name,
             data: data,
             _id : mongoose.Types.ObjectId(),
@@ -264,7 +264,7 @@ var exports = module.exports = {
           '   rml:iterator  "' + iterator + '" ] .';
 
         var logical =
-        { type: 'API',
+        { name: name,type: 'API',
             name: name,
             data: data,
             _id : mongoose.Types.ObjectId(),
@@ -292,7 +292,7 @@ var exports = module.exports = {
           '   rml:iterator  "' + iterator + '"\n' +
           '   rml:query "' +query+'" ] .' ;
         var logical =
-        { type: 'SPARQL',
+        {name: name, type: 'SPARQL',
             name: name,
             data: data,
             _id : mongoose.Types.ObjectId(),
@@ -318,7 +318,7 @@ var exports = module.exports = {
           '   rml:referenceFormulation ql:' +type + ';\n' +
           '   rml:iterator  "' + iterator + '" ] .' ;
         var logical =
-        { type: 'DCAT',
+        {name: name, type: 'DCAT',
             name: name,
             data: data,
             _id : mongoose.Types.ObjectId(),
@@ -570,39 +570,11 @@ var exports = module.exports = {
      *
      ***/
     publishToLDF: function(req, res) {
-
         try {
-            //read configuration file (JSON) from local ldf server and add the new content
-            var obj = require('../ldf_server/config.json');
-
-            //count how many datasources there are in the local ldf server
-            var key, count = 0;
-            for (key in obj.datasources) {
-                if (obj.datasources.hasOwnProperty(key)) {
-                    count++;
-                }
-            }
-
-            //add request body (JSON) to config file of ldf server
-            obj.datasources['data_' + count] = req.body.dataset;
-
-            fs.writeFile('./ldf_server/' + req.body.filename, req.body.data, function (err) {
-                console.log("[WORKBENCH LOG] Writing file...");
-                //write the config file back
-                //Why is the path different? --> using fs
-                fs.writeFile('./ldf_server/config.json', JSON.stringify(obj), function (err) {
-                    console.log("[WORKBENCH LOG] Data added to local LDF server!");
-                    console.log("[WORKBENCH LOG] Restarting LDF server...");
-                    spawner.exec('fuser -n tcp -k 5000', function() {
-                        spawner.exec('(cd ldf_server/; ldf-server config.json 5000)', function() {
-
-                        });
-                        res.status(200);
-                        res.send();
-                    });
-                });
-            });
-
+            
+          publisher.publishToLDF(req.body, function() {
+              res.send(200);
+          })
 
         } catch(err) {
 
@@ -631,7 +603,9 @@ var exports = module.exports = {
             var mappingsFromFile = req.body.mappingsFromFile;
             var mappingsFromTriples = req.body.mappingsFromTriples;
             var triples = req.body.triples;
-            var outputFileName = req.outputFileName;
+            var outputFileName = req.body.name;
+            var toBePublished = req.body.toBePublished;
+            var publishTitle = req.body.publishTitle;
 
             //array gets undefined if empty for some reason :/
             if (mappingsFromFile == undefined) {
@@ -669,16 +643,25 @@ var exports = module.exports = {
                                         if (err.message === 'An error occurred in the processor') {
                                             output.mapping_id = mappingsFromFile[0].mapping_id;
                                             saver.saveRDF(output, models, user, function (error) {
-                                                done.push(current_id);
                                                 job.running = false
                                                 job.executed = true;
+                                                done.push(current_id);
+                                                if(toBePublished) {
+                                                    var context = util.generatePublishContext(output, publishTitle);
+                                                    publisher.publishToLDF(context);
+                                                }
                                             });
                                         }
                                     } else {
                                         output.mapping_id = mappingsFromFile[0].mapping_id;
                                         saver.saveRDF(output, models, user, function (err) {
-                                            done.push(current_id);
+                                            job.running = false
                                             job.executed = true;
+                                            done.push(current_id);
+                                            if(toBePublished) {
+                                                var context = util.generatePublishContext(output, publishTitle);
+                                                publisher.publishToLDF(context);
+                                            }
                                         });
                                     }
                                 });
@@ -688,16 +671,25 @@ var exports = module.exports = {
                                         if (err.message === 'An error occurred in the processor') {
                                             output.mapping_id = mappingsFromFile[0].mapping_id;
                                             saver.saveRDF(output, models, user, function (error) {
-                                                done.push(current_id);
                                                 job.running = false
                                                 job.executed = true;
+                                                done.push(current_id);
+                                                if(toBePublished) {
+                                                    var context = util.generatePublishContext(output, publishTitle);
+                                                    publisher.publishToLDF(context);
+                                                }
                                             });
                                         }
                                     } else {
                                         output.mapping_id = mappingsFromFile[0].mapping_id;
                                         saver.saveRDF(output, models, user, function (err) {
-                                            done.push(current_id);
+                                            job.running = false
                                             job.executed = true;
+                                            done.push(current_id);
+                                            if(toBePublished) {
+                                                var context = util.generatePublishContext(output, publishTitle);
+                                                publisher.publishToLDF(context);
+                                            }
                                         });
                                     }
                                 });
@@ -710,6 +702,11 @@ var exports = module.exports = {
 
                 });
             });
+
+            if(job == undefined) {
+                res.send(new Error('Invalid date'),400)
+                return;
+            }
 
             util.retrieveFile(mappingsFromFile[0], models.Mapping, function(mapping) {
                 job.mappingFileName = mapping.filename;
@@ -733,11 +730,9 @@ var exports = module.exports = {
             job.user = req.user;
             job._id = mongoose.Types.ObjectId();
             job.amountMapping = mappingsFromFile.length;
-            job.publishing = false;
+            job.publishing = toBePublished;
 
             job.executed = false;
-
-
 
         } catch(err) {
             throw err
@@ -780,13 +775,13 @@ var exports = module.exports = {
     },
 
     isNewlyExecuted: function(req,res) {
+
         var isDone = false;
         var hasStarted = false;
 
         for(var i = 0; i < done.length; i++) {
 
             if(done[i].equals(req.user._id)) {
-                console.log('equal');
                 isDone = true;
                 done.splice(i,1);
                 break;
@@ -953,17 +948,30 @@ var exports = module.exports = {
     },
 
     //clear all rdfs
-    clearAllDescription: function(req, res) {
-        clearer.clearAllDescription(req.user, req.app.db.models, function() {
+    clearAllDescriptions: function(req, res) {
+        clearer.clearAllDescriptions(req.user, req.app.db.models, function() {
             res.send(200);
     })
     },
 
     //clear all rdf of the user
     clearDescription: function(req, res) {
-        clearer.clearDescription(req.user, req.app.db.models, req.body.rdf, function() {
+        clearer.clearDescription(req.user, req.app.db.models, req.body.description_id, function() {
             res.send(200);
     })
+    },
+    //clear all rdfs
+    clearAllLogicals: function(req, res) {
+        clearer.clearAllLogicals(req.user, req.app.db.models, function() {
+            res.send(200);
+        })
+    },
+
+    //clear all rdf of the user
+    clearLogical: function(req, res) {
+        clearer.clearLogical(req.user, req.app.db.models, req.body.logical_id, function() {
+            res.send(200);
+        })
     },
 
 
@@ -1012,5 +1020,7 @@ var exports = module.exports = {
     createProvenance: function(req, res) {
 
     }
+    
+        
 
 };

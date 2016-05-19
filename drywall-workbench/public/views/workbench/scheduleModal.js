@@ -69,6 +69,9 @@ $(document).ready(function() {
             }
         };
 
+        var toBePublished = $('#toBePublished').prop("checked");
+        var publishTitle = $('#publishTitle').val();
+
         console.log(triples);
 
         var post = {
@@ -76,7 +79,9 @@ $(document).ready(function() {
             description: description,
             date:date,
             mappingsFromFile : app.currentScheduleMappings,
-            triples: triples
+            triples: triples,
+            toBePublished: toBePublished,
+            publishTitle: publishTitle
         }
 
         var newDate = new Date(year,month,day,hour,minute);
@@ -94,7 +99,7 @@ $(document).ready(function() {
                 notify('Job added', 'information');
                 app.render();
             }).fail(function() {
-                notify('Not supported yet', 'error');
+                notify('Scheduling failed', 'error');
             });
 
         } else {

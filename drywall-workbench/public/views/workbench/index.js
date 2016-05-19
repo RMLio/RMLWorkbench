@@ -286,19 +286,28 @@
          */
 
         $('#descriptionMain').empty();
+        $('#descriptionpre').empty();
 
         $('#descriptionTitle').text('Select a description');
         $.get('/workbench/fetch/description', function(data) {
             for(var i = 0; i < data.length; i++) {
-                $('#descriptionMain').append('<a href="#"  class="descriptionItem list-group-item">'+data[i].type+'</a>');
+                $('#descriptionMain').append('<a href="#"  class="descriptionItem list-group-item">'+data[i].name+'</a>');
             }
             $('.descriptionItem').click(function() {
-                $('#descriptionpre').text(data[$('.descriptionItem').index(this)].data);
+                $('#descriptionpre').text(data[$('.descriptionItem').index(this)].data.replace(/password \".*\"/,'password ***'));
                 app.currentModel = {};
                 app.currentModel.attributes = data[$('.descriptionItem').index(this)];
-                $('#localTitle').text('File name: ' + data[$('.descriptionItem').index(this)].data);
-            })
+            });
         });
+
+        $('#descriptionMain').css('min-height',$(window).height()*0.82 + 'px');
+        $('#descriptionMain').css('max-height',$(window).height()*0.82 + 'px');
+        $('#descriptionContent').css('min-height',$(window).height()*0.75 + 'px');
+        $('#descriptionContent').css('max-height',$(window).height()*0.75 + 'px');
+        $('#descriptionBody').css('min-height',$(window).height()*0.82 + 'px');
+        $('#descriptionBody').css('max-height',$(window).height()*0.82 + 'px');
+        $('#descriptionpre').css('min-height',$(window).height()*0.75 + 'px');
+        $('#descriptionpre').css('max-height',$(window).height()*0.75 + 'px');
 
 
         /***
@@ -849,7 +858,7 @@
         event.preventDefault();
         
         var rdf = app.currentModel.attributes;
-        var dataset = { 
+        var dataset = {
             title: $('#publish_title').val(),
             type: 'TurtleDatasource',
             description: 'default',
@@ -857,7 +866,7 @@
                 file: './' + rdf.filename
             }
         };
-        
+
         var data = {
             dataset: dataset,
             data: rdf.data,
@@ -871,9 +880,9 @@
             contentType: "application/json",
             dataType: 'json',
             data: JSON.stringify(data),
-            success    : function(){
+            statusCode :{  200  : function(){
                 notify('Publishing successful!', 'success');
-        }
+        }}
         });   
      });
 

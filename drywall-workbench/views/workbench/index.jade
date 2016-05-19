@@ -22,6 +22,7 @@ block neck
   script(type='text/javascript' src='/views/workbench/mappingDefinitionsDetailsModal.js')
   script(type='text/javascript' src='/views/workbench/scheduleModal.js')
   script(type='text/javascript' src='/views/workbench/executionModal.js')
+  script(type='text/javascript' src='/views/workbench/descriptionsTab.js')
   link(rel='stylesheet', href='/layouts/rml.css')
   link(rel='stylesheet', href='/layouts/animate.css')
   script(type='text/javascript' src='/vendor/nprogress/nprogress.js')
@@ -62,7 +63,7 @@ block body
               label(for='my-file-selector') File
               input(id='my-file-selector' type='file' data-allowed-file-extensions="['csv', 'xml', 'txt', 'json']")
               p.help-block Only CSV, XML and JSON are supported.
-            +licensesId('logicalFileLicense')
+            //+licensesId('logicalFileLicense')
             button.btn.btn-primary(id="btn_file_logical") Upload
 
 
@@ -85,7 +86,7 @@ block body
             div.form-group
               label(for='inputDCATURL') URL
               input.form-control.required(id='inputDCATURL' type='text' placeholder='url')
-            +licensesId('inputDCATLicense')
+            //+licensesId('inputDCATLicense')
             button.btn.btn-primary(id="btn_dcat_input" form="dcat_input_Form" type='submit') Add
 
 
@@ -119,7 +120,7 @@ block body
             div.form-group
               label(for='logicalDCATIterator') Iterator
               input.form-control.required(id='logicalDCATIterator' type='text' placeholder=':')
-            +licensesId('logicalDCATLicense')
+            //+licensesId('logicalDCATLicense')
             button.btn.btn-primary(id="btn_dcat_logical" form="dcat_logical_Form" type='submit') Add
 
 
@@ -167,7 +168,7 @@ block body
             div.form-group
               label(for='inputDBPass') Password
               input.form-control(id='inputDBPass' type='password' placeholder='password')
-            +licensesId('inputDBLicense')
+            //+licensesId('inputDBLicense')
             button.btn.btn-primary(form="db_input_Form" type="submit") Add
 
 
@@ -195,7 +196,7 @@ block body
             div.form-group
               label(for='logicalDBQuery') Data Query
               textarea.form-control(id='logicalDBQuery' rows="2")
-            +licensesId('logicalDBLicense')
+            //+licensesId('logicalDBLicense')
             button.btn.btn-primary(form="db_logical_Form" type="submit") Add
 
 
@@ -218,7 +219,7 @@ block body
             div.form-group
               label(for='inputAPIURL') Template URL
               input.form-control(id='inputAPIURL' type='text' placeholder='url')
-            +licensesId('inputAPILicense')
+            //+licensesId('inputAPILicense')
             button.btn.btn-primary(id="btn_api_input" form="api_input_Form" type='submit' data-dismiss="modal") Add
 
   div(id='api-logical' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='apiInputLabel' style='display: none;')
@@ -248,7 +249,7 @@ block body
             div.form-group
               label(for='logicalAPIIterator') Iterator
               input.form-control(id='logicalAPIIterator' type='text' placeholder='$')
-            +licensesId('logicalAPILicense')
+            //+licensesId('logicalAPILicense')
             button.btn.btn-primary(id="btn_api_logical" form="api_logical_Form" type='submit' data-dismiss="modal") Add
 
   div(id='sparql-input' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='sparqlInputLabel' style='display: none;')
@@ -273,7 +274,7 @@ block body
                 option JSON
                 option XML
                 option CSV
-            +licensesId('inputSparqlLicense')
+            //+licensesId('inputSparqlLicense')
             button.btn.btn-primary(id="btn_sparql_input" form="sparql_input_Form" type='submit') Add
 
    div(id='sparql-logical' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='sparqlLogicalLabel' style='display: none;')
@@ -306,7 +307,7 @@ block body
             div.form-group
               label(for='logicalSparqlQuery') DataQuery
               textarea.form-control(id='logicalSparqQuery' rows="2")
-            +licensesId('logicalSparqlLicense')
+            //+licensesId('logicalSparqlLicense')
             button.btn.btn-primary(id="btn_sparql_logical" form="sparql_logical_Form" type='submit') Add
 
   div(id='csvw-input' class='modal' tabindex='-1' role='dialog' aria-labelledby='csvwInputLabel' style='display: none;')
@@ -372,7 +373,7 @@ block body
                 option euc-kr
                 option utf-16be
                 option utf-16le
-            +licensesId('inputcsvwLicense')
+            //+licensesId('inputcsvwLicense')
             button.btn.btn-primary(form='csvw_input_Form' type="submit") Add
 
 
@@ -509,6 +510,13 @@ block body
               br
               div(class="well")
                 ul(id='scheduleMappingWellList')
+              label
+                | Publish
+              br
+              label
+                input(type="checkbox" id='toBePublished')
+                |  LDF Server
+              input(class='form-control' id='publishTitle' placeholder='Enter title for dataset')
             div(class='form-group')
               label(for='time')
                 | Schedule
@@ -527,7 +535,7 @@ block body
                         | Months
               p Date
               div.input-group.date(id="datetimepicker1")
-                input.form-control(type="text" id='scheduleDate')
+                input.form-control(type="text" id='scheduleDate' placeholder='Enter date for execution')
                 span.input-group-addon
                   span.glyphicon.glyphicon-calendar
             script.
@@ -655,7 +663,7 @@ block body
           | Local files
       li(class="menuTab")
         a(href='#access', data-toggle='tab')
-          | Data Access
+          | Data Sources
       li(class="menuTab")
         a(href='#logical', data-toggle='tab')
           | Logical Sources
@@ -751,9 +759,9 @@ block body
                               a(href='#' data-toggle='modal' data-target='#csvw-input') CSVW
                             li.divider( role="separator")
                             li
-                              a(href='#' id='clearInput') Remove selected source
+                              a(href='#' id='clearDescriptionBtn') Remove selected source
                             li
-                              a(href='#' id='clearAllInput') Remove all sources
+                              a(href='#' id='clearDescriptionsBtn') Remove all sources
                div.panel-body.text-center(id='descriptionMain' class='workbenchElement')
 
 
@@ -942,7 +950,7 @@ block body
                             span(class="glyphicon glyphicon-menu-hamburger")
                         ul.dropdown-menu(aria-labelledby='dropdownMenu1')
                             li
-                              a(href='#' data-toggle='modal' data-target='#publish') Publish file
+                              a(href='#' data-toggle='modal' data-target='#publish') Publish to LDF Server
                             li
                               a(href='#' ) Details
                              

@@ -112,9 +112,8 @@ var spawnRMLProcessor = function(mappingFilename, triples, outputName, callback)
                     callback(err);
                 } else {
                     result = {
-                        filename: outputName + '.rdf',
+                        filename: outputName,
                         data: data,
-                        metadata: 'empty',
                         type: 'rdf',
                         _id: mongoose.Types.ObjectId()
                     };

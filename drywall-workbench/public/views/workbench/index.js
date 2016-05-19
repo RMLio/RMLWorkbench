@@ -900,13 +900,13 @@
     var requestLoop = setInterval(function(){
         $.get('/workbench/schedules/new', function(status) {
 
-            if (status.newJobs) {
-                notify('A job has finished!','success');
+            if (status.done) {
+                notify('A job has finished','success');
                 app.render();
             }
 
-            if (status.newExecution) {
-                notify('A job has started!','information');
+            if (status.started) {
+                notify('A job has started','information');
                 app.render();
             }
         });

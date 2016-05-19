@@ -13,12 +13,9 @@ var spawner = require('child_process');
 
 
 var schedules = [];
-var scheduleStatus= {
-    newJobs: false,
-    newExecution: false
-}
+var started= [];
+var done=[];
 
-console.log('maybeeee');
 
 
 var test = [];
@@ -26,7 +23,7 @@ var test = [];
 var exports = module.exports = {
 
     //TODO seperate controllers!
-    
+
     /*
     * Sparql
     */
@@ -420,7 +417,7 @@ var exports = module.exports = {
                 });
             });
         } catch(err) {
-            
+
             res.send(409);
         }
     },
@@ -539,7 +536,7 @@ var exports = module.exports = {
                 }
             });
         } catch(err) {
-            
+
             res.send(409);
         }
 
@@ -608,7 +605,7 @@ var exports = module.exports = {
 
 
         } catch(err) {
-            
+
             res.send(409);
         }
     },
@@ -650,14 +647,15 @@ var exports = module.exports = {
 
             var util = require('./Utility');
 
+            var current_id = req.user._id;
 
             console.log("[WORKBENCH LOG] Job added! Scheduled for " + date);
             //schedule the job with date
             var job = schedule.scheduleJob(date, function (err) {
 
-                scheduleStatus.newExecution = true;
+                started.push(current_id);
+
                 job.running = true;
-                console.log(scheduleStatus);
                 // retrieving all necessary files from db
                 util.retrieveFiles(sources, models.Source, function(sources) {
                     util.retrieveFiles(mappingsFromFile, models.Mapping, function(mappingsFromFile) {
@@ -671,16 +669,15 @@ var exports = module.exports = {
                                         if (err.message === 'An error occurred in the processor') {
                                             output.mapping_id = mappingsFromFile[0].mapping_id;
                                             saver.saveRDF(output, models, user, function (error) {
-                                                scheduleStatus.newJobs = true;
+                                                done.push(current_id);
                                                 job.running = false
-                                                console.log('not running');
                                                 job.executed = true;
                                             });
                                         }
                                     } else {
                                         output.mapping_id = mappingsFromFile[0].mapping_id;
                                         saver.saveRDF(output, models, user, function (err) {
-                                            scheduleStatus.newJobs = true;
+                                            done.push(current_id);
                                             job.executed = true;
                                         });
                                     }
@@ -691,16 +688,15 @@ var exports = module.exports = {
                                         if (err.message === 'An error occurred in the processor') {
                                             output.mapping_id = mappingsFromFile[0].mapping_id;
                                             saver.saveRDF(output, models, user, function (error) {
-                                                scheduleStatus.newJobs = true;
+                                                done.push(current_id);
                                                 job.running = false
-                                                console.log('not running');
                                                 job.executed = true;
                                             });
                                         }
                                     } else {
                                         output.mapping_id = mappingsFromFile[0].mapping_id;
                                         saver.saveRDF(output, models, user, function (err) {
-                                            scheduleStatus.newJobs = true;
+                                            done.push(current_id);
                                             job.executed = true;
                                         });
                                     }
@@ -760,7 +756,7 @@ var exports = module.exports = {
             }
             res.send(schedules);
         } catch(err) {
-            
+
             res.send(409);
         }
     },
@@ -778,21 +774,36 @@ var exports = module.exports = {
             }
             res.send(200);
         } catch(err) {
-            
+
             res.send(409);
         }
     },
 
     isNewlyExecuted: function(req,res) {
-        res.send(scheduleStatus);
+        var isDone = false;
+        var hasStarted = false;
 
-        if(scheduleStatus.newExecution) {
-            scheduleStatus.newExecution = false;
-        } else if(scheduleStatus.newJobs) {
-            scheduleStatus.newJobs = false;
+        for(var i = 0; i < done.length; i++) {
+
+            if(done[i].equals(req.user._id)) {
+                console.log('equal');
+                isDone = true;
+                done.splice(i,1);
+                break;
+            }
         }
-
-
+        for(var i = 0; i < started.length;i++) {
+            if(started[i].equals(req.user._id)) {
+                hasStarted=true;
+                started.splice(i,1);
+                break;
+            }
+        }
+        var post = {
+            done: isDone,
+            started: hasStarted
+        }
+        res.send(post);
     },
 
     updateMapping: function(req, res) {
@@ -856,7 +867,7 @@ var exports = module.exports = {
             });
 
         } catch(err) {
-            
+
             res.send(409);
         }
 
@@ -882,7 +893,7 @@ var exports = module.exports = {
             });
 
         } catch(err) {
-            
+
             res.send(409);
         }
 
@@ -993,13 +1004,13 @@ var exports = module.exports = {
             res.send(rdf);
         });
     },
-    
+
     /**
      * Provenance
      */
-    
+
     createProvenance: function(req, res) {
-        
+
     }
 
 };

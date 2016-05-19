@@ -6,11 +6,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="58b3138a-c345-43f3-a051-401a9bc1b40f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/errormappinglog.txt" afterPath="$PROJECT_DIR$/errormappinglog.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mappinglog.txt" afterPath="$PROJECT_DIR$/mappinglog.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/workbench/RMLMapper.js" afterPath="$PROJECT_DIR$/workbench/RMLMapper.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/workbench/WorkbenchController.js" afterPath="$PROJECT_DIR$/workbench/WorkbenchController.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/workbench/index.js" afterPath="$PROJECT_DIR$/public/views/workbench/index.js" />
     </list>
     <ignored path="drywall-workbench.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,7 +30,7 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
+            <state relative-caret-position="-1057">
               <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="33" />
               <folding />
             </state>
@@ -51,23 +47,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/views/workbench/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="852" column="45" selection-start-line="852" selection-start-column="45" selection-end-line="852" selection-end-column="45" />
+            <state relative-caret-position="623">
+              <caret line="913" column="11" selection-start-line="913" selection-start-column="11" selection-end-line="913" selection-end-column="11" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <marker date="1463674521722" expanded="true" signature="24965:24980" placeholder="..." />
+                <marker date="1463676740090" expanded="true" signature="24965:24980" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RMLMapper.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RMLMapper.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/workbench/RMLMapper.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="353">
+            <state relative-caret-position="173">
               <caret line="94" column="14" selection-start-line="94" selection-start-column="14" selection-end-line="94" selection-end-column="14" />
               <folding />
             </state>
@@ -150,9 +146,9 @@
         <option value="$PROJECT_DIR$/workbench/TripleParser.js" />
         <option value="$PROJECT_DIR$/layouts/account.jade" />
         <option value="$PROJECT_DIR$/views/workbench/index.jade" />
-        <option value="$PROJECT_DIR$/public/views/workbench/index.js" />
         <option value="$PROJECT_DIR$/workbench/WorkbenchController.js" />
         <option value="$PROJECT_DIR$/workbench/RMLMapper.js" />
+        <option value="$PROJECT_DIR$/public/views/workbench/index.js" />
       </list>
     </option>
   </component>
@@ -443,15 +439,15 @@
       <workItem from="1463417208723" duration="27740000" />
       <workItem from="1463564571087" duration="144000" />
       <workItem from="1463564822225" duration="150000" />
-      <workItem from="1463565021736" duration="39137000" />
+      <workItem from="1463565021736" duration="39541000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="158590000" />
+    <option name="totallyTimeSpent" value="158994000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
+    <frame x="65" y="24" width="1855" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24959569" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -498,7 +494,7 @@
           <caret line="1297" column="25" selection-start-line="1297" selection-start-column="25" selection-end-line="1297" selection-end-column="25" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <marker date="1463674521722" expanded="true" signature="24965:24980" placeholder="..." />
+            <marker date="1463676740090" expanded="true" signature="24965:24980" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -765,14 +761,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
@@ -845,14 +833,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/workbench/index.js">
+    <entry file="file://$PROJECT_DIR$/workbench/RMLMapper.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="852" column="45" selection-start-line="852" selection-start-column="45" selection-end-line="852" selection-end-column="45" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <marker date="1463674521722" expanded="true" signature="24965:24980" placeholder="..." />
-          </folding>
+        <state relative-caret-position="173">
+          <caret line="94" column="14" selection-start-line="94" selection-start-column="14" selection-end-line="94" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1057">
+          <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -864,11 +857,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/workbench/RMLMapper.js">
+    <entry file="file://$PROJECT_DIR$/public/views/workbench/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="94" column="14" selection-start-line="94" selection-start-column="14" selection-end-line="94" selection-end-column="14" />
-          <folding />
+        <state relative-caret-position="623">
+          <caret line="913" column="11" selection-start-line="913" selection-start-column="11" selection-end-line="913" selection-end-column="11" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <marker date="1463676740090" expanded="true" signature="24965:24980" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>

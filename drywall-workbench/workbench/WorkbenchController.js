@@ -9,6 +9,8 @@ var tripleParser = require('./TripleParser');
 var sparql = require('./Sparql');
 var fs = require('fs');
 var moment = require('moment');
+var spawner = require('child_process');
+
 
 var schedules = [];
 var scheduleStatus= {
@@ -386,7 +388,7 @@ var exports = module.exports = {
             console.log('[WORKBENCH LOG] ' + user.username + ' tries to upload source file...');
             //create source fields
             reader.readSourceFields(file, function (source) {
-                source.license = licence;
+                source.license = license;
                 saver.saveSource(source, models, user, function () {
                     console.log('[WORKBENCH LOG] Upload successful!');
                     res.send(200);
@@ -586,19 +588,23 @@ var exports = module.exports = {
             obj.datasources['data_' + count] = req.body.dataset;
 
             fs.writeFile('./ldf_server/' + req.body.filename, req.body.data, function (err) {
-                if (err) 
                 console.log("[WORKBENCH LOG] Writing file...");
+                //write the config file back
+                //Why is the path different? --> using fs
+                fs.writeFile('./ldf_server/config.json', JSON.stringify(obj), function (err) {
+                    console.log("[WORKBENCH LOG] Data added to local LDF server!");
+                    console.log("[WORKBENCH LOG] Restarting LDF server...");
+                    spawner.exec('fuser -n tcp -k 5000', function() {
+                        spawner.exec('(cd ldf_server/; ldf-server config.json 5000)', function() {
+
+                        });
+                        res.status(200);
+                        res.send();
+                    });
+                });
             });
 
-            //write the config file back
-            //Why is the path different? --> using fs
-            fs.writeFile('./ldf_server/config.json', JSON.stringify(obj), function (err) {
-                if (err) 
-                console.log("[WORKBENCH LOG] Data added to local LDF server!");
-                res.status(200);
-                res.send();
 
-            });
         } catch(err) {
             
             res.send(409);

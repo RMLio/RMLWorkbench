@@ -404,7 +404,7 @@ block body
                     </div>
 
         div.modal-footer
-          button(class='btn btn-primary' data-dismiss="modal" id='executeMappingBtn')
+          button(class='btn btn-primary' data-dismiss="modal" id='executeMappingBtn') Execute
 
 
 
@@ -484,27 +484,7 @@ block body
               label(for='title')
                 | Title
               input(class='form-control' id='publish_title' placeholder='Enter title')
-            div(class='form-group')
-              label(for='type')
-                | Type
-              select(name='type' id='publish_type' form='typeform' class='form-control')
-                option(value='HdtDataSource')
-                    | HDT file
-                option(value='TurtleDatasource')
-                    | N-Triples document
-                option(value='TurtleDatasource')
-                    | Turtle document
-                option(value='SparqlDatasource')
-                    | SPARQL endpoint
-                option(value='JsonLdDatasource')
-                    | JSON-LD document
-            div(class='form-group')
-              label(for='description')
-                | Description
-              input(class='form-control' id='publish_description' placeholder='Enter description')
-            div(id='publish_fileSelector' class='form-group')
-              label(for='setting')
-                | File
+
             button(type='submit' id='publish_submit' form="publishToLDFForm" class='btn btn-primary')
                 | Publish
 

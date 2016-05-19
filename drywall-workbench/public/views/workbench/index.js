@@ -12,6 +12,8 @@
     //hacky fix
     $.fn.modal.Constructor.prototype.enforceFocus = function () {};
 
+    //ajax spinner gone
+    $('.ajax-spinner').remove();
 
 
     /***
@@ -848,7 +850,7 @@
         
         var rdf = app.currentModel.attributes;
         var dataset = { 
-            title: rdf.filename,
+            title: $('#publish_title').val(),
             type: 'TurtleDatasource',
             description: 'default',
             settings: {

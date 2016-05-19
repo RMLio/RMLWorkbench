@@ -40,8 +40,8 @@
       <file leaf-file-name="WorkbenchController.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/workbench/WorkbenchController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="672" column="65" selection-start-line="672" selection-start-column="52" selection-end-line="672" selection-end-column="65" />
+            <state relative-caret-position="300">
+              <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -50,8 +50,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/views/workbench/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="473">
-              <caret line="711" column="31" selection-start-line="711" selection-start-column="31" selection-end-line="711" selection-end-column="31" />
+            <state relative-caret-position="503">
+              <caret line="905" column="13" selection-start-line="905" selection-start-column="13" selection-end-line="905" selection-end-column="13" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <marker date="1463676740090" expanded="true" signature="24965:24980" placeholder="..." />
@@ -439,12 +439,12 @@
       <workItem from="1463417208723" duration="27740000" />
       <workItem from="1463564571087" duration="144000" />
       <workItem from="1463564822225" duration="150000" />
-      <workItem from="1463565021736" duration="40303000" />
+      <workItem from="1463565021736" duration="41375000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="159756000" />
+    <option name="totallyTimeSpent" value="160828000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
@@ -825,14 +825,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/workbench/index.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="485" column="58" selection-start-line="485" selection-start-column="45" selection-end-line="485" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/workbench/RMLMapper.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="173">
@@ -849,10 +841,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/views/workbench/index.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="485" column="58" selection-start-line="485" selection-start-column="45" selection-end-line="485" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/views/workbench/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="473">
-          <caret line="711" column="31" selection-start-line="711" selection-start-column="31" selection-end-line="711" selection-end-column="31" />
+        <state relative-caret-position="503">
+          <caret line="905" column="13" selection-start-line="905" selection-start-column="13" selection-end-line="905" selection-end-column="13" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <marker date="1463676740090" expanded="true" signature="24965:24980" placeholder="..." />
@@ -862,8 +862,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/workbench/WorkbenchController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="672" column="65" selection-start-line="672" selection-start-column="52" selection-end-line="672" selection-end-column="65" />
+        <state relative-caret-position="300">
+          <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
           <folding />
         </state>
       </provider>

@@ -651,7 +651,7 @@ var exports = module.exports = {
 
                 scheduleStatus.newExecution = true;
                 job.running = true;
-
+                console.log(scheduleStatus);
                 // retrieving all necessary files from db
                 util.retrieveFiles(sources, models.Source, function(sources) {
                     util.retrieveFiles(mappingsFromFile, models.Mapping, function(mappingsFromFile) {
@@ -776,7 +776,6 @@ var exports = module.exports = {
     },
 
     isNewlyExecuted: function(req,res) {
-
         res.send(scheduleStatus);
 
         if(scheduleStatus.newExecution) {

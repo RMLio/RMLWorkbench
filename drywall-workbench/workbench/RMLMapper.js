@@ -92,7 +92,7 @@ var spawnRMLProcessor = function(mappingFilename, triples, outputName, callback)
         var rmlprocessoroutput = '';
         //logging
         spawn.stdout.on('data', function(data) {
-            console.log(`stdout: ${data}`);
+            //console.log(`stdout: ${data}`);
             rmlprocessoroutput += data;
         });
         spawn.stderr.on('data', function(data) {

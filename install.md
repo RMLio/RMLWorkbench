@@ -48,3 +48,6 @@ Now just use the reset password feature to set a password.
  - `http://localhost:3000/login/reset/:email/:token/`
  - Set a new password.
 
+### Example usage
+
+We have recorded a sample usage [video](https://youtu.be/8UkI01nQNxc).

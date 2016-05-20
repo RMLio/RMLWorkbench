@@ -171,7 +171,27 @@ retrieveDescriptions : function(idfiles, schema, callback) {
     }
     
     return triples;
-  }
+  },
+
+    generatePublishContext: function (output, publishTitle) {
+        var dataset = {
+            title: publishTitle,
+            type: 'TurtleDatasource',
+            description: 'default',
+            settings: {
+                file: './' + output.filename
+            }
+        };
+
+        var data = {
+            dataset: dataset,
+            data: output.data,
+            filename: output.filename
+        }
+
+        return data;
+    }
+
 
 
 }

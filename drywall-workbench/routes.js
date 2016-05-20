@@ -1,5 +1,6 @@
 'use strict';
 
+var express = require('express');
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
@@ -60,6 +61,17 @@ exports = module.exports = function(app, passport, upload, ldfserver) {
   app.post('/workbench/fetch/logical_dcat', workbenchCtrl.addlogical_DCAT);    
   app.get('/workbench/fetch/logical_description', workbenchCtrl.getLogicalDescriptions);
 
+  //data sources
+  app.post('/workbench/mapping/data/update', workbenchCtrl.updateDataSource);
+
+  app.post('/workbench/mapping/update', workbenchCtrl.updateMapping);
+
+  //logical sources
+  app.post('/workbench/mapping/logical/update', workbenchCtrl.updateLogicalSource);
+
+  //mapping definitions
+  app.post('/workbench/mapping/definition/update', workbenchCtrl.updateMappingDefinition);
+
   //mapping on workbench
   app.post('/workbench/mapping/execute/:mapping_id', workbenchCtrl.executeMappingFromFile);
   app.post('/workbench/mapping/execute/:mapping_id/triples', workbenchCtrl.executeMappingFromTriples);
@@ -68,12 +80,13 @@ exports = module.exports = function(app, passport, upload, ldfserver) {
   app.post('/workbench/addToSchedule', workbenchCtrl.addToSchedule);
   app.get('/workbench/schedules', workbenchCtrl.getSchedules);
   app.post('/workbench/schedules/cancel', workbenchCtrl.cancelJob);
+  app.get('/workbench/schedules/new', workbenchCtrl.isNewlyExecuted);
   
   //clearing workbench
   app.post('/workbench/clear/all/source', workbenchCtrl.clearAllSources);
   app.post('/workbench/clear/all/mapping', workbenchCtrl.clearAllMappings);
   app.post('/workbench/clear/all/rdf', workbenchCtrl.clearAllRdf);
-  app.post('/workbench/clear/all/description', workbenchCtrl.clearAllDescription);
+  app.post('/workbench/clear/all/description', workbenchCtrl.clearAllDescriptions);
   app.post('/workbench/clear/all', workbenchCtrl.clearAll);
   app.post('/workbench/clear/source', workbenchCtrl.clearSources);
   app.post('/workbench/clear/mapping', workbenchCtrl.clearMappings);
@@ -82,6 +95,8 @@ exports = module.exports = function(app, passport, upload, ldfserver) {
   app.post('/workbench/clear/all', workbenchCtrl.clearAll);
   app.post('/workbench/clear/endpoint', workbenchCtrl.removeSparqlEndpoint);
   app.post('/workbench/clear/all/endpoint', workbenchCtrl.removeAllSparqlEndpoints);
+  app.post('/workbench/clear/all/logical', workbenchCtrl.clearAllLogicals);
+  app.post('/workbench/clear/logical', workbenchCtrl.clearLogical);
   
   //sparql interface
   app.post('/workbench/sparql/endpoint', workbenchCtrl.addSparqlEndpoint);

@@ -109,9 +109,36 @@ exports = module.exports =  {
 
 
 	            });
-	        } }
+	        } } else {
+
+
+				models.User.update({
+					_id: user._id
+				}, {
+					$addToSet: {
+						mappingfiles: mappingSchema._id
+					}
+				}, () => {
+					if (err) throw err
+					console.log('[WORKBENCH LOG] Updating user mapping files successful!');
+				callback();
+			}); }
+
 	    });
 
+	},
+
+	updateMappingObject: function(models, mappingObject, mappingID, callback) {
+		console.log(mappingObject.logicalSources);
+		console.log(mappingID);
+		models.Mapping.update({
+				_id: mappingID
+			}, {
+				"$set" : { parsedObject : mappingObject }
+			}, function(err) {
+				if(err) throw err;
+				callback(err);
+			});
 	},
 
 	//save source

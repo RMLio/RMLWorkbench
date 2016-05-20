@@ -33,3 +33,25 @@ pre {
     max-height: 400px;
     overflow:auto;
 }
+
+#myTab {
+    margin-top: 15px;
+}
+
+.viewPublish {
+    overflow-x:auto;
+}
+
+body img.gform_ajax_spinner {
+
+    display: none!important;
+
+}
+
+.frm_ajax_loading{visibility:hidden;}
+
+tr { cursor: pointer; }
+
+.ajax-spinner {
+    display:none;
+}

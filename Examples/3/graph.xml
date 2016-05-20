@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<graphml>
+  <key id="d0" for="node" attr.name="type" attr.type="string">
+    <default>resource</default>
+  </key>
+  <key id="d1" for="node" attr.name="class" attr.type="string">
+    <default></default>
+  </key>
+  <key id="d2" for="all" attr.name="reference" attr.type="string">
+    <default></default>
+  </key>
+  <key id="d3" for="edge" attr.name="predicate" attr.type="string">
+    <default></default>
+  </key>
+  <key id="d4" for="all" attr.name="template" attr.type="string">
+    <default></default>
+  </key>
+  <key id="d5" for="all" attr.name="constant" attr.type="string">
+    <default></default>
+  </key>
+  <key id="d6" for="node" attr.name="datatype" attr.type="string">
+    <default></default>
+  </key>
+  <key id="d7" for="all" attr.name="source" attr.type="string" />
+  <key id="d8" for="node" attr.name="language" attr.type="string" />
+  <key id="d9" for="edge" attr.name="child" attr.type="string" />
+  <key id="d10" for="edge" attr.name="parent" attr.type="string" />
+  <key id="d11" for="graph" attr.name="time-created" attr.type="string" />
+  <key id="d12" for="node" attr.name="source-format" attr.type="string" />
+  <key id="d13" for="node" attr.name="iterator" attr.type="string" />
+  <graph>
+    <data key="d11">2016-05-10T09:25:09.528Z</data>
+    <node id="0">
+      <data key="d0">resource</data>
+      <data key="d7">people.csv</data>
+      <data key="d12">CSV</data>
+      <data key="d4">http://www.example.com/{id}</data>
+    </node>
+    <node id="1">
+      <data key="d0">literal</data>
+      <data key="d7">people.csv</data>
+      <data key="d12">CSV</data>
+      <data key="d2">first_name</data>
+    </node>
+    <node id="2">
+      <data key="d0">literal</data>
+      <data key="d7">people.csv</data>
+      <data key="d12">CSV</data>
+      <data key="d2">last_name</data>
+    </node>
+    <node id="7">
+      <data key="d0">resource</data>
+      <data key="d7">companies.csv</data>
+      <data key="d12">CSV</data>
+      <data key="d4">http://www.example.com/comp/{id}</data>
+    </node>
+    <node id="8">
+      <data key="d0">literal</data>
+      <data key="d7">companies.csv</data>
+      <data key="d12">CSV</data>
+      <data key="d2">name</data>
+    </node>
+    <node id="9">
+      <data key="d0">literal</data>
+      <data key="d7">companies.csv</data>
+      <data key="d12">CSV</data>
+      <data key="d2">country</data>
+    </node>
+    <edge id="3" source="0" target="2">
+      <data key="d5">http://xmlns.com/foaf/0.1/familyName</data>
+    </edge>
+    <edge id="5" source="0" target="1">
+      <data key="d5">http://xmlns.com/foaf/0.1/firstName</data>
+    </edge>
+    <edge id="10" source="7" target="8">
+      <data key="d5">http://schema.org/name</data>
+    </edge>
+    <edge id="12" source="7" target="9">
+      <data key="d5">http://dbpedia.org/ontology/country</data>
+    </edge>
+    <edge id="14" source="0" target="7">
+      <data key="d5">http://schema.org/worksFor</data>
+      <data key="d9">company_id</data>
+      <data key="d10">_id</data>
+    </edge>
+    <node id="cn_0">
+      <data key="d0">resource</data>
+      <data key="d5">http://xmlns.com/foaf/0.1/Person</data>
+    </node>
+    <edge id="ce_0" source="0" target="cn_0">
+      <data key="d5">http://www.w3.org/1999/02/22-rdf-syntax-ns#type</data>
+    </edge>
+    <node id="cn_7">
+      <data key="d0">resource</data>
+      <data key="d5">http://vivoweb.org/ontology/core#Company</data>
+    </node>
+    <edge id="ce_7" source="7" target="cn_7">
+      <data key="d5">http://www.w3.org/1999/02/22-rdf-syntax-ns#type</data>
+    </edge>
+  </graph>
+</graphml>

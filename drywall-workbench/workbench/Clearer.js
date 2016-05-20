@@ -138,7 +138,35 @@ var exports = module.exports = {
         console.log('[WORKBENCH LOG] Endpoints removed.');
         callback();
     });  
-  } 
+  } ,
+
+    clearAllDescriptions : function(user, models, callback) {
+        console.log('[WORKBENCH LOG] Removing descriptions.');
+        models.User.update({_id: user._id},{"$set": {"descriptions": []}},function(err) {
+            callback();
+        });
+    },
+
+    clearDescription : function(user,models, description_id, callback) {
+        console.log('[WORKBENCH LOG] Remove description.');
+        models.User.update({_id:user._id},{"$pull": {descriptions: mongoose.Types.ObjectId(description_id)}}, function() {
+            callback();
+        });
+    },
+
+    clearAllLogicals : function(user, models, callback) {
+        console.log('[WORKBENCH LOG] Removing logicals.');
+        models.User.update({_id: user._id},{"$set": {"logicals": []}},function(err) {
+            callback();
+        });
+    },
+
+    clearLogical: function(user,models, logical_id, callback) {
+        console.log('[WORKBENCH LOG] Remove description.');
+        models.User.update({_id:user._id},{"$pull": {logicals: mongoose.Types.ObjectId(logical_id)}}, function() {
+            callback();
+        });
+    }
     
   
     

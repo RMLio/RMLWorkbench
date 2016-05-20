@@ -5,6 +5,9 @@ exports = module.exports = function(app, mongoose) {
     name: { type: String, default: '' },    
     type: { type: String, enum: ['file', 'DCAT', 'SPARQL', 'API', 'DB']},
     data : { type: String, default: ''},
+    triples: [],
+    prefixes: {},
+    ugly : {type: String},
     metadata: { 
       timeCreated: { type: Date, default: Date.now },
       license: { type: String, default: 'None' }

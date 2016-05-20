@@ -1,0 +1,174 @@
+
+<http://www.example.com/spot/6598> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Play Beach" .
+
+<http://www.example.com/spot/6599> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Paintball Gent" .
+
+<http://www.example.com/spot/6600> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Rafting & Outdoor Events" .
+
+<http://www.example.com/spot/6601> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Sportcentrum Stadium Coupure" .
+
+<http://www.example.com/spot/6602> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Sport- en recreatiepark Blaarmeersen" .
+
+<http://www.example.com/spot/6629> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Beroepenhuis" .
+
+<http://www.example.com/spot/6665> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "De bootjes van Gent" .
+
+<http://www.example.com/spot/6667> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Rederij De Gentenaer" .
+
+<http://www.example.com/spot/6670> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Leiecruise" .
+
+<http://www.example.com/spot/6671> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Minerva Boat Company" .
+
+<http://www.example.com/spot/6672> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Yachtcharter Gent" .
+
+<http://www.example.com/spot/6673> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Leie Yachting" .
+
+<http://www.example.com/spot/6675> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Per koets" .
+
+<http://www.example.com/spot/6676> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Appelbrugparkje" .
+
+<http://www.example.com/spot/6677> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Graffitistraatje" .
+
+<http://www.example.com/spot/6678> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Binnentuin Sint-Pietersabdij" .
+
+<http://www.example.com/spot/6679> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Openbaar vervoer" .
+
+<http://www.example.com/spot/6684> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Tierenteyn" .
+
+<http://www.example.com/spot/6685> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Gandaham" .
+
+<http://www.example.com/spot/6687> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Snoepgoed" .
+
+<http://www.example.com/spot/6691> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Gruut" .
+
+<http://www.example.com/spot/6693> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Roomer" .
+
+<http://www.example.com/spot/6694> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Bistro J'ai trouve" .
+
+<http://www.example.com/spot/6696> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Brood-huys" .
+
+<http://www.example.com/spot/6697> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Huize Colette" .
+
+<http://www.example.com/spot/6698> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Julies house" .
+
+<http://www.example.com/spot/6699> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Le Pain Perdu" .
+
+<http://www.example.com/spot/6700> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Le Pain Quotidien" .
+
+<http://www.example.com/spot/6701> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Oud Huis Himschoot" .
+
+<http://www.example.com/spot/6702> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Simon Says" .
+
+<http://www.example.com/spot/6742> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Zwembad Neptunus" .
+
+<http://www.example.com/spot/6743> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Zwembad Rooigem" .
+
+<http://www.example.com/spot/6744> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "SR Rozebroeken" .
+
+<http://www.example.com/spot/6745> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Zwembad Strop" .
+
+<http://www.example.com/spot/6788> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "'t Toreken" .
+
+<http://www.example.com/spot/6789> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Aanbidding van het Lam Gods" .
+
+<http://www.example.com/spot/6790> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Achtersikkel" .
+
+<http://www.example.com/spot/6791> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Alison, het geheim van de gevallen engelen" .
+
+<http://www.example.com/spot/6792> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Arcatheater" .
+
+<http://www.example.com/spot/6793> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Aula van de Universiteit Gent" .
+
+<http://www.example.com/spot/6794> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Baudelopark" .
+
+<http://www.example.com/spot/6795> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Belfort" .
+
+<http://www.example.com/spot/6797> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Boekentoren" .
+
+<http://www.example.com/spot/6798> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Campo Santo" .
+
+<http://www.example.com/spot/6799> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Capitole" .
+
+<http://www.example.com/spot/6800> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Sphinx cinema" .
+
+<http://www.example.com/spot/6801> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Citadelpark" .
+
+<http://www.example.com/spot/6802> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Dampoort" .
+
+<http://www.example.com/spot/6803> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "De wereld van Kina: de Tuin" .
+
+<http://www.example.com/spot/6804> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "De wereld van Kina: het Huis" .
+
+<http://www.example.com/spot/6805> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Design museum Gent" .
+
+<http://www.example.com/spot/6806> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Geeraard de Duivelsteen" .
+
+<http://www.example.com/spot/6807> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Glazen straatje" .
+
+<http://www.example.com/spot/6808> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Gras- en Korenlei" .
+
+<http://www.example.com/spot/6809> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Gravensteen" .
+
+<http://www.example.com/spot/6810> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Groot Begijnhof Sint-Elisabeth" .
+
+<http://www.example.com/spot/6811> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Groot Kanon" .
+
+<http://www.example.com/spot/6812> a <http://purl.org/dc/terms/Location> ;
+	<http://purl.org/dc/terms/title> "Groot Vleeshuis" .

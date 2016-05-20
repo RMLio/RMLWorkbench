@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<graphml>
+  <key id="d0" for="node" attr.name="type" attr.type="string">
+    <default>resource</default>
+  </key>
+  <key id="d1" for="node" attr.name="class" attr.type="string">
+    <default></default>
+  </key>
+  <key id="d2" for="all" attr.name="reference" attr.type="string">
+    <default></default>
+  </key>
+  <key id="d3" for="edge" attr.name="predicate" attr.type="string">
+    <default></default>
+  </key>
+  <key id="d4" for="all" attr.name="template" attr.type="string">
+    <default></default>
+  </key>
+  <key id="d5" for="all" attr.name="constant" attr.type="string">
+    <default></default>
+  </key>
+  <key id="d6" for="node" attr.name="datatype" attr.type="string">
+    <default></default>
+  </key>
+  <key id="d7" for="all" attr.name="source" attr.type="string" />
+  <key id="d8" for="node" attr.name="language" attr.type="string" />
+  <key id="d9" for="edge" attr.name="child" attr.type="string" />
+  <key id="d10" for="edge" attr.name="parent" attr.type="string" />
+  <key id="d11" for="graph" attr.name="time-created" attr.type="string" />
+  <key id="d12" for="node" attr.name="source-format" attr.type="string" />
+  <key id="d13" for="node" attr.name="iterator" attr.type="string" />
+  <graph>
+    <data key="d11">2016-04-26T11:39:34.186Z</data>
+    <node id="0">
+      <data key="d0">resource</data>
+      <data key="d7">events.csv</data>
+      <data key="d12">CSV</data>
+      <data key="d4">http://www.example.com/{id}</data>
+    </node>
+    <node id="2">
+      <data key="d0">literal</data>
+      <data key="d7">events.csv</data>
+      <data key="d12">CSV</data>
+      <data key="d2">subtitle</data>
+    </node>
+    <node id="3">
+      <data key="d0">literal</data>
+      <data key="d7">events.csv</data>
+      <data key="d12">CSV</data>
+      <data key="d2">title</data>
+    </node>
+    <node id="6">
+      <data key="d0">resource</data>
+      <data key="d7">spots.csv</data>
+      <data key="d12">CSV</data>
+      <data key="d4">http://www.example.com/spot/{ID}</data>
+    </node>
+    <node id="7">
+      <data key="d0">literal</data>
+      <data key="d7">spots.csv</data>
+      <data key="d12">CSV</data>
+      <data key="d2">title</data>
+    </node>
+    <edge id="4" source="0" target="3">
+      <data key="d5">http://purl.org/dc/terms/title</data>
+    </edge>
+    <edge id="5" source="0" target="2">
+      <data key="d5">http://dbpedia.org/ontology/subtitle</data>
+    </edge>
+    <edge id="8" source="6" target="7">
+      <data key="d5">http://purl.org/dc/terms/title</data>
+    </edge>
+    <edge id="9" source="0" target="6">
+      <data key="d5">http://purl.org/NET/c4dm/event.owl#place</data>
+      <data key="d9">Spots_0_id</data>
+      <data key="d10">ID</data>
+    </edge>
+    <node id="cn_0">
+      <data key="d0">resource</data>
+      <data key="d5">http://schema.org/Event</data>
+    </node>
+    <edge id="ce_0" source="0" target="cn_0">
+      <data key="d5">http://www.w3.org/1999/02/22-rdf-syntax-ns#type</data>
+    </edge>
+    <node id="cn_6">
+      <data key="d0">resource</data>
+      <data key="d5">http://purl.org/dc/terms/Location</data>
+    </node>
+    <edge id="ce_6" source="6" target="cn_6">
+      <data key="d5">http://www.w3.org/1999/02/22-rdf-syntax-ns#type</data>
+    </edge>
+  </graph>
+</graphml>

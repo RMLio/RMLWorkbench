@@ -8,10 +8,14 @@
     app = app || {};
     
     app.currentModel;
-    
-    app.currentTriples = [];
-    
-    
+
+    //hacky fix
+    $.fn.modal.Constructor.prototype.enforceFocus = function () {};
+
+    //ajax spinner gone
+    $('.ajax-spinner').remove();
+
+
     /***
      * 
      * MODELS PUBLISH
@@ -50,38 +54,6 @@
         model: app.Mapping,
         url: '/workbench/fetch/mapping'
     });
-    
-    /***
-     * 
-     * MODELS TRIPLES
-     * 
-     ***/
-    
-    app.Triple = Backbone.Model.extend({
-        idAttribute: '_id',
-        defaults: {}
-    });
-    
-    app.Triples = Backbone.Collection.extend({
-        model: app.Triple 
-    });
-    
-    
-    /***
-     * 
-     * MODELS SOURCES
-     * 
-     ***/
-    
-    app.Triple = Backbone.Model.extend({
-        idAttribute: '_id',
-        defaults: {}
-    });
-    
-    app.Triples = Backbone.Collection.extend({
-        model: app.Triple 
-    });
-    
      /***
      * 
      * MODELS Descrptions
@@ -126,59 +98,7 @@
     
     
     
-    app.ExecuteButtonView = Backbone.View.extend({
-        
-        template: _.template($('#executeMappingButton').html()),        
-        
-        events: {
-           'click button' : 'execute'
-        }, 
-        
-        execute: function() {
-          
-          var selections = $('#triplelistdiv').children().children();
-          var triplesToBeExecuted = [];
-	  var selectedAll = true;
-          for(var i = 0; i < selections.length; i++) {
-              if(selections.eq(i).find('input').prop('checked')) {
-                  triplesToBeExecuted.push(this.model.attributes.triples[i]._id);
-              
-	      } else {
-		selectedAll = false;
-		}
-		
-          }           
-          
-          var triples = {
-              triples: triplesToBeExecuted
-          }
-          if(!selectedAll) {
-          $.post('/workbench/mapping/execute/'+this.model.attributes._id+'/triples', triples , function() { 
-              $("#mappingContainer").prepend('<div style="margin-top:15px" class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Mapping successful!</strong></div>');              
-              app.render();
-          });  
-			} else {
-	
-        $.post('/workbench/mapping/execute/'+this.model.attributes._id, function() {
-              $("#mappingContainer").prepend('<div style="margin-top:15px" class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Mapping successful!</strong></div>');
-              app.render();
-          });
-
-
-		}
-        },          
-        
-        
-        initialize: function() {
-               
-        },
-        
-        render: function() {
-           $(this.el).html(this.template(this.model.toJSON()));      
-           return this;            
-        }    
-    });    
-    
+   
     
     
 
@@ -199,7 +119,7 @@
     });
     
     app.MappingsContentView = Backbone.View.extend({
-       tagName: 'pre',
+       tagName: 'pre',className:'mappingpre',
        template: _.template($('#mapping-content').html()),
        
        initialize: function(){
@@ -207,49 +127,14 @@
        },                
        
        render: function() {
+           $(this.el).attr('id', 'bigpre');
             $(this.el).html(this.template(this.model.toJSON()));
             return this;  
        }
     });
-    
-    app.TripleListView = Backbone.View.extend({
-        
-        events: {
-          'click .executeMappingButton' : 'execute'  
-        },
-        
-        execute: function() {
-  
-        },
 
-        initialize: function() {
-                
-        },     
-        render: function() {
-            $(this.el).empty();
-            _.each(this.model.models, function(triple) {
-                $(this.el).append(new app.TripleItemView({ model: triple }).render().el);
-            }, this);
-             
-            return this;
-        }       
-    });
     
-    app.TripleItemView = Backbone.View.extend({
-        template: _.template($('#triplelist').html()),
-        initialize: function() {
-            
-        },
-        
-        events: {
-        },
 
-        render: function() {            
-            $(this.el).html(this.template(this.model.toJSON()));
-            
-            return this;
-        } 
-    });
 
     app.MappingItemView = Backbone.View.extend({
         tagName: 'a',
@@ -262,7 +147,7 @@
         },
         
         events: {
-	        'click h6' : 'viewMapping'
+	        'click h5' : 'viewMapping'
         },
 
         viewMapping: function(ev){
@@ -270,18 +155,7 @@
                
                 app.mappingsContentView.model = this.model; 
                 //app.executeMappingView.model = this.model;
-                app.executeButtonView.model = this.model;
                 app.currentModel = this.model;
-                
-                var triples = [];
-                for(var i = 0; i < this.model.attributes.triples.length; i++) {
-                    triples.push(new app.Triple(this.model.attributes.triples[i]));
-                }              
-                
-                app.tripleListView.model = {models : triples};
-                
-                app.tripleListView.render();
-                app.executeButtonView.render();               
                 app.mappingsContentView.render();
                 $('#mappingTitle').text('File name: ' + app.currentModel.attributes.filename); 
                 //$('#mappingContent').html(app.mappingsContentView.render().el)  
@@ -319,7 +193,8 @@
     });
     
     app.PublishContentView = Backbone.View.extend({
-       tagName: 'pre', 
+       tagName: 'pre',
+        className: 'prepublish',
        template: _.template($('#publish-content').html()),
        
        initialize: function(){
@@ -344,7 +219,7 @@
         },
         
         events: {
-	        'click h6' : 'viewPublish'
+	        'click h5' : 'viewPublish'
         },
 
         viewPublish: function(ev){
@@ -362,246 +237,9 @@
             return this;
         },
 
-
-    });
-    
-    
-    
-    
-    /***
-     * 
-     * VIEWS DATA ACCESS
-     * 
-     ***/
-    
-    app.DescriptionsView = Backbone.View.extend({
-        tagName: 'div',
-        className: 'list-group descriptionView',
-        
-        initialize: function() {
-                    
-        },
-
-        render: function(eventName) {
-            _.each(this.model.models, function(description) {
-                $(this.el).append(new app.DescriptionItemView({ model: description }).render().el);
-            }, this);
-            return this;
-        }
-    });
-    
-    app.DescriptionContentView = Backbone.View.extend({
-       tagName: 'pre', 
-       template: _.template($('#description-content').html()),
-       
-       initialize: function(){
-		    this.model.on('change', this.render, this);
-       },     
-                    
-       
-       render: function() {
-            $(this.el).html(this.template(this.model.toJSON()));
-            return this;  
-       }
     });
 
-    app.DescriptionItemView = Backbone.View.extend({
-        tagName: 'a',
-        className: 'list-group-item viewDescription',
 
-        template: _.template($('#description-list-item').html()),
-
-        initialize: function() {
-            
-        },
-        
-        events: {
-	        'click h6' : 'viewDescription'
-        },
-
-        viewDescription: function(ev){
-                app.currentModel = this.model;
-                app.descriptionContentView.model = this.model; 
-                app.descriptionContentView.render(); 
-                //$('#mappingContent').html(app.mappingsContentView.render().el)  
-        },
-
-        render: function(eventName) {
-            $(this.el).attr('href','#');
-            $(this.el).attr('data-index', this.model.collection.indexOf(this.model));
-            $(this.el).html(this.template(this.model.toJSON()));
-            return this;
-        },
-
-
-    });
-    
-    app.ClearDescriptionView = Backbone.View.extend({
-        
-        template: _.template($('#cleardescription').html()),
-        
-        events: {
-          'click .cleardescription' : 'cleardescription'  
-        },
-        
-        cleardescription: function() {
-          $.post('/workbench/clear/description',{description: [app.currentModel.attributes._id]},function() {
-              app.render();
-              });  
-        },
-        
-        initialize: function() {
-            this.model = app.descriptions.models[0];    
-        },
-        
-        render: function() {
-           $(this.el).html(this.template(this.model.toJSON()));      
-           return this;            
-        }    
-    });
-    
-    app.ClearAllDescriptionsView = Backbone.View.extend({
-        
-        template: _.template($('#clearalldescriptions').html()),
-        
-        events: {
-          'click .clearalldescriptions' : 'clearalldescriptions'  
-        },
-        
-        clearalldescriptions: function() {
- 
-          $.post('/workbench/clear/all/description',function() {
-              app.render();
-              });  
-        },
-        
-        initialize: function() {
-            this.model = app.descriptions.models[0];    
-        },
-        
-        render: function() {
-           $(this.el).html(this.template(this.model.toJSON()));      
-           return this;            
-        }    
-    });
-       
-    /***
-     * 
-     * VIEWS SCHEDULING
-     * 
-     ***/
-    /*
-    app.scheduleesView = Backbone.View.extend({
-        tagName: 'div',
-        className: 'list-group scheduleView',
-        
-        initialize: function() {
-                    
-        },
-
-        render: function(eventName) {
-            _.each(this.model.models, function(schedule) {
-                $(this.el).append(new app.scheduleItemView({ model: schedule }).render().el);
-            }, this);
-            return this;
-        }
-    });
-    
-    app.scheduleContentView = Backbone.View.extend({
-       tagName: 'pre', 
-       template: _.template($('#schedule-content').html()),
-       
-       initialize: function(){
-		    this.model.on('change', this.render, this);
-       },     
-                    
-       
-       render: function() {
-            $(this.el).html(this.template(this.model.toJSON()));
-            return this;  
-       }
-    });
-
-    app.ScheduleItemView = Backbone.View.extend({
-        tagName: 'a',
-        className: 'list-group-item viewschedule',
-
-        template: _.template($('#schedule-list-item').html()),
-
-        initialize: function() {
-            
-        },
-        
-        events: {
-	        'click h6' : 'viewschedule'
-        },
-
-        viewschedule: function(ev){
-                app.currentModel = this.model;
-                app.scheduleContentView.model = this.model; 
-                app.scheduleContentView.render(); 
-        },
-
-        render: function(eventName) {
-            $(this.el).attr('href','#');
-            $(this.el).attr('data-index', this.model.collection.indexOf(this.model));
-            $(this.el).html(this.template(this.model.toJSON()));
-            return this;
-        },
-
-
-    });
-    */
-    app.ClearScheduleingView = Backbone.View.extend({
-        /*
-        template: _.template($('#clearscheduleing').html()),
-        
-        events: {
-          'click .clearscheduleing' : 'clearscheduleing'  
-        },
-        
-        clearscheduleing: function() {
-          $.post('/workbench/clear/schedule',{rdf: [app.currentModel.attributes._id]},function() {
-              app.render();
-              });  
-        },
-        
-        initialize: function() {
-            this.model = app.schedules.models[0];    
-        },
-        
-        render: function() {
-           $(this.el).html(this.template(this.model.toJSON()));      
-           return this;            
-        }   */ 
-    });
-    
-    app.ClearAllscheduleingsView = Backbone.View.extend({
-        /*
-        template: _.template($('#clearallscheduleings').html()),
-        
-        events: {
-          'click .clearallscheduleings' : 'clearallscheduleings'  
-        },
-        
-        clearallscheduleings: function() {
- 
-          $.post('/workbench/clear/all/rdf',function() {
-              app.render();
-              });  
-        },
-        
-        initialize: function() {
-            this.model = app.schedulees.models[0];    
-        },
-        
-        render: function() {
-           $(this.el).html(this.template(this.model.toJSON()));      
-           return this;            
-        }    */
-    });
-    
-     
      /***
      * 
      * APP CONFIG
@@ -638,9 +276,119 @@
         app.descriptions = new app.Descriptions();
         
         app.currentScheduleMappings = [];
-        
-        //app.schedules = new app.Schedules();
-        
+
+
+        /***
+         *
+         *
+         * RENDERING DATA DESCRIPTIONS
+         *
+         */
+
+        $('#descriptionMain').empty();
+        $('#descriptionpre').empty();
+
+        $('#descriptionTitle').text('Select a data source');
+        $.get('/workbench/fetch/description', function(data) {
+            for(var i = 0; i < data.length; i++) {
+                $('#descriptionMain').append('<a href="#"  class="descriptionItem list-group-item">'+data[i].name+'</a>');
+            }
+            $('.descriptionItem').click(function() {
+                $('#descriptionTitle').text('Data source: ' + data[$('.descriptionItem').index(this)].name);
+                $('#descriptionpre').text(data[$('.descriptionItem').index(this)].data.replace(/password \".*\"/,'password ***'));
+                app.currentModel = {};
+                app.currentModel.attributes = data[$('.descriptionItem').index(this)];
+            });
+        });
+
+        $('#descriptionMain').css('min-height',$(window).height()*0.795 + 'px');
+        $('#descriptionMain').css('max-height',$(window).height()*0.795 + 'px');
+        $('#descriptionContent').css('min-height',$(window).height()*0.75 + 'px');
+        $('#descriptionContent').css('max-height',$(window).height()*0.75 + 'px');
+        $('#descriptionBody').css('min-height',$(window).height()*0.82 + 'px');
+        $('#descriptionBody').css('max-height',$(window).height()*0.82 + 'px');
+        $('#descriptionpre').css('min-height',$(window).height()*0.25 + 'px');
+        $('#descriptionpre').css('max-height',$(window).height()*0.25 + 'px');
+
+        /**
+         *
+         * RENDERING LOGICAL SOURCES
+         *
+         */
+
+        /***
+         *
+         *
+         * RENDERING DATA DESCRIPTIONS
+         *
+         */
+
+        $('#logicalMain').empty();
+        $('#logicalpre').empty();
+
+        $('#logicalTitle').text('Select a logical source');
+        $.get('/workbench/fetch/logical_description', function(data) {
+            for(var i = 0; i < data.length; i++) {
+                $('#logicalMain').append('<a href="#"  class="logicalItem list-group-item">'+data[i].name+'</a>');
+            }
+            $('.logicalItem').click(function() {
+                $('#logicalTitle').text('Logical source: ' + data[$('.logicalItem').index(this)].name);
+                $('#logicalpre').text(data[$('.logicalItem').index(this)].data.replace(/password \".*\"/,'password ***'));
+                app.currentModel = {};
+                app.currentModel.attributes = data[$('.logicalItem').index(this)];
+            });
+        });
+
+        $('#logicalMain').css('min-height',$(window).height()*0.795 + 'px');
+        $('#logicalMain').css('max-height',$(window).height()*0.795 + 'px');
+        $('#logicalContent').css('min-height',$(window).height()*0.75 + 'px');
+        $('#logicalContent').css('max-height',$(window).height()*0.75 + 'px');
+        $('#logicalBody').css('min-height',$(window).height()*0.82 + 'px');
+        $('#logicalBody').css('max-height',$(window).height()*0.82 + 'px');
+        $('#logicalpre').css('min-height',$(window).height()*0.25 + 'px');
+        $('#logicalpre').css('max-height',$(window).height()*0.25 + 'px');
+
+
+        /***
+         *
+         * RENDERING LOCAL
+         *
+         */
+
+        $('#localMain').empty();
+
+        $('#localTitle').text('Select a file');
+        $.get('/workbench/fetch/input',function(files) {
+            for(var i = 0; i < files.length; i++) {
+                $('#localMain').append('<a href="#"  class="localFileItem list-group-item">'+files[i].filename+'</a>');
+            }
+
+            $('.localFileItem').click(function() {
+                console.log(files[$('.localFileItem').index(this)].data);
+                $('#localpre').text(files[$('.localFileItem').index(this)].data);
+                app.currentModel = {};
+                app.currentModel.attributes = files[$('.localFileItem').index(this)];
+                $('#localTitle').text('File name: ' + files[$('.localFileItem').index(this)].filename);
+            })
+
+
+        });
+
+
+
+        //setting css
+        $('#localMain').css('min-height',$(window).height()*0.82 + 'px');
+        $('#localMain').css('max-height',$(window).height()*0.82 + 'px');
+        $('#localContent').css('min-height',$(window).height()*0.75 + 'px');
+        $('#localContent').css('max-height',$(window).height()*0.75 + 'px');
+        $('#localBody').css('min-height',$(window).height()*0.82 + 'px');
+        $('#localBody').css('max-height',$(window).height()*0.82 + 'px');
+        $('#localpre').css('min-height',$(window).height()*0.75 + 'px');
+        $('#localpre').css('max-height',$(window).height()*0.75 + 'px');
+
+
+
+
         /***
         *
         * RENDERING MAPPINGS
@@ -654,7 +402,7 @@
                     //replace <> with lt& en gt&    
                     for(var i = 0; i < app.mappings.models.length; i++) {
                         var attributes = app.mappings.models[i].attributes;
-                        attributes.convertedData = attributes.data.replace(/</g,'&lt;').replace(/>/g, '&gt;');                                      
+                        attributes.convertedData = attributes.parsedObject.toString.replace(/</g,'&lt;').replace(/>/g, '&gt;');
                     }       
                     
                     //creating views
@@ -664,42 +412,17 @@
                     app.mappingsView = new app.MappingsView({model:app.mappings});
                     app.mappingsContentView = new app.MappingsContentView({model: app.currentModel});
                     //app.executeMappingView = new app.ExecuteMappingView({model: app.currentModel});
-                    app.executeButtonView = new app.ExecuteButtonView({model: app.currentModel});                    
-                    
-                    var triples = [];
-                    for(var i = 0; i < app.currentModel.attributes.triples.length; i++) {
-                        triples.push(new app.Triple(app.currentModel.attributes.triples[i]));
-                    }
-                    
-                    app.tripleListView = new app.TripleListView({model: { models:triples}});                    
+
+
                     
                     //rendering with jquery
                     $('#mappingMain').html(app.mappingsView.render().el);    
                     $('#mappingContent').html(app.mappingsContentView.render().el);
-                    //$('#mappingmenu').html(app.executeMappingView.render().el);
-                    $('#triplelistdiv').html(app.tripleListView.render().el);
-                    $('#executeMappingButtonDiv').html(app.executeButtonView.render().el);
-                    
+
                     //settint text
                     $('#mappingTitle').text('File name: ' + app.currentModel.attributes.filename);
-                    
-                    
-                    
-                    $('#selectAllCheckbox').change(function() {
-                        var selections = $('#triplelistdiv').children().children();
-                        if($('#selectAllCheckbox').prop( "checked" )) {                    
-                                for(var i = 0; i < selections.length; i++) {
-                                    var selection = selections.eq(i).find('input');
-                                    selections.eq(i).find('input').prop('checked', true);
-                                    
-                                }    
-                        } else {
-                                for(var i = 0; i < selections.length; i++) {
-                                    selections.eq(i).find('input').prop('checked', false);
-                                }   
-                        }
-                    });
-                    
+
+
                     //setting css   
                     $('#mappingMain').css('min-height',$(window).height()*0.82 + 'px');
                     $('#mappingMain').css('max-height',$(window).height()*0.82 + 'px');
@@ -707,17 +430,11 @@
                     $('#mappingContent').css('max-height',$(window).height()*0.75 + 'px');                                     
                     $('#mappingBody').css('min-height',$(window).height()*0.82 + 'px');
                     $('#mappingBody').css('max-height',$(window).height()*0.82 + 'px');
-                    $('pre').css('min-height',$(window).height()*0.75 + 'px');
-                    $('pre').css('max-height',$(window).height()*0.75 + 'px');
+                    $('#bigpre').css('min-height',$(window).height()*0.75 + 'px');
+                    $('#bigpre').css('max-height',$(window).height()*0.75 + 'px');
                     
                     
-                    //Setting mapping list scheduling
-                    $('#scheduleMappingList').empty();
-                    $('#scheduleMappingList').append('<option>CHOOSE MAPPING</option>')
-                    for(var i =0; i < app.mappings.models.length; i++) {
-                        var mapping = app.mappings.models[i];
-                        $('#scheduleMappingList').append('<option value="' + mapping.attributes._id +'">' + mapping.attributes.filename + '</option>');
-                    }
+
                     
                     
                 } else {
@@ -731,8 +448,8 @@
                     $('#mappingContent').css('max-height',$(window).height()*0.75 + 'px');                                     
                     $('#mappingBody').css('min-height',$(window).height()*0.82 + 'px');
                     $('#mappingBody').css('max-height',$(window).height()*0.82 + 'px');
-                    $('pre').css('min-height',$(window).height()*0.75 + 'px');
-                    $('pre').css('max-height',$(window).height()*0.75 + 'px');
+                    $('#bigpre').css('min-height',$(window).height()*0.75 + 'px');
+                    $('#bigpre').css('max-height',$(window).height()*0.75 + 'px');
                 }
                 
             }}); 
@@ -776,8 +493,8 @@
                     $('#publishContent').css('max-height',$(window).height()*0.75 + 'px');    
                     $('#publishBody').css('min-height',$(window).height()*0.82 + 'px');
                     $('#publishBody').css('max-height',$(window).height()*0.82 + 'px');    
-                    $('pre').css('min-height',$(window).height()*0.75 + 'px');
-                    $('pre').css('max-height',$(window).height()*0.75 + 'px');                  
+                    $('.prepublish').css('min-height',$(window).height()*0.75 + 'px');
+                    $('.prepublish').css('max-height',$(window).height()*0.75 + 'px');
                 
                     
                         
@@ -792,8 +509,8 @@
                     $('#publishContent').css('max-height',$(window).height()*0.75 + 'px');    
                     $('#publishBody').css('min-height',$(window).height()*0.82 + 'px');
                     $('#publishBody').css('max-height',$(window).height()*0.82 + 'px');    
-                    $('pre').css('min-height',$(window).height()*0.75 + 'px');
-                    $('pre').css('max-height',$(window).height()*0.75 + 'px');  
+                    $('.prepublish').css('min-height',$(window).height()*0.75 + 'px');
+                    $('.prepublish').css('max-height',$(window).height()*0.75 + 'px');
                 }
             }}); 
             
@@ -809,18 +526,39 @@
             
             $.get('/workbench/schedules',function(schedules) {
                 $('#scheduleTable').empty();
-                $('#scheduleTable').append('<tr><th>Name</th><th>Date</th><th>#Mappings</th><th>#Triples</th><th>#Publishings</th><th>Description</th><th>Executed</th></tr>');
+                $('#scheduleTable').append('<tr><th>Date</th><th>Mapping file</th><th>Output file</th></th><th>#Triples</th><th>Publish</th><th>Description</th><th>Status</th></tr>');
                 for(var i = 0; i < schedules.length; i++) {
-                    $('#scheduleTable').append(function() {                 
-                        
-                        var executed = 'No';
-                        
-                        if(schedules[i].executed == true) {
-                            executed = 'Yes';
+
+
+                    var toBePublished;
+
+                    if(schedules[i].publishing) {
+                        toBePublished = 'Yes';
+                    } else {
+                        toBePublished = 'No';
+                    }
+
+                    var status = 'Planned';
+
+                    $('#scheduleTable').append(function() {
+
+                        if(schedules[i].running) {
+                            status = 'Running';
                         }
                         
-                        return '<tr data-toggle="modal" data-target="#jobmodal" id='+schedules[i]._id+'><td>'+schedules[i].title+'</td><td>'+schedules[i].date+'</td><td>'+schedules[i].amountMapping+'</td><td>'+schedules[i].amountTriples+'</td><td>'+schedules[i].amountPublishing+'</td><td>'+schedules[i].description+'</td><td>'+executed+'</td></tr>'   
+                        if(schedules[i].executed) {
+                            status = 'Done';
+                        }
+                        
+                        return '<tr data-toggle="modal" data-target="#jobmodal" id='+schedules[i]._id+'><a href="#"><td>'+schedules[i].date+'</td><td>'+schedules[i].mappingFileName+'</td><td>'+schedules[i].title+'</td><td>'+schedules[i].amountTriples+'</td><td>'+toBePublished+'</td><td>'+schedules[i].description+'</td><td><img id="rolling'+i+'" src="/media/rolling.gif" height="15px"/>     '+status+'</td></a></tr>'
                     });
+
+                    if(status=="Running") {
+                        $('#rolling'+i).css('display','inline');
+                    } else {
+                        $('#rolling'+i).css('display','none');
+                    }
+
                     var t = i;
                     $('#'+schedules[t]._id).click(function() {
                         app.currentSchedule = schedules[t];
@@ -836,81 +574,77 @@
                 $('#scheduleBody').css('min-height',$(window).height()*0.82 + 'px');
                 $('#scheduleBody').css('max-height',$(window).height()*0.82 + 'px');                                 
             });
-            
-            
-            /***
-            *
-            * RENDERING Descriptions
-            *
-            ***/ 
-             
-                       
-            app.descriptions.fetch({success: function() {
-                
-                if(app.descriptions.models.length != 0) {
-                
-                    //replace <> with lt& en gt&    
-                    for(var i = 0; i < app.descriptions.models.length; i++) {
-                        var attributes = app.descriptions.models[i].attributes;
-                        attributes.convertedData = attributes.data.replace(/</g,'&lt;').replace(/>/g, '&gt;');                                      
-                    }
-                    //creating views
-                    app.descriptionsView = new app.DescriptionsView({model:app.descriptions});
-                    app.descriptionContentView = new app.DescriptionContentView({model: app.descriptions.models[0]});
-                    app.clearDescriptionView = new app.ClearDescriptionView();
-                    app.clearAllDescriptionsView = new app.ClearAllDescriptionsView();
-                    
-                    //rendering with jquery
-                    $('#descriptionMain').html(app.descriptionsView.render().el);    
-                    $('#descriptionContent').html(app.descriptionContentView.render().el);    
-                    $('#clearDescriptionbutton').html(app.clearDescriptionView.render().el);
-                    $('#clearallDescriptionsbutton').html(app.clearAllDescriptionsView.render().el);  
-                                      
-                } else {
-                    $('.descriptionElement').empty();   
-                }
-            }});
-            
-            /***
-            *
-            * RENDERING Schedule
-            *
-            ***/ 
-             
-            /*           
-            app.schedules.fetch({success: function() {
-                
-                if(app.schedules.models.length != 0) {
-                
-                    //replace <> with lt& en gt&    
-                    for(var i = 0; i < app.schedules.models.length; i++) {
-                        var attributes = app.schedules.models[i].attributes;
-                        attributes.convertedData = attributes.data.replace(/</g,'&lt;').replace(/>/g, '&gt;');                                      
-                    }
-                    //creating views
-                    app.schedulesView = new app.SchedulesView({model:app.schedules});
-                    app.scheduleContentView = new app.ScheduleContentView({model: app.schedules.models[0]});
-                    app.clearscheduleingView = new app.ClearScheduleingView();
-                    app.clearAllScheduleingsView = new app.ClearAllScheduleingsView();
-                    
-                    //rendering with jquery
-                    $('#scheduleMain').html(app.schedulesView.render().el);    
-                    $('#scheduleContent').html(app.scheduleContentView.render().el);    
-                    $('#clearscheduleingbutton').html(app.clearScheduleingView.render().el);
-                    $('#clearallscheduleingsbutton').html(app.clearAllScheduleingsView.render().el);  
-                                      
-                } else {
-                    $('.workbenchElement').empty();   
-                }
 
-            }});
-            */
+
+
 
     };
   
  
-    
-    
+    $("#blanknode").click(function() {
+        $('.mappingpre').empty();
+        $('.mappingpre').text(app.currentModel.attributes.parsedObject.uglyString);
+    });
+    $("#pretty").click(function() {
+        $('.mappingpre').empty();
+        $('.mappingpre').text(app.currentModel.attributes.parsedObject.toString);
+    });
+
+    $("#addDataSourceModal").click(function() {
+
+    });
+
+    var logical_sources;
+
+    $('#addLogicalSourceModalBtn').click(function() {
+        logical_sources = [];
+        $.get('/workbench/fetch/logical_description', function(data) {
+            for(var i = 0; i < data.length; i++) {
+                logical_sources.push(data[i]);
+                $('#logical_sources').append('<option value="'+i+'">'+data[i].name+'</option>');
+            }
+        });
+    });
+
+    $('#addLogicalSourceSubmit').click(function() {
+        var post = {
+            triples : logical_sources[$('#logical_sources').val()].triples,
+            mapping_id : app.currentModel.attributes._id
+        };
+        console.log(post.triples);
+        $.post('/workbench/mapping/update', post, function(object) {
+            console.log(object);
+            app.currentModel.attributes.parsedObject = object;
+            notify('Logical source added','information');
+            app.render();
+        });
+    });
+
+    var data_sources;
+
+    $('#addDataSourceModalBtn').click(function() {
+        data_sources = [];
+        $.get('/workbench/fetch/description', function(data) {
+            for(var i = 0; i < data.length; i++) {
+                data_sources.push(data[i]);
+                $('#data_sources').append('<option value="'+i+'">'+data[i].name+'</option>');
+            }
+        });
+    });
+
+    $('#addDataSourceSubmit').click(function() {
+        var post = {
+            triples : data_sources[$('#data_sources').val()].triples,
+            mapping_id : app.currentModel.attributes._id
+        };
+        console.log(post.triples);
+        $.post('/workbench/mapping/update', post, function(object) {
+            console.log(object);
+            app.currentModel.attributes.parsedObject = object;
+            notify('Data source added','information');
+            app.render();
+        });
+    });
     
     /*
     *   ##########
@@ -925,147 +659,134 @@
      * 
      ***/
 
-function AddButtonNoFile(formId) {
-    console.log(formId);
-   $(formId).on("submit", function(event){
-        event.preventDefault(); 
+    function AddButtonNoFile(formId) {
         console.log(formId);
-        var form_url = $(formId).attr("action");
-        var inputs = $(formId + ' .form-control');    
-        var values = {};
-        inputs.each(function() {
-            values[ $(this).attr("id")] = $(this).val();
-            console.log( $(this).attr("id") + " " + $(this).val());
-        });
-
-        $.ajax({
-            url:  form_url,
-            type: 'POST',
-            headers: {
-                'X-CSRF-Token': $.cookie("_csrfToken")
-            },
-            data: values,            
-            dataType: 'JSON',
-            statusCode: {
-                200: function() {
-                    app.render();
-                }   
-            }            
-        });       
-                           
-    });   
-}
-
-AddButtonNoFile("#api_input_Form");
-AddButtonNoFile("#db_input_Form");
-AddButtonNoFile("#sparql_input_Form");
-AddButtonNoFile("#dcat_input_Form");
-AddButtonNoFile("#csvw_input_Form");
-AddButtonNoFile("#db_logical_Form");
-AddButtonNoFile("#api_logical_Form");
-AddButtonNoFile("#sparql_logical_Form");
-AddButtonNoFile("#dcat_logical_Form");
- 
-
-
-   /**
-    * 
-    * Scheduling button
-    */
-   $('#scheduleButton').click(function() {
-               var fulldate = $('#scheduleDate').val();
-               var description = $('#scheduleDescription').val();
-               var title = $('#scheduleTitle').val();
-               
-               var month = fulldate.substring(0,2);
-               var day = fulldate.substring(3,5);
-               var year = fulldate.substring(6,10);
-               var hour = fulldate.substring(11,13);
-               if(hour.indexOf(':') > -1) {
-                   hour = fulldate.substring(11,12);
-                   var minute = fulldate.substring(13,15);
-                   if(fulldate.charAt(16) == 'P') {
-                       hour = parseInt(hour) + 12;
-                   }
-               } else {                   
-                   var minute = fulldate.substring(14,16);
-                   if(fulldate.charAt(17) == 'P') {
-                       hour = parseInt(hour) + 12;
-                   }
-               }
-               var date = {
-                       year: year,
-                       month: month-1,
-                       day: day,
-                       hour: hour,
-                       minute: minute
-                   }
-               
-               var triples = [];
-               var post = {
-                   name: title,
-                   description: description,
-                   date:date,
-                   mappingsFromFile : app.currentScheduleMappings,
-                   mappingsFromTriples: triples 
-               }
-               
-               var newDate = new Date(year,month,day,hour,minute);
-               var now = new Date();
-               
-               if(newDate > now) {
-                   
-                   
-                        $.post('/workbench/addToSchedule',post,function() {
-                            app.render();               
-                        });
-                                               
-               } else {
-                   $("#scheduleContainer").prepend('<div style="margin-top:15px" class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Date has already passed..</strong></div>');
-            
-               }
-               
+       $(formId).on("submit", function(event){
+            event.preventDefault();
+            console.log(formId);
+            var form_url = $(formId).attr("action");
+            var inputs = $(formId + ' .form-control');
+            var values = {};
+            inputs.each(function() {
+                values[ $(this).attr("id")] = $(this).val();
+                console.log( $(this).attr("id") + " " + $(this).val());
             });
-            
-            
-    /***
+
+            $.ajax({
+                url:  form_url,
+                type: 'POST',
+                headers: {
+                    'X-CSRF-Token': $.cookie("_csrfToken")
+                },
+                data: values,
+                dataType: 'JSON',
+                statusCode: {
+                    200: function() {
+                        app.render();
+                    }
+                }
+            });
+
+        });
+    }
+
+    AddButtonNoFile("#api_input_Form");
+    AddButtonNoFile("#db_input_Form");
+    AddButtonNoFile("#sparql_input_Form");
+    AddButtonNoFile("#dcat_input_Form");
+    AddButtonNoFile("#csvw_input_Form");
+    AddButtonNoFile("#db_logical_Form");
+    AddButtonNoFile("#api_logical_Form");
+    AddButtonNoFile("#sparql_logical_Form");
+    AddButtonNoFile("#dcat_logical_Form");
+
+
+
+   
+
+
+
+
+
+
+            /***
      * 
      * 
      * Actions
      * 
      * 
      */
+
+    //setting button actions
+    $('#clearLocalFile').click(function() {
+
+        $.post('/workbench/clear/source/',{sources: [app.currentModel.attributes._id]},function() {
+            notify('Local file deleted!','information');
+            $('#localTitle').text('Select a file');
+            $('#localpre').empty();
+            app.render();
+        }).fail(function(err) {
+            notify(err.message,'error');
+        })
+        ;
+    });
+
+    $('#clearAllLocalFiles').click(function() {
+        $.post('/workbench/clear/all/source',function() {
+            $('#localTitle').text('No files');
+            $('#localpre').empty();
+            notify('Local files deleted!','information');
+            app.render();
+        }).fail(function(err) {
+            notify(err.message,'error');
+        })
+        ;;
+    })
+
     
     //setting button actions
     $('#clearMapping').click(function() {
+
         $.post('/workbench/clear/mapping/',{mappings: [app.currentModel.attributes._id]},function() {
-            $("#mappingContainer").prepend('<div style="margin-top:15px" class="alert alert-info alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Mapping file cleared.</strong></div>');
+            notify('Mapping deleted!','information');
             app.render();
-        });
+        }).fail(function(err) {
+            notify(err.message,'error');
+        })
+        ;
     });
     
     $('#clearAllMappings').click(function() {
         $.post('/workbench/clear/all/mapping',function() {
-            $("#mappingContainer").prepend('<div style="margin-top:15px" class="alert alert-info alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>All mapping files are cleared.</strong></div>');
+            notify('Mappings deleted!','information');
             app.render();
-        });
+        }).fail(function(err) {
+            notify(err.message,'error');
+        })
+        ;;
     })
+
+
     
     //setting button actions
     $('#clearPublishing').click(function() {
         $.post('/workbench/clear/rdf/',{rdf: [app.currentModel.attributes._id]},function() {
-            $("#publishContainer").prepend('<div style="margin-top:15px" class="alert alert-info alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Publish file cleared.</strong></div>');
-            
+            notify('File deleted!','information');
             app.render();
-        });
+        }).fail(function(err) {
+            notify(err.message,'error');
+        })
+        ;;
     });
     
     $('#clearAllPublishings').click(function() {
         $.post('/workbench/clear/all/rdf',function() {
-            $("#publishContainer").prepend('<div style="margin-top:15px" class="alert alert-info alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>All publish files are cleared.</strong></div>');
-            
+            notify('Files deleted!','information');
             app.render();
-        });
+        }).fail(function(err) {
+            notify(err.message,'error');
+        })
+        ;;
     })
 
             
@@ -1085,15 +806,7 @@ AddButtonNoFile("#dcat_logical_Form");
      * Adding mapping to well (schedule modal)
      * 
      */
-    
-    $('#addScheduleMappingButton').click(function() {
-        if($('#scheduleMappingList').find("option:selected").text() !== 'CHOOSE MAPPING') {
-            $('#scheduleMappingWellList').append('<li>'+$('#scheduleMappingList').find("option:selected").text()+'</li>');
-            app.currentScheduleMappings.push($('#scheduleMappingList').val());
-        } else {
-            $("#scheduleModalFooter").append('<div style="margin-top:15px" class="alert alert-info alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Don'+"'"+'t add that one ;)</strong></div>');
-        }
-    });
+
 
    
     /*
@@ -1102,13 +815,16 @@ AddButtonNoFile("#dcat_logical_Form");
     $("#uploadMapping_Form").on("submit", function(event){
         event.preventDefault();
         var ext = $('input[id=mappingFile]')[0].files[0].name.replace(/^[^\.]*\./, '');
-        if(ext == 'rml' || ext == 'rml.ttl' ) {
+        //if(ext == 'rml' || ext == 'rml.ttl' ) {
             
             var form_url = $("form[id='uploadMapping_Form']").attr("action");
         var CSRF_TOKEN = $('input[name="_csrf"]').val();                    
 
+
         var form = new FormData();
-        form.append('mappingUpload', $('input[id=mappingFile]')[0].files[0]);        
+        form.append('mappingUpload', $('input[id=mappingFile]')[0].files[0]);
+        var license = $('#mappingUploadLicense').val();
+        form.append('license', license);
 
 
         $.ajax({
@@ -1125,16 +841,18 @@ AddButtonNoFile("#dcat_logical_Form");
             dataType: 'JSON',
             statusCode: {
                 200: function() {
-                    $("#uploadMapping_Form").append('<div style="margin-top:15px" class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Upload successful!</strong></div>')
-        
+                    notify('Upload successful!', 'success');
                     app.render();
-                }   
-            }            
+                },
+                409: function() {
+                    notify('Wrong file type!', 'warning');
+                }
+            }
         });
             
-        } else {
-            $("#uploadMapping_Form").append('<div style="margin-top:15px" class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Wrong file type!</strong></div>')
-        }
+        //} else {
+            //notify('Wrong file type!', 'warning');
+        //}
                       
     });
     
@@ -1150,8 +868,9 @@ AddButtonNoFile("#dcat_logical_Form");
             var CSRF_TOKEN = $('input[name="_csrf"]').val();                    
 
             var form = new FormData();
-            form.append('rdfUpload', $('input[id=publishingFile]')[0].files[0]);        
-
+            form.append('rdfUpload', $('input[id=publishingFile]')[0].files[0]);
+            var license = $('#publishUploadLicense').val();
+            form.append('license', license);
 
             $.ajax({
                 url:  form_url,
@@ -1167,10 +886,12 @@ AddButtonNoFile("#dcat_logical_Form");
                 dataType: 'JSON',
                 statusCode: {
                     200: function() {
-                         $("#uploadPublishing_Form").append('<div style="margin-top:15px" class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Upload successful!</strong></div>')
-       
+                        notify('Upload successful!', 'success');
                         app.render();
-                    }   
+                    },
+                    409: function() {
+                        notify('Wrong file type!', 'warning');
+                    }
                 }            
             }); 
         } else {
@@ -1194,9 +915,11 @@ AddButtonNoFile("#dcat_logical_Form");
         var CSRF_TOKEN = $('input[name="_csrf"]').val();                    
 
         var form = new FormData();
-        form.append('sourceUpload', $('input[id=sourceFile]')[0].files[0]);        
+        form.append('sourceUpload', $('input[id=sourceFile]')[0].files[0]);
 
 
+        var license = $('#sourceUploadLicense').val();
+        form.append('license', license);
         $.ajax({
             url:  form_url,
             type: 'POST',
@@ -1211,6 +934,7 @@ AddButtonNoFile("#dcat_logical_Form");
             dataType: 'JSON',
             statusCode: {
                 200: function() {
+                    notify('Upload successful!', 'success');
                     app.render();
                 }   
             }            
@@ -1229,15 +953,15 @@ AddButtonNoFile("#dcat_logical_Form");
         event.preventDefault();
         
         var rdf = app.currentModel.attributes;
-        var dataset = { 
-            title: rdf.filename,
+        var dataset = {
+            title: $('#publish_title').val(),
             type: 'TurtleDatasource',
             description: 'default',
             settings: {
                 file: './' + rdf.filename
             }
         };
-        
+
         var data = {
             dataset: dataset,
             data: rdf.data,
@@ -1251,14 +975,53 @@ AddButtonNoFile("#dcat_logical_Form");
             contentType: "application/json",
             dataType: 'json',
             data: JSON.stringify(data),
-            success    : function(){
-
-        }
+            statusCode :{  200  : function(){
+                notify('Publishing successful!', 'success');
+        }}
         });   
-     }); 
- 
-       
-    
+     });
+
+
+
+
+
+
+    var notify = function(text,type) {
+        var n = noty({text: text,layout: 'bottomCenter',
+            theme: 'relax', // or 'relax',
+            maxVisible: 5,
+            type: type,
+            timeout: true,
+            dismissQueue: true, // If you want to use queue feature set this true
+            template: '<div class="noty_message"><span class="noty_text"></span><div class="noty_close"></div></div>',
+            animation: {
+                open: 'animated fadeIn', // or Animate.css class names like: 'animated bounceInLeft'
+                close: 'animated fadeOut', // or Animate.css class names like: 'animated bounceOutLeft'
+                easing: 'swing',
+                speed: 500 // opening & closing animation speed
+            }});
+        n.setTimeout(4500);
+    }
+
+
+    var requestLoop = setInterval(function(){
+        $.get('/workbench/schedules/new', function(status) {
+
+            if (status.done) {
+                notify('A job has finished','success');
+                app.render();
+            }
+
+            if (status.started) {
+                notify('A job has started','information');
+                app.render();
+            }
+        });
+
+    }, 500);
+
+
+    $(".ajax-spinner").empty();
     
     
     

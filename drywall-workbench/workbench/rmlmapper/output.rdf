@@ -1,8 +1,0 @@
-
-<http://airport.example.com/6523> a <http://vocab.org/transit/terms/Stop> ;
-	<http://www.w3.org/2003/01/geo/wgs84_pos#location> "Brussels" ;
-	<http://vocab.org/transit/terms/service> "25" .
-
-<http://airport.example.com/6524> a <http://vocab.org/transit/terms/Stop> ;
-	<http://www.w3.org/2003/01/geo/wgs84_pos#location> "Athens" ;
-	<http://vocab.org/transit/terms/service> "78" .

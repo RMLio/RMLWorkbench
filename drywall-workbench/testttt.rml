@@ -1,0 +1,316 @@
+@prefix rr:     <http://www.w3.org/ns/r2rml#>.
+@prefix rml:    <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql:     <http://semweb.mmlab.be/ns/ql#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#>.
+@prefix im:     <http://semweb.mmlab.be/ns/im#> .
+@prefix cerif:  <http://spi-fm.uca.es/neologism/cerif#>.
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#>.
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix dcterms:<http://purl.org/dc/terms/> .
+@prefix bibo:   <http://purl.org/ontology/bibo/> .
+@prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
+
+<#ProjectCoreTeamInput> 
+  rml:source "/media/andimou/723A1FC53A1F856F/Ubuntu_Documents/MappingDocs/iMinds/Phase3/input/ProjectCoreTeam_sorted.csv";
+  rml:referenceFormulation ql:JSONPath;
+  rml:iterator "$.[*]" .
+
+<AuthorsSource>
+	a hydra:PagedCollection ;
+	hydra:itemsPerPage "500"^^xsd:integer ;
+	hydra:firstPage <http://explore.ilastic.be/iminds/authors> ;
+	hydra:nextPage <http://explore.ilastic.be/iminds/authors?&offset=500&limit=500> .
+
+<PublicationsSource>
+	a hydra:PagedCollection ;
+	hydra:itemsPerPage "500"^^xsd:integer ;
+	hydra:firstPage <http://explore.ilastic.be/iminds/publications> ;
+	hydra:nextPage <http://explore.ilastic.be/iminds/publications?&offset=500&limit=500> .
+
+<GroupsSource>
+	a hydra:PagedCollection ;
+	hydra:itemsPerPage "500"^^xsd:integer ;
+	hydra:firstPage <http://explore.ilastic.be/iminds/groups> ;
+	hydra:nextPage <http://explore.ilastic.be/iminds/groups?&offset=500&limit=500> .
+
+
+#Author
+   
+<#AuthorMapping>
+  rml:logicalSource <#AuthorsInput> ;
+
+  rr:subjectMap [
+    rr:template "http://explore.ilastic.be/person/{CRM ID}";
+    rr:class cerif:Person
+  ];
+
+  rr:predicateObjectMap 
+  [
+    rr:predicate cerif:internalidentifier;
+    rr:objectMap 
+    [
+      rml:reference "Auteur iMinds personnelID" ;
+      rr:datatype xsd:positiveInteger;
+    ]
+  ];
+
+  rr:predicateObjectMap 
+  [
+    rr:predicate dcterms:identifier;
+    rr:objectMap 
+    [
+      rml:reference "CRM ID" ;
+      rr:language "en-us"
+    ]
+  ];
+
+  rr:predicateObjectMap 
+  [
+    rr:predicate cerif:name;
+    rr:objectMap 
+    [
+      rr:template "{Auteur voornaam} {Auteur naam}" ;
+      rr:termType rr:Literal ;
+      rr:language "en-us"
+    ]
+  ];
+
+  rr:predicateObjectMap 
+  [
+    rr:predicate foaf:givenName;
+    rr:objectMap 
+    [
+      rml:reference "Auteur voornaam" ;
+      rr:language "en-us"
+    ]
+  ];
+
+  rr:predicateObjectMap 
+  [
+    rr:predicate foaf:familyName;
+    rr:objectMap 
+    [
+      rml:reference "Auteur naam" ;
+      rr:language "en-us"
+    ]
+  ];
+
+  rr:predicateObjectMap 
+  [
+    rr:predicate cerif:linksToOrganisationUnit;
+    rr:objectMap 
+    [
+      rr:parentTriplesMap <#GroupMapping> ;
+      rr:joinCondition [
+      	rr:parent "Group v/d auteur - CRM ID" 
+      	rr:child "Groep v/d auteur - CRM ID"
+      ]
+    ]
+  ];
+
+  rr:predicateObjectMap 
+  [
+    rr:predicate cerif:linksToOrganisationUnit;
+    rr:objectMap 
+    [
+      rr:parentTriplesMap <#UniversityMapping> ;
+      rr:joinCondition [
+      	rr:parent "Groep v/d auteur - kenniscentrum code" 
+      	rr:child "Auteur kenniscentrum"
+      ]
+    ]
+  ];
+
+  rr:predicateObjectMap 
+  [
+    rr:predicate cerif:linksToPublication;
+    rr:objectMap 
+    [
+      rr:parentTriplesMap <#PublicationMapping> ;
+      rr:joinCondition [
+      	rr:parent "publicatie (ID)" 
+      	rr:child "publicatie (ID)"
+      ]
+    ]
+  ].
+
+
+
+<#GroupMapping>
+  rml:logicalSource <#GroupInput> ;
+
+  rr:subjectMap [
+    rr:template "http://explore.ilastic.be/organization/{Groep v/d auteur - CRM ID}";
+    rr:class cerif:OrganizationalUnit
+  ];
+
+  rr:predicateObjectMap 
+  [
+    rr:predicate cerif:internalidentifier;
+    rr:objectMap 
+    [
+      rml:reference "Groep v/d auteur" ;
+      rr:language "en-us"
+    ]
+  ];
+
+  rr:predicateObjectMap 
+  [
+    rr:predicate cerif:acronym;
+    rr:objectMap 
+    [
+      rml:reference "Groep v/d auteur" ;
+    ]
+  ];
+
+  rr:predicateObjectMap 
+  [
+    rr:predicate dcterms:identifier;
+    rr:objectMap 
+    [
+      rml:reference "Groep v/d auteur - CRM ID" ;
+      rr:language "en-us"
+    ]
+  ].
+
+
+ <#UniversityMapping>
+  rml:logicalSource <#GroupInput> ;
+
+  rr:subjectMap [
+    rr:template "http://explore.ilastic.be/university/{Groep v/d auteur - kenniscentrum code}";
+    rr:class cerif:OrganizationalUnit
+  ].
+
+
+
+#Publication
+   
+<#PublicationMapping>
+  rml:logicalSource <#PublicationsInput> ;
+
+  rr:subjectMap [
+    rr:template "http://explore.ilastic.be/publication/{publicatie (ID)}";
+    rr:class cerif:Publication, bibo:Document
+  ];
+
+  rr:predicateObjectMap 
+  [
+    rr:predicate cerif:internalidentifier, bibo:identifier;
+    rr:objectMap 
+    [
+      rml:reference "publicatie (ID)" ;
+      rr:datatype xsd:positiveInteger ;
+    ]
+  ];
+
+  rr:predicateObjectMap 
+  [
+    rr:predicate cerif:title;
+    rr:objectMap 
+    [
+      rml:reference "Titel" ;
+    ]
+  ];
+
+  rr:predicateObjectMap 
+  [
+    rr:predicate cerif:abstract;
+    rr:objectMap 
+    [
+      rml:reference "Abstract" ;
+    ]
+  ];
+
+  rr:predicateObjectMap 
+  [
+    rr:predicate bibo:issn;
+    rr:objectMap 
+    [
+      rml:reference "ISSN" ;
+    ]
+  ];
+
+  rr:predicateObjectMap 
+  [
+    rr:predicate bibo:isbn13;
+    rr:objectMap 
+    [
+      rml:reference "ISBN" ;
+    ]
+  ];
+
+  rr:predicateObjectMap 
+  [
+    rr:predicate bibo:uri;
+    rr:objectMap 
+    [
+      rml:reference "URL" ;
+      rr:termType rr:IRI ;
+    ]
+  ];
+
+  rr:predicateObjectMap 
+  [
+    rr:predicate im:webOfScience;
+    rr:objectMap 
+    [
+      rml:reference "WOS" ;
+    ]
+  ];
+
+  rr:predicateObjectMap 
+  [
+    rr:predicate dcterms:issued;
+    rr:objectMap 
+    [
+      rml:reference "Jaar van publicatie" ;
+      rr:datatype xsd:gYear
+    ]
+  ];
+
+  rr:predicateObjectMap 
+  [
+    rr:predicate im:publishedIn;
+    rr:objectMap 
+    [
+      rml:reference "Gepubliceerd in" ;
+    ]
+  ];
+
+  rr:predicateObjectMap 
+  [
+    rr:predicate im:publishedIn;
+    rr:objectMap 
+    [
+      rml:reference "Conferentie titel" ;
+    ]
+  ];
+
+  rr:predicateObjectMap 
+  [
+    rr:predicate im:publicationCategory;
+    rr:objectMap 
+    [
+      rml:reference "Publication category";
+    ]
+  ]
+  
+  rr:predicateObjectMap 
+  [
+    rr:predicate cerif:linksToOrganisationUnit;
+    rr:objectMap 
+    [
+      rr:parentTriplesMap <#GroupMapping> ;
+    ]
+  ];
+
+  rr:predicateObjectMap 
+  [
+    rr:predicate cerif:linksToOrganisationUnit;
+    rr:objectMap 
+    [
+      rr:parentTriplesMap <#UniversityMapping> ;
+    ]
+  ].

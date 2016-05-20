@@ -23,6 +23,10 @@ block neck
   script(type='text/javascript' src='/views/workbench/scheduleModal.js')
   script(type='text/javascript' src='/views/workbench/executionModal.js')
   script(type='text/javascript' src='/views/workbench/descriptionsTab.js')
+  script(type='text/javascript' src='/views/workbench/logicalDCATSource.js')
+  script(type='text/javascript' src='/views/workbench/logicalSPARQLSource.js')
+  script(type='text/javascript' src='/views/workbench/logicalDatabaseSource.js')
+  script(type='text/javascript' src='/views/workbench/logicalsTab.js')
   link(rel='stylesheet', href='/layouts/rml.css')
   link(rel='stylesheet', href='/layouts/animate.css')
   script(type='text/javascript' src='/vendor/nprogress/nprogress.js')
@@ -107,12 +111,12 @@ block body
               label(for='logicalDCATName') Name
               input.form-control.required(id='logicalDCATName' type='text' placeholder='Descriptive name')
             div.form-group
-              label(for='logicalDCATSource') Type
-              select.selectpicker.form-control(id='logicalDCATSource' title='Source')
-                option POPULATE FROM THE PREVIOUS STEP
+              label(for='logicalDCATSource') Source
+              select.form-control(id='logicalDCATSource' title='Source')
+
             div.form-group
               label(for='logicalDCATType') Reference Formulation
-              select.selectpicker.form-control(id='logicalDCATType' title='referenceFormulation')
+              select.form-control(id='logicalDCATType' title='referenceFormulation')
                 option JSON
                 option CSS3
                 option XML
@@ -191,8 +195,8 @@ block body
               input.form-control(id='logicalDBName' type='text' placeholder='Descriptive name')
             div.form-group
               label(for='logicalDBSource') Source
-              select.selectpicker.form-control(id='logicalDBSource' title='Source')
-                option POPULATE FROM THE PREVIOUS STEP
+              select.form-control(id='logicalDBSource' title='Source')
+
             div.form-group
               label(for='logicalDBQuery') Data Query
               textarea.form-control(id='logicalDBQuery' rows="2")
@@ -220,7 +224,7 @@ block body
               label(for='inputAPIURL') Template URL
               input.form-control(id='inputAPIURL' type='text' placeholder='url')
             //+licensesId('inputAPILicense')
-            button.btn.btn-primary(id="btn_api_input" form="api_input_Form" type='submit' data-dismiss="modal") Add
+            button.btn.btn-primary(id="btn_api_input" form="api_input_Form" type='submit') Add
 
   div(id='api-logical' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='apiInputLabel' style='display: none;')
     div.modal-dialog(role='document')
@@ -237,11 +241,11 @@ block body
               input.form-control(id='logicalAPIName' type='text' placeholder='Descriptive name')
             div.form-group
               label(for='logicalAPISource') Source
-              select.selectpicker.form-control(id='logicalAPISource' title='Source')
-                option POPULATE FROM THE PREVIOUS STEP
+              select.form-control(id='logicalAPISource' title='Source')
+
             div.form-group
               label(for='logicalAPIType') Reference Formulation
-              select.selectpicker.form-control(id='logicalAPIType' title='referenceFormulation')
+              select.form-control(id='logicalAPIType' title='referenceFormulation')
                 option JSON
                 option CSS3
                 option XML
@@ -291,12 +295,12 @@ block body
               label(for='LogicalSparqlName') Name
               input.form-control(id='LogicalSparqlName' type='text' placeholder='Descriptive name')
             div.form-group
-              label(for='logicalSparqlSource') Type
-              select.selectpicker.form-control(id='logicalSparqlSource' title='Source')
-                option POPULATE FROM THE PREVIOUS STEP
+              label(for='logicalSparqlSource') Source
+              select.form-control(id='logicalSparqlSource' title='Source')
+
             div.form-group
               label(for='logicalSparqlRef') Reference Formulation
-              select.selectpicker.form-control(id='logicalSparqlRef' title='referenceFormulation')
+              select.form-control(id='logicalSparqlRef' title='referenceFormulation')
                 option JSON
                 option CSS3
                 option XML
@@ -375,7 +379,6 @@ block body
                 option utf-16le
             //+licensesId('inputcsvwLicense')
             button.btn.btn-primary(form='csvw_input_Form' type="submit") Add
-
 
   div(id='executeMapping' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='executeMapping' style='display: none;')
     div.modal-dialog(role='document')
@@ -469,9 +472,32 @@ block body
           button.btn.btn-primary(id="cancel_job") Cancel job
 
 
+   div(id='addLogicalSourceModal' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='AreTheseUsed' style='display: none;')
+    div.modal-dialog(role='document')
+     div.modal-content
+       div.modal-header
+         h4.modal-title Select logical source
+           div.modal-body
+             select(id='logical_sources' class='form-control')
+             br
+           div.modal-footer
+             button.btn.btn-primary(id="addLogicalSourceSubmit") Add
+
+   div(id='addDataSourceModal' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='AreTheseUsed' style='display: none;')
+     div.modal-dialog(role='document')
+       div.modal-content
+         div.modal-header
+           h4.modal-title Select data source
+             div.modal-body
+               select(id='data_sources' class='form-control')
+               br
+             div.modal-footer
+               button.btn.btn-primary(id="addDataSourceSubmit") Add
 
 
-   div(id='publish' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' style='display: none;')
+
+
+  div(id='publish' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' style='display: none;')
     div.modal-dialog(role='document')
       div.modal-content
         div.modal-header
@@ -570,8 +596,6 @@ block body
             | Remove
           button(id='editLogicalSourceBtn' data-toggle="modal" data-target="#editLogicalSourceModal" class='btn btn-default')
             | Edit
-          button(id='addLogicalSourceBtn' data-toggle="modal" data-target="#editLogicalSourceModal" class='btn btn-default')
-            | Add
           button(type='submit' class='btn btn-default' data-dismiss="modal")
             | Back
 
@@ -752,8 +776,6 @@ block body
                             li
                               a(href='#' data-toggle='modal' data-target='#dcat-input') DCAT
                             li
-                              a(href='#' data-toggle='modal' data-target='#api-input') Web API
-                            li
                               a(href='#' data-toggle='modal' data-target='#sparql-input') SPARQL
                             li
                               a(href='#' data-toggle='modal' data-target='#csvw-input') CSVW
@@ -777,14 +799,14 @@ block body
                            span(class="glyphicon glyphicon-menu-hamburger")
                        ul.dropdown-menu(aria-labelledby='dropdownInput2')
                            li
-                               a(href='#' data-toggle='modal' data-target='#') Edit
+                             a(href='#' data-toggle='modal' id='prettyDataSource' data-target='#') Pretty version
                            li
-                               a(href='#') Details
+                             a(href='#' id='uglyDataSource') Blank nodes version
 
                div.panel-body(id='inputBody')
                    div.row
                      div.col-md-6
-                       h4(id='inputTitle')
+                       h4(id='descriptionTitle')
                    div.row
                      div.col-md-12(id='descriptionContent' class='workbenchElement')
                        pre#descriptionpre
@@ -809,22 +831,18 @@ block body
                             span(class="glyphicon glyphicon-menu-hamburger")
                         ul.dropdown-menu(aria-labelledby='dropdownLogical')
                             li
-                              a(href='#' data-toggle='modal' data-target='#dcat-logical') DCAT
+                              a(href='#' id='openDcatLogical' data-toggle='modal' data-target='#dcat-logical') DCAT
                             li
-                              a(href='#' data-toggle='modal' data-target='#api-logical') API
+                              a(href='#' id='openDatabaseLogical'  data-toggle='modal' data-target='#db-logical') Database
                             li
-                              a(href='#' data-toggle='modal' data-target='#db-logical') Database
-                            li
-                              a(href='#' data-toggle='modal' data-target='#sparql-logical') SPARQL
+                              a(href='#' id='openSparqlLogical' data-toggle='modal' data-target='#sparql-logical') SPARQL
                             li.divider( role="separator")
                             li
-                              a(href='#' id='clearLogical') Remove selected source
+                              a(href='#' id='clearLogicalBtn') Remove selected source
                             li
-                              a(href='#' id='clearAllLogicals') Remove all sources
+                              a(href='#' id='clearAllLogicalsBtn') Remove all sources
                div.panel-body.text-center(id='logicalMain' class='workbenchElement')
 
-                 script#logical-list-item(type='text/template').
-                       <h5><%= name %></h5>
 
            div.col-md-9
             div.panel.panel-info
@@ -838,9 +856,9 @@ block body
                             span(class="glyphicon glyphicon-menu-hamburger")
                         ul.dropdown-menu(aria-labelledby='dropdownLogical2')
                             li
-                                a(href='#' data-toggle='modal' data-target='#') Edit
+                                a(href='#' id='prettyLogicalSource' data-toggle='modal' data-target='#') Pretty version
                             li
-                                a(href='#') Details
+                                a(href='#' id='uglyLogicalSource') Blank nodes version
 
                div.panel-body(id='logicalBody')
                  div.row
@@ -848,8 +866,7 @@ block body
                      h4(id='logicalTitle')
                  div.row
                    div.col-md-12(id='logicalContent' class='workbenchElement')
-                     script#logical-content(type='text/template').
-                       <%= convertedData %>
+                     pre#logicalpre
 
       #mapping2.tab-pane.fade
         br
@@ -895,6 +912,10 @@ block body
                                 a(href='#' id="pretty") Pretty version
                             li
                                 a(href='#' id="blanknode") Blank nodes version
+                            li
+                                a(href='#' data-toggle='modal' data-target='#addDataSourceModal' id="addDataSourceModalBtn") Add data source
+                            li
+                                a(href='#' id="addLogicalSourceModalBtn" data-toggle='modal' data-target='#addLogicalSourceModal') Add logical source
                             li
                                 a(href='#' data-toggle='modal' data-target='#dataSourcesDetailsModal' id="dataSourcesDetailsBtn") Data sources
                             li

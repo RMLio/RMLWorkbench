@@ -5,6 +5,9 @@ exports = module.exports = function(app, mongoose) {
     type: { type: String, default: ''},
     prefix: { type: String, default: ''},
     data : { type: String, default: ''},
+    triples: [],
+    prefixes: {},
+    ugly : {type: String},
     metadata: { 
       timeCreated: { type: Date, default: Date.now },
       license: { type: String, default: 'None' }

@@ -14,6 +14,13 @@ $(document).ready(function() {
         });
     });
 
+    $('#prettyDataSource').click(function() {
+        $('#descriptionpre').text(app.currentModel.attributes.data.replace(/password \".*\"/,'password ***'));
+    });
+
+    $('#uglyDataSource').click(function() {
+        $('#descriptionpre').text(app.currentModel.attributes.ugly.replace(/password>.*\".*\"/,'password>  ***'));
+    });
 
     var notify = function(text,type) {
         var n = noty({text: text,layout: 'bottomCenter',

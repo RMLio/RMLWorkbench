@@ -81,12 +81,13 @@ var exports = module.exports = {
 
       var license = req.body.inputcsvwLicense;
       var prefix = 'csvw';
-      var data = '<#' + name + '> a csvw:Table;\n' +
+      var data = '@prefix csvw: <http://www.w3.org/ns/csvw#> .\n\n' +
+          '<#' + name + '> a csvw:Table;\n' +
           '    csvw:url "' + req.body.inputcsvwURL + '" ;\n' +
           '    csvw:dialect [ a csvw:Dialect;\n' +
           '    csvw:delimiter "' + req.body.inputcsvwDelimiter + '";\n' +
           '    csvw:encoding "' + req.body.inputcsvwType + '";\n' +
-          '    csvw:header ' + req.body.inputcsvwHeader + ' \n';
+          '    csvw:header ' + '"'+req.body.inputcsvwHeader+'"' + ';  ] . \n'
 
     var description = {
                         name: name,
@@ -97,10 +98,12 @@ var exports = module.exports = {
                         _id : mongoose.Types.ObjectId(),
                         metadata: { license: license }
                     };
-    saver.saveDescription(description, models, user, function() {
-        console.log('[WORKBENCH LOG] CSVW description added sucessfully!');
-        res.send(200);
-  })
+      tripleParser.parseSourceObject(description, function() {
+          saver.saveDescription(description, models, user, function(){
+              console.log('[WORKBENCH LOG] DCat description added sucessfully!');
+              res.send(200);
+          })
+      });
   },
 
   addDB: function(req, res) {
@@ -109,7 +112,7 @@ var exports = module.exports = {
       var name = req.body.inputDBName;
       var license = req.body.inputDBLicense;
       var prefix = 'd2rq';
-      var data = '@prefix d2rq : <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .\n' +
+      var data = '@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .\n\n' +
           '<#' + name + '> a d2rq:Database;\n' +
           '    d2rq:jdbcDSN "' + req.body.inputDBURL + '";\n' +
           '    d2rq:jdbcDriver "' + req.body.inputDBDrive + '";\n' +
@@ -122,10 +125,12 @@ var exports = module.exports = {
            _id : mongoose.Types.ObjectId(),
            metadata: { license: license }
        };
-       saver.saveDescription(description, models, user, function() {
-           console.log('[WORKBENCH LOG] DATABASE description added sucessfully!');
-           res.send(200);
-  })
+      tripleParser.parseSourceObject(description, function() {
+          saver.saveDescription(description, models, user, function(){
+              console.log('[WORKBENCH LOG] DCat description added sucessfully!');
+              res.send(200);
+          })
+      });
   },
 
   addAPI: function(req, res) {
@@ -152,10 +157,12 @@ var exports = module.exports = {
             _id : mongoose.Types.ObjectId(),
             metadata: { license: license }
         };
-    saver.saveDescription(description, models, user, function() {
-        console.log('[WORKBENCH LOG] HYDRA description added sucessfully!');
-        res.send(200);
-  })
+      tripleParser.parseSourceObject(description, function() {
+          saver.saveDescription(description, models, user, function(){
+              console.log('[WORKBENCH LOG] DCat description added sucessfully!');
+              res.send(200);
+          })
+      });
   },
 
   addSPARQL: function(req, res) {
@@ -164,7 +171,8 @@ var exports = module.exports = {
       var name = req.body.inputSparqlName;
       var license = req.body.inputSparqlicense;
       var prefix = 'sd';
-      var data = '@prefix sd : <http://www.w3.org/ns/sparql-service-description#> .\n' +
+
+      var data = '@prefix sd: <http://www.w3.org/ns/sparql-service-description#> .\n' +
           '<#' + name + '> a sd:Service ;\n' +
           '    sd:endpoint <' + req.body.inputSparqlURL + '> ;\n' +
           '    sd:supportedLanguage sd:SPARQL11Query ;\n' +
@@ -175,10 +183,12 @@ var exports = module.exports = {
                                     fullprefix: '@prefix ' + prefix +': <http://www.w3.org/ns/sparql-service-description#> .',
                                     _id : mongoose.Types.ObjectId(),
                             metadata: {license: license} };
-    saver.saveDescription(description, models, user, function() {
-        console.log('[WORKBENCH LOG] SPARQL description added sucessfully!');
-        res.send(200);
-  })
+      tripleParser.parseSourceObject(description, function() {
+          saver.saveDescription(description, models, user, function(){
+              console.log('[WORKBENCH LOG] DCat description added sucessfully!');
+              res.send(200);
+          })
+      });
   },
 
   addDCAT: function(req, res) {
@@ -188,11 +198,12 @@ var exports = module.exports = {
       var license = req.body.inputDCATLicense;
       var prefix = 'dcat';
       var models = req.app.db.models;
-      var data = '<#' + name + '>\n' +
+      var data = '@prefix dcat: <http://www.w3.org/ns/dcat#> . \n\n ' +
+          '<#' + name + '>' +
           '   a dcat:Dataset ;\n' +
           '   dcat:distribution [\n' +
-          'a dcat:Distribution;\n' +
-          'dcat:downloadURL "' + req.body.inputDCATURL + '" ].\n';
+          '      a dcat:Distribution;\n' +
+          '      dcat:downloadURL "' + req.body.inputDCATURL + '" ;].\n';
         var description =
         {name: name, type: 'dcat',
             name: name,
@@ -202,10 +213,14 @@ var exports = module.exports = {
             _id : mongoose.Types.ObjectId(),
             metadata: { license: license }
           };
-        saver.saveDescription(description, models, user, function(){
-                console.log('[WORKBENCH LOG] DCat description added sucessfully!');
-                res.send(200);
-  })
+      console.log('???');
+      tripleParser.parseSourceObject(description, function() {
+          saver.saveDescription(description, models, user, function(){
+              console.log('[WORKBENCH LOG] DCat description added sucessfully!');
+              res.send(200);
+          })
+      });
+
   },
 
   getDataDescriptions: function(req, res) {
@@ -232,21 +247,31 @@ var exports = module.exports = {
       var source = req.body.logicalDBSource;
       var query = req.body.logicalDBQuery;
 
-      var data = '<#' + name + '> rml:logicalSource [\n' +
-          '   rml:source <#' + source + '> ;\n' +
-          '   rr:sqlVersion rr:SQL2008;\n' +
-          '   rml:query "' + query +'" ] .' ;
-        var logical =
-        {name: name, type: 'DB',
-            name: name,
-            data: data,
-            _id : mongoose.Types.ObjectId(),
-            metadata: { license: license }
+
+      util.retrieveFile(source, req.app.db.models.Description, function(description) {
+
+          var data = '@prefix rml:      <http://semweb.mmlab.be/ns/rml#>.\n' +
+                    '@prefix rr:       <http://www.w3.org/ns/r2rml#>.\n' +
+                  description.data + '\n' +
+              '<#' + name + '>\n\t\ta rml:logicalSource ;\n' +
+              '\trml:source <#' + description.name + '> ;\n' +
+              '\trr:sqlVersion rr:SQL2008;\n' +
+              '\trml:query "' + query +'"  .' ;
+          var logical =
+          {name: name, type: 'DB',
+              name: name,
+              data: data,
+              _id : mongoose.Types.ObjectId(),
+              metadata: { license: license }
           };
-        saver.saveLogical( logical, models, user, function(){
-                console.log('[WORKBENCH LOG] DCAT logical added sucessfully!');
-                res.send(200);
-  })
+          tripleParser.parseSourceObject(logical, function() {
+              saver.saveLogical( logical, models, user, function(){
+                  console.log('[WORKBENCH LOG] DCAT logical added sucessfully!');
+                  res.send(200);
+              });
+          });
+      });
+
   },
 
   addlogical_API: function(req, res) {
@@ -258,50 +283,69 @@ var exports = module.exports = {
       var iterator = req.body.logicalAPIIterator;
       var source = req.body.logicalAPISource;
 
-      var data = '<#' + name + '> rml:logicalSource [\n' +
-          '   rml:source <#' + source + '> ;\n' +
-          '   rml:referenceFormulation ql:' +type + ';\n' +
-          '   rml:iterator  "' + iterator + '" ] .';
 
-        var logical =
-        { name: name,type: 'API',
-            name: name,
-            data: data,
-            _id : mongoose.Types.ObjectId(),
-            metadata: { license: license }
+      util.retrieveFile(source, req.app.db.models.Description, function(description) {
+          var data = '@prefix rml:      <http://semweb.mmlab.be/ns/rml#>.\n'+
+                  description.data+ '\n'+
+              '<#' + name + '> a rml:logicalSource ;\n' +
+              '\trml:source <#' + source + '> ;\n' +
+              '\trml:referenceFormulation ql:' +type + ';\n' +
+              '\trml:iterator  "' + iterator + '" .';
+
+          var logical =
+          { name: name,type: 'API',
+              name: name,
+              data: data,
+              _id : mongoose.Types.ObjectId(),
+              metadata: { license: license }
           };
-        saver.saveLogical( logical, models, user, function(){
-                console.log('[WORKBENCH LOG] DCAT logical added sucessfully!');
-                res.send(200);
-  })
+          tripleParser.parseSourceObject(logical, function() {
+              saver.saveLogical( logical, models, user, function(){
+                  console.log('[WORKBENCH LOG] DCAT logical added sucessfully!');
+                  res.send(200);
+              });
+          });
+
+      });
+
+
   },
 
   addlogical_SPARQL: function(req, res) {
       var user = req.user;
       var models = req.app.db.models;
-      var name = req.body.logicalSparqlName;
+      var name = req.body.LogicalSparqlName;
       var license = req.body.logicalSparqlLicense;
-      var type = req.body.logicalSparqlType;
+      var type = req.body.logicalSparqlRef;
       var iterator = req.body.logicalSparqlIterator;
       var source = req.body.logicalSparqlSource;
-      var query = req.body.logicalSparqlQuery;
+      var query = req.body.logicalSparqQuery;
 
-      var data = '<#' + name + '> rml:logicalSource [\n' +
-          '   rml:source <#' + source + '> ;\n' +
-          '   rml:referenceFormulation ql:' +type + ';\n' +
-          '   rml:iterator  "' + iterator + '"\n' +
-          '   rml:query "' +query+'" ] .' ;
-        var logical =
-        {name: name, type: 'SPARQL',
-            name: name,
-            data: data,
-            _id : mongoose.Types.ObjectId(),
-            metadata: { license: license }
+      util.retrieveFile(source, req.app.db.models.Description, function(description) {
+          var data = '@prefix rml:      <http://semweb.mmlab.be/ns/rml#>.\n' +
+              '@prefix ql:       <http://semweb.mmlab.be/ns/ql#>.\n' +
+                  description.data + '\n' +
+              '<#' + name + '>\n\t\ta rml:logicalSource ;\n' +
+              '\trml:source <#' + description.name + '> ;\n' +
+              '\trml:referenceFormulation ql:' + type + ';\n' +
+              '\trml:iterator  "' + iterator + '";\n' +
+              '\trml:query "' + query + '"  .';
+          var logical =
+          {
+              name: name, type: 'SPARQL',
+              name: name,
+              data: data,
+              _id: mongoose.Types.ObjectId(),
+              metadata: {license: license}
           };
-        saver.saveLogical( logical, models, user, function(){
-                console.log('[WORKBENCH LOG] DCAT logical added sucessfully!');
-                res.send(200);
-  })
+          tripleParser.parseSourceObject(logical, function () {
+              saver.saveLogical(logical, models, user, function () {
+                  console.log('[WORKBENCH LOG] DCAT logical added sucessfully!');
+                  res.send(200);
+              });
+          });
+      });
+
   },
 
   addlogical_DCAT: function(req, res) {
@@ -313,31 +357,42 @@ var exports = module.exports = {
       var iterator = req.body.logicalDCATIterator;
       var source = req.body.logicalDCATSource;
 
-      var data = '<#' + name + '> rml:logicalSource [\n' +
-          '   rml:source <#' + source + '> ;\n' +
-          '   rml:referenceFormulation ql:' +type + ';\n' +
-          '   rml:iterator  "' + iterator + '" ] .' ;
-        var logical =
-        {name: name, type: 'DCAT',
-            name: name,
-            data: data,
-            _id : mongoose.Types.ObjectId(),
-            metadata: { license: license }
+
+      util.retrieveFile(source, req.app.db.models.Description, function(description) {
+          var data = '@prefix rml:      <http://semweb.mmlab.be/ns/rml#>.\n' +
+                  '@prefix ql:       <http://semweb.mmlab.be/ns/ql#>.\n' +
+                  description.data + '\n' +
+              '<#' + name + '>\n\t\ta rml:logicalSource ;\n' +
+              '\trml:source <#' + description.name + '> ;\n' +
+              '\trml:referenceFormulation ql:' + type + ';\n' +
+              '\trml:iterator  "' + iterator + '"  .';
+          var logical =
+          {
+              name: name, type: 'DCAT',
+              name: name,
+              data: data,
+              _id: mongoose.Types.ObjectId(),
+              metadata: {license: license}
           };
-        saver.saveLogical( logical, models, user, function(){
-                console.log('[WORKBENCH LOG] DCAT logical added sucessfully!');
-                res.send(200);
-  })
+          console.log(data);
+          tripleParser.parseSourceObject(logical, function () {
+              saver.saveLogical(logical, models, user, function () {
+                  console.log('[WORKBENCH LOG] DCAT logical added sucessfully!');
+                  res.send(200);
+              });
+          });
+      });
+
   },
 
   getLogicalDescriptions: function(req, res) {
-        var sourceschema = req.app.db.models.Description;
-        var idsources = req.user.descriptions;
+        var sourceschema = req.app.db.models.Logical;
+        var idsources = req.user.logicals;
         console.log('[WORKBENCH LOG] Retrieving data descriptions of ' + req.user.username + '...');
         util.retrieveDescriptions(idsources, sourceschema, function(sources){
             console.log('[WORKBENCH LOG] Retrieving data descriptions successful!');
             res.send(sources);
-  })
+        });
   },
 
 
@@ -709,17 +764,22 @@ var exports = module.exports = {
             }
 
             util.retrieveFile(mappingsFromFile[0], models.Mapping, function(mapping) {
-                job.mappingFileName = mapping.filename;
-                if(triples.length == 0) {
-                    job.amountTriples = mapping.parsedObject.mappingDefinitions.length;
-                } else {
-                    job.amountTriples = triples.length;
-                }
-                if(mappingsFromFile.length > 1) {
-                    res.send(new Error('Not supported yet').message, 400);
-                } else {
-                    schedules.push(job);
-                    res.send(200);
+                try {
+                    job.mappingFileName = mapping.filename;
+                    if (triples.length == 0) {
+                        job.amountTriples = mapping.parsedObject.mappingDefinitions.length;
+                    } else {
+                        job.amountTriples = triples.length;
+                    }
+                    if (mappingsFromFile.length > 1) {
+                        res.send(new Error('Not supported yet').message, 400);
+                    } else {
+                        schedules.push(job);
+                        res.send(200);
+                    }
+                } catch(err) {
+                    throw err
+                    res.send(new Error('Scheduling failed'),400);
                 }
             });
 
@@ -805,7 +865,7 @@ var exports = module.exports = {
         var triples = req.body.triples;
         util.retrieveFile(req.body.mapping_id, req.app.db.models.Mapping, function(mapping) {
             tripleParser.updateMappingObject(mapping.parsedObject, triples,function(mappingObject) {
-                saver.updateMappingObject(req.app.db.models, mappingObject, req.body.mappingID, function (err) {
+                saver.updateMappingObject(req.app.db.models, mappingObject, req.body.mapping_id, function (err) {
                     if (err) {
                         res.send(err.message,409);
                     } else {

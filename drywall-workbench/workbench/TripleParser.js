@@ -10,20 +10,21 @@ var exports = module.exports = {
 
         var triples =  [];
 
-            n3parser.parse(document, function (err, triple, prefix) {
+        n3parser.parse(document, function (err, triple, prefix) {
 
-                if (err) {
-                    callback(err, undefined,undefined);
+            if (err) {
+                throw err;
+                callback(err, undefined,undefined);
+            } else {
+
+                if (triple) {
+                    triples.push(triple);
                 } else {
-
-                    if (triple) {
-                        triples.push(triple);
-                    } else {
-                        callback(err,triples, prefix);
-                    }
+                    callback(err,triples, prefix);
                 }
+            }
 
-            });
+        });
 
     },
 
@@ -43,6 +44,7 @@ var exports = module.exports = {
         exports.parse(mapping, function(err, triples, prefixes) {
 
             if (err) {
+
                 callback(err,mappingObject);
             } else {
 
@@ -66,20 +68,42 @@ var exports = module.exports = {
 
     },
 
+    parseSourceObject: function(sourceObject, callback) {
+        exports.parse(sourceObject.data, function(err, triples, prefixes) {
+            console.log(triples);
+            sourceObject.triples = triples;
+            sourceObject.prefixes = prefixes;
+            getUglyString(triples,prefixes, function(result) {
+                console.log(result);
+                sourceObject.ugly = result;
+                callback();
+            })
+        });
+    },
+
     updateMappingObject: function(mappingObject,triples, callback) {
         var prefixes = mappingObject.prefixes;
         for(var i = 0; i < triples.length; i++) {
+            var found = false;
             for(var j = 0; j < mappingObject.triples.length; j++) {
                 if(triples[i].subject == mappingObject.triples[j].subject
                 && triples[i].predicate == mappingObject.triples[j].predicate) {
                     mappingObject.triples[j] = triples[i];
+                } else if(triples[i].subject == mappingObject.triples[j].subject
+                    && triples[i].predicate == mappingObject.triples[j].predicate
+                    && triples[i].object == mappingObject.triples[j].object) {
+                        found = true;
                 }
+            }
+            if(!found) {
+                mappingObject.triples.push(triples[i]);
             }
         }
         createMappingObject(mappingObject.triples, prefixes, function(result) {
             callback(result);
         })
     },
+
 
     updateLogicalSource: function(mappingObject,callback) {
 

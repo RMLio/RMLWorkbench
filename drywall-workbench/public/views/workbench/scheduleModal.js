@@ -45,12 +45,12 @@ $(document).ready(function() {
             hour = fulldate.substring(11,12);
             var minute = fulldate.substring(13,15);
             if(fulldate.charAt(16) == 'P') {
-                hour = parseInt(hour) + 12;
+                hour = (parseInt(hour) + 12) % 24;
             }
         } else {
             var minute = fulldate.substring(14,16);
             if(fulldate.charAt(17) == 'P') {
-                hour = parseInt(hour) + 12;
+                hour = (parseInt(hour) + 12) % 24;
             }
         }
         var date = {
@@ -87,7 +87,10 @@ $(document).ready(function() {
         var newDate = new Date(year,month,day,hour,minute);
         var now = new Date();
 
-
+        if($('#scheduleTitle').val() == '' || (toBePublished && (publishTitle == '')) || (triples.length == 0)) {
+            notify('Invalid form','warning');
+            return;
+        }
 
 
         if(newDate > now) {

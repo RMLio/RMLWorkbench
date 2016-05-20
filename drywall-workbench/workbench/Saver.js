@@ -129,11 +129,14 @@ exports = module.exports =  {
 	},
 
 	updateMappingObject: function(models, mappingObject, mappingID, callback) {
+		console.log(mappingObject.logicalSources);
+		console.log(mappingID);
 		models.Mapping.update({
 				_id: mappingID
 			}, {
-				parsedObject : mappingObject
+				"$set" : { parsedObject : mappingObject }
 			}, function(err) {
+				if(err) throw err;
 				callback(err);
 			});
 	},

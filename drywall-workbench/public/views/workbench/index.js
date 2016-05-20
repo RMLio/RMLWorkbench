@@ -288,26 +288,65 @@
         $('#descriptionMain').empty();
         $('#descriptionpre').empty();
 
-        $('#descriptionTitle').text('Select a description');
+        $('#descriptionTitle').text('Select a data source');
         $.get('/workbench/fetch/description', function(data) {
             for(var i = 0; i < data.length; i++) {
                 $('#descriptionMain').append('<a href="#"  class="descriptionItem list-group-item">'+data[i].name+'</a>');
             }
             $('.descriptionItem').click(function() {
+                $('#descriptionTitle').text('Data source: ' + data[$('.descriptionItem').index(this)].name);
                 $('#descriptionpre').text(data[$('.descriptionItem').index(this)].data.replace(/password \".*\"/,'password ***'));
                 app.currentModel = {};
                 app.currentModel.attributes = data[$('.descriptionItem').index(this)];
             });
         });
 
-        $('#descriptionMain').css('min-height',$(window).height()*0.82 + 'px');
-        $('#descriptionMain').css('max-height',$(window).height()*0.82 + 'px');
+        $('#descriptionMain').css('min-height',$(window).height()*0.795 + 'px');
+        $('#descriptionMain').css('max-height',$(window).height()*0.795 + 'px');
         $('#descriptionContent').css('min-height',$(window).height()*0.75 + 'px');
         $('#descriptionContent').css('max-height',$(window).height()*0.75 + 'px');
         $('#descriptionBody').css('min-height',$(window).height()*0.82 + 'px');
         $('#descriptionBody').css('max-height',$(window).height()*0.82 + 'px');
-        $('#descriptionpre').css('min-height',$(window).height()*0.75 + 'px');
-        $('#descriptionpre').css('max-height',$(window).height()*0.75 + 'px');
+        $('#descriptionpre').css('min-height',$(window).height()*0.25 + 'px');
+        $('#descriptionpre').css('max-height',$(window).height()*0.25 + 'px');
+
+        /**
+         *
+         * RENDERING LOGICAL SOURCES
+         *
+         */
+
+        /***
+         *
+         *
+         * RENDERING DATA DESCRIPTIONS
+         *
+         */
+
+        $('#logicalMain').empty();
+        $('#logicalpre').empty();
+
+        $('#logicalTitle').text('Select a logical source');
+        $.get('/workbench/fetch/logical_description', function(data) {
+            for(var i = 0; i < data.length; i++) {
+                $('#logicalMain').append('<a href="#"  class="logicalItem list-group-item">'+data[i].name+'</a>');
+            }
+            $('.logicalItem').click(function() {
+                $('#logicalTitle').text('Logical source: ' + data[$('.logicalItem').index(this)].name);
+                $('#logicalpre').text(data[$('.logicalItem').index(this)].data.replace(/password \".*\"/,'password ***'));
+                app.currentModel = {};
+                app.currentModel.attributes = data[$('.logicalItem').index(this)];
+            });
+        });
+
+        $('#logicalMain').css('min-height',$(window).height()*0.795 + 'px');
+        $('#logicalMain').css('max-height',$(window).height()*0.795 + 'px');
+        $('#logicalContent').css('min-height',$(window).height()*0.75 + 'px');
+        $('#logicalContent').css('max-height',$(window).height()*0.75 + 'px');
+        $('#logicalBody').css('min-height',$(window).height()*0.82 + 'px');
+        $('#logicalBody').css('max-height',$(window).height()*0.82 + 'px');
+        $('#logicalpre').css('min-height',$(window).height()*0.25 + 'px');
+        $('#logicalpre').css('max-height',$(window).height()*0.25 + 'px');
 
 
         /***
@@ -549,6 +588,62 @@
     $("#pretty").click(function() {
         $('.mappingpre').empty();
         $('.mappingpre').text(app.currentModel.attributes.parsedObject.toString);
+    });
+
+    $("#addDataSourceModal").click(function() {
+
+    });
+
+    var logical_sources;
+
+    $('#addLogicalSourceModalBtn').click(function() {
+        logical_sources = [];
+        $.get('/workbench/fetch/logical_description', function(data) {
+            for(var i = 0; i < data.length; i++) {
+                logical_sources.push(data[i]);
+                $('#logical_sources').append('<option value="'+i+'">'+data[i].name+'</option>');
+            }
+        });
+    });
+
+    $('#addLogicalSourceSubmit').click(function() {
+        var post = {
+            triples : logical_sources[$('#logical_sources').val()].triples,
+            mapping_id : app.currentModel.attributes._id
+        };
+        console.log(post.triples);
+        $.post('/workbench/mapping/update', post, function(object) {
+            console.log(object);
+            app.currentModel.attributes.parsedObject = object;
+            notify('Logical source added','information');
+            app.render();
+        });
+    });
+
+    var data_sources;
+
+    $('#addDataSourceModalBtn').click(function() {
+        data_sources = [];
+        $.get('/workbench/fetch/description', function(data) {
+            for(var i = 0; i < data.length; i++) {
+                data_sources.push(data[i]);
+                $('#data_sources').append('<option value="'+i+'">'+data[i].name+'</option>');
+            }
+        });
+    });
+
+    $('#addDataSourceSubmit').click(function() {
+        var post = {
+            triples : data_sources[$('#data_sources').val()].triples,
+            mapping_id : app.currentModel.attributes._id
+        };
+        console.log(post.triples);
+        $.post('/workbench/mapping/update', post, function(object) {
+            console.log(object);
+            app.currentModel.attributes.parsedObject = object;
+            notify('Data source added','information');
+            app.render();
+        });
     });
     
     /*
@@ -885,6 +980,9 @@
         }}
         });   
      });
+
+
+
 
 
 

@@ -1,0 +1,98 @@
+doctype html
+html
+    head
+        // <link rel="stylesheet" href="./webix/webix.css" type="text/css">
+        link(rel='stylesheet', href='./bower_components/webix/codebase/webix.css', type='text/css')
+        link(rel='stylesheet', href='./bower_components/highlightjs/styles/default.css')
+        link(rel='stylesheet', href='./css/style.css', type='text/css')
+        // <script src="./webix/webix.js" type="text/javascript"></script>
+        script(src='./bower_components/webix/codebase/webix_debug.js', type='text/javascript')
+        script(type='text/javascript').
+            webix.require.disabled = true;
+        //
+          <script src="./js/jquery-2.1.4.min.js" type="text/javascript"></script>
+          <script src="./d3/d3.min.js" type="text/javascript"></script>
+          f
+        script(src='./bower_components/jquery/dist/jquery.min.js', type='text/javascript')
+        script(src='./bower_components/d3/d3.min.js', type='text/javascript')
+        script(src='./js/d3.js', charset='utf-8')
+        script(src='./bower_components/alt/dist/alt.min.js', charset='utf-8')
+        script(src='./js/utilities.js', charset='utf-8')
+        script(src='./js/config.js', charset='utf-8')
+        // <script src="./js/XMLWriter-1.0.0-min.js" charset="utf-8"></script>
+        script(src='./bower_components/XMLWriter/XMLWriter.js', charset='utf-8')
+        script(src='./js/enums.js', charset='utf-8')
+        // flux
+        script(src='./js/alt.js')
+        script(src='./js/actions/namespacesActions.js')
+        script(src='./js/actions/resultsActions.js')
+        script(src='./js/actions/graphActions.js')
+        script(src='./js/actions/inputActions.js')
+        script(src='./js/actions/preferenceActions.js')
+        script(src='./js/stores/namespacesStore.js')
+        script(src='./js/stores/resultsStore.js')
+        script(src='./js/stores/graphStore.js')
+        script(src='./js/stores/visibleGraphStore.js')
+        script(src='./js/stores/inputStore.js')
+        script(src='./js/stores/preferencesStore.js')
+        script(src='./js/localStorageUpdater.js')
+        script(src='./js/graphmlwriter.js', charset='utf-8')
+        script(src='./js/graph.js', charset='utf-8')
+        // <script src="./js/models/graphmodel.js" charset="utf-8"></script>
+        // <script src="./js/models/modelingmodel.js" charset="utf-8"></script>
+        script(src='./js/graphmlreader.js', charset='utf-8')
+        script(src='./js/commandinvoker.js', charset='utf-8')
+        script(src='./js/colormanager.js', charset='utf-8')
+        // <script src="./js/papaparse.min.js" charset="utf-8"></script>
+        script(src='./bower_components/papaparse/papaparse.min.js', charset='utf-8')
+        script(src='./bower_components/lodash/lodash.js')
+        script(src='./bower_components/xmltojson/dist/xmltojson.min.js')
+        script(src='./bower_components/highlightjs/highlight.pack.js')
+        script(src='./bower_components/n3/n3-browser.js')
+        // <script src="./js/models/inputmodel.js" charset="utf-8"></script>
+        // <script src="./js/models/resultsmodel.js" charset="utf-8"></script>
+        script(src='./js/models/autosavemodel.js', charset='utf-8')
+        // <script src="./js/models/namespacesmodel.js" charset="utf-8"></script>
+        // <script src="./js/models/preferencesmodel.js" charset="utf-8"></script>
+        script(src='js/ui/modelingbuilder.js', charset='utf-8')
+        script(src='js/ui/inputbuilder.js', charset='utf-8')
+        script(src='js/ui/resultsbuilder.js', charset='utf-8')
+        script(src='js/ui/dialogbuilder.js', charset='utf-8')
+        script(src='js/ui/menubuilder.js', charset='utf-8')
+        script(src='js/ui/toolbarbuilder.js', charset='utf-8')
+        script(src='js/ui/uibuilder.js', charset='utf-8')
+        script(src='js/ui/detailsPanel.js', charset='utf-8')
+        script(src='js/commands/autosavecommands.js', charset='utf-8')
+        script(src='js/commands/externalservicecommands.js', charset='utf-8')
+        script(src='js/commands/inputcommands.js', charset='utf-8')
+        script(src='js/commands/iocommands.js', charset='utf-8')
+        script(src='js/commands/modelingcommands.js', charset='utf-8')
+        script(src='js/commands/namespacecommands.js', charset='utf-8')
+        script(src='js/commands/resultscommand.js', charset='utf-8')
+        script(src='js/commands/runmappingcommands.js', charset='utf-8')
+        script(src='js/commands/uicommands.js', charset='utf-8')
+        script(src='js/commands/utilitycommands.js', charset='utf-8')
+        script(src='./js/controllers/inputcontroller.js', charset='utf-8')
+        script(src='./js/controllers/modelingcontroller.js', charset='utf-8')
+        script(src='./js/controllers/resultscontroller.js', charset='utf-8')
+        script(src='./js/controllers/settingspanelmodelingpanelcontroller.js', charset='utf-8')
+        script(src='./draft/GraphBuilder.js')
+        style.
+            /*.node {
+            stroke: #fff;
+            stroke-width: 1.5px;
+            }*/
+            .edge {
+                stroke: #999;
+                stroke-opacity: 1;
+                stroke-width: 3;
+            }
+            .edge.click {
+                stroke: #000;
+                stroke-opacity: 0;
+                stroke-width: 12;
+            }
+    body
+        script(type='text/javascript').
+            workbenchAttributes = {mappingid: '#{mappingid}'};
+        script(src='./js/main.js', charset='utf-8')

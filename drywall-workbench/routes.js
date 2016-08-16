@@ -60,6 +60,7 @@ exports = module.exports = function(app, passport, upload, ldfserver) {
   app.post('/workbench/fetch/logical_sparql', workbenchCtrl.addlogical_SPARQL);  
   app.post('/workbench/fetch/logical_dcat', workbenchCtrl.addlogical_DCAT);    
   app.get('/workbench/fetch/logical_description', workbenchCtrl.getLogicalDescriptions);
+  app.get('/workbench/fetch/mapping_sources', workbenchCtrl.getInputsFromMapping);
 
   //data sources
   app.post('/workbench/mapping/data/update', workbenchCtrl.updateDataSource);
@@ -252,6 +253,9 @@ exports = module.exports = function(app, passport, upload, ldfserver) {
   app.get('/account/settings/tumblr/', passport.authenticate('tumblr', { callbackURL: '/account/settings/tumblr/callback/' }));
   app.get('/account/settings/tumblr/callback/', require('./views/account/settings/index').connectTumblr);
   app.get('/account/settings/tumblr/disconnect/', require('./views/account/settings/index').disconnectTumblr);
+
+  //editor
+  app.get('/editor/', require('./views/editor/index').init);
 
   //route not found
   app.all('*', require('./views/http/index').http404);

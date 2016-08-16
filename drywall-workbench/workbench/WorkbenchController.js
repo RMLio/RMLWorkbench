@@ -1042,18 +1042,63 @@ var exports = module.exports = {
     //get sourcefiles from database by id
     getInputs: function(req, res) {
         var sourceschema = req.app.db.models.Source;
-        var idsources = req.user.sourcefiles;
+
+
+      var idsources = [req.query.idsources];
+
+      if (!idsources[0]) {
+        idsources = req.user.sourcefiles;
+      }
+
         console.log('[WORKBENCH LOG] Retrieving sources of ' + req.user.username + '...');
         util.retrieveFiles(idsources, sourceschema, function(sources) {
             console.log('[WORKBENCH LOG] Retrieving sources successful!');
             res.send(sources);
-    })
+      })
+    },
+
+    //get sources files from database used by a given mapping
+    getInputsFromMapping: function(req, res) {
+      var mappingschema = req.app.db.models.Mapping;
+      var sourceschema = req.app.db.models.Source;
+      var idmapping = req.query.idmapping;
+
+      util.retrieveFile(idmapping, mappingschema, function(mapping) {
+        console.log('[WORKBENCH LOG] Retrieving mappings successful!');
+
+        util.getSourceTitles(mapping, function(titles) {
+          console.log(titles);
+          var sources = [];
+          var i = 0;
+
+          function recursive() {
+            console.log(i);
+            if (i < titles.length) {
+              util.getSourceIDByTitle(titles[i], sourceschema, function (source) {
+                sources.push(source);
+                i++;
+
+                recursive();
+              });
+            } else {
+              res.send(sources);
+            }
+          }
+
+          recursive();
+        });
+      });
     },
 
     //get mappingfiles from database by id
     getMappings: function(req, res) {
         var mappingschema = req.app.db.models.Mapping;
-        var idmappings = req.user.mappingfiles;
+        var idmappings = [req.query.idmappings];
+
+        if (!idmappings[0]) {
+          idmappings = req.user.mappingfiles;
+        }
+
         console.log(idmappings);
         console.log('[WORKBENCH LOG] Retrieving mappings of ' + req.user.username + '...');
         util.retrieveFiles(idmappings, mappingschema, function(mappings) {

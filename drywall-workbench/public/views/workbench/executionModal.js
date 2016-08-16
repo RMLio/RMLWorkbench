@@ -95,5 +95,16 @@ $(document).ready(function() {
         n.setTimeout(4500);
     }
 
+    $('#editWithRMLEditorBtn').click(function() {
+        var mapping_id = mapping_id = app.currentModel.attributes._id;
+        console.log(mapping_id);
 
+        window.location.href = '/editor/?idmappings=' + mapping_id;
+
+        // $.get('/editor/', {idmappings:mapping_id}, function (mapping) {
+        //     //console.log(mapping[0].data);
+        // }).fail(function (err) {
+        //     console.log(err);
+        // });
+    });
 });

@@ -8,3 +8,8 @@ drywall-workbench/node_modules/*
 *.min.css
 /config.js
 .nodemonignore
+drywall-workbench/public/editor
+.idea
+data
+drywall-workbench/workbench/rmlmapper
+!drywall-workbench/workbench/rmlmapper/RML-Mapper.jar

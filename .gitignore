@@ -9,6 +9,7 @@ drywall-workbench/node_modules/*
 /config.js
 .nodemonignore
 drywall-workbench/public/editor
+drywall-workbench/public/images
 .idea
 data
 drywall-workbench/workbench/rmlmapper

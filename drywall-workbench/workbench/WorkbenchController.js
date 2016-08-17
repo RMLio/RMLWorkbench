@@ -1066,15 +1066,15 @@ var exports = module.exports = {
       util.retrieveFile(idmapping, mappingschema, function(mapping) {
         console.log('[WORKBENCH LOG] Retrieving mappings successful!');
 
-        util.getSourceTitles(mapping, function(titles) {
-          console.log(titles);
+        util.getSourceTitlesAndFormat(mapping, function(results) {
           var sources = [];
           var i = 0;
 
           function recursive() {
-            console.log(i);
-            if (i < titles.length) {
-              util.getSourceIDByTitle(titles[i], sourceschema, function (source) {
+            if (i < results.length) {
+              util.getSourceIDByTitle(results[i].title, sourceschema, function (source) {
+                source = source.toObject();
+                source.format = results[i].format;
                 sources.push(source);
                 i++;
 

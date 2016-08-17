@@ -193,7 +193,7 @@ var exports = module.exports = {
     return data;
   },
 
-  getSourceTitles: function(mapping, callback) {
+  getSourceTitlesAndFormat: function(mapping, callback) {
     var parser = N3.Parser();
     var store = N3.Store();
 
@@ -203,13 +203,30 @@ var exports = module.exports = {
           store.addTriple(triple.subject, triple.predicate, triple.object);
         else {
           var sources = store.find(null, 'http://semweb.mmlab.be/ns/rml#source', null);
-          var titles = [];
+          var results = [];
 
           for (var i = 0; i < sources.length; i ++) {
-            titles.push(N3.Util.getLiteralValue(sources[i].object));
+            var referenceFormulation = store.find(sources[i].subject, 'http://semweb.mmlab.be/ns/rml#referenceFormulation', null)[0].object;
+            var format;
+
+            switch(referenceFormulation) {
+              case 'http://semweb.mmlab.be/ns/ql#JSONPath':
+                format = 'json';
+                break;
+              case 'http://semweb.mmlab.be/ns/ql#XPath':
+                format = 'xml';
+                break;
+              default:
+                format = 'csv';
+                break;
+            }
+
+            var title = N3.Util.getLiteralValue(sources[i].object);
+
+            results.push({title: title, format: format});
           }
 
-          callback(titles);
+          callback(results);
         }
       });
   },

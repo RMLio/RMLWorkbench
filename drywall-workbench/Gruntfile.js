@@ -3,6 +3,18 @@ var path = require('path');
 module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+    gitclone: {
+      your_target: {
+        options: {
+          repository: 'ssh://git@git.mmlab.be:4444/rmleditor/rml-editor-js.git',
+          branch: 'int-wb',
+          directory: 'public/editor'
+        }
+      }
+    },
+    exec: {
+      editor_bower: 'cd public/editor; bower install; rm -f index.html'
+    },
     copy: {
       vendor: {
         files: [
@@ -61,6 +73,21 @@ module.exports = function(grunt) {
           {
             expand: true, cwd: 'node_modules/bootstrap-select/',
             src: ['dist/js/**', 'dist/css/**'], dest: 'public/vendor/bootstrap-select/'
+          }
+        ]
+      },
+      editor: {
+        files: [
+          {
+            expand: true, cwd: 'public/editor',
+            src: ['images/**'], dest: 'public'
+          },
+          {
+            expand: true,
+            src: ['editor_config.js'], dest: 'public/editor/js/',
+            rename: function(dest, src) {
+              return dest + 'config.js';
+            }
           }
         ]
       }
@@ -230,6 +257,8 @@ module.exports = function(grunt) {
   });
 
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-git');
+  grunt.loadNpmTasks('grunt-exec');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-less');
@@ -239,7 +268,17 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-nodemon');
   grunt.loadNpmTasks('grunt-newer');
 
-  grunt.registerTask('default', ['copy:vendor', 'newer:uglify', 'newer:less', 'concurrent']);
-  grunt.registerTask('build', ['copy:vendor', 'uglify', 'less']);
+  var defaultTasks =  ['copy:vendor', 'copy:editor', 'newer:uglify', 'newer:less', 'concurrent'];
+  var buildTasks = ['copy:vendor', 'copy:editor', 'uglify', 'less'];
+
+  if (!grunt.file.exists('public/editor')) {
+    defaultTasks.unshift('exec');
+    defaultTasks.unshift('gitclone');
+    buildTasks.unshift('exec');
+    buildTasks.unshift('gitclone');
+  }
+
+  grunt.registerTask('default', defaultTasks);
+  grunt.registerTask('build', buildTasks);
   grunt.registerTask('lint', ['jshint']);
 };

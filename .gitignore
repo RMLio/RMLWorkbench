@@ -14,3 +14,4 @@ drywall-workbench/public/images
 data
 drywall-workbench/workbench/rmlmapper
 !drywall-workbench/workbench/rmlmapper/RML-Mapper.jar
+*.log

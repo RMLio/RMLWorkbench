@@ -13,7 +13,7 @@ module.exports = function(grunt) {
       }
     },
     exec: {
-      editor_bower: 'cd public/editor; bower install; rm -f index.html'
+      editor_bower: 'cd public/editor; bower install --allow-root; rm -f index.html'
     },
     copy: {
       vendor: {

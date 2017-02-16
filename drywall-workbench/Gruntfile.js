@@ -6,7 +6,7 @@ module.exports = function(grunt) {
     gitclone: {
       your_target: {
         options: {
-          repository: 'ssh://git@git.mmlab.be:4444/rmleditor/rml-editor-js.git',
+          repository: 'ssh://git@git.datasciencelab.ugent.be:4444/rmleditor/rml-editor-js.git',
           branch: 'int-wb',
           directory: 'public/editor'
         }

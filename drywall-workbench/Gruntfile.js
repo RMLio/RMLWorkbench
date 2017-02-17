@@ -1,5 +1,5 @@
 /////// parameters //////
-var installEditor = true;
+var installEditor = false;
 /////////////////////////
 
 var path = require('path');

@@ -35,10 +35,10 @@ See install.md
 ## Features
 
  - Drywall User management system
- - Uploading sources, RML mappings and rdf files
+ - Uploading sources, RML mappings and RDF files
  - Execute mapping (also by mapping triples)
  - Schedule mapping
- - Publish on local ldf server
+ - Publish on local LDF server
 
 
 ## Questions and contributing

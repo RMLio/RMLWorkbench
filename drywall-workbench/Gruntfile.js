@@ -1,3 +1,7 @@
+/////// parameters //////
+var installEditor = true;
+/////////////////////////
+
 var path = require('path');
 
 module.exports = function(grunt) {
@@ -271,7 +275,7 @@ module.exports = function(grunt) {
   var defaultTasks =  ['copy:vendor', 'copy:editor', 'newer:uglify', 'newer:less', 'concurrent'];
   var buildTasks = ['copy:vendor', 'copy:editor', 'uglify', 'less'];
 
-  if (!grunt.file.exists('public/editor')) {
+  if (installEditor && !grunt.file.exists('public/editor')) {
     defaultTasks.unshift('exec');
     defaultTasks.unshift('gitclone');
     buildTasks.unshift('exec');
